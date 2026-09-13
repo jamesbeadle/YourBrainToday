@@ -16,7 +16,7 @@
 	class="flex flex-col gap-4"
 >
 	<label class="flex flex-col gap-1">
-		<span class="font-display text-sm tracking-widest text-chalk/50 uppercase">Display name</span>
+		<span class="font-mono text-sm tracking-widest text-chalk/50 uppercase">Display name</span>
 		<input
 			name="displayName"
 			value={displayName}

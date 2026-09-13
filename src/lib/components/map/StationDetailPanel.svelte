@@ -19,7 +19,7 @@
 	<aside class="flex flex-col gap-4 rounded-2xl border border-hairline bg-carriage p-6">
 		<div class="h-2.5 rounded-full" style={`background-color: ${selection.line.colour}`}></div>
 		<div>
-			<p class="font-display text-xs tracking-widest text-chalk/50 uppercase">
+			<p class="font-mono text-xs tracking-widest text-chalk/50 uppercase">
 				{selection.line.role} line
 			</p>
 			<h2 class="font-display text-2xl font-medium">{selection.station.name}</h2>

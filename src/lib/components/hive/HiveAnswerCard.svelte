@@ -10,7 +10,7 @@
 	<MarkdownBody markdown={answer.answerMarkdown} />
 	{#if answer.contributors.length > 0}
 		<div class="flex flex-wrap items-center gap-2 border-t border-hairline pt-4">
-			<span class="font-display text-xs tracking-widest text-chalk/50 uppercase">Drew on</span>
+			<span class="font-mono text-xs tracking-widest text-chalk/50 uppercase">Drew on</span>
 			{#each answer.contributors as contributor, contributorIndex (contributorIndex)}
 				<span
 					class="rounded-full border border-go/60 px-3 py-1 font-display text-xs text-go"

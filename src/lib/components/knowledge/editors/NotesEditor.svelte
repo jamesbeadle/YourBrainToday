@@ -23,7 +23,7 @@
 
 <div class="grid gap-6 lg:grid-cols-[2fr_1fr]">
 	<section class="flex flex-col gap-3">
-		<h3 class="font-display text-sm tracking-widest text-chalk/50 uppercase">{heading}</h3>
+		<h3 class="font-mono text-sm tracking-widest text-chalk/50 uppercase">{heading}</h3>
 		{#if notes.length === 0}
 			<p class="text-sm text-chalk/40">{emptyHint}</p>
 		{:else}
@@ -35,7 +35,7 @@
 		{/if}
 	</section>
 	<div class="flex flex-col gap-2">
-		<h3 class="font-display text-sm tracking-widest text-chalk/50 uppercase">Capture</h3>
+		<h3 class="font-mono text-sm tracking-widest text-chalk/50 uppercase">Capture</h3>
 		<ItemComposer
 			{itemKind}
 			fields={[

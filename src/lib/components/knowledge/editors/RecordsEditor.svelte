@@ -37,7 +37,7 @@
 
 <div class="grid gap-6 lg:grid-cols-[2fr_1fr]">
 	<section class="flex flex-col gap-3">
-		<h3 class="font-display text-sm tracking-widest text-chalk/50 uppercase">Records</h3>
+		<h3 class="font-mono text-sm tracking-widest text-chalk/50 uppercase">Records</h3>
 		{#if records.length === 0}
 			<p class="text-sm text-chalk/40">
 				No records yet — each one conforms to a type your bound expertise brains define.
@@ -51,14 +51,14 @@
 		{/if}
 	</section>
 	<div class="flex flex-col gap-2">
-		<h3 class="font-display text-sm tracking-widest text-chalk/50 uppercase">New record</h3>
+		<h3 class="font-mono text-sm tracking-widest text-chalk/50 uppercase">New record</h3>
 		{#if schemaTypes.length === 0}
 			<p class="text-sm text-caution">
 				Bind this brain to an expertise brain with node types, and its types become forms here.
 			</p>
 		{:else}
 			<label class="flex flex-col gap-1">
-				<span class="text-xs tracking-widest text-chalk/50 uppercase">Type</span>
+				<span class="font-mono text-xs tracking-widest text-chalk/50 uppercase">Type</span>
 				<select
 					bind:value={selectedTypeName}
 					class="rounded-xl border border-hairline bg-night px-3 py-2 text-sm text-chalk"

@@ -12,7 +12,7 @@
 {:else}
 	<div class="overflow-x-auto rounded-2xl border border-hairline">
 		<table class="w-full text-sm">
-			<thead class="bg-carriage/60 text-left font-display text-xs tracking-widest text-chalk/50 uppercase">
+			<thead class="bg-carriage/60 text-left font-mono text-xs tracking-widest text-chalk/50 uppercase">
 				<tr>
 					<th class="px-5 py-3">Model</th>
 					<th class="px-5 py-3 text-right">Calls</th>

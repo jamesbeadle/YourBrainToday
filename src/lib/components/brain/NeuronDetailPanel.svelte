@@ -51,7 +51,7 @@
 			✕
 		</button>
 		<div class="flex min-w-0 flex-col gap-1">
-			<p class="font-display text-xs tracking-widest text-signal uppercase">{kindLine}</p>
+			<p class="font-mono text-xs tracking-widest text-signal uppercase">{kindLine}</p>
 			<h3 class="font-display text-xl font-medium text-chalk">{payload?.page.title ?? '…'}</h3>
 		</div>
 	</header>

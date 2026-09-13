@@ -30,7 +30,7 @@
 <section class="border-y border-hairline bg-carriage/60">
 	<div class="mx-auto max-w-6xl px-6 py-16">
 		<div class="flex flex-col gap-2">
-			<p class="font-display text-sm tracking-widest text-signal uppercase">Build knowledge</p>
+			<p class="font-mono text-sm tracking-widest text-signal uppercase">Build knowledge</p>
 			<h2 class="font-display text-3xl font-medium">A knowledge base with three kinds of brain</h2>
 			<p class="max-w-prose text-chalk/70">
 				Everything we learn about your business is kept in a knowledge base with three kinds of

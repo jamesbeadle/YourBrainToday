@@ -14,7 +14,7 @@
 	class="flex flex-col gap-4"
 >
 	<label class="flex flex-col gap-1">
-		<span class="font-display text-sm tracking-widest text-chalk/50 uppercase">Name</span>
+		<span class="font-mono text-sm tracking-widest text-chalk/50 uppercase">Name</span>
 		<input
 			name="name"
 			required
@@ -24,7 +24,7 @@
 		/>
 	</label>
 	<label class="flex flex-col gap-1">
-		<span class="font-display text-sm tracking-widest text-chalk/50 uppercase">Description</span>
+		<span class="font-mono text-sm tracking-widest text-chalk/50 uppercase">Description</span>
 		<textarea
 			name="description"
 			rows="2"

@@ -68,7 +68,7 @@
 			</div>
 			{#each sourceFilenames as filename (filename)}
 				<div class="mb-3">
-					<p class="font-display text-[10px] tracking-widest text-chalk/40 uppercase">
+					<p class="font-mono text-[10px] tracking-widest text-chalk/40 uppercase">
 						{filename} · {proposalsFrom(filename)[0]?.proposerEmail}
 					</p>
 					<ul class="flex flex-col">

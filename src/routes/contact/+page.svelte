@@ -11,7 +11,7 @@
 </svelte:head>
 
 <article class="mx-auto flex max-w-2xl flex-col gap-6 px-6 py-16">
-	<p class="font-display text-sm tracking-widest text-signal uppercase">Contact</p>
+	<p class="font-mono text-sm tracking-widest text-signal uppercase">Contact</p>
 	<h1 class="font-display text-4xl leading-tight font-medium">Talk to us.</h1>
 	<p class="text-lg text-chalk/80">
 		Whether you want a knowledge base built for your business, a chatbot your staff can ask, or

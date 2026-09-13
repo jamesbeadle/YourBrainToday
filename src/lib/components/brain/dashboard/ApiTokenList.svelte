@@ -27,7 +27,7 @@
 
 {#if tokens.length > 0}
 	<div class="flex flex-col gap-2">
-		<h3 class="font-display text-xs tracking-widest text-chalk/50 uppercase">Active tokens</h3>
+		<h3 class="font-mono text-xs tracking-widest text-chalk/50 uppercase">Active tokens</h3>
 		{#each tokens as token (token.id)}
 			<div class="flex items-center gap-3 rounded-xl border border-hairline px-3 py-2">
 				<div class="min-w-0 flex-1">

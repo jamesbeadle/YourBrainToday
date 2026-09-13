@@ -47,7 +47,7 @@
 	{/if}
 	{#each entryDays as day (day)}
 		<section class="flex flex-col gap-2">
-			<h3 class="font-display text-sm tracking-widest text-chalk/50 uppercase">
+			<h3 class="font-mono text-sm tracking-widest text-chalk/50 uppercase">
 				{readableDay(day)}
 			</h3>
 			<ul class="flex flex-col divide-y divide-hairline">

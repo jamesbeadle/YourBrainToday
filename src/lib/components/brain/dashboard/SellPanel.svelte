@@ -60,7 +60,7 @@
 			</p>
 		{/if}
 		<div class="flex flex-col gap-2">
-			<h3 class="font-display text-xs tracking-widest text-chalk/50 uppercase">Editions</h3>
+			<h3 class="font-mono text-xs tracking-widest text-chalk/50 uppercase">Editions</h3>
 			<EditionList {brainId} {editions} />
 		</div>
 	{/if}

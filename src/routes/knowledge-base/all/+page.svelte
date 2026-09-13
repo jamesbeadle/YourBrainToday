@@ -23,7 +23,7 @@
 <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-10">
 	<header class="flex flex-wrap items-end justify-between gap-4">
 		<div class="flex flex-col gap-2">
-			<p class="font-display text-sm tracking-widest text-signal uppercase">Knowledge Base</p>
+			<p class="font-mono text-sm tracking-widest text-signal uppercase">Knowledge Base</p>
 			<h1 class="font-display text-3xl font-medium">Your second brains</h1>
 			<p class="max-w-prose text-chalk/70">
 				A knowledge base holds a business's second brains — expertise for what it knows,

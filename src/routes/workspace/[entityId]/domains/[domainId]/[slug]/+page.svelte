@@ -19,7 +19,7 @@
 		← Back to {data.brain.name}
 	</a>
 	<header class="flex flex-col gap-2 border-b border-hairline pb-6">
-		<p class="font-display text-xs tracking-widest text-signal uppercase">
+		<p class="font-mono text-xs tracking-widest text-signal uppercase">
 			{kindLabel}{data.contextName === null ? '' : ` · ${data.contextName}`}
 		</p>
 		<h1 class="font-display text-3xl font-medium">{data.page.title}</h1>

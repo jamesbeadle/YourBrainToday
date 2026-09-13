@@ -26,7 +26,7 @@
 	<input type="hidden" name="kind" value={kind.kind} />
 	<h2 class="font-display text-lg font-medium">New {kind.label} Brain</h2>
 	<label class="flex flex-col gap-1">
-		<span class="font-display text-sm tracking-widest text-chalk/50 uppercase">Name</span>
+		<span class="font-mono text-sm tracking-widest text-chalk/50 uppercase">Name</span>
 		<input
 			name="name"
 			required
@@ -36,7 +36,7 @@
 	</label>
 	{#if kind.kind !== 'process'}
 		<label class="flex flex-col gap-1">
-			<span class="font-display text-sm tracking-widest text-chalk/50 uppercase">
+			<span class="font-mono text-sm tracking-widest text-chalk/50 uppercase">
 				{descriptionLabel}
 			</span>
 			<textarea
@@ -49,7 +49,7 @@
 	{/if}
 	{#if canBindExpertise}
 		<fieldset class="flex flex-col gap-2">
-			<legend class="font-display text-sm tracking-widest text-chalk/50 uppercase">
+			<legend class="font-mono text-sm tracking-widest text-chalk/50 uppercase">
 				Guided by which expertise brains?
 			</legend>
 			{#each expertiseBrains as expertiseBrain (expertiseBrain.id)}

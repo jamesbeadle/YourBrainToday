@@ -15,7 +15,7 @@
 
 <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-10">
 	<header class="flex flex-col gap-2">
-		<p class="font-display text-sm tracking-widest text-signal uppercase">Marketplace</p>
+		<p class="font-mono text-sm tracking-widest text-signal uppercase">Marketplace</p>
 		<h1 class="font-display text-3xl font-medium">Buy domain knowledge</h1>
 		<p class="max-w-prose text-chalk/70">
 			Expertise brains other people have built and put up for sale. Buy an edition to keep a
@@ -33,7 +33,7 @@
 		</p>
 	{:else}
 		<section class="flex flex-col gap-3">
-			<h2 class="font-display text-xs tracking-widest text-chalk/50 uppercase">On the marketplace</h2>
+			<h2 class="font-mono text-xs tracking-widest text-chalk/50 uppercase">On the marketplace</h2>
 			<ul class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
 				{#each data.listings as listing (listing.id)}
 					<li><MarketListingCard {listing} isMine={listing.ownerId === data.viewerId} /></li>

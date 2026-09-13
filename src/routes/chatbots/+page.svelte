@@ -14,7 +14,7 @@
 
 <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-10">
 	<header class="flex flex-col gap-2">
-		<p class="font-display text-sm tracking-widest text-signal uppercase">Chatbots</p>
+		<p class="font-mono text-sm tracking-widest text-signal uppercase">Chatbots</p>
 		<h1 class="font-display text-3xl font-medium">Ask what the business knows</h1>
 		<p class="max-w-prose text-chalk/70">
 			A chatbot answers from a knowledge base's three brains — expertise, experience and

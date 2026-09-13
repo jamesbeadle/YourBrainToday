@@ -27,7 +27,7 @@
 </script>
 
 <section class="flex flex-col gap-3">
-	<h2 class="font-display text-xs tracking-widest text-chalk/50 uppercase">Your library</h2>
+	<h2 class="font-mono text-xs tracking-widest text-chalk/50 uppercase">Your library</h2>
 	<ul class="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
 		{#each purchasedEditions as purchased (purchased.purchaseId)}
 			<li>

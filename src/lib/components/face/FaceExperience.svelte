@@ -41,7 +41,7 @@
 
 <div bind:this={containerElement} class="bg-daylight relative h-full w-full overflow-hidden">
 	<canvas bind:this={canvasElement} class="block h-full w-full"></canvas>
-	<p class="text-slate/55 absolute top-5 left-6 font-display text-xs tracking-widest uppercase">
+	<p class="text-slate/55 absolute top-5 left-6 font-mono text-xs tracking-widest uppercase">
 		Tesseract · the face of your expertise brain
 	</p>
 	<div class="absolute inset-x-0 bottom-6 flex justify-center px-6">

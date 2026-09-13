@@ -14,7 +14,7 @@
 			</p>
 		</div>
 		<div class="flex flex-col gap-3 rounded-2xl border border-hairline bg-carriage p-8">
-			<p class="font-display text-sm tracking-widest text-chalk/50 uppercase">
+			<p class="font-mono text-sm tracking-widest text-chalk/50 uppercase">
 				What your knowledge base does
 			</p>
 			<ul class="flex flex-col gap-3">

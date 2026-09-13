@@ -36,7 +36,7 @@
 	</nav>
 	{#if hint !== null}
 		<p
-			class="hidden font-display text-[10px] tracking-widest whitespace-nowrap text-chalk/25
+			class="hidden font-mono text-[10px] tracking-widest whitespace-nowrap text-chalk/25
 				uppercase lg:block"
 		>
 			{hint}

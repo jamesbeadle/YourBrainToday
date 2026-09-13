@@ -40,7 +40,7 @@
 	{/if}
 	<div class="flex items-center justify-between rounded-2xl border border-hairline bg-carriage p-6">
 		<div>
-			<p class="font-display text-sm tracking-widest text-chalk/50 uppercase">Display name</p>
+			<p class="font-mono text-sm tracking-widest text-chalk/50 uppercase">Display name</p>
 			<p class="font-display text-lg">
 				{data.displayName !== '' ? data.displayName : 'Not set'}
 			</p>
@@ -56,7 +56,7 @@
 	</div>
 	<div class="flex items-center justify-between rounded-2xl border border-hairline bg-carriage p-6">
 		<div>
-			<p class="font-display text-sm tracking-widest text-chalk/50 uppercase">Credit balance</p>
+			<p class="font-mono text-sm tracking-widest text-chalk/50 uppercase">Credit balance</p>
 			<p class="font-display text-4xl font-medium">{data.creditBalance}</p>
 		</div>
 		<a

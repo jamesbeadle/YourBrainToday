@@ -24,7 +24,7 @@
 </script>
 
 <section class="flex flex-col gap-3">
-	<h3 class="font-display text-sm tracking-widest text-chalk/50 uppercase">{heading}</h3>
+	<h3 class="font-mono text-sm tracking-widest text-chalk/50 uppercase">{heading}</h3>
 	{#if items.length === 0}
 		<p class="text-sm text-chalk/40">{emptyHint}</p>
 	{:else}

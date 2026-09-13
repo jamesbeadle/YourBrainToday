@@ -18,7 +18,7 @@
 		← Back to the knowledge base
 	</a>
 	<header class="flex flex-col gap-2">
-		<p class="font-display text-sm tracking-widest text-signal uppercase">New Expertise Brain</p>
+		<p class="font-mono text-sm tracking-widest text-signal uppercase">New Expertise Brain</p>
 		<h1 class="font-display text-3xl font-medium">What should it know?</h1>
 		<p class="max-w-prose text-chalk/70">
 			Name the domain and state its goal in your own words — the brain reads everything you
@@ -32,7 +32,7 @@
 		class="flex flex-col gap-4 rounded-2xl border border-hairline bg-carriage p-5"
 	>
 		<label class="flex flex-col gap-1">
-			<span class="font-display text-sm tracking-widest text-chalk/50 uppercase">Name</span>
+			<span class="font-mono text-sm tracking-widest text-chalk/50 uppercase">Name</span>
 			<input
 				name="name"
 				required
@@ -42,7 +42,7 @@
 			/>
 		</label>
 		<label class="flex flex-col gap-1">
-			<span class="font-display text-sm tracking-widest text-chalk/50 uppercase">Domain goal</span>
+			<span class="font-mono text-sm tracking-widest text-chalk/50 uppercase">Domain goal</span>
 			<textarea
 				name="domainGoal"
 				rows="3"

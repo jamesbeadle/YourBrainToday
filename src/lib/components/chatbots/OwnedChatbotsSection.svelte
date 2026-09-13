@@ -7,7 +7,7 @@
 </script>
 
 <section class="flex flex-col gap-4">
-	<h2 class="font-display text-xs tracking-widest text-chalk/50 uppercase">Chatbots you run</h2>
+	<h2 class="font-mono text-xs tracking-widest text-chalk/50 uppercase">Chatbots you run</h2>
 	{#each groups as group (group.knowledgeBaseId)}
 		<div class="flex flex-col gap-3 rounded-2xl border border-hairline p-5">
 			<div class="flex flex-wrap items-center justify-between gap-3">

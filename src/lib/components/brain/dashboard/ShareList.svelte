@@ -38,7 +38,7 @@
 		<li class="flex items-center justify-between gap-3 border-b border-hairline py-2.5 last:border-b-0">
 			<div class="min-w-0">
 				<p class="truncate text-sm text-chalk">{grant.email}</p>
-				<p class="font-display text-[10px] tracking-widest text-chalk/40 uppercase">
+				<p class="font-mono text-[10px] tracking-widest text-chalk/40 uppercase">
 					{scopeLabel(grant.scope)}
 				</p>
 			</div>
@@ -56,7 +56,7 @@
 		<li class="flex items-center justify-between gap-3 border-b border-hairline py-2.5 last:border-b-0">
 			<div class="min-w-0">
 				<p class="truncate text-sm text-chalk/50">{grant.email}</p>
-				<p class="font-display text-[10px] tracking-widest text-signal/60 uppercase">
+				<p class="font-mono text-[10px] tracking-widest text-signal/60 uppercase">
 					Declined · {scopeLabel(grant.scope)}
 				</p>
 			</div>
@@ -74,7 +74,7 @@
 		<li class="flex items-center justify-between gap-3 border-b border-hairline py-2.5 last:border-b-0">
 			<div class="min-w-0">
 				<p class="truncate text-sm text-chalk/70">{grant.email}</p>
-				<p class="font-display text-[10px] tracking-widest text-caution/70 uppercase">
+				<p class="font-mono text-[10px] tracking-widest text-caution/70 uppercase">
 					Invited · {scopeLabel(grant.scope)}
 				</p>
 			</div>

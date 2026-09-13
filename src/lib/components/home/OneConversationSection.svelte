@@ -5,7 +5,7 @@
 <section class="mx-auto max-w-6xl px-6 py-16">
 	<div class="grid items-center gap-10 md:grid-cols-2">
 		<div class="flex flex-col gap-4">
-			<p class="font-display text-sm tracking-widest text-signal uppercase">How it's built</p>
+			<p class="font-mono text-sm tracking-widest text-signal uppercase">How it's built</p>
 			<h2 class="font-display text-3xl font-medium">Talk about your business. That's it.</h2>
 			<p class="max-w-prose text-chalk/70">
 				No forms, no setup wizard, no data entry. You talk about your business — in an
@@ -27,7 +27,7 @@
 			</a>
 		</div>
 		<div class="flex flex-col gap-3 rounded-2xl border border-hairline bg-carriage p-8">
-			<p class="font-display text-sm tracking-widest text-chalk/50 uppercase">
+			<p class="font-mono text-sm tracking-widest text-chalk/50 uppercase">
 				One answer, filed three ways
 			</p>
 			<p class="rounded-xl border border-hairline bg-night p-4 text-sm text-chalk/80 italic">
