@@ -9,7 +9,7 @@
 			<div class="flex items-center gap-3">
 				<BrandWordmark fontSize={18} />
 				<p class="text-sm text-chalk/60">
-					Your Brain Today — consultants who know your business.
+					Your Brain Today — a knowledge base your business can be asked.
 				</p>
 			</div>
 			<a

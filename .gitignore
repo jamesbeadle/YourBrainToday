@@ -17,3 +17,4 @@ vite.config.ts.timestamp-*
 _to_delete/
 Claude outputs/
 .claude/worktrees/
+.env*

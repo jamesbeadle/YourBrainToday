@@ -8,28 +8,28 @@
 			Welcome to Your Brain Today
 		</p>
 		<h1 class="font-display text-4xl leading-tight font-medium md:text-6xl">
-			Consultants who<br />know your business.
+			AI knows everything.<br />Except your business.
 		</h1>
 		<p class="max-w-prose text-lg text-chalk/70">
-			We automate businesses. It starts with learning how yours really runs — the rules of your
-			trade, the jobs you have done, the way work moves from enquiry to invoice — and ends with
-			the repetitive parts running themselves. Everything we learn is kept in a knowledge base
-			that stays yours.
+			A knowledge base holds what your business knows, has done, and how it works — the rules of
+			your trade, the jobs behind you, the way work moves from enquiry to invoice. Build it by
+			interview or by dropping in the documents you already file, then let your staff and your
+			tools ask it.
 		</p>
 		<div class="flex flex-wrap items-center gap-4">
 			<a
-				href="/contact"
+				href="/knowledge-base"
 				class="rounded-full bg-signal px-7 py-3 font-display text-sm font-medium text-night
 					transition hover:brightness-110"
 			>
-				Talk to us
+				Build your knowledge base
 			</a>
 			<a
-				href="/knowledge-base"
+				href="/vision"
 				class="rounded-full border border-hairline px-7 py-3 font-display text-sm text-chalk/80
 					transition hover:border-chalk/40 hover:text-chalk"
 			>
-				Build your knowledge base
+				What we're building
 			</a>
 		</div>
 	</div>
