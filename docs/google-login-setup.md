@@ -1,87 +1,93 @@
 # Google login setup
 
-The code path is already complete: `/account/sign-in` renders the Google button, the
+The code is already complete: `/account/sign-in` renders the Google button, the
 `signInWithGoogle` action calls `beginOAuthSignIn(locals.supabase, 'google', origin)`,
-and `/auth/callback` exchanges the code for a session. Everything below is one-time
-configuration in the Google Cloud Console and the Supabase dashboard.
+and `/auth/callback` exchanges the code for a session and lands on `/knowledge-base`.
+Everything below is one-time configuration in the Google Cloud Console and the Supabase
+dashboard for the Your Brain Today project.
 
-## 1. Find your Supabase callback URL
+## The values this project uses
 
-1. Open the [Supabase dashboard](https://supabase.com/dashboard) and select the portal project.
-2. Go to **Authentication → Sign In / Providers → Google**.
-3. Copy the **Callback URL** shown there. It looks like:
+| What | Value |
+| --- | --- |
+| Supabase project | `mvlwqqahocohlfnehegp` (eu-west-2) |
+| Supabase callback URL | `https://mvlwqqahocohlfnehegp.supabase.co/auth/v1/callback` |
+| Canonical domain | `https://www.yourbrain.today` — the apex 308-redirects to it |
+| Vercel domain | `https://your-brain-today.vercel.app` |
+| Local dev | `http://localhost:5173` |
 
-   ```
-   https://<project-ref>.supabase.co/auth/v1/callback
-   ```
+## 1. The OAuth client in Google Cloud Console
 
-   (The `<project-ref>` is the same subdomain as your `PUBLIC_SUPABASE_URL`.)
+The consent screen's app name is a property of the Google Cloud **project**, not of the
+client. Reusing the Your Business Today project is quicker, but everyone signing in to
+Your Brain Today will see "Your Business Today" on the Google consent screen. A separate
+Google Cloud project is the only way to show the right name.
 
-Keep this tab open — you'll come back in step 3.
+Either way, the existing accounts still match: Supabase links a Google identity by the
+`sub` Google returns, which is the user's Google account id and is the same whichever
+OAuth client asks. The seven accounts copied from the old project keep working.
 
-## 2. Create the OAuth client in Google Cloud Console
+In [APIs & Services → Credentials](https://console.cloud.google.com/apis/credentials):
 
-In your existing Google Cloud project:
-
-1. Open [Google Cloud Console → APIs & Services → Credentials](https://console.cloud.google.com/apis/credentials).
-2. If the consent screen isn't configured yet you'll be prompted first
-   (**OAuth consent screen** / "Google Auth Platform → Branding"):
+1. If the consent screen is not configured in this project yet:
    - User type: **External**
-   - App name: **YourBusinessToday** (or your preferred public name)
-   - Support email + developer contact: your address
-   - Scopes: leave the defaults — Supabase only needs `openid`, `email`, `profile`
-     (non-sensitive, no verification review required)
-   - When done, **Publish** the app (move it from Testing to In production),
-     otherwise only allow-listed test users can sign in.
-3. **Create Credentials → OAuth client ID**:
+   - App name: **Your Brain Today**
+   - Support email and developer contact: your address
+   - Scopes: leave the defaults — Supabase needs only `openid`, `email`, `profile`,
+     which are non-sensitive and need no verification review
+   - **Publish** the app, or only allow-listed test users can sign in
+2. **Create Credentials → OAuth client ID**:
    - Application type: **Web application**
-   - Name: `YourBusinessToday portal`
+   - Name: `Your Brain Today`
    - **Authorised JavaScript origins**:
-     - `https://yourbusiness.today` (adjust to your production domain)
+     - `https://www.yourbrain.today`
+     - `https://yourbrain.today`
      - `http://localhost:5173`
-   - **Authorised redirect URIs**: paste the Supabase callback URL from step 1
-     — this is the only redirect URI Google needs; your app's `/auth/callback`
-     is *not* entered here (Supabase redirects to it afterwards).
-4. Save, then copy the **Client ID** and **Client secret**.
+   - **Authorised redirect URIs** — this one only:
+     - `https://mvlwqqahocohlfnehegp.supabase.co/auth/v1/callback`
 
-## 3. Enable the provider in Supabase
+     The app's own `/auth/callback` is not entered here. Supabase redirects to it after
+     Google returns.
+3. Copy the **Client ID** and **Client secret**.
 
-Back in **Authentication → Sign In / Providers → Google**:
+## 2. Enable the provider in Supabase
+
+**Authentication → Sign In / Providers → Google**:
 
 1. Toggle **Enable Sign in with Google** on.
-2. Paste the **Client ID** and **Client secret** from step 2.
+2. Paste the Client ID and Client secret.
 3. Save.
 
-## 4. Allow your app's redirect URLs in Supabase
+## 3. Allow the redirect URLs in Supabase
 
-The sign-in code sends users back to `{origin}/auth/callback?next=/workspace`, so
-Supabase must allow those origins. In **Authentication → URL Configuration**:
+The sign-in code sends people back to `{origin}/auth/callback?next=…`, so Supabase has to
+allow those origins. In **Authentication → URL Configuration**:
 
-- **Site URL**: `https://yourbusiness.today` (production domain)
-- **Additional Redirect URLs**:
+- **Site URL**: `https://www.yourbrain.today`
+- **Redirect URLs**:
+  - `https://www.yourbrain.today/**`
+  - `https://yourbrain.today/**`
+  - `https://your-brain-today.vercel.app/**`
   - `http://localhost:5173/**`
-  - `https://yourbusiness.today/**`
 
-Without these, OAuth sign-ins get bounced to the Site URL and the `next`
-destination is ignored.
+Without these, an OAuth sign-in is bounced to the Site URL and the `next` destination is
+dropped.
 
-## 5. Test
+## 4. Test
 
-1. `npm run dev`, open `http://localhost:5173/account/sign-in`.
-2. Click **Continue with Google** — you should see Google's account chooser with
-   the app name from the consent screen, then land on `/workspace` signed in.
-3. Check **Supabase → Authentication → Users**: the Google account should appear
-   with provider `google`.
+1. Open `https://www.yourbrain.today/account/sign-in` and click **Continue with Google**.
+2. You should get Google's account chooser, then land on `/knowledge-base` signed in.
+3. Check **Authentication → Users**: the account should be the existing row, not a new
+   one — the copied identity matched.
 
 ## Troubleshooting
 
-- **`redirect_uri_mismatch` from Google** — the redirect URI in the Google client
-  doesn't exactly match the Supabase callback URL (check for a trailing slash).
-- **`access_denied` / "app not verified"** — consent screen still in Testing mode
-  and the account isn't a test user; publish the app or add the account under
-  Audience → Test users.
-- **Lands on the wrong page after sign-in** — the origin isn't in Supabase's
-  redirect URL allow-list (step 4).
-- **Signed in but no admin/staff access** — the profile row is created on first
-  sign-in; role flags (`is_admin` / `is_staff`) are applied after that, per
-  `docs/project-management-setup.md`.
+- **`redirect_uri_mismatch` from Google** — the redirect URI on the Google client does not
+  exactly match the Supabase callback URL. Check for a trailing slash.
+- **`access_denied` / "app not verified"** — the consent screen is still in Testing mode.
+  Publish it, or add the address as a test user.
+- **Signed in but bounced to the front page** — the origin is missing from the Supabase
+  redirect URL list.
+- **A second user row appears for someone who already had an account** — the identity did
+  not match. Check `auth.identities` for two rows with the same email and different
+  `provider_id`.
