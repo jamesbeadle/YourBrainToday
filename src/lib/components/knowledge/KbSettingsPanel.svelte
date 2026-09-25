@@ -64,7 +64,7 @@
 
 <DangerConfirmModal
 	title="Delete this knowledge base?"
-	description={`${knowledgeBase.name} and all three of its second brains — everything they have
+	description={`${knowledgeBase.name} and all four of its second brains — everything they have
 		learned, every source document, process map, and share — are deleted with it. This cannot
 		be undone.`}
 	action={knowledgeBaseActionHref(knowledgeBase.id, 'deleteKnowledgeBase')}

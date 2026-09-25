@@ -2,9 +2,9 @@ import type { LegalSection } from '$lib/data/legalDocument';
 
 export const termsProductSections: LegalSection[] = [
 	{
-		heading: 'Knowledge bases and the three brains',
+		heading: 'Knowledge bases and the four brains',
 		paragraphs: [
-			'A knowledge base holds what we learn about a business in three kinds of brain: an expertise brain for the rules and language of the trade, an experience brain for the record of jobs, events and decisions, and a process brain for how the work moves. You build them by answering the interviewer or by uploading documents, and the service reads what you give it and files it in the right brain.',
+			'A knowledge base holds what we learn about a business in four kinds of brain: an expertise brain for the rules and language of the trade, an experience brain for the record of jobs, events and decisions, a process brain for how the work moves, and a human brain for the people around the business and how they relate to one another. You build them by answering the interviewer or by uploading documents, and the service reads what you give it and files it in the right brain.',
 			'Everything you put into a knowledge base — the documents you upload, the answers you give, and the brains built from them — remains yours. You grant us the licence we need to host, process, and display that content in order to run the service for you, and for nothing else. Your content is never sold, never pooled with other customers’ content, and never used to train models for anyone else. You can export an expertise brain as Markdown at any time, free of charge.',
 			'You are responsible for having the right to upload what you upload, including any personal data it contains about other people, and for telling those people where the law requires it.'
 		]

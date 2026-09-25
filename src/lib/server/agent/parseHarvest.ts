@@ -1,3 +1,10 @@
+import {
+	parseConnections,
+	parsePeople,
+	type HarvestedConnection,
+	type HarvestedPerson
+} from './parseHumanHarvest';
+
 export type HarvestedEvent = {
 	title: string;
 	note: string;
@@ -9,16 +16,33 @@ export type HarvestedEvent = {
 export type HarvestedKnowledge = {
 	expertiseFacts: string[];
 	experienceEvents: HarvestedEvent[];
+	people: HarvestedPerson[];
+	connections: HarvestedConnection[];
 };
 
-export function parseHarvest(payload: {
+export type HarvestPayload = {
 	expertiseFacts?: unknown;
 	experienceEvents?: unknown;
-}): HarvestedKnowledge {
+	people?: unknown;
+	connections?: unknown;
+};
+
+export function parseHarvest(payload: HarvestPayload): HarvestedKnowledge {
 	return {
 		expertiseFacts: parseStrings(payload.expertiseFacts),
-		experienceEvents: parseEvents(payload.experienceEvents)
+		experienceEvents: parseEvents(payload.experienceEvents),
+		people: parsePeople(payload.people),
+		connections: parseConnections(payload.connections)
 	};
+}
+
+export function harvestedItemCount(harvest: HarvestedKnowledge): number {
+	return (
+		harvest.expertiseFacts.length +
+		harvest.experienceEvents.length +
+		harvest.people.length +
+		harvest.connections.length
+	);
 }
 
 function parseStrings(value: unknown): string[] {

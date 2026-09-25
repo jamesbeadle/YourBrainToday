@@ -8,6 +8,7 @@ import { settleQuestionUsage } from '$lib/server/credits/settleQuestionUsage';
 import { spendCredits } from '$lib/server/credits/spendCredits';
 import { getWorkflow } from '$lib/server/entities/getWorkflow';
 import { spendForAgentReply } from '$lib/server/agent/spendForAgentReply';
+import { harvestedItemCount, type HarvestedKnowledge } from '$lib/server/agent/parseHarvest';
 import type { RequestHandler } from './$types';
 
 export const config = { maxDuration: 300 };
@@ -59,10 +60,9 @@ async function reserveModelFloor(locals: App.Locals, payerId: string): Promise<n
 
 async function chargeForHarvest(
 	locals: App.Locals,
-	harvest: { expertiseFacts: string[]; experienceEvents: unknown[] }
+	harvest: HarvestedKnowledge
 ): Promise<void> {
-	const itemCount = harvest.expertiseFacts.length + harvest.experienceEvents.length;
-	const harvestCost = harvestCreditsFor(itemCount);
+	const harvestCost = harvestCreditsFor(harvestedItemCount(harvest));
 	if (harvestCost === 0) return;
 	await spendCredits(locals.supabase, harvestCost, 'knowledge_harvest').catch(() => undefined);
 }

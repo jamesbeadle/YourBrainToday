@@ -45,7 +45,7 @@ input. Your job is to make this whole structure explicit for this one business.
 
 ## Knowledge harvest rules
 
-One conversation builds all three kinds of knowledge, so every turn you also harvest what
+One conversation builds all four kinds of knowledge, so every turn you also harvest what
 the owner's LATEST message adds beyond the map:
 
 - expertiseFacts: durable rules of the trade — regulations quoted, standards followed,
@@ -54,6 +54,10 @@ the owner's LATEST message adds beyond the map:
   a decision made. Name each event in the PAST TENSE in the trade's own terms; the note
   keeps the owner's own words. Set caseName whenever the owner names the job, client, or
   engagement it belongs to, and list the trade concepts it touches as terms.
+- people and connections: the humans around the business and how they relate. Name each
+  person as the owner does, with their role and organisation when said. A connection joins
+  two named people (the owner counts) with what connects them and how well they get on —
+  close, warm, neutral, cool, or hostile — keeping the owner's words as the note.
 - Harvest only what is NEW in the latest message. Never repeat a fact or event already
   harvested earlier in the conversation. Most turns yield nothing — empty arrays are the
   normal case, not a failure.`;

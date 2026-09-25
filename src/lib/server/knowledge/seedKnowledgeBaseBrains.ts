@@ -12,6 +12,7 @@ export async function seedKnowledgeBaseBrains(
 	const expertiseBrainId = await seedExpertiseBrain(supabase, knowledgeBaseId, knowledgeBaseName);
 	await seedExperienceBrain(supabase, knowledgeBaseId, knowledgeBaseName, expertiseBrainId);
 	await seedProcessBrain(supabase, knowledgeBaseName);
+	await seedHumanBrain(supabase, knowledgeBaseId, knowledgeBaseName);
 }
 
 async function seedExpertiseBrain(
@@ -58,4 +59,18 @@ async function seedProcessBrain(
 ): Promise<void> {
 	const entityId = await findOrCreateEntity(supabase, knowledgeBaseName);
 	await createWorkflow(supabase, entityId, `${knowledgeBaseName} Process`);
+}
+
+async function seedHumanBrain(
+	supabase: SupabaseClient,
+	knowledgeBaseId: string,
+	knowledgeBaseName: string
+): Promise<void> {
+	await createKbBrain(supabase, {
+		knowledgeBaseId,
+		category: 'people',
+		brainType: 'people_graph',
+		name: `${knowledgeBaseName} People`,
+		description: `The people around ${knowledgeBaseName}, and how well they get on.`
+	});
 }

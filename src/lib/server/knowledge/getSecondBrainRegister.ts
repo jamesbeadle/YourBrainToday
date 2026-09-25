@@ -5,7 +5,8 @@ import {
 	type ProcessRow
 } from './registerQueries';
 import { brainHref } from '$lib/data/knowledge/knowledgeBaseRoutes';
-import type { KnowledgeKind } from '$lib/data/knowledge/knowledgeKinds';
+import { kindForCategory, type KnowledgeKind } from '$lib/data/knowledge/knowledgeKinds';
+import type { BrainCategory } from '$lib/data/knowledge/knowledgeTypes';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 export type RegisterBrain = {
@@ -77,7 +78,7 @@ function storedRegisterBrain(
 ): RegisterBrain {
 	return {
 		id: row.id,
-		kind: row.category === 'domain' ? 'expertise' : 'experience',
+		kind: kindForCategory(row.category as BrainCategory).kind,
 		name: row.name,
 		entityName: row.domain_brains?.entities?.name ?? fallbackEntityName ?? '',
 		href: brainHref(knowledgeBaseId, row.id),

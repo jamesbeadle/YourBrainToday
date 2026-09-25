@@ -8,6 +8,7 @@
 		pageIndex,
 		focusedContextSlug,
 		selectedSlug,
+		hasKindKey,
 		onReturnToModel,
 		onReturnToContext
 	}: {
@@ -15,6 +16,7 @@
 		pageIndex: BrainPageSummary[];
 		focusedContextSlug: string | null;
 		selectedSlug: string | null;
+		hasKindKey: boolean;
 		onReturnToModel: () => void;
 		onReturnToContext: () => void;
 	} = $props();
@@ -43,7 +45,9 @@
 			</span>
 		{/if}
 	</nav>
-	<ConstellationLegend />
+	{#if hasKindKey}
+		<ConstellationLegend />
+	{/if}
 </div>
 <p class={[sceneHintPosition, 'font-display text-xs tracking-wide text-chalk/40']}>
 	Drag to orbit · scroll to zoom · click a neuron to drill in

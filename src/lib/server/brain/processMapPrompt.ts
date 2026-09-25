@@ -25,7 +25,8 @@ export function processMapPrompt(businessName: string, currentMap: WorkflowModel
 
 You read one source document a business owner has filed and update the Process Map model of
 "${businessName}" — the structured picture of how work moves through the business. The
-Modeller has read the same document for expertise and the Archivist for experience; your
+Modeller reads the same document for expertise, the Archivist for experience and the
+Connector for people; your
 question is only: what does this document reveal about HOW THE WORK FLOWS?
 
 ## The universal structure

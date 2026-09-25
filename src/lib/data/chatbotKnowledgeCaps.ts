@@ -8,5 +8,8 @@ export const chatbotKnowledgeCaps = {
 	mostProcessMaps: 3,
 	mostTasksPerRole: 15,
 	longestTaskSummary: 160,
-	longestProcessSection: 12_000
+	longestProcessSection: 12_000,
+	mostHumanItems: 120,
+	longestHumanNote: 200,
+	longestHumanSection: 8_000
 } as const;

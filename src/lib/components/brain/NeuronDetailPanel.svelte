@@ -1,17 +1,19 @@
 <script lang="ts">
 	import MarkdownBody from './MarkdownBody.svelte';
-	import { domainBlockLabels } from '$lib/data/domainBlocks';
+	import type { ConstellationVocabulary } from './constellation/constellationVocabulary';
 	import type { BrainPagePayload } from './constellation/fetchBrainPage';
 
 	let {
 		loadPage,
 		slug,
 		pageBasePath,
+		vocabulary,
 		onClose
 	}: {
 		loadPage: (slug: string) => Promise<BrainPagePayload>;
 		slug: string;
 		pageBasePath: string | null;
+		vocabulary: ConstellationVocabulary;
 		onClose: () => void;
 	} = $props();
 
@@ -30,7 +32,7 @@
 
 	function describeKind(loaded: BrainPagePayload | null): string {
 		if (loaded === null) return '';
-		const kindLabel = domainBlockLabels[loaded.page.kind].singular;
+		const kindLabel = vocabulary.describeNeuron(loaded.page);
 		if (loaded.contextName === null) return kindLabel;
 		return `${kindLabel} · ${loaded.contextName}`;
 	}
