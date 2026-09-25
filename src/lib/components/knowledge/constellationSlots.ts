@@ -5,7 +5,7 @@ import {
 	type KnowledgeKind
 } from '$lib/data/knowledge/knowledgeKinds';
 import { brainHref, newBrainHref } from '$lib/data/knowledge/knowledgeBaseRoutes';
-import type { KbBrainSummary } from '$lib/data/knowledge/knowledgeTypes';
+import type { BrainCategory, KbBrainSummary } from '$lib/data/knowledge/knowledgeTypes';
 import type { ProcessMapSummary } from '$lib/server/knowledge/getProcessMaps';
 
 export type ConstellationSlot = {
@@ -16,7 +16,7 @@ export type ConstellationSlot = {
 	accent: string;
 	kind: KnowledgeKind;
 	kindLabel: string;
-	category: 'domain' | 'instance' | null;
+	category: BrainCategory | null;
 };
 
 export function buildConstellationSlots(

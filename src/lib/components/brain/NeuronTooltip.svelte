@@ -1,16 +1,18 @@
 <script lang="ts">
 	import type { ConstellationHover } from './constellation/constellationTypes';
-	import { domainBlockLabels } from '$lib/data/domainBlocks';
+	import type { ConstellationVocabulary } from './constellation/constellationVocabulary';
 	import type { BrainContext, BrainPageSummary } from '$lib/data/brainTypes';
 
 	let {
 		hover,
 		contexts,
-		pageIndex
+		pageIndex,
+		vocabulary
 	}: {
 		hover: ConstellationHover;
 		contexts: BrainContext[];
 		pageIndex: BrainPageSummary[];
+		vocabulary: ConstellationVocabulary;
 	} = $props();
 
 	const hoveredPage = $derived(pageIndex.find((page) => page.slug === hover.neuronSlug));
@@ -20,9 +22,9 @@
 	const caption = $derived(captionFor());
 
 	function captionFor(): string {
-		if (hoveredPage !== undefined) return domainBlockLabels[hoveredPage.kind].singular;
-		if (hoveredContext?.isCoreDomain) return 'Bounded context · Core domain';
-		return 'Bounded context';
+		if (hoveredPage !== undefined) return vocabulary.describeNeuron(hoveredPage);
+		if (hoveredContext !== undefined) return vocabulary.describeNucleus(hoveredContext);
+		return '';
 	}
 </script>
 

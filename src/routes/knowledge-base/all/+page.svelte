@@ -27,7 +27,7 @@
 			<h1 class="font-display text-3xl font-medium">Your second brains</h1>
 			<p class="max-w-prose text-chalk/70">
 				A knowledge base holds a business's second brains — expertise for what it knows,
-				experience for what it's done, process for how it works. Open one to feed it, query
+				experience for what it's done, process for how it works, human for who it knows. Open one to feed it, query
 				it, and put it to work.
 			</p>
 		</div>
@@ -59,7 +59,7 @@
 		>
 			<p class="max-w-prose text-chalk/60">
 				Create your first knowledge base, then grow its second brains — expertise for what you
-				know, experience for what you've done, process for how you work.
+				know, experience for what you've done, process for how you work, human for who you know.
 			</p>
 			<button
 				type="button"

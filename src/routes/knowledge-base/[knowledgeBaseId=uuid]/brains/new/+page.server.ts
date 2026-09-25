@@ -7,6 +7,8 @@ import { getKbBrains } from '$lib/server/knowledge/getKbBrains';
 import { requireOwnedKnowledgeBase } from '$lib/server/knowledge/requireOwnedKnowledgeBase';
 import { touchKnowledgeBase } from '$lib/server/knowledge/updateKnowledgeBase';
 import { requireUser } from '$lib/server/auth/requireUser';
+import { knowledgeKinds } from '$lib/data/knowledge/knowledgeKinds';
+import { storedBrainBlueprints, type StoredKind } from '$lib/data/knowledge/storedBrainBlueprints';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals, params }) => {
@@ -35,7 +37,7 @@ export const actions: Actions = {
 		const kind = String(formData.get('kind') ?? '');
 		const name = String(formData.get('name') ?? '').trim();
 		const description = String(formData.get('description') ?? '').trim();
-		if (!['expertise', 'experience', 'process'].includes(kind)) {
+		if (!knowledgeKinds.some((definition) => definition.kind === kind)) {
 			return fail(400, { message: 'Pick a kind of brain first.' });
 		}
 		if (name === '') return fail(400, { message: 'A brain needs a name.' });
@@ -44,7 +46,13 @@ export const actions: Actions = {
 			await touchKnowledgeBase(locals.supabase, knowledgeBase.id);
 			redirect(303, `/knowledge-base/${knowledgeBase.id}`);
 		}
-		const brainId = await createStoredBrain(locals, knowledgeBase, kind, name, description);
+		const brainId = await createStoredBrain(
+			locals,
+			knowledgeBase,
+			kind as StoredKind,
+			name,
+			description
+		);
 		await bindSelectedExpertise(locals, brainId, formData.getAll('boundDomainBrainIds'));
 		await touchKnowledgeBase(locals.supabase, knowledgeBase.id);
 		redirect(303, `/knowledge-base/${knowledgeBase.id}/brains/${brainId}`);
@@ -63,15 +71,14 @@ async function createProcessBrain(
 async function createStoredBrain(
 	locals: App.Locals,
 	knowledgeBase: { id: string; name: string },
-	kind: string,
+	kind: StoredKind,
 	name: string,
 	description: string
 ): Promise<string> {
 	const isExpertise = kind === 'expertise';
 	return createKbBrain(locals.supabase, {
 		knowledgeBaseId: knowledgeBase.id,
-		category: isExpertise ? 'domain' : 'instance',
-		brainType: isExpertise ? 'ddd_model' : 'episodic_log',
+		...storedBrainBlueprints[kind],
 		name,
 		description,
 		domainBrainId: isExpertise

@@ -2,7 +2,7 @@ import { env } from '$env/dynamic/private';
 import { agentSystemPrompt } from './agentSystemPrompt';
 import { agentReplyForTurn } from '$lib/data/scriptedAgent';
 import { deriveInterviewState } from './deriveInterviewState';
-import { parseHarvest, type HarvestedKnowledge } from './parseHarvest';
+import { parseHarvest, type HarvestedKnowledge, type HarvestPayload } from './parseHarvest';
 import { parseWorkflowModel } from './parseWorkflowModel';
 import { renderAgenda } from './interview/renderAgenda';
 import { requestAnthropic } from '$lib/server/anthropic/requestAnthropic';
@@ -13,9 +13,16 @@ import type { WorkflowModel } from '$lib/data/workflowModel';
 
 const maxReplyTokens = 3000;
 
+type WorkspaceUpdate = { reply: unknown; map: unknown } & HarvestPayload;
+
 export type AgentTurn = { reply: string; map: WorkflowModel; harvest: HarvestedKnowledge };
 
-const emptyHarvest: HarvestedKnowledge = { expertiseFacts: [], experienceEvents: [] };
+const emptyHarvest: HarvestedKnowledge = {
+	expertiseFacts: [],
+	experienceEvents: [],
+	people: [],
+	connections: []
+};
 
 export async function replyFromAgent(
 	conversation: ConversationTurn[],
@@ -35,7 +42,7 @@ export async function replyFromAgent(
 async function requestWorkspaceUpdate(
 	conversation: ConversationTurn[],
 	currentMap: WorkflowModel
-): Promise<{ reply: unknown; map: unknown; expertiseFacts?: unknown; experienceEvents?: unknown }> {
+): Promise<WorkspaceUpdate> {
 	const response = await requestAnthropic({
 		system: systemPromptWithMap(currentMap),
 		messages: conversation.map(asAnthropicMessage),
@@ -47,12 +54,7 @@ async function requestWorkspaceUpdate(
 	if (workspaceUpdate === undefined) {
 		throw new Error('Agent response contained no workspace update');
 	}
-	return workspaceUpdate as {
-		reply: unknown;
-		map: unknown;
-		expertiseFacts?: unknown;
-		experienceEvents?: unknown;
-	};
+	return workspaceUpdate as WorkspaceUpdate;
 }
 
 function systemPromptWithMap(currentMap: WorkflowModel): string {

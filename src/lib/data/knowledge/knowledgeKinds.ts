@@ -1,6 +1,6 @@
 import type { BrainCategory } from './knowledgeTypes';
 
-export type KnowledgeKind = 'expertise' | 'experience' | 'process';
+export type KnowledgeKind = 'expertise' | 'experience' | 'process' | 'human';
 
 export type KnowledgeKindDefinition = {
 	kind: KnowledgeKind;
@@ -34,12 +34,21 @@ export const knowledgeKinds: KnowledgeKindDefinition[] = [
 		explainer:
 			'How work moves through the business — every role, task, and handover, drawn as a map.',
 		accent: '#ffc861'
+	},
+	{
+		kind: 'human',
+		label: 'Human',
+		question: 'Who do you know?',
+		explainer:
+			'The people around the business and how they get on — who knows whom, who trusts whom, and who to go through.',
+		accent: '#f5a3c7'
 	}
 ];
 
 const kindByCategory: Record<BrainCategory, KnowledgeKind> = {
 	domain: 'expertise',
-	instance: 'experience'
+	instance: 'experience',
+	people: 'human'
 };
 
 export function findKnowledgeKind(kind: KnowledgeKind): KnowledgeKindDefinition {

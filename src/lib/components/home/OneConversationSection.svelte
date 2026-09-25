@@ -11,7 +11,8 @@
 				No forms, no setup wizard, no data entry. You talk about your business — in an
 				interview, or by uploading the documents you already have — and YBT works out what
 				each thing it learns actually is: a rule of your trade, a thing that happened, a step
-				in how work moves. Then it files it in the right brain.
+				in how work moves, a person and how they get on with others. Then it files it in the
+				right brain.
 			</p>
 			<p class="max-w-prose text-chalk/70">
 				The interviewer knows what a complete picture of a business looks like, so it knows
@@ -28,11 +29,12 @@
 		</div>
 		<div class="flex flex-col gap-3 rounded-2xl border border-hairline bg-carriage p-8">
 			<p class="font-display text-sm tracking-widest text-chalk/50 uppercase">
-				One answer, filed three ways
+				One answer, filed four ways
 			</p>
 			<p class="rounded-xl border border-hairline bg-night p-4 text-sm text-chalk/80 italic">
 				“Every variation order has to be signed off by the client before we order materials —
-				we got burned on the Hartley job when one went ahead without it.”
+				we got burned on the Hartley job when Dave went ahead without one, and Sarah at Hartley
+				Homes has been frosty with him ever since.”
 			</p>
 			<ul class="flex flex-col gap-3">
 				{#each knowledgeKinds as kind (kind.kind)}
@@ -48,6 +50,9 @@
 							{:else if kind.kind === 'experience'}
 								<span style={`color: ${kind.accent}`}>Experience:</span> the Hartley job — an
 								order went ahead unsigned, and it cost.
+							{:else if kind.kind === 'human'}
+								<span style={`color: ${kind.accent}`}>Human:</span> Dave and Sarah at Hartley
+								Homes — a cool relationship since the unsigned order.
 							{:else}
 								<span style={`color: ${kind.accent}`}>Process:</span> sign-off sits between
 								variation order and ordering materials.

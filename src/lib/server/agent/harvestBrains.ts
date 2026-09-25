@@ -11,6 +11,11 @@ const harvestBrainBlueprints = {
 		category: 'instance',
 		name: 'Interview Log',
 		description: 'Events harvested from your interview conversations.'
+	},
+	people_graph: {
+		category: 'people',
+		name: 'People',
+		description: 'The people around the business, and how well they get on.'
 	}
 } as const;
 

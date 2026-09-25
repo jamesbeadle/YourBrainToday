@@ -1,9 +1,10 @@
 import { createBrainItem } from '$lib/server/knowledge/createBrainItem';
 import { fileExperienceEvents } from '$lib/server/knowledge/experienceWriter';
+import { fileHumanNetwork } from '$lib/server/knowledge/humanWriter';
 import { findOrCreateHarvestBrain } from './harvestBrains';
 import { findPrimaryExpertiseBrain } from '$lib/server/knowledge/interviewContext';
 import { getBrainPageIndex } from '$lib/server/brain/getBrainPageIndex';
-import type { HarvestedKnowledge } from './parseHarvest';
+import { harvestedItemCount, type HarvestedKnowledge } from './parseHarvest';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 export async function fileHarvestedKnowledge(
@@ -11,7 +12,7 @@ export async function fileHarvestedKnowledge(
 	entityId: string,
 	harvest: HarvestedKnowledge
 ): Promise<void> {
-	if (harvest.expertiseFacts.length === 0 && harvest.experienceEvents.length === 0) return;
+	if (harvestedItemCount(harvest) === 0) return;
 	const knowledgeBaseIds = await linkedKnowledgeBaseIds(supabase, entityId);
 	if (knowledgeBaseIds.length === 0) return;
 	await fileHarvestToKnowledgeBase(supabase, knowledgeBaseIds[0], harvest);
@@ -30,6 +31,10 @@ export async function fileHarvestToKnowledgeBase(
 		const eventsBrainId = await findOrCreateHarvestBrain(supabase, knowledgeBaseId, 'episodic_log');
 		const knownTerms = await expertiseTermsFor(supabase, knowledgeBaseId);
 		await fileExperienceEvents(supabase, eventsBrainId, harvest.experienceEvents, knownTerms);
+	}
+	if (harvest.people.length > 0 || harvest.connections.length > 0) {
+		const peopleBrainId = await findOrCreateHarvestBrain(supabase, knowledgeBaseId, 'people_graph');
+		await fileHumanNetwork(supabase, peopleBrainId, harvest);
 	}
 }
 

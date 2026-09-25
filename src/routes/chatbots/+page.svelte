@@ -17,8 +17,8 @@
 		<p class="font-display text-sm tracking-widest text-signal uppercase">Chatbots</p>
 		<h1 class="font-display text-3xl font-medium">Ask what the business knows</h1>
 		<p class="max-w-prose text-chalk/70">
-			A chatbot answers from a knowledge base's three brains — expertise, experience and
-			process — for the people its owner has invited.
+			A chatbot answers from a knowledge base's four brains — expertise, experience,
+			process and human — for the people its owner has invited.
 		</p>
 	</header>
 	{#if hasNothingToShow}

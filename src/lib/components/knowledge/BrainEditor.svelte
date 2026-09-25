@@ -8,6 +8,7 @@
 	import JournalEditor from './editors/JournalEditor.svelte';
 	import NotesEditor from './editors/NotesEditor.svelte';
 	import OutlinerEditor from './editors/OutlinerEditor.svelte';
+	import PeopleEditor from './editors/PeopleEditor.svelte';
 	import ProcessEditor from './editors/ProcessEditor.svelte';
 	import RecordsEditor from './editors/RecordsEditor.svelte';
 	import RulesEditor from './editors/RulesEditor.svelte';
@@ -68,4 +69,6 @@
 	<JournalEditor {items} />
 {:else if editor === 'chunk_store'}
 	<ChunkStoreEditor {items} />
+{:else if editor === 'people'}
+	<PeopleEditor {items} />
 {/if}

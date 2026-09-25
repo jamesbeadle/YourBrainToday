@@ -23,6 +23,13 @@
 				'How a variation order travels — from site, to office, to client — drawn live as a transit map.',
 			href: '/knowledge-base',
 			callToAction: 'Map your process'
+		},
+		{
+			kind: findKnowledgeKind('human'),
+			example:
+				'Who to call about a variation: the client’s QS trusts your site manager, and has not spoken to your estimator since the Hartley job.',
+			href: '/knowledge-base',
+			callToAction: 'Map your people'
 		}
 	];
 </script>
@@ -31,15 +38,16 @@
 	<div class="mx-auto max-w-6xl px-6 py-16">
 		<div class="flex flex-col gap-2">
 			<p class="font-display text-sm tracking-widest text-signal uppercase">Build knowledge</p>
-			<h2 class="font-display text-3xl font-medium">A knowledge base with three kinds of brain</h2>
+			<h2 class="font-display text-3xl font-medium">A knowledge base with four kinds of brain</h2>
 			<p class="max-w-prose text-chalk/70">
-				Everything we learn about your business is kept in a knowledge base with three kinds of
+				Everything we learn about your business is kept in a knowledge base with four kinds of
 				brain. Your expertise sets the rules of your trade, your experience records every job
-				done within them, and your process is how the work moves. Build all three by interview,
+				done within them, your process is how the work moves, and your people are who you know
+				and how well they get on. Build all four by interview,
 				or by uploading the documents you already have.
 			</p>
 		</div>
-		<div class="mt-10 grid gap-6 md:grid-cols-3">
+		<div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
 			{#each kindCards as kindCard (kindCard.kind.kind)}
 				<KnowledgeKindCard {...kindCard} />
 			{/each}

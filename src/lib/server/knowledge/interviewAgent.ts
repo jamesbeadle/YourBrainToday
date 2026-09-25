@@ -1,4 +1,8 @@
 import { experienceEventSchema } from '$lib/server/agent/workspaceUpdateTool';
+import {
+	connectionsHarvestProperty,
+	peopleHarvestProperty
+} from '$lib/server/agent/humanNetworkSchemas';
 import { parseHarvest, type HarvestedKnowledge } from '$lib/server/agent/parseHarvest';
 import { requestAnthropic } from '$lib/server/anthropic/requestAnthropic';
 import { toolUseFrom } from '$lib/server/anthropic/anthropicTypes';
@@ -14,8 +18,8 @@ const maxReplyTokens = 1500;
 const interviewUpdateTool = {
 	name: 'interview_update',
 	description:
-		'Return your next interview question together with any expertise and experience ' +
-		'harvested from the owner’s latest answer.',
+		'Return your next interview question together with any expertise, experience, people ' +
+		'and connections harvested from the owner’s latest answer.',
 	input_schema: {
 		type: 'object',
 		required: ['reply'],
@@ -33,7 +37,9 @@ const interviewUpdateTool = {
 				type: 'array',
 				items: experienceEventSchema,
 				description: 'Things that happened, NEWLY stated in the latest answer. Usually empty.'
-			}
+			},
+			people: peopleHarvestProperty,
+			connections: connectionsHarvestProperty
 		}
 	}
 };

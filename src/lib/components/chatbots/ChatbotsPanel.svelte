@@ -16,10 +16,11 @@
 		credits and decide how much each member may spend.
 	</p>
 	<p class="text-xs leading-relaxed text-chalk/50">
-		Every bot reads all three brains as they stand at each question: the expertise model page
+		Every bot reads all four brains as they stand at each question: the expertise model page
 		by page (the first {chatbotKnowledgeCaps.longestExpertiseIndex.toLocaleString('en-GB')} characters
-		of its index), the {chatbotKnowledgeCaps.mostExperienceItems} most recent experience entries, and the
-		process map — its roles, tasks and journeys.
+		of its index), the {chatbotKnowledgeCaps.mostExperienceItems} most recent experience entries, the
+		process map — its roles, tasks and journeys — and the people around the business with how
+		well they get on.
 	</p>
 	<NewChatbotForm {knowledgeBaseId} />
 	{#if chatbots.length === 0}

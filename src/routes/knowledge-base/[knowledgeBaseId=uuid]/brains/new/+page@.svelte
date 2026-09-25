@@ -41,7 +41,7 @@
 			queried the right way for what it holds.
 		</p>
 	</header>
-	<div class="grid gap-3 md:grid-cols-3">
+	<div class="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
 		{#each knowledgeKinds as kind (kind.kind)}
 			<KindPickerCard
 				{kind}

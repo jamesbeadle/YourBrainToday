@@ -1,4 +1,6 @@
-export type InterviewKind = 'expertise' | 'experience' | 'process' | null;
+import type { KnowledgeKind } from '$lib/data/knowledge/knowledgeKinds';
+
+export type InterviewKind = KnowledgeKind | null;
 
 export type InterviewTurnResult =
 	| { status: 'ok'; reply: string }
@@ -11,7 +13,7 @@ export const defaultInterviewIntro =
 	'The interviewer reads what this knowledge base already holds, finds the biggest gap, ' +
 	'and asks about exactly that. Every answer is filed into the right brains as you talk.';
 
-export const kindInterviewIntros: Record<'expertise' | 'experience' | 'process', string> = {
+export const kindInterviewIntros: Record<KnowledgeKind, string> = {
 	expertise:
 		'A focused interview on the rules of your trade — what terms mean, what standards apply, ' +
 		'what must be true before work proceeds. Everything you say is filed into the right ' +
@@ -22,7 +24,11 @@ export const kindInterviewIntros: Record<'expertise' | 'experience' | 'process',
 		'expertise brain.',
 	process:
 		'A focused interview on how work moves — who does what, what each task consumes and ' +
-		'produces, what goes wrong at handovers. The map redraws itself as you answer.'
+		'produces, what goes wrong at handovers. The map redraws itself as you answer.',
+	human:
+		'A focused interview on the people around your business — who knows whom, who trusts ' +
+		'whom, and who has fallen out. Everyone you name joins the network, with how well they ' +
+		'get on, so you know who to go through.'
 };
 
 export async function fetchInterviewReply(
