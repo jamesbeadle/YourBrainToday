@@ -129,6 +129,23 @@ sign in, approve, exchange, replay refused, refresh with rotation, wrong secret 
 administrator. Migration 0039 lets `staff_directory()` answer the service role, which the
 MCP runs on; without it every action that reads the directory failed.
 
+## Training a brain from outside
+
+Two doors onto one path, `src/lib/server/brain/sentData/ingestSentData.ts`:
+
+- **MCP** — the `knowledge-bases` area: `list_knowledge_bases`, then `ingest_data` with a
+  knowledge base id, a title and the text.
+- **REST** — `POST /api/v1/brains/{id}/ingest` with `{"title", "text"}` and a brain API token,
+  for any other MCP server or script that holds a token rather than an OAuth connection.
+
+Sent text is filed as a `brain_sources` row exactly like an upload, marked with
+`arrived_through` (`mcp` or `api`, migration 0054), and read by `runSourceIngest`, so the
+expertise model updates and the experience, process and human brains harvest from it. It shows
+in the knowledge base's **Ingested data** panel with a "Sent over MCP" / "Sent through the API"
+label. The owner pays as for an upload of that size: the reserve is taken server-side through
+`reserveCreditsForPayer` (handed straight back if it would take the balance below zero) and
+settled beyond it under `brain_ingest_sent`.
+
 ## Known gaps, in order
 
 - `/oauth/register` is unauthenticated and unrated; anyone can fill `oauth_clients`. Cap it

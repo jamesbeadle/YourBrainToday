@@ -1,4 +1,4 @@
-export type BrainCategory = 'domain' | 'instance';
+export type BrainCategory = 'domain' | 'instance' | 'people';
 
 export type DomainBrainType =
 	| 'ontology'
@@ -13,12 +13,14 @@ export type InstanceBrainType =
 	| 'atomic_notes' | 'outliner' | 'episodic_log' | 'temporal_graph' | 'hybrid_graph_vector'
 	| 'typed_records' | 'llm_wiki' | 'journal' | 'vector_store';
 
-export type BrainType = DomainBrainType | InstanceBrainType;
+export type HumanBrainType = 'people_graph';
+
+export type BrainType = DomainBrainType | InstanceBrainType | HumanBrainType;
 
 export type BrainEditorKind =
 	| 'schema' | 'ddd_link' | 'taxonomy' | 'rules' | 'event_schema' | 'process' | 'hybrid_pack'
 	| 'notes' | 'outliner' | 'event_log' | 'temporal_graph' | 'graph_vector' | 'records'
-	| 'wiki' | 'journal' | 'chunk_store';
+	| 'wiki' | 'journal' | 'chunk_store' | 'people';
 
 export type RetrievalPipeline =
 	| 'vector'

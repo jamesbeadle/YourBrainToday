@@ -9,6 +9,7 @@ import { questionFloorCreditsFor } from '$lib/data/creditPricing';
 import { resolveRequestModel } from '$lib/server/anthropic/resolveRequestModel';
 import { settleQuestionUsage } from '$lib/server/credits/settleQuestionUsage';
 import { fileHarvestToKnowledgeBase } from '$lib/server/agent/fileHarvestedKnowledge';
+import { harvestedItemCount } from '$lib/server/agent/parseHarvest';
 import { readInterviewRequest } from '$lib/server/knowledge/readInterviewRequest';
 import { requireOwnedKnowledgeBase } from '$lib/server/knowledge/requireOwnedKnowledgeBase';
 import { isAnthropicConfigured } from '$lib/server/anthropic/isAnthropicConfigured';
@@ -63,6 +64,6 @@ async function interviewTurn(
 	await fileHarvestToKnowledgeBase(locals.supabase, knowledgeBase.id, turn.harvest);
 	return {
 		reply: turn.reply,
-		harvestedCount: turn.harvest.expertiseFacts.length + turn.harvest.experienceEvents.length
+		harvestedCount: harvestedItemCount(turn.harvest)
 	};
 }

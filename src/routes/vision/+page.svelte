@@ -2,7 +2,7 @@
 	<title>What we're building — Your Brain Today</title>
 	<meta
 		name="description"
-		content="Why Your Brain Today exists: a consultancy that automates a business by learning how it really runs, and a knowledge base — expertise, experience, and process — that your staff and your tools can use."
+		content="Why Your Brain Today exists: a consultancy that automates a business by learning how it really runs, and a knowledge base — expertise, experience, process, and human — that your staff and your tools can use."
 	/>
 </svelte:head>
 
@@ -38,10 +38,11 @@
 	</p>
 	<h2 class="font-display text-2xl font-medium">Build knowledge, then use tools</h2>
 	<p class="text-chalk/80">
-		Everything we learn goes into a knowledge base that is yours. It remembers three ways: your
+		Everything we learn goes into a knowledge base that is yours. It remembers four ways: your
 		expertise — the rules, language and models of your trade; your experience — the record of
-		every job, event and decision, kept in the terms your expertise defines; and your process —
-		how the work moves from role to role. You build it by interview, or by uploading the
+		every job, event and decision, kept in the terms your expertise defines; your process —
+		how the work moves from role to role; and your people — who knows whom, and how well they
+		get on. You build it by interview, or by uploading the
 		documents you already have, and the interviewer asks about exactly what is missing.
 	</p>
 	<p class="text-chalk/80">

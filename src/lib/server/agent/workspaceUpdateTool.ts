@@ -1,3 +1,4 @@
+import { connectionsHarvestProperty, peopleHarvestProperty } from './humanNetworkSchemas';
 import { workflowModelSchema } from './workflowModelSchema';
 
 const expertiseFactSchema = {
@@ -39,7 +40,8 @@ export const workspaceUpdateTool = {
 	name: 'update_workspace',
 	description:
 		'Return your conversational reply to the business owner together with the complete ' +
-		'updated Process Map model, plus any expertise and experience harvested this turn.',
+		'updated Process Map model, plus any expertise, experience, people and connections ' +
+		'harvested this turn.',
 	input_schema: {
 		type: 'object',
 		required: ['reply', 'map'],
@@ -59,7 +61,9 @@ export const workspaceUpdateTool = {
 				description:
 					'Things that actually happened, NEWLY stated in the owner’s latest message — ' +
 					'jobs, incidents, decisions. Empty when the message adds none.'
-			}
+			},
+			people: peopleHarvestProperty,
+			connections: connectionsHarvestProperty
 		}
 	}
 };

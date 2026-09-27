@@ -1,5 +1,6 @@
 import { bindInstanceBrain } from './brainBindings';
 import { createKbBrain } from './createKbBrain';
+import { ensureHumanBrain } from './ensureHumanBrain';
 import { createLinkedDomainBrain, findOrCreateEntity } from './createLinkedDomainBrain';
 import { createWorkflow } from '$lib/server/entities/createWorkflow';
 import type { SupabaseClient } from '@supabase/supabase-js';
@@ -12,6 +13,7 @@ export async function seedKnowledgeBaseBrains(
 	const expertiseBrainId = await seedExpertiseBrain(supabase, knowledgeBaseId, knowledgeBaseName);
 	await seedExperienceBrain(supabase, knowledgeBaseId, knowledgeBaseName, expertiseBrainId);
 	await seedProcessBrain(supabase, knowledgeBaseName);
+	await ensureHumanBrain(supabase, { id: knowledgeBaseId, name: knowledgeBaseName }, []);
 }
 
 async function seedExpertiseBrain(

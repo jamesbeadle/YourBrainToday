@@ -14,7 +14,7 @@ export const privacyCollectionSections: LegalSection[] = [
 		paragraphs: ['We hold these kinds of information:'],
 		listItems: [
 			'Account details — your email address, display name, and which sign-in method you use (Google, or email and password).',
-			'Knowledge base content — the documents you upload, the answers you give the interviewer, and the expertise, experience and process brains built from them.',
+			'Knowledge base content — the documents you upload, the answers you give the interviewer, and the expertise, experience, process and human brains built from them. The human brain holds the names, roles and organisations of people you mention, and what you tell us about how they relate to one another.',
 			'Chatbot conversations — the questions members ask, the answers given, which questions went unanswered, and how much of the pool each member has spent.',
 			'Client register records — for the businesses we work for: the company, the people named as contacts, the requests they raise, and the threads and builds that follow.',
 			'Enquiries — the name, email address, company, website and message you send through the contact page, which create a lead in the client register.',

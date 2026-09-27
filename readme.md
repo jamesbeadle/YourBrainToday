@@ -15,12 +15,14 @@ MCP server are working:
   when keys are set, a placeholder otherwise; [docs/stripe-setup.md](./docs/stripe-setup.md)
   covers the keys and the unit economics.
 - Build a Knowledge Base at `/knowledge-base` — one dashboard per base, with a header
-  switcher between bases, and three brains per base: expertise (what the business knows,
-  as a domain model), experience (what it has done, as case files) and process (how it
-  works, as flows of work). Each is built by interview with an agent or by uploading the
+  switcher between bases, and four brains per base: expertise (what the business knows,
+  as a domain model), experience (what it has done, as case files), process (how it
+  works, as flows of work) and human (who it knows, as a network of people and how well
+  they get on). Each is built by interview with an agent or by uploading the
   documents the business already files, and every answer is grounded in those pages with
   citations; [docs/domain-brain-architecture.md](./docs/domain-brain-architecture.md) and
-  [docs/process-brain-architecture.md](./docs/process-brain-architecture.md) cover the design.
+  [docs/process-brain-architecture.md](./docs/process-brain-architecture.md) and
+  [docs/human-brain-architecture.md](./docs/human-brain-architecture.md) cover the design.
 - Hand a chatbot to staff at `/chatbots` — the first tool built on a Knowledge Base. A
   manager names a bot on their base, invites members by email, funds it from their own
   credits and sets each member's allowance; members ask, and never open the base itself;

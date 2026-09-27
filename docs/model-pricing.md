@@ -8,13 +8,21 @@ markup on cost (his floor is "100% on top"), and per-member overrides on chatbot
 ## The ladder
 
 `src/lib/data/modelLadder.ts` is the single list, cheapest first: Haiku 4.5 ($1/$5 per MTok),
-Sonnet 5 ($2/$10), Opus 5 ($5/$25), Fable 5.1 ($10/$50). Each rung carries a `floorCredits`
-(10 / 20 / 50 / 100 — proportional to the input rate) which is both the reserve taken before a
+Sonnet 5 ($2/$10), Opus 5.5 ($4/$20), Fable 5.1 ($10/$50). Each rung carries a `floorCredits`
+(10 / 20 / 40 / 100 — proportional to the input rate) which is both the reserve taken before a
 question and the least it can ever cost. Older ids the site setting or an admin pin may still
-name (`claude-sonnet-4-5`, `claude-opus-4-8`, `claude-fable-5`…) map to the rung above them;
+name (`claude-sonnet-4-5`, `claude-opus-5`, `claude-opus-4-8`, `claude-fable-5`…) map to the
+rung at or above their rates;
 a dated id matches its rung by prefix; an id nothing recognises prices at the top rung, so a
 surprise can never undercharge. `siteModels.ts` (the admin's site-model select) now derives
 from the ladder.
+
+Opus 5.5 is the site default (decided 2026-09-27), run at medium effort. Migration 0053 sets
+the stored `site_model` to it and moves every Opus 5 choice up to it. `modelTraits.ts` holds
+what differs per model on the wire: Opus 5.5 and Fable 5.1 always think and refuse a forced
+`tool_choice` with a 400, so `modelRequestShape.ts` asks for the tool in the system prompt
+instead, adds thinking headroom to `max_tokens`, and sends `output_config.effort` where a
+rung names one.
 
 ## Who chooses
 
@@ -70,7 +78,7 @@ byte-priced `ingestCreditsFor` under `brain_ingest_sized` and settle beyond it �
 read on Fable owes around 250 credits against the flat 50 that was charged before. Prune (25) and
 unlearn (50) settle beyond their fixed prices; a chatbot teaching note settles beyond its ingest
 price under `chatbot_teach`; and the bearer API (`/api/v1/brains/[id]/ask`) keeps its fixed 10
-through `spend_for_brain_api_question`, runs on the cheapest rung because there is no session
+through `spend_for_brain_api_question`, runs on the site default because there is no session
 to resolve a slider from, and settles the marked-up bill beyond the 10 against the brain owner
 under `brain_api_question_usage`. What a job finally owes is `max(reserve, floor, marked-up bill)`
 — the reserve is never refunded down.
@@ -144,5 +152,5 @@ sends the email without a row, so it is not counted either.
 
 ## Not covered yet
 
-The bearer API charges the owner's ledger but runs on the cheapest rung rather than the owner's
+The bearer API and the MCP ingest charge the owner's ledger but run on the site default rather than the owner's
 slider. Interview harvests carry no per-item fee where agent replies do.

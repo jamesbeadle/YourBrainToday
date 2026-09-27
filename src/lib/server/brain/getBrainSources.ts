@@ -7,7 +7,7 @@ export async function getBrainSources(
 ): Promise<BrainSource[]> {
 	const { data, error } = await supabase
 		.from('brain_sources')
-		.select('id, filename, mime_type, byte_count, status, summary, created_at')
+		.select('id, filename, mime_type, byte_count, status, summary, arrived_through, created_at')
 		.eq('brain_id', brainId)
 		.order('created_at', { ascending: false });
 	if (error !== null) throw error;
@@ -18,6 +18,7 @@ export async function getBrainSources(
 		byteCount: row.byte_count,
 		status: row.status,
 		summary: row.summary,
+		arrivedThrough: row.arrived_through,
 		createdAt: row.created_at
 	}));
 }

@@ -5,6 +5,10 @@
 	import { restWhilePageHidden } from '$lib/client/pageVisibility.svelte';
 	import { untrack } from 'svelte';
 	import {
+		expertiseVocabulary,
+		type ConstellationVocabulary
+	} from './constellation/constellationVocabulary';
+	import {
 		createConstellationExperience,
 		type ConstellationExperience
 	} from './constellation/createConstellationExperience';
@@ -17,6 +21,7 @@
 		contexts,
 		pageIndex,
 		pageLinks,
+		vocabulary = expertiseVocabulary,
 		onReady = () => {}
 	}: {
 		loadPage: (slug: string) => Promise<BrainPagePayload>;
@@ -24,6 +29,7 @@
 		contexts: BrainContext[];
 		pageIndex: BrainPageSummary[];
 		pageLinks: BrainPageLink[];
+		vocabulary?: ConstellationVocabulary;
 		onReady?: () => void;
 	} = $props();
 
@@ -73,10 +79,17 @@
 {#if hasNeurons}
 	<div bind:this={containerElement} class="relative h-full min-h-80 overflow-hidden bg-night">
 		<canvas bind:this={canvasElement} class="h-full w-full"></canvas>
-		<ConstellationOverlays {exploration} {loadPage} {pageBasePath} {contexts} {pageIndex} />
+		<ConstellationOverlays
+			{exploration}
+			{loadPage}
+			{pageBasePath}
+			{contexts}
+			{pageIndex}
+			{vocabulary}
+		/>
 	</div>
 {:else}
 	<div class="flex h-full min-h-80 items-center justify-center text-sm text-chalk/50">
-		No neurons yet — add your first document and watch the constellation grow.
+		{vocabulary.emptyHint}
 	</div>
 {/if}

@@ -8,6 +8,13 @@ export type InterviewRequest = {
 	focus: InterviewFocus;
 };
 
+const interviewFocuses: Exclude<InterviewFocus, null>[] = [
+	'expertise',
+	'experience',
+	'process',
+	'human'
+];
+
 const longestConversation = 16;
 const longestTurnLength = 2000;
 
@@ -23,8 +30,7 @@ export async function readInterviewRequest(request: Request): Promise<InterviewR
 }
 
 function parseFocus(value: unknown): InterviewFocus {
-	if (value === 'expertise' || value === 'experience' || value === 'process') return value;
-	return null;
+	return interviewFocuses.find((focus) => focus === value) ?? null;
 }
 
 function parseConversation(value: unknown): InterviewTurnInput[] {

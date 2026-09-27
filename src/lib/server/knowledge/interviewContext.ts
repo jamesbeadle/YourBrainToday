@@ -1,5 +1,6 @@
 import { getBrainPageIndex } from '$lib/server/brain/getBrainPageIndex';
 import { getWorkflows } from '$lib/server/entities/getWorkflows';
+import { getKnownPeopleNames } from './getKnownPeopleNames';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 export type InterviewContext = {
@@ -7,6 +8,7 @@ export type InterviewContext = {
 	expertisePages: string[];
 	recentEpisodes: string[];
 	processNames: string[];
+	peopleNames: string[];
 };
 
 export type PrimaryExpertiseBrain = {
@@ -59,7 +61,8 @@ export async function buildInterviewContext(
 		knowledgeBaseName,
 		expertisePages: primary === null ? [] : await expertisePageTitles(supabase, primary),
 		recentEpisodes: await recentEpisodeTitles(supabase, knowledgeBaseId),
-		processNames: primary === null ? [] : await processNames(supabase, primary.entityId)
+		processNames: primary === null ? [] : await processNames(supabase, primary.entityId),
+		peopleNames: await getKnownPeopleNames(supabase, knowledgeBaseId)
 	};
 }
 
@@ -79,6 +82,7 @@ async function recentEpisodeTitles(
 		.from('kb_brain_items')
 		.select('title, kb_brains!inner(knowledge_base_id)')
 		.eq('kb_brains.knowledge_base_id', knowledgeBaseId)
+		.eq('item_kind', 'episode')
 		.order('created_at', { ascending: false })
 		.limit(10);
 	if (error !== null) throw error;

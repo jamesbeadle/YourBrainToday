@@ -1,8 +1,8 @@
-import { cheapestModelId, isKnownModel, modelLadder } from './modelLadder';
+import { defaultModelId, isKnownModel, modelLadder } from './modelLadder';
 
 export type SiteModelChoice = { modelId: string; label: string };
 
-export const defaultSiteModel = cheapestModelId;
+export const defaultSiteModel = defaultModelId;
 
 export const siteModelChoices: SiteModelChoice[] = modelLadder.map((rung) => ({
 	modelId: rung.modelId,

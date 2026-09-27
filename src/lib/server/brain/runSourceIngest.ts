@@ -43,7 +43,8 @@ export async function runSourceIngest(
 			filename: source.filename,
 			logLine: `${record.logLine}${routing.logLine}`,
 			experienceEpisodes: routing.experienceEpisodes,
-			processTasks: routing.processTasks
+			processTasks: routing.processTasks,
+			humanConnections: routing.humanConnections
 		},
 		sourceId: source.id
 	});

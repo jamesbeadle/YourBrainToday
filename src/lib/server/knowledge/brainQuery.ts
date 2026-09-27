@@ -1,6 +1,7 @@
 import { kindForCategory } from '$lib/data/knowledge/knowledgeKinds';
 import { requestAnthropic } from '$lib/server/anthropic/requestAnthropic';
 import { textFrom } from '$lib/server/anthropic/anthropicTypes';
+import { humanQueryGuidance, humanRecordFrame } from './humanRecordFrame';
 import type { KbBrainItem, KbBrainSummary } from '$lib/data/knowledge/knowledgeTypes';
 
 const itemLimit = 250;
@@ -29,7 +30,7 @@ function querySystemPrompt(brain: KbBrainSummary, items: KbBrainItem[]): string 
 Answer ONLY from the records below. When the records do not hold the answer, say so
 plainly — never invent. Keep answers short and concrete, in the trade's own vocabulary,
 naming the records you drew on.
-
+${brain.category === 'people' ? `\n${humanQueryGuidance}\n` : ''}
 ## Records
 
 ${renderItems(items)}`;
@@ -52,7 +53,7 @@ function renderItem(item: KbBrainItem, caseTitles: Map<string, string>): string 
 	const caseTitle = item.parentItemId === null ? undefined : caseTitles.get(item.parentItemId);
 	if (caseTitle !== undefined) parts.push(`[case: ${caseTitle}]`);
 	if (item.body !== '') parts.push(`— ${item.body.slice(0, bodyLimit)}`);
-	const frame = caseFrame(item);
+	const frame = caseFrame(item) || humanRecordFrame(item);
 	if (frame !== '') parts.push(frame);
 	return parts.join(' ');
 }

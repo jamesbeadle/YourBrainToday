@@ -1,12 +1,13 @@
 import { error } from '@sveltejs/kit';
 import { loadExperienceBrainView, type ExperienceBrainView } from './loadExperienceBrainView';
 import { loadExpertiseBrainView, type ExpertiseBrainView } from './loadExpertiseBrainView';
+import { loadHumanBrainView, type HumanBrainView } from './loadHumanBrainView';
 import { loadProcessBrainView, type ProcessBrainView } from './loadProcessBrainView';
 import type { OpenBrain } from '$lib/data/knowledge/findOpenBrain';
 import type { KbBrainSummary } from '$lib/data/knowledge/knowledgeTypes';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
-export type BrainView = ExpertiseBrainView | ExperienceBrainView | ProcessBrainView;
+export type BrainView = ExpertiseBrainView | ExperienceBrainView | ProcessBrainView | HumanBrainView;
 
 /** Each kind of brain has its own view and its own loader; the open brain says which. */
 export async function loadBrainView(
@@ -21,5 +22,6 @@ export async function loadBrainView(
 	if (openBrain.kind.kind === 'expertise') {
 		return loadExpertiseBrainView(supabase, storedBrain, userId);
 	}
+	if (openBrain.kind.kind === 'human') return loadHumanBrainView(supabase, storedBrain);
 	return loadExperienceBrainView(supabase, storedBrain, knowledgeBaseBrains);
 }

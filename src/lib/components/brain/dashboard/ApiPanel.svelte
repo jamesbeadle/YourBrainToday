@@ -48,8 +48,9 @@
 	<p class="text-sm text-chalk/60">
 		Use this brain from outside the site — from Claude, a script, or any agent. A token is the
 		key: send it as a bearer header and the API serves the model index, individual pages, grounded
-		answers, and a markdown export. Questions asked through the API spend your credits (10 per
-		question); reading pages and exporting are free.
+		answers, and a markdown export — and takes data in at /ingest to train the brain, so an MCP
+		server can feed it. Questions and ingests spend your credits; reading pages and exporting are
+		free. To connect Claude itself, add {page.url.origin}/api/mcp as a custom connector.
 	</p>
 
 	<form class="flex items-center gap-2" onsubmit={createToken}>
