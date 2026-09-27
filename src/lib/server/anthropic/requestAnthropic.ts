@@ -1,6 +1,7 @@
 import { env } from '$env/dynamic/private';
 import { anthropicMessagesUrl, anthropicVersion } from './anthropicConstants';
 import { recordMeteredCall } from './modelContext';
+import { shapeRequestForModel } from './modelRequestShape';
 import { resolveRequestModel } from './resolveRequestModel';
 import type { AnthropicMessage, AnthropicRequestTool, AnthropicResponse } from './anthropicTypes';
 import type { AnthropicUsage } from '$lib/data/anthropicUsage';
@@ -34,10 +35,8 @@ export async function requestAnthropic(request: AnthropicRequest): Promise<Anthr
 		},
 		body: JSON.stringify({
 			model,
-			max_tokens: request.maxTokens,
-			system: request.system,
+			...shapeRequestForModel(model, request),
 			tools: request.tools,
-			...toolChoiceFor(request),
 			messages: request.messages
 		})
 	});
@@ -59,12 +58,4 @@ function usageFrom(answer: AnthropicResponse): AnthropicUsage {
 async function describeFailure(response: Response): Promise<string> {
 	const detail = (await response.text()).slice(0, failureDetailLimit);
 	return `Anthropic request failed with status ${response.status}: ${detail}`;
-}
-
-function toolChoiceFor(request: AnthropicRequest): Record<string, unknown> {
-	if (request.forcedToolName !== undefined) {
-		return { tool_choice: { type: 'tool', name: request.forcedToolName } };
-	}
-	if (request.mustUseTool === true) return { tool_choice: { type: 'any' } };
-	return {};
 }

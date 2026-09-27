@@ -17,12 +17,10 @@
 </script>
 
 <section class="flex flex-col gap-4 p-4">
-	<div>
-		
-		<p class="text-sm text-chalk/60">
-			The raw material — every document is read once and remembered in the model.
-		</p>
-	</div>
+	<p class="text-sm text-chalk/60">
+		Everything the brain has learned from — documents and links you add here, and data sent in
+		by an MCP server or through the API. Each piece is read once and remembered in the model.
+	</p>
 	<SourceUploadPanel {brainId} {onOutOfCredits} />
 	{#if sources.length > 0}
 		<ul class="flex flex-col">

@@ -11,7 +11,7 @@ export type ModelRung = {
  * The slider, cheapest to most capable. Rates are Anthropic's published base
  * prices (September 2026); floorCredits is the reserve taken before a
  * question and the least it can ever cost — proportional to the input rate
- * so the ladder reads 1× / 2× / 5× / 10×.
+ * so the ladder reads 1× / 2× / 4× / 10×.
  */
 export const modelLadder: ModelRung[] = [
 	{
@@ -31,12 +31,12 @@ export const modelLadder: ModelRung[] = [
 		floorCredits: 20
 	},
 	{
-		modelId: 'claude-opus-5',
-		name: 'Opus 5',
-		tagline: 'Deep reasoning for hard, multi-step questions',
-		inputUsdPerMillionTokens: 5,
-		outputUsdPerMillionTokens: 25,
-		floorCredits: 50
+		modelId: 'claude-opus-5-5',
+		name: 'Opus 5.5',
+		tagline: 'Deep reasoning for hard, multi-step questions — the site default',
+		inputUsdPerMillionTokens: 4,
+		outputUsdPerMillionTokens: 20,
+		floorCredits: 40
 	},
 	{
 		modelId: 'claude-fable-5-1',
@@ -50,16 +50,20 @@ export const modelLadder: ModelRung[] = [
 
 export const cheapestModelId = modelLadder[0].modelId;
 
+export const defaultModelId = 'claude-opus-5-5';
+
 // Models the site setting or an admin pin may still name; priced at a rung
 // whose rates are at least theirs so an old id can never undercut the
-// ladder (Sonnet 4.x bills $3/$15, above Sonnet 5, so it rides on Opus).
+// ladder (Sonnet 4.x bills $3/$15, above Sonnet 5, so it rides on Opus 5.5;
+// Opus 5 and 4.x bill $5/$25, above Opus 5.5, so they ride on Fable).
 const legacyModelRungs: Record<string, string> = {
-	'claude-sonnet-4-5': 'claude-opus-5',
-	'claude-sonnet-4-6': 'claude-opus-5',
-	'claude-opus-4-5': 'claude-opus-5',
-	'claude-opus-4-6': 'claude-opus-5',
-	'claude-opus-4-7': 'claude-opus-5',
-	'claude-opus-4-8': 'claude-opus-5',
+	'claude-sonnet-4-5': 'claude-opus-5-5',
+	'claude-sonnet-4-6': 'claude-opus-5-5',
+	'claude-opus-4-5': 'claude-fable-5-1',
+	'claude-opus-4-6': 'claude-fable-5-1',
+	'claude-opus-4-7': 'claude-fable-5-1',
+	'claude-opus-4-8': 'claude-fable-5-1',
+	'claude-opus-5': 'claude-fable-5-1',
 	'claude-fable-5': 'claude-fable-5-1'
 };
 

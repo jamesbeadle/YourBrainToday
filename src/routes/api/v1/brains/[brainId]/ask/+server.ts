@@ -14,7 +14,7 @@ import {
 } from '$lib/server/brainApi/spendForApiQuestion';
 import { requireSpendHeadroom } from '$lib/server/credits/requireSpendHeadroom';
 import { resolveApiCaller } from '$lib/server/brainApi/resolveApiCaller';
-import { cheapestModelId } from '$lib/data/modelLadder';
+import { getSiteModel } from '$lib/server/anthropic/getSiteModel';
 import { longestQuestion } from '$lib/data/questionLimits';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { RequestHandler } from './$types';
@@ -41,14 +41,14 @@ export const POST: RequestHandler = async ({ request, params }) => {
 		const contexts = await getBrainContexts(supabase, brain.id);
 		const index = await getBrainPageIndex(supabase, brain.id);
 		// A bearer call has no session to resolve a slider, so it runs on the
-		// cheapest rung and settles usage against the owner (docs/model-pricing.md).
+		// site default and settles usage against the owner (docs/model-pricing.md).
 		const answer = await askModeller(
 			supabase,
 			brain.id,
 			contexts,
 			index,
 			[...priorTurns, { speaker: 'user', text: question }],
-			cheapestModelId
+			await getSiteModel()
 		);
 		await recordConversationTurn(supabase, conversationId, question, answer, brain.ownerId);
 		await recordBrainEvent(supabase, {

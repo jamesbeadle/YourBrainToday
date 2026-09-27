@@ -30,7 +30,7 @@ export const sectionsForRole: Record<BrainAccessRole, SectionKey[]> = {
 export const sectionLabels: Record<SectionKey, string> = {
 	interview: 'The interview',
 	terminal: 'Terminal',
-	sources: 'Source documents',
+	sources: 'Ingested data',
 	model: 'The model',
 	contents: 'Contents',
 	map: 'The map',
