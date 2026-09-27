@@ -13,7 +13,7 @@
 	<div class="flex flex-col gap-2">
 		<a
 			href={`/knowledge-base/${chatbot.knowledgeBaseId}`}
-			class="font-display text-sm tracking-widest text-signal uppercase hover:underline"
+			class="font-mono text-sm tracking-widest text-signal uppercase hover:underline"
 		>
 			← Knowledge base
 		</a>

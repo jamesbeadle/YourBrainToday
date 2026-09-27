@@ -17,7 +17,7 @@
 
 <section class="flex flex-col gap-4 rounded-2xl border border-hairline bg-carriage p-6">
 	<div class="flex flex-col gap-1">
-		<p class="font-display text-sm tracking-widest text-chalk/50 uppercase">AI model</p>
+		<p class="font-mono text-sm tracking-widest text-chalk/50 uppercase">AI model</p>
 		<p class="text-sm text-chalk/70">
 			Every question you ask runs on this model. Each one reserves the model's floor, then
 			settles to what the answer actually cost — longer reads cost more, short ones don't.

@@ -64,7 +64,7 @@
 		{/if}
 		{#each populatedKinds as kind (kind)}
 			<div class="flex flex-col gap-1.5">
-				<p class="font-display text-[10px] tracking-widest text-chalk/40 uppercase">
+				<p class="font-mono text-[10px] tracking-widest text-chalk/40 uppercase">
 					{domainBlockLabels[kind].plural}
 				</p>
 				<div class="flex flex-wrap gap-1.5">

@@ -8,7 +8,7 @@
 </script>
 
 <div class="flex flex-col gap-1">
-	<p class="px-3 pt-3 pb-1 font-display text-xs tracking-widest text-chalk/40 uppercase">
+	<p class="px-3 pt-3 pb-1 font-mono text-xs tracking-widest text-chalk/40 uppercase">
 		{group.label}
 	</p>
 	{#each group.links as groupLink (groupLink.href)}

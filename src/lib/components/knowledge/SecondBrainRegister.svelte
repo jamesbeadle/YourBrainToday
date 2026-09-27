@@ -40,13 +40,13 @@
 					border-hairline/60 px-5 py-2 sm:grid"
 			>
 				<span class="w-9"></span>
-				<span class="font-display text-[10px] tracking-widest text-chalk/30 uppercase">
+				<span class="font-mono text-[10px] tracking-widest text-chalk/30 uppercase">
 					Second brain
 				</span>
-				<span class="w-24 text-center font-display text-[10px] tracking-widest text-chalk/30 uppercase">
+				<span class="w-24 text-center font-mono text-[10px] tracking-widest text-chalk/30 uppercase">
 					Type
 				</span>
-				<span class="text-right font-display text-[10px] tracking-widest text-chalk/30 uppercase">
+				<span class="text-right font-mono text-[10px] tracking-widest text-chalk/30 uppercase">
 					Updated
 				</span>
 			</div>

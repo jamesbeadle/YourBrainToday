@@ -1,8 +1,8 @@
 import type { DomainBlockKind } from '$lib/data/brainTypes';
 
-export const NIGHT_SKY = 0x0b0e16;
-export const CHALK = 0xeef1f8;
-export const SIGNAL = 0xff4d5e;
+export const NIGHT_SKY = 0x0c0d11;
+export const CHALK = 0xedeef3;
+export const SIGNAL = 0xa78bff;
 export const SILVER = 0xc9d2e6;
 export const HALO = 0xd6ddf5;
 export const STARLIGHT = 0x6c7694;
@@ -16,7 +16,7 @@ export const kindColours: Record<DomainBlockKind, number> = {
 	domain_service: 0xc4aeff,
 	domain_event: 0xffab8a,
 	glossary: 0x9fe8e8,
-	context_map: 0xeef1f8
+	context_map: 0xedeef3
 };
 
 export function asCssColour(colour: number): string {

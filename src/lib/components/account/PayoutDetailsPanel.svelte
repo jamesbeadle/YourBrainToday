@@ -22,7 +22,7 @@
 
 <div class="flex flex-col gap-3 rounded-2xl border border-hairline bg-carriage p-6">
 	<div class="flex flex-wrap items-center justify-between gap-4">
-		<p class="font-display text-sm tracking-widest text-chalk/50 uppercase">Payout details</p>
+		<p class="font-mono text-sm tracking-widest text-chalk/50 uppercase">Payout details</p>
 		{#if payoutDetails !== null && !isFormOpen}
 			<button
 				type="button"
@@ -53,7 +53,7 @@
 			class="flex flex-col gap-3"
 		>
 			<label class="flex flex-col gap-1">
-				<span class="font-display text-xs tracking-widest text-chalk/50 uppercase">
+				<span class="font-mono text-xs tracking-widest text-chalk/50 uppercase">
 					Account holder
 				</span>
 				<input
@@ -67,7 +67,7 @@
 			</label>
 			<div class="flex flex-wrap gap-3">
 				<label class="flex min-w-32 flex-1 flex-col gap-1">
-					<span class="font-display text-xs tracking-widest text-chalk/50 uppercase">
+					<span class="font-mono text-xs tracking-widest text-chalk/50 uppercase">
 						Sort code
 					</span>
 					<input
@@ -81,7 +81,7 @@
 					/>
 				</label>
 				<label class="flex min-w-40 flex-1 flex-col gap-1">
-					<span class="font-display text-xs tracking-widest text-chalk/50 uppercase">
+					<span class="font-mono text-xs tracking-widest text-chalk/50 uppercase">
 						Account number
 					</span>
 					<input

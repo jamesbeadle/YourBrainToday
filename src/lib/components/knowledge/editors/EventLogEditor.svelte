@@ -21,7 +21,7 @@
 
 <div class="grid gap-6 lg:grid-cols-[2fr_1fr]">
 	<section class="flex flex-col gap-3">
-		<h3 class="font-display text-sm tracking-widest text-chalk/50 uppercase">Case files</h3>
+		<h3 class="font-mono text-sm tracking-widest text-chalk/50 uppercase">Case files</h3>
 		{#if grouped.caseGroups.length === 0}
 			<p class="text-sm text-chalk/40">
 				No case files yet — name the job or client when recording an event and its case opens
@@ -32,7 +32,7 @@
 				<CaseFileSection {group} />
 			{/each}
 		{/if}
-		<h3 class="font-display text-sm tracking-widest text-chalk/50 uppercase">Timeline</h3>
+		<h3 class="font-mono text-sm tracking-widest text-chalk/50 uppercase">Timeline</h3>
 		{#if grouped.caselessEpisodes.length === 0}
 			<p class="text-sm text-chalk/40">
 				Nothing outside a case yet — uncased events land here in order and are never rewritten.
@@ -47,7 +47,7 @@
 	</section>
 	<div class="flex flex-col gap-4">
 		<div class="flex flex-col gap-2">
-			<h3 class="font-display text-sm tracking-widest text-chalk/50 uppercase">Record an event</h3>
+			<h3 class="font-mono text-sm tracking-widest text-chalk/50 uppercase">Record an event</h3>
 			<ItemComposer
 				itemKind="episode"
 				fields={[
@@ -61,7 +61,7 @@
 			/>
 		</div>
 		<div class="flex flex-col gap-2">
-			<h3 class="font-display text-sm tracking-widest text-chalk/50 uppercase">Open a case file</h3>
+			<h3 class="font-mono text-sm tracking-widest text-chalk/50 uppercase">Open a case file</h3>
 			<ItemComposer
 				itemKind="case"
 				fields={[

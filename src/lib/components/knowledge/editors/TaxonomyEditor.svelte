@@ -20,7 +20,7 @@
 
 <div class="grid gap-6 lg:grid-cols-2">
 	<section class="flex flex-col gap-3">
-		<h3 class="font-display text-sm tracking-widest text-chalk/50 uppercase">
+		<h3 class="font-mono text-sm tracking-widest text-chalk/50 uppercase">
 			Classification tree
 		</h3>
 		{#if terms.length === 0}

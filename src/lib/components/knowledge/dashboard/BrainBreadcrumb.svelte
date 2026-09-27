@@ -34,7 +34,7 @@
 	{:else}
 		<div class="flex min-w-0 flex-1 flex-col gap-0.5">
 			<h1 class="truncate text-sm font-medium text-chalk lg:text-base">{slot.name}</h1>
-			<p class="truncate text-[10px] tracking-widest uppercase" style:color={slot.accent}>
+			<p class="font-mono truncate text-[10px] tracking-widest uppercase" style:color={slot.accent}>
 				{slot.kindLabel} brain
 			</p>
 		</div>

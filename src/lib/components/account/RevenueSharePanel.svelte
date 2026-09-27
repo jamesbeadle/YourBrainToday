@@ -7,7 +7,7 @@
 <div class="flex flex-col gap-3 rounded-2xl border border-hairline bg-carriage p-6">
 	<div class="flex flex-wrap items-center justify-between gap-4">
 		<div>
-			<p class="font-display text-sm tracking-widest text-chalk/50 uppercase">
+			<p class="font-mono text-sm tracking-widest text-chalk/50 uppercase">
 				Trade Talk revenue share
 			</p>
 			<p class="font-display text-4xl font-medium">{earnings.totalCredits}</p>

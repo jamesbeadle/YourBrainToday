@@ -22,7 +22,7 @@
 
 <div class="mx-auto flex w-full max-w-2xl flex-col gap-6">
 	<section class="flex flex-col gap-3">
-		<h3 class="font-display text-sm tracking-widest text-chalk/50 uppercase">Blocks</h3>
+		<h3 class="font-mono text-sm tracking-widest text-chalk/50 uppercase">Blocks</h3>
 		{#if blocks.length === 0}
 			<p class="text-sm text-chalk/40">
 				No blocks yet — everything is a block; nest them to grow documents from fragments.

@@ -68,7 +68,7 @@ function buildSlotHandle(
 	group.position.copy(position);
 	group.rotation.y = slotIndex * 1.1;
 
-	const nameSprite = createTextSprite(slot.name, slot.variant === 'ghost' ? '#8a92a8' : '#eef1f8');
+	const nameSprite = createTextSprite(slot.name, slot.variant === 'ghost' ? '#8a92a8' : '#edeef3');
 	nameSprite.position.y = NAME_OFFSET_Y;
 	group.add(nameSprite);
 	const kindSprite = createTextSprite(slot.kindLabel.toUpperCase(), slot.accent);

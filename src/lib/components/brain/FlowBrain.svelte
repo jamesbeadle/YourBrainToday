@@ -90,7 +90,7 @@
 	{#if hover !== null && (hoveredNode !== undefined || hoveredEdge !== undefined)}
 		<FlowTooltip {hover} node={hoveredNode} edge={hoveredEdge} {roleNameFor} />
 	{/if}
-	<p class={[sceneHintPosition, 'font-display text-[10px] tracking-widest text-chalk/25 uppercase']}>
+	<p class={[sceneHintPosition, 'font-mono text-[10px] tracking-widest text-chalk/25 uppercase']}>
 		{hint}
 	</p>
 </div>

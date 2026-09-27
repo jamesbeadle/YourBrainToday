@@ -31,7 +31,7 @@
 >
 	<input type="hidden" name="brainType" value={brainType} />
 	<label class="flex flex-col gap-1">
-		<span class="text-xs tracking-widest text-chalk/50 uppercase">Pipeline</span>
+		<span class="font-mono text-xs tracking-widest text-chalk/50 uppercase">Pipeline</span>
 		<select name="pipeline" bind:value={selectedPipeline} class={inputClasses}>
 			{#each retrievalPipelines as definition (definition.pipeline)}
 				<option value={definition.pipeline}>{definition.label}</option>
@@ -41,11 +41,11 @@
 	<p class="text-xs text-chalk/50">{pipelineSummary}</p>
 	<div class="grid grid-cols-3 gap-3">
 		<label class="flex flex-col gap-1">
-			<span class="text-xs tracking-widest text-chalk/50 uppercase">Top K</span>
+			<span class="font-mono text-xs tracking-widest text-chalk/50 uppercase">Top K</span>
 			<input type="number" name="topK" min="1" max="50" value={retrievalConfig.topK} class={inputClasses} />
 		</label>
 		<label class="flex flex-col gap-1">
-			<span class="text-xs tracking-widest text-chalk/50 uppercase">Depth</span>
+			<span class="font-mono text-xs tracking-widest text-chalk/50 uppercase">Depth</span>
 			<input
 				type="number"
 				name="traversalDepth"
@@ -56,7 +56,7 @@
 			/>
 		</label>
 		<label class="flex flex-col gap-1">
-			<span class="text-xs tracking-widest text-chalk/50 uppercase">Recency</span>
+			<span class="font-mono text-xs tracking-widest text-chalk/50 uppercase">Recency</span>
 			<input
 				type="number"
 				name="recencyWeight"

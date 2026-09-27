@@ -69,7 +69,7 @@
 			<div class="pointer-events-none absolute top-4 right-4 z-10 flex flex-col items-end gap-0.5 text-right">
 				<h1 class="font-display text-lg font-medium text-chalk">{data.workflow.name}</h1>
 				<p
-					class="font-display text-[10px] tracking-widest uppercase"
+					class="font-mono text-[10px] tracking-widest uppercase"
 					style={`color: ${processKind.accent}`}
 				>
 					Process brain

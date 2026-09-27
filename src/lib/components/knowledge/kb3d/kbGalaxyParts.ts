@@ -15,7 +15,7 @@ export const RING_RADIUS = 7;
 export function coreGlow(glowTexture: Texture): Sprite {
 	const material = new SpriteMaterial({
 		map: glowTexture,
-		color: new Color('#eef1f8'),
+		color: new Color('#edeef3'),
 		transparent: true,
 		opacity: 0.8,
 		blending: AdditiveBlending,

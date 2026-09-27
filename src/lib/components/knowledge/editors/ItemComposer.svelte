@@ -35,7 +35,7 @@
 	{/each}
 	{#each fields as field (field.name)}
 		<label class="flex flex-col gap-1">
-			<span class="text-xs tracking-widest text-chalk/50 uppercase">{field.label}</span>
+			<span class="font-mono text-xs tracking-widest text-chalk/50 uppercase">{field.label}</span>
 			{#if field.control === 'textarea'}
 				<textarea
 					name={field.name}

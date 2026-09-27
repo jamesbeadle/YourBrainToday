@@ -32,7 +32,7 @@
 		message={form?.message ?? null}
 		isProblem={form?.isProblem ?? false}
 	/>
-	<div class="flex items-center gap-3 font-display text-xs tracking-widest text-chalk/40 uppercase">
+	<div class="flex items-center gap-3 font-mono text-xs tracking-widest text-chalk/40 uppercase">
 		<span class="h-px flex-1 bg-hairline"></span>
 		or
 		<span class="h-px flex-1 bg-hairline"></span>

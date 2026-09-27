@@ -13,7 +13,7 @@
 
 <div class="flex flex-col gap-2">
 	<div class="flex items-center justify-between">
-		<h3 class="font-display text-xs tracking-widest text-chalk/50 uppercase">
+		<h3 class="font-mono text-xs tracking-widest text-chalk/50 uppercase">
 			Give this to your agent
 		</h3>
 		<CopyButton text={agentBriefing} />
@@ -26,6 +26,6 @@
 </div>
 
 <div class="flex flex-col gap-2">
-	<h3 class="font-display text-xs tracking-widest text-chalk/50 uppercase">Quick test</h3>
+	<h3 class="font-mono text-xs tracking-widest text-chalk/50 uppercase">Quick test</h3>
 	<pre class={codeBlockClasses}>{curlExample}</pre>
 </div>

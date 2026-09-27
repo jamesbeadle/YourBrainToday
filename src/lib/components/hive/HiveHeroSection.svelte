@@ -5,7 +5,7 @@
 </script>
 
 <section class="mx-auto flex max-w-6xl flex-col gap-6 px-6 pt-20 pb-10">
-	<p class="font-display text-sm tracking-widest text-signal uppercase">Trade Talk</p>
+	<p class="font-mono text-sm tracking-widest text-signal uppercase">Trade Talk</p>
 	<h1 class="max-w-3xl font-display text-4xl leading-tight font-medium md:text-5xl">
 		Every trade. One answer.
 	</h1>

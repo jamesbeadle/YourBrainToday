@@ -24,7 +24,7 @@
 </script>
 
 <section class="flex flex-col gap-3">
-	<h2 class="font-display text-xs tracking-widest text-chalk/50 uppercase">Invitations</h2>
+	<h2 class="font-mono text-xs tracking-widest text-chalk/50 uppercase">Invitations</h2>
 	<ul class="flex flex-col gap-3">
 		{#each invitations as invite (invite.id)}
 			<li

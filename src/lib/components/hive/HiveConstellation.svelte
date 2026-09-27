@@ -17,7 +17,7 @@
 <div bind:this={containerElement} class="relative h-[28rem] overflow-hidden bg-night md:h-[32rem]">
 	<canvas bind:this={canvasElement} class="h-full w-full"></canvas>
 	<p
-		class="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 font-display text-xs
+		class="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 font-mono text-xs
 			tracking-widest text-chalk/40 uppercase"
 	>
 		{members.length === 0

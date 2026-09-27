@@ -13,5 +13,5 @@
 </script>
 
 {#if arrivalLabel !== null}
-	<p class="font-display text-[10px] tracking-widest text-chalk/40 uppercase">{arrivalLabel}</p>
+	<p class="font-mono text-[10px] tracking-widest text-chalk/40 uppercase">{arrivalLabel}</p>
 {/if}

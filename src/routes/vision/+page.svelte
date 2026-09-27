@@ -7,7 +7,7 @@
 </svelte:head>
 
 <article class="mx-auto flex max-w-2xl flex-col gap-6 px-6 py-16">
-	<p class="font-display text-sm tracking-widest text-signal uppercase">The vision</p>
+	<p class="font-mono text-sm tracking-widest text-signal uppercase">The vision</p>
 	<h1 class="font-display text-4xl leading-tight font-medium">
 		AI already knows everything.<br />Except your business.
 	</h1>

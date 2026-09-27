@@ -61,7 +61,7 @@
 	/>
 	<section class="flex flex-col gap-3">
 		{#if people.length < 2}
-			<h3 class="font-display text-sm tracking-widest text-chalk/50 uppercase">Relationships</h3>
+			<h3 class="font-mono text-sm tracking-widest text-chalk/50 uppercase">Relationships</h3>
 			<p class="text-sm text-chalk/40">
 				Add at least two people, then record how they are connected and how well they get on.
 			</p>

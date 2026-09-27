@@ -41,7 +41,7 @@
 	</section>
 	{#if brain.category === 'instance'}
 		<section class="flex flex-col gap-3">
-			<h4 class="font-display text-xs tracking-widest text-chalk/50 uppercase">
+			<h4 class="font-mono text-xs tracking-widest text-chalk/50 uppercase">
 				Expertise bindings
 			</h4>
 			<BindingsPanel {domainBrains} {boundDomainBrainIds} {actionBasePath} />
@@ -49,7 +49,7 @@
 	{/if}
 	{#if brain.brainType !== 'ddd_model'}
 		<section class="flex flex-col gap-3">
-			<h4 class="font-display text-xs tracking-widest text-chalk/50 uppercase">Retrieval</h4>
+			<h4 class="font-mono text-xs tracking-widest text-chalk/50 uppercase">Retrieval</h4>
 			<RetrievalSettingsPanel
 				retrievalConfig={brain.retrievalConfig}
 				brainType={brain.brainType}

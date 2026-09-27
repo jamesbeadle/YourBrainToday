@@ -3,7 +3,7 @@
 </script>
 
 <header class="flex shrink-0 items-center justify-between border-b border-hairline px-4 py-2.5">
-	<h2 class="font-display text-xs tracking-widest text-chalk/60 uppercase">{title}</h2>
+	<h2 class="font-mono text-xs tracking-widest text-chalk/60 uppercase">{title}</h2>
 	<button
 		type="button"
 		onclick={onClose}

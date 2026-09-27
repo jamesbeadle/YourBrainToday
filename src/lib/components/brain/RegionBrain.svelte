@@ -92,7 +92,7 @@
 	{#if hover !== null && hoveredRegion !== undefined}
 		<RegionTooltip {hover} region={hoveredRegion} />
 	{/if}
-	<p class={[sceneHintPosition, 'font-display text-[10px] tracking-widest text-chalk/25 uppercase']}>
+	<p class={[sceneHintPosition, 'font-mono text-[10px] tracking-widest text-chalk/25 uppercase']}>
 		{hint}
 	</p>
 </div>
