@@ -1,5 +1,7 @@
 export type BrainSourceStatus = 'uploaded' | 'ingested' | 'failed' | 'proposed' | 'rejected';
 
+export type BrainSourceArrival = 'upload' | 'mcp' | 'api';
+
 export type BrainSource = {
 	id: string;
 	filename: string;
@@ -7,6 +9,7 @@ export type BrainSource = {
 	byteCount: number;
 	status: BrainSourceStatus;
 	summary: string;
+	arrivedThrough: BrainSourceArrival;
 	createdAt: string;
 };
 

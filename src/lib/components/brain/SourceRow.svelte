@@ -1,5 +1,6 @@
 <script lang="ts">
 	import IngestProgressLabel from './IngestProgressLabel.svelte';
+	import SourceArrivalLabel from './SourceArrivalLabel.svelte';
 	import SourceRemoveButton from './SourceRemoveButton.svelte';
 	import SourceRereadButton from './SourceRereadButton.svelte';
 	import { ingestSource } from './uploadSourceFile';
@@ -46,6 +47,7 @@
 <li class="flex items-center justify-between gap-4 border-b border-hairline py-3 last:border-b-0">
 	<div class="min-w-0">
 		<p class="truncate text-sm text-chalk">{source.filename}</p>
+		<SourceArrivalLabel arrivedThrough={source.arrivedThrough} />
 		{#if source.summary !== ''}
 			<p class="truncate text-xs text-chalk/50">{source.summary}</p>
 		{/if}

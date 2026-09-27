@@ -1,8 +1,9 @@
 import { accountActions } from './actions/accountActions';
+import { knowledgeBaseActions } from './actions/knowledgeBaseActions';
 import type { ActionArea, McpAction } from './actionTypes';
 import type { AccountStanding } from './resolveAccountStanding';
 
-const everyAction: McpAction[] = [...accountActions];
+const everyAction: McpAction[] = [...accountActions, ...knowledgeBaseActions];
 
 export function actionsFor(standing: AccountStanding, area: ActionArea | null): McpAction[] {
 	return everyAction

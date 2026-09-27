@@ -37,7 +37,7 @@ const chatbotIconPaths = [
 
 export const knowledgeBaseToolDefinitions: Record<KnowledgeBaseToolKey, KnowledgeBaseToolDefinition> = {
 	interview: { key: 'interview', label: 'The interview', iconPaths: sectionIconPaths.interview },
-	documents: { key: 'documents', label: 'Source documents', iconPaths: sectionIconPaths.sources },
+	documents: { key: 'documents', label: 'Ingested data', iconPaths: sectionIconPaths.sources },
 	review: { key: 'review', label: 'Review changes', iconPaths: sectionIconPaths.review },
 	share: { key: 'share', label: 'Sharing', iconPaths: sectionIconPaths.share },
 	chatbots: { key: 'chatbots', label: 'Chatbots', iconPaths: chatbotIconPaths },
