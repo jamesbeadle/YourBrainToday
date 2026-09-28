@@ -18,9 +18,11 @@ MCP server are working:
   switcher between bases, and four brains per base: expertise (what the business knows,
   as a domain model), experience (what it has done, as case files), process (how it
   works, as flows of work) and human (who it knows, as a network of people and how well
-  they get on). Each is built by interview with an agent or by uploading the
-  documents the business already files, and every answer is grounded in those pages with
-  citations; [docs/domain-brain-architecture.md](./docs/domain-brain-architecture.md) and
+  they get on). Each is built by interview with an agent, by uploading the documents
+  the business already files, or by adding a note — typed, dictated with the phone
+  keyboard's microphone, or pasted from a voice memo transcript — and every answer is
+  grounded in those pages with citations;
+  [docs/domain-brain-architecture.md](./docs/domain-brain-architecture.md) and
   [docs/process-brain-architecture.md](./docs/process-brain-architecture.md) and
   [docs/human-brain-architecture.md](./docs/human-brain-architecture.md) cover the design.
 - Hand a chatbot to staff at `/chatbots` — the first tool built on a Knowledge Base. A
