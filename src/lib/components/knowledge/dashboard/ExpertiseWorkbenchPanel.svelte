@@ -10,11 +10,13 @@
 
 	let {
 		tool,
+		knowledgeBaseId,
 		isOwner,
 		workbench,
 		onOutOfCredits
 	}: {
 		tool: ExpertiseWorkbenchTool;
+		knowledgeBaseId: string;
 		isOwner: boolean;
 		workbench: KbWorkbenchData;
 		onOutOfCredits: () => void;
@@ -40,7 +42,7 @@
 
 {#snippet api(primaryBrain: DomainBrain)}
 	<div class="min-h-0 flex-1 overflow-y-auto">
-		<ApiPanel brainId={primaryBrain.id} tokens={workbench.apiTokens} />
+		<ApiPanel brainId={primaryBrain.id} {knowledgeBaseId} tokens={workbench.apiTokens} />
 	</div>
 {/snippet}
 

@@ -1,34 +1,41 @@
-export function agentBriefingFor(baseUrl: string): string {
+export function agentBriefingFor(brainUrl: string, knowledgeBaseUrl: string): string {
 	return [
-		`This is my expertise brain — a curated model of one domain, organised as`,
-		`bounded contexts of markdown pages. Use it as my second brain.`,
+		`This is my knowledge base on Your Brain Today — four brains: expertise (what`,
+		`the business knows, as a domain model), experience (what it has done),`,
+		`process (how it works) and human (who it knows). Use it as my second brain.`,
 		``,
-		`Base URL: ${baseUrl}`,
+		`Knowledge base: ${knowledgeBaseUrl}`,
+		`Expertise brain: ${brainUrl}`,
 		`Auth header on every request: Authorization: Bearer <token>`,
 		``,
-		`GET  ${baseUrl}`,
-		`     → the model index: every context and page with a one-line summary.`,
-		`GET  ${baseUrl}/pages/{slug}`,
-		`     → one page, full markdown body.`,
-		`POST ${baseUrl}/ask   {"question": "..."}`,
-		`     → a grounded answer citing the pages it read (spends credits).`,
-		`       Pass back "conversationId" from the reply to continue a thread.`,
-		`POST ${baseUrl}/ingest   {"title": "...", "text": "..."}`,
-		`     → teaches the brain: the text is read like an uploaded document and`,
-		`       appears in its ingested data (priced like an upload of that size).`,
-		`GET  ${baseUrl}/export`,
-		`     → the whole model as a zip of markdown files.`,
+		`GET  ${knowledgeBaseUrl}`,
+		`     → the four brains: what each holds, the expertise index, the experience`,
+		`       entries, the process map and the people, plus the same markdown the`,
+		`       orchestrator reads. Add ?brains=process,human to narrow it.`,
+		`POST ${knowledgeBaseUrl}/ask   {"question": "...", "brains": ["process"]}`,
+		`     → one grounded answer from whichever brains hold it, citing the pages`,
+		`       it read and naming the brains it drew on (spends credits). "brains"`,
+		`       is optional — leave it out to ask all four.`,
+		`GET  ${brainUrl}/pages/{slug}`,
+		`     → one expertise page, full markdown body.`,
+		`POST ${brainUrl}/ask   {"question": "..."}`,
+		`     → the expertise brain alone, in conversation; pass back "conversationId".`,
+		`POST ${brainUrl}/ingest   {"title": "...", "text": "..."}`,
+		`     → teaches the brains: the text is read like an uploaded document and`,
+		`       appears in the ingested data (priced like an upload of that size).`,
+		`GET  ${brainUrl}/export`,
+		`     → the expertise model as a zip of markdown files.`,
 		``,
-		`Navigate it yourself for detail work (index, then read the pages you`,
-		`need); use /ask when you want the brain to answer in its own words.`
+		`Read the knowledge base yourself for detail work (GET it, then the pages you`,
+		`need — reading is free); use /ask when you want it to answer in its own words.`
 	].join('\n');
 }
 
-export function curlExampleFor(baseUrl: string): string {
+export function curlExampleFor(knowledgeBaseUrl: string): string {
 	return (
-		`curl -X POST ${baseUrl}/ask \\\n` +
+		`curl -X POST ${knowledgeBaseUrl}/ask \\\n` +
 		`  -H "Authorization: Bearer YOUR_TOKEN" \\\n` +
 		`  -H "content-type: application/json" \\\n` +
-		`  -d '{"question": "What do we know about ...?"}'`
+		`  -d '{"question": "Who signs off a variation, and what happened last time?"}'`
 	);
 }

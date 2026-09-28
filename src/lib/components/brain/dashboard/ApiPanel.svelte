@@ -9,9 +9,11 @@
 
 	let {
 		brainId,
+		knowledgeBaseId,
 		tokens
 	}: {
 		brainId: string;
+		knowledgeBaseId: string;
 		tokens: BrainApiToken[];
 	} = $props();
 
@@ -20,7 +22,8 @@
 	let errorMessage = $state('');
 	let minted = $state<MintedBrainApiToken | null>(null);
 
-	const baseUrl = $derived(`${page.url.origin}/api/v1/brains/${brainId}`);
+	const brainUrl = $derived(`${page.url.origin}/api/v1/brains/${brainId}`);
+	const knowledgeBaseUrl = $derived(`${page.url.origin}/api/v1/knowledge-bases/${knowledgeBaseId}`);
 
 	async function createToken(submitEvent: SubmitEvent) {
 		submitEvent.preventDefault();
@@ -46,11 +49,12 @@
 
 <div class="flex flex-col gap-4 p-4">
 	<p class="text-sm text-chalk/60">
-		Use this brain from outside the site — from Claude, a script, or any agent. A token is the
-		key: send it as a bearer header and the API serves the model index, individual pages, grounded
-		answers, and a markdown export — and takes data in at /ingest to train the brain, so an MCP
-		server can feed it. Questions and ingests spend your credits; reading pages and exporting are
-		free. To connect Claude itself, add {page.url.origin}/api/mcp as a custom connector.
+		Use this knowledge base from outside the site — from Claude, a script, or any agent. A token
+		is the key: send it as a bearer header and the API serves the four brains, individual pages,
+		one grounded answer from whichever brains hold it, and a markdown export — and takes data in
+		at /ingest to train the brains. Questions and ingests spend your credits; reading and
+		exporting are free. To connect Claude itself, add {page.url.origin}/api/mcp as a custom
+		connector — it then reads and asks every knowledge base you own.
 	</p>
 
 	<form class="flex items-center gap-2" onsubmit={createToken}>
@@ -80,5 +84,5 @@
 
 	<ApiTokenList {tokens} onRevoked={forgetMintedIfRevoked} />
 
-	<AgentBriefingPanel {baseUrl} />
+	<AgentBriefingPanel {brainUrl} {knowledgeBaseUrl} />
 </div>
