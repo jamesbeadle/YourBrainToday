@@ -2,13 +2,13 @@ import { chatbotAnswerTool } from './chatbotAnswerTool';
 import { chatbotQueryPrompt } from './chatbotQueryPrompt';
 import { parseChatbotAnswer } from './parseChatbotAnswer';
 import { readPagesTool } from '../brain/modellerAnswerTools';
-import { readChatbotPages } from './readChatbotPages';
-import { renderChatbotKnowledge } from './renderChatbotKnowledge';
+import { readExpertisePages } from '../knowledge/reading/readExpertisePages';
+import { renderKnowledgeBase } from '../knowledge/reading/renderKnowledgeBase';
 import { requestAnthropic } from '$lib/server/anthropic/requestAnthropic';
 import { toolUseNamed, toolUsesNamed } from '../brain/readPagesExchange';
 import type { AnthropicMessage } from '$lib/server/anthropic/anthropicTypes';
 import type { ChatbotAnswer, ChatbotSpeaker } from '$lib/data/chatbotTypes';
-import type { ChatbotKnowledge } from './getChatbotKnowledge';
+import type { KnowledgeBaseReading } from '../knowledge/reading/readKnowledgeBase';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 export type ChatbotTurn = { speaker: ChatbotSpeaker; text: string };
@@ -19,10 +19,10 @@ const replyLogLimit = 600;
 export async function askChatbot(
 	supabase: SupabaseClient,
 	chatbot: { name: string; modelId: string },
-	knowledge: ChatbotKnowledge,
+	knowledge: KnowledgeBaseReading,
 	turns: ChatbotTurn[]
 ): Promise<ChatbotAnswer> {
-	const system = `${chatbotQueryPrompt(chatbot.name)}\n\n# The knowledge base\n\n${renderChatbotKnowledge(knowledge)}`;
+	const system = `${chatbotQueryPrompt(chatbot.name)}\n\n# The knowledge base\n\n${renderKnowledgeBase(knowledge)}`;
 	const question = latestMemberQuestion(turns);
 	const messages = messagesFromTurns(turns);
 	const firstResponse = await requestAnthropic({
@@ -40,7 +40,7 @@ export async function askChatbot(
 		: toolUsesNamed(firstResponse.content, readPagesTool.name);
 	if (readRequests.length === 0) return answerFrom(firstResponse.content, question);
 	messages.push({ role: 'assistant', content: firstResponse.content });
-	messages.push(await readChatbotPages(supabase, knowledge.brains, readRequests));
+	messages.push(await readExpertisePages(supabase, knowledge.expertise, readRequests));
 	const secondResponse = await requestAnthropic({
 		system,
 		messages,

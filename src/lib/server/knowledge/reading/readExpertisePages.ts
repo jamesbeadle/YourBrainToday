@@ -1,14 +1,14 @@
-import { getBrainPagesBySlugs } from '../brain/getBrainPage';
-import { parseRequestedSlugs } from '../brain/parseBrainAnswer';
+import { getBrainPagesBySlugs } from '../../brain/getBrainPage';
+import { parseRequestedSlugs } from '../../brain/parseBrainAnswer';
 import type { AnthropicMessage, AnthropicToolUseBlock } from '$lib/server/anthropic/anthropicTypes';
-import type { ChatbotBrainModel } from './getChatbotBrains';
+import type { ExpertiseBrainModel } from './readExpertiseBrains';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 type KeyedPage = { key: string; title: string; body: string };
 
-export async function readChatbotPages(
+export async function readExpertisePages(
 	supabase: SupabaseClient,
-	brains: ChatbotBrainModel[],
+	brains: ExpertiseBrainModel[],
 	readRequests: AnthropicToolUseBlock[]
 ): Promise<AnthropicMessage> {
 	const resultBlocks = [];
@@ -26,7 +26,7 @@ export async function readChatbotPages(
 
 async function fetchPages(
 	supabase: SupabaseClient,
-	brains: ChatbotBrainModel[],
+	brains: ExpertiseBrainModel[],
 	keys: string[]
 ): Promise<KeyedPage[]> {
 	const pages: KeyedPage[] = [];

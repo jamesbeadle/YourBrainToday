@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ChatbotCard from './ChatbotCard.svelte';
 	import NewChatbotForm from './NewChatbotForm.svelte';
-	import { chatbotKnowledgeCaps } from '$lib/data/chatbotKnowledgeCaps';
+	import { knowledgeReadingCaps } from '$lib/data/knowledge/knowledgeReadingCaps';
 	import type { ChatbotSummary } from '$lib/data/chatbotTypes';
 
 	let {
@@ -17,8 +17,8 @@
 	</p>
 	<p class="text-xs leading-relaxed text-chalk/50">
 		Every bot reads all four brains as they stand at each question: the expertise model page
-		by page (the first {chatbotKnowledgeCaps.longestExpertiseIndex.toLocaleString('en-GB')} characters
-		of its index), the {chatbotKnowledgeCaps.mostExperienceItems} most recent experience entries, the
+		by page (the first {knowledgeReadingCaps.longestExpertiseIndex.toLocaleString('en-GB')} characters
+		of its index), the {knowledgeReadingCaps.mostExperienceItems} most recent experience entries, the
 		process map — its roles, tasks and journeys — and the people around the business with how
 		well they get on.
 	</p>

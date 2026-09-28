@@ -1,20 +1,20 @@
 import { clipPromptSection, clipPromptText } from './clipPromptText';
-import { traceJourneys, type Journey } from '../agent/interview/traceJourneys';
-import { chatbotKnowledgeCaps } from '$lib/data/chatbotKnowledgeCaps';
-import type { ChatbotProcessMap } from './getChatbotProcessMaps';
+import { traceJourneys, type Journey } from '../../agent/interview/traceJourneys';
+import { knowledgeReadingCaps } from '$lib/data/knowledge/knowledgeReadingCaps';
+import type { ProcessMap } from './readProcessMaps';
 import type { WorkflowHandover, WorkflowRole, WorkflowTask } from '$lib/data/workflowModel';
 
-const { mostTasksPerRole, longestTaskSummary, longestProcessSection } = chatbotKnowledgeCaps;
+const { mostTasksPerRole, longestTaskSummary, longestProcessSection } = knowledgeReadingCaps;
 
 const truncationNote = '(The rest of the process map is not shown.)';
 
-export function renderChatbotProcess(processMaps: ChatbotProcessMap[]): string {
+export function renderProcessMaps(processMaps: ProcessMap[]): string {
 	if (processMaps.length === 0) return 'The process map has not been drawn yet.';
 	const rendered = processMaps.map(renderMap).join('\n\n');
 	return clipPromptSection(rendered, longestProcessSection, truncationNote);
 }
 
-function renderMap(processMap: ChatbotProcessMap): string {
+function renderMap(processMap: ProcessMap): string {
 	const { model } = processMap;
 	const externalInputs =
 		model.externalInputs.length === 0 ? 'nothing recorded' : model.externalInputs.join(', ');

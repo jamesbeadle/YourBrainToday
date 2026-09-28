@@ -45,6 +45,10 @@ export const knowledgeKinds: KnowledgeKindDefinition[] = [
 	}
 ];
 
+export const everyKnowledgeKind: KnowledgeKind[] = knowledgeKinds.map(
+	(definition) => definition.kind
+);
+
 const kindByCategory: Record<BrainCategory, KnowledgeKind> = {
 	domain: 'expertise',
 	instance: 'experience',

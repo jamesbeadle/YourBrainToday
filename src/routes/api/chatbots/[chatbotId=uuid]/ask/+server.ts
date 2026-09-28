@@ -3,7 +3,7 @@ import { askChatbot, type ChatbotTurn } from '$lib/server/chatbots/askChatbot';
 import { chatbotRefusalFor, notAMemberRefusal } from '$lib/server/chatbots/chatbotRefusals';
 import { getChatbot } from '$lib/server/chatbots/getChatbot';
 import { getChatbotConversation } from '$lib/server/chatbots/getChatbotConversation';
-import { getChatbotKnowledge } from '$lib/server/chatbots/getChatbotKnowledge';
+import { readKnowledgeBase } from '$lib/server/knowledge/reading/readKnowledgeBase';
 import { getChatbotMembership } from '$lib/server/chatbots/getChatbotMembership';
 import { longestQuestion } from '$lib/data/questionLimits';
 import { questionFloorCreditsFor } from '$lib/data/creditPricing';
@@ -46,7 +46,7 @@ export const POST: RequestHandler = async ({ request, params, locals }) => {
 
 	try {
 		const conversation = await getChatbotConversation(locals.supabase, chatbot.id, user.id);
-		const knowledge = await getChatbotKnowledge(service, chatbot.knowledgeBaseId);
+		const knowledge = await readKnowledgeBase(service, chatbot.knowledgeBaseId);
 		const priorTurns: ChatbotTurn[] = conversation.messages
 			.slice(-longestRememberedExchange)
 			.map((message) => ({ speaker: message.speaker, text: message.body }));
