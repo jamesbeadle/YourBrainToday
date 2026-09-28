@@ -4,8 +4,10 @@ import type { AnthropicMessage, AnthropicToolUseBlock } from '$lib/server/anthro
 import type { ExpertiseBrainModel } from './readExpertiseBrains';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
-type KeyedPage = { key: string; title: string; body: string };
+export type KeyedPage = { key: string; title: string; body: string };
 
+// Every expertise page is addressed by its key, brain-handle/page-slug, so
+// one request can span the knowledge base's expertise brains.
 export async function readExpertisePages(
 	supabase: SupabaseClient,
 	brains: ExpertiseBrainModel[],
@@ -14,17 +16,17 @@ export async function readExpertisePages(
 	const resultBlocks = [];
 	for (const readRequest of readRequests) {
 		const requestedKeys = parseRequestedSlugs(readRequest.input);
-		const pages = await fetchPages(supabase, brains, requestedKeys);
+		const pages = await fetchKeyedPages(supabase, brains, requestedKeys);
 		resultBlocks.push({
 			type: 'tool_result',
 			tool_use_id: readRequest.id,
-			content: renderPages(requestedKeys, pages)
+			content: renderKeyedPages(requestedKeys, pages)
 		});
 	}
 	return { role: 'user', content: resultBlocks };
 }
 
-async function fetchPages(
+export async function fetchKeyedPages(
 	supabase: SupabaseClient,
 	brains: ExpertiseBrainModel[],
 	keys: string[]
@@ -39,7 +41,7 @@ async function fetchPages(
 	return pages;
 }
 
-function renderPages(requestedKeys: string[], pages: KeyedPage[]): string {
+export function renderKeyedPages(requestedKeys: string[], pages: KeyedPage[]): string {
 	if (pages.length === 0) return 'None of the requested pages exist.';
 	const missing = requestedKeys.filter((key) => !pages.some((page) => page.key === key));
 	const rendered = pages.map((page) => `# ${page.title} (${page.key})\n\n${page.body}`);
