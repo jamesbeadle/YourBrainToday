@@ -1,3 +1,4 @@
+import { emailOf, memberEmailsFor } from './chatbotMemberEmails';
 import type { KnowledgeGap, KnowledgeGapStatus } from '$lib/data/chatbotTypes';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
@@ -40,26 +41,13 @@ async function gapRowsFor(supabase: SupabaseClient, chatbotId: string): Promise<
 	return (data ?? []) as GapRow[];
 }
 
-async function memberEmailsFor(
-	supabase: SupabaseClient,
-	chatbotId: string
-): Promise<Map<string, string>> {
-	const { data, error } = await supabase
-		.from('chatbot_members')
-		.select('member_id, invited_email')
-		.eq('chatbot_id', chatbotId)
-		.not('member_id', 'is', null);
-	if (error !== null) throw error;
-	return new Map((data ?? []).map((row) => [row.member_id as string, row.invited_email as string]));
-}
-
 function toKnowledgeGap(row: GapRow, emailsByMember: Map<string, string>): KnowledgeGap {
 	return {
 		id: row.id,
 		question: row.question,
 		missingKnowledge: row.missing_knowledge,
 		status: row.status,
-		askedByEmail: row.member_id === null ? null : (emailsByMember.get(row.member_id) ?? null),
+		askedByEmail: emailOf(row.member_id, emailsByMember),
 		timesAsked: row.times_asked,
 		lastAskedAt: row.last_asked_at,
 		answer: row.answer,

@@ -29,11 +29,19 @@ Decisions taken with James on 2026-09-03: allowances reset at every top-up (each
 11. As an owner, I want to answer such a question once and have the bot learn it — or dismiss it when it doesn't belong in the knowledge base — so the next person who asks gets the answer from the bot.
 12. As a member, when the bot cannot answer, I want to be told plainly and know the question has been passed on, so I am not left guessing.
 
+**Asking before working** (added 2026-09-28)
+
+13. As a manager, I want every question my members put to the bot kept on record — who asked, when, what it answered — and to download that record, so the rule "ask the bot before you start" leaves a trail that covers the business and the operative alike.
+14. As a member, I want to be told that my questions are on record, so I know that asking is the cover.
+15. As a manager, I want to set a preferred answer on any question that was asked — or on one I expect — so the bot answers it my way from then on.
+
 ## 2. Views
 
 **Chatbots panel** — the `chatbots` tool in the knowledge base dashboard's toolbar (owner only), sitting after Sharing. Tells the owner what a bot reads (all three brains, and how much of each), then lists this knowledge base's bots as cards (name, pool remaining, member count, paused badge) with a one-field "New chatbot" form. Each card links to the bot's manage page. Serves stories 1 and 4 (at a glance).
 
 **Bot manage page** `/chatbots/[chatbotId]/manage` — owner only. Header: name (editable), pool remaining, pause/resume. Members table: email, status (invited / joined), model, allowance this period, spent this period, a "Resend invite" button while the person has not joined, and remove; beside it an "Invite" form that takes an email and an allowance (pre-filled with the 100-credit default). Under the table, an "Allowances this period" form — the same per-member column — with an "Update allowances" button that changes the limits without a top-up. Top-up form: credits to add, then the per-member allowance column pre-filled from the current allowances, and a confirm button whose label reads "Top up 500 credits". Over-allocation is permitted and shown ("Allowances total 800 of a 500-credit pool") rather than blocked. Top-up history list underneath. Serves stories 2, 3, 3a, 3b, 4, 5. On phones the members table becomes a card list, as ProjectTable does.
+
+A **Questions asked** section follows the unanswered questions: every exchange, newest first — the member's question, who asked and when, the bot's answer (clamped, with "Show the whole answer"), how many pages it cited — with a **Set preferred answer** button that opens a textarea, a "Preferred answer set" badge where one exists, and a "Download the record (CSV)" link (`/chatbots/[id]/manage/questions.csv`). Below it, collapsed, the **preferred answers**: each with its question, the manager's words, who first asked it, a Remove button, and an "Add a preferred answer" form for a question nobody has asked yet. Serves stories 13 and 15. The member's chat header carries one line — "your questions and its answers are kept on record for whoever runs this bot" — for story 14.
 
 An **Unanswered questions** section sits directly under the header: one card per open question — the member's words, the one-line "Needs: …" the bot said it was missing, who asked and how many times — with an **Answer** button that opens a textarea and a "Teach the bot · 50 credits" submit, and a **Dismiss** button. A collapsed "Taught N answers recently" list sits below. The knowledge-base panel's bot cards carry an "N unanswered" badge so the owner knows to look. Serves stories 10 and 11.
 
@@ -69,6 +77,9 @@ Everything below is demanded by a column, a field or a state in the views above.
 | `chatbot_conversations` | `id`, `chatbot_id`, `member_id`, `created_at`, `last_message_at` | chat feed |
 | `chatbot_messages` | `id`, `conversation_id`, `speaker` check `('member','bot')`, `body`, `cited_page_keys text[]`, `created_at` | chat feed |
 | `chatbot_knowledge_gaps` | `id`, `chatbot_id`, `member_id → auth.users null`, `question`, `missing_knowledge`, `status` check `('open','answered','dismissed')`, `times_asked int`, `answer null`, `source_id → brain_sources null`, `asked_at`, `last_asked_at`, `resolved_at null` | unanswered questions section, card badge |
+| `chatbot_rulings` | `id`, `chatbot_id`, `owner_id`, `question`, `preferred_answer`, `asked_by_member_id → auth.users null`, `created_at`, `updated_at` | preferred answers list, the badge on a logged question, the bot's prompt |
+
+The question log needs no table of its own: it is `chatbot_conversations` and `chatbot_messages`, which migration 0055 opens to the bot's owner for reading (members still read only their own). `getChatbotQuestionLog` pairs each member message with the bot message written with it (`pairExchanges`: same conversation, member first at a tied timestamp) and marks an exchange as having a preferred answer when a ruling's question reads the same (`comparableWording`). A ruling is one per question: setting it again replaces the answer.
 
 `pool_credits` and `spent_credits` are stored rather than derived because every question decrements both under one row lock; the top-up history and the owner's credit ledger (reason `chatbot_top_up`) remain the audit trail. A membership is one row from invitation onward: `member_id` null means invited, set means joined. There is no separate invite table and no accept step — the owner named the email, the link is the acceptance.
 
@@ -92,6 +103,8 @@ The bot's brains are *not* stored; all three are read at ask time. Expertise is 
 | 10 | `GetChatbotKnowledgeGaps` (open, plus the last 8 answered) | manage page load; the open count rides on every chatbot summary as an embedded filtered count |
 | 11 | `TeachChatbotAnswer(gap, answer)`, `DismissKnowledgeGap(gap)` | manage page actions `?/answerQuestion` and `?/dismissQuestion` (the page module carries `maxDuration 300` because teaching runs the Modeller) |
 | 12 | `RecordKnowledgeGap` | inside the ask endpoint, service client, after the turn is recorded |
+| 13 | `GetChatbotQuestionLog` (the newest 200 exchanges), `ExportQuestionLog` | manage page load; `GET …/manage/questions.csv` (`renderQuestionLogCsv`, every cell quoted and formula-safe) |
+| 15 | `SetChatbotRuling`, `RemoveChatbotRuling`; `GetChatbotRulings` | manage page actions `?/setPreferredAnswer` and `?/removeRuling` (`rulingActions.ts`); the ask endpoint reads the newest 60 through `readChatbotRulings` on the service client and `renderChatbotRulings` appends them to the prompt, which tells the bot a matching question gets the preferred answer in the owner's words, uncited, never a gap |
 
 **The ask endpoint**, mirroring `/api/v1/brains/[brainId]/ask`:
 

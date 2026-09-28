@@ -2,10 +2,12 @@ import { chatbotAnswerTool } from './chatbotAnswerTool';
 import { chatbotQueryPrompt } from './chatbotQueryPrompt';
 import { parseChatbotAnswer } from './parseChatbotAnswer';
 import { readThenAnswer } from '../knowledge/reading/readThenAnswer';
+import { renderChatbotRulings } from './renderChatbotRulings';
 import { renderKnowledgeBase } from '../knowledge/reading/renderKnowledgeBase';
 import type { AnthropicMessage } from '$lib/server/anthropic/anthropicTypes';
 import type { ChatbotAnswer, ChatbotSpeaker } from '$lib/data/chatbotTypes';
 import type { KnowledgeBaseReading } from '../knowledge/reading/readKnowledgeBase';
+import type { PromptRuling } from './readChatbotRulings';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 export type ChatbotTurn = { speaker: ChatbotSpeaker; text: string };
@@ -14,9 +16,16 @@ export async function askChatbot(
 	supabase: SupabaseClient,
 	chatbot: { name: string; modelId: string },
 	knowledge: KnowledgeBaseReading,
+	rulings: PromptRuling[],
 	turns: ChatbotTurn[]
 ): Promise<ChatbotAnswer> {
-	const system = `${chatbotQueryPrompt(chatbot.name)}\n\n# The knowledge base\n\n${renderKnowledgeBase(knowledge)}`;
+	const system = [
+		chatbotQueryPrompt(chatbot.name),
+		`# The knowledge base\n\n${renderKnowledgeBase(knowledge)}`,
+		renderChatbotRulings(rulings)
+	]
+		.filter((section) => section !== '')
+		.join('\n\n');
 	const answerCall = await readThenAnswer(supabase, knowledge, {
 		system,
 		messages: messagesFromTurns(turns),

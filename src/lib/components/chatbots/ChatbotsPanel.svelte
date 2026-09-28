@@ -13,7 +13,8 @@
 <div class="flex flex-col gap-4">
 	<p class="text-sm text-chalk/60">
 		A chatbot lets people ask this knowledge base without opening it. You fund it from your
-		credits and decide how much each member may spend.
+		credits and decide how much each member may spend. Every question is kept on the bot's
+		record for you to read and download, and you can set the answer you would rather it gave.
 	</p>
 	<p class="text-xs leading-relaxed text-chalk/50">
 		Every bot reads all four brains as they stand at each question: the expertise model page

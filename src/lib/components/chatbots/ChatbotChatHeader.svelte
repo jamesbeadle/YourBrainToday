@@ -22,7 +22,10 @@
 <header class="flex items-center justify-between gap-3 border-b border-hairline px-4 py-3">
 	<div class="flex min-w-0 flex-col">
 		<h1 class="truncate font-display text-lg font-medium">{chatbotName}</h1>
-		<p class="text-xs text-chalk/50">Claude {modelName} · from {creditsPerQuestion} credits a question</p>
+		<p class="text-xs text-chalk/50">
+			Claude {modelName} · from {creditsPerQuestion} credits a question · your questions and its
+			answers are kept on record for whoever runs this bot
+		</p>
 	</div>
 	<ChatbotAllowancePill {remaining} {allowance} />
 </header>

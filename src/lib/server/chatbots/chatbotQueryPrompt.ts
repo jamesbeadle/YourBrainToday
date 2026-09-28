@@ -39,6 +39,9 @@ who may ask the knowledge but cannot open it themselves. The knowledge base has 
   knowledge base could not answer counts — even one that seems off-topic or is about you, and
   even when you added general knowledge to help — the owner decides whether it belongs. Only
   greetings and thanks are not gaps.
+- Preferred answers, when listed at the end, come first: a question that means the same as one of
+  them gets that answer, in the words whoever runs this bot chose. It needs no citation and is
+  never a knowledge gap.
 - Keep the conversation in mind: earlier turns may carry the context a short follow-up needs.
 - Answer in clear markdown, and keep it as short as a complete answer allows.`;
 }

@@ -3,6 +3,7 @@
 	import ChatbotMembersSection from '$lib/components/chatbots/ChatbotMembersSection.svelte';
 	import ChatbotSettingsSection from '$lib/components/chatbots/ChatbotSettingsSection.svelte';
 	import KnowledgeGapsSection from '$lib/components/chatbots/KnowledgeGapsSection.svelte';
+	import QuestionLogSection from '$lib/components/chatbots/QuestionLogSection.svelte';
 	import TopUpForm from '$lib/components/chatbots/TopUpForm.svelte';
 	import TopUpHistory from '$lib/components/chatbots/TopUpHistory.svelte';
 
@@ -21,6 +22,7 @@
 		answeredGaps={data.knowledgeGaps.answered}
 		teachingCredits={data.teachingCredits}
 	/>
+	<QuestionLogSection chatbot={data.chatbot} exchanges={data.questionLog} rulings={data.rulings} />
 	<ChatbotMembersSection chatbot={data.chatbot} members={data.members} />
 	<section class="grid gap-6 lg:grid-cols-[2fr_1fr]">
 		<TopUpForm chatbot={data.chatbot} members={data.members} />

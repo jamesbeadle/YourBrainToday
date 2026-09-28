@@ -1,9 +1,12 @@
 import { answerQuestion, dismissQuestion } from './knowledgeGapActions';
+import { removeRuling, setPreferredAnswer } from './rulingActions';
 import { topUp, updateAllowances } from './allowanceActions';
 import { deleteThisChatbot, rename, setModel, setPaused } from './settingsActions';
 import { inviteMember, removeMember, resendInvite, setMemberModelOverride } from './memberActions';
 import { getChatbotKnowledgeGaps } from '$lib/server/chatbots/getChatbotKnowledgeGaps';
 import { getChatbotMembers } from '$lib/server/chatbots/getChatbotMembers';
+import { getChatbotQuestionLog } from '$lib/server/chatbots/getChatbotQuestionLog';
+import { getChatbotRulings } from '$lib/server/chatbots/getChatbotRulings';
 import { getChatbotTopUps } from '$lib/server/chatbots/getChatbotTopUps';
 import { requireOwnedChatbot } from '$lib/server/chatbots/requireOwnedChatbot';
 import { requireUser } from '$lib/server/auth/requireUser';
@@ -17,11 +20,14 @@ export const config = { maxDuration: 300 };
 export const load: PageServerLoad = async ({ locals, params }) => {
 	const user = await requireUser(locals);
 	const chatbot = await requireOwnedChatbot(locals.supabase, params.chatbotId, user.id);
+	const rulings = await getChatbotRulings(locals.supabase, chatbot.id);
 	return {
 		chatbot,
 		members: await getChatbotMembers(locals.supabase, chatbot.id),
 		topUps: await getChatbotTopUps(locals.supabase, chatbot.id),
 		knowledgeGaps: await getChatbotKnowledgeGaps(locals.supabase, chatbot.id),
+		questionLog: await getChatbotQuestionLog(locals.supabase, chatbot.id, rulings),
+		rulings,
 		teachingCredits: teachingNoteCredits
 	};
 };
@@ -29,6 +35,8 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 export const actions: Actions = {
 	answerQuestion,
 	dismissQuestion,
+	setPreferredAnswer,
+	removeRuling,
 	rename,
 	setPaused,
 	setModel,
