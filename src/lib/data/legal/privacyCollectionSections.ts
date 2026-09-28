@@ -14,7 +14,7 @@ export const privacyCollectionSections: LegalSection[] = [
 		paragraphs: ['We hold these kinds of information:'],
 		listItems: [
 			'Account details — your email address, display name, and which sign-in method you use (Google, or email and password).',
-			'Knowledge base content — the documents you upload, the answers you give the interviewer, and the expertise, experience, process and human brains built from them. The human brain holds the names, roles and organisations of people you mention, and what you tell us about how they relate to one another.',
+			'Knowledge base content — the documents you upload, the transcripts of voice recordings you upload, the answers you give the interviewer, and the expertise, experience, process and human brains built from them. The human brain holds the names, roles and organisations of people you mention, and what you tell us about how they relate to one another.',
 			'Chatbot conversations — the questions members ask, the answers given, which questions went unanswered, and how much of the pool each member has spent.',
 			'Client register records — for the businesses we work for: the company, the people named as contacts, the requests they raise, and the threads and builds that follow.',
 			'Enquiries — the name, email address, company, website and message you send through the contact page, which create a lead in the client register.',
@@ -33,7 +33,8 @@ export const privacyCollectionSections: LegalSection[] = [
 	{
 		heading: 'AI processing',
 		paragraphs: [
-			'When the service generates something for you — an interview reply, a reading of a document, an answer from a brain, a chatbot answer — the content needed to do it is sent to Anthropic’s Claude API. That is your message or question and the relevant parts of the knowledge base, and for a chatbot it is the member’s question together with the relevant parts of the manager’s knowledge base. Anthropic processes it to produce the answer; it is not used to train models for anyone else.'
+			'When the service generates something for you — an interview reply, a reading of a document, an answer from a brain, a chatbot answer — the content needed to do it is sent to Anthropic’s Claude API. That is your message or question and the relevant parts of the knowledge base, and for a chatbot it is the member’s question together with the relevant parts of the manager’s knowledge base. Anthropic processes it to produce the answer; it is not used to train models for anyone else.',
+			'When you upload a voice recording, the audio is sent to OpenAI’s API to be transcribed. We keep the transcript as part of your knowledge base and delete the audio as soon as it has been transcribed; OpenAI does not use it to train its models.'
 		]
 	}
 ];

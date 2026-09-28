@@ -3,7 +3,7 @@
 	import SourceArrivalLabel from './SourceArrivalLabel.svelte';
 	import SourceRemoveButton from './SourceRemoveButton.svelte';
 	import SourceRereadButton from './SourceRereadButton.svelte';
-	import { ingestSource } from './uploadSourceFile';
+	import { readSource } from './uploadSourceFile';
 	import { invalidateAll } from '$app/navigation';
 	import type { BrainSource } from '$lib/data/brainTypes';
 
@@ -37,7 +37,7 @@
 
 	async function retryIngest() {
 		isRetrying = true;
-		const outcome = await ingestSource(source.id);
+		const outcome = await readSource(source.id, source.mimeType);
 		isRetrying = false;
 		if (outcome.status === 'out_of_credits') return onOutOfCredits();
 		await invalidateAll();

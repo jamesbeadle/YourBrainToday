@@ -1,12 +1,17 @@
 <script lang="ts">
 	import IngestProgressLabel from './IngestProgressLabel.svelte';
-	import { acceptedUploadExtensions, uploadLimitDescription } from '$lib/data/brainUploadRules';
+	import {
+		acceptedUploadExtensions,
+		isRecording,
+		uploadLimitDescription
+	} from '$lib/data/brainUploadRules';
 	import { invalidateAll } from '$app/navigation';
 	import { uploadSourceFile } from './uploadSourceFile';
 
 	let { brainId, onOutOfCredits }: { brainId: string; onOutOfCredits: () => void } = $props();
 
 	let isUploading = $state(false);
+	let isUploadingRecording = $state(false);
 	let noticeMessage = $state('');
 	let fileInput = $state<HTMLInputElement | null>(null);
 
@@ -15,6 +20,7 @@
 		const file = input.files?.[0];
 		if (file === undefined) return;
 		isUploading = true;
+		isUploadingRecording = isRecording(file.type);
 		noticeMessage = '';
 		const outcome = await uploadSourceFile(file, brainId);
 		isUploading = false;
@@ -46,10 +52,15 @@
 		{#if isUploading}
 			<IngestProgressLabel />
 		{:else}
-			Add a document — credits scale with its size
+			Add a document or voice recording — credits scale with its size
 		{/if}
 	</button>
 	<p class="text-xs text-chalk/50">{uploadLimitDescription()}</p>
+	{#if isUploading && isUploadingRecording}
+		<p class="text-xs text-chalk/50">
+			Transcribing the recording first — only the transcript is kept, never the audio.
+		</p>
+	{/if}
 	{#if noticeMessage !== ''}
 		<p class="text-sm text-caution">{noticeMessage}</p>
 	{/if}

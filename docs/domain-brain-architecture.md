@@ -19,6 +19,8 @@ wiki (karpathy's LLM-wiki gist); the structure of the pages follows domain-drive
 
 - **Raw sources (immutable)** — uploaded files in the private `brain-sources` Storage
   bucket, catalogued in `brain_sources`. The modeller reads them; nothing ever edits them.
+  A voice recording is the one exception: it is transcribed on arrival, the transcript
+  replaces it as the source, and the audio is deleted rather than kept.
 - **The model (modeller-maintained)** — `brain_contexts` and `brain_pages`, written ONLY
   by the modeller agent. Every page overwrite snapshots the previous version into
   `brain_page_revisions`, so the model has history like a ledger.

@@ -19,8 +19,10 @@ MCP server are working:
   as a domain model), experience (what it has done, as case files), process (how it
   works, as flows of work) and human (who it knows, as a network of people and how well
   they get on). Each is built by interview with an agent or by uploading the
-  documents the business already files, and every answer is grounded in those pages with
-  citations; [docs/domain-brain-architecture.md](./docs/domain-brain-architecture.md) and
+  documents the business already files — or a voice recording from a phone, which is
+  transcribed and read as its transcript, the audio not kept — and every answer is
+  grounded in those pages with citations;
+  [docs/domain-brain-architecture.md](./docs/domain-brain-architecture.md) and
   [docs/process-brain-architecture.md](./docs/process-brain-architecture.md) and
   [docs/human-brain-architecture.md](./docs/human-brain-architecture.md) cover the design.
 - Hand a chatbot to staff at `/chatbots` — the first tool built on a Knowledge Base. A
@@ -57,6 +59,7 @@ npm run dev
 | `PUBLIC_SUPABASE_URL` | Supabase project URL |
 | `PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Supabase publishable API key |
 | `ANTHROPIC_API_KEY` | Claude API key — optional, scripted agent without it |
+| `OPENAI_API_KEY` | OpenAI API key — optional, transcribes voice recordings; they are refused without it |
 | `STRIPE_SECRET_KEY` | Stripe secret key — optional, placeholder checkout without it |
 | `STRIPE_WEBHOOK_SECRET` | Signing secret for `/api/stripe-webhook` |
 | `SUPABASE_SECRET_KEY` | Supabase secret key — used by the Stripe webhook, the MCP server and to read the site model |

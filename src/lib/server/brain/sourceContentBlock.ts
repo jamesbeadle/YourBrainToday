@@ -8,6 +8,7 @@ export async function sourceContentBlock(
 	mimeType: string
 ): Promise<unknown> {
 	const kind = sourceKindFor(mimeType);
+	if (kind === 'recording') throw new Error('That recording has not been transcribed yet');
 	if (kind === 'pdf') return base64Block('document', mimeType, fileBytes);
 	if (kind === 'image') return base64Block('image', mimeType, fileBytes);
 	if (kind === 'wordDocument') return textBlock(await extractWordDocumentText(fileBytes));
