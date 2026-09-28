@@ -22,7 +22,8 @@ export const mcpTools: McpTool[] = [
 		title: 'Who you are here',
 		description:
 			'Start here. Says who the signed-in person is, their standing, and which areas of ' +
-			'Your Brain Today they can reach — including sending data in to train their brains.',
+			'Your Brain Today they can reach — their knowledge bases, the four brains of each, ' +
+			'asking them, and sending data in to train them.',
 		inputSchema: { type: 'object', properties: {}, additionalProperties: false },
 		run: async (caller) => describeContext(caller)
 	},

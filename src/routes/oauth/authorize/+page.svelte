@@ -20,7 +20,7 @@
 	<div class="flex flex-col gap-3 rounded-2xl border border-hairline p-6 text-chalk/80">
 		<p>
 			<strong class="text-chalk">{data.clientName}</strong> is asking to act as you on Your
-			Business Today.
+			Brain Today.
 		</p>
 		<p>You are signed in as <strong class="text-chalk">{data.email}</strong>, {standing}.</p>
 		<p class="text-sm text-chalk/60">

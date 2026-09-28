@@ -1,10 +1,10 @@
 # The MCP Server — Architecture
 
-One endpoint, `/api/mcp`, that lets a person's own Claude do what they could do on the
-site — without a browser, an email, or a login prompt in the middle of their work. Who
-they are decides what that is: staff work on the business; a project member reaches only
-the projects an administrator has added them to — their goals, tasks and conversations
-(see [support-conversations-architecture.md](./support-conversations-architecture.md)).
+One endpoint, `/api/mcp`, that lets a person's own Claude reach their knowledge bases
+without a browser, a token to paste, or a login prompt in the middle of their work. Their
+Claude sees the four brains of every knowledge base they own, reads them, asks them, and
+sends what it learns back in — so the business's memory is in the conversation while the
+data stays where it is owned.
 
 It adds no domain. Every action here is a second face on a command or query the site
 already runs. If an action needs something the site does not define, the domain is wrong —
@@ -14,11 +14,12 @@ fix it there, not here.
 
 | As | I want | So that |
 | --- | --- | --- |
-| Project member | to find the goal and task something relates to, or raise a support task, from inside Claude | the ask lands in the right place while I still remember the detail |
-| Project member | to post on a goal or task and read everything said to me since I last looked | clarification costs one message, not one WhatsApp relay |
-| Project member | to see which projects I can reach | I aim at the right one |
-| Staff | to triage requests, run projects and tasks, and keep the books from Claude | the admin happens where the thinking happens |
-| Anyone | to press Connect in Claude and arrive as myself | there is no token to copy and nothing to paste |
+| Owner | to press Connect in Claude and arrive as myself | there is no token to copy and nothing to paste |
+| Owner | Claude to know which knowledge bases I own and what each of their four brains holds | it aims at the right brain before it reads or asks |
+| Owner | to ask a knowledge base from inside Claude and get one answer drawn from whichever brains hold it | my business's memory is in the conversation without moving my data to anyone |
+| Owner | to ask one brain alone — expertise, experience, process or human | I pull exactly the kind of knowledge I need |
+| Owner | Claude to read the brains itself — the index, the pages, the entries, the map, the people — for nothing | Claude reasons over the raw knowledge and I pay only for answers |
+| Owner | to send Claude's notes and findings in to train the brains | the knowledge base grows from the work, not only from uploads |
 
 ## The shape: four tools, many actions
 
@@ -32,21 +33,40 @@ Claude sees four tools, the same four for everyone:
 | `perform_action` | run one action by name with its input |
 
 The actions live in `src/lib/server/mcp/actions/`, one file per concern, gathered by area
-(`account`, `clients`, `projects`, `goals`, `support`, `conversations`, `tasks`,
-`accounting`) into `actionRegistry.ts`. Each action names its audience — `everyone`,
-`member`, `staff` or `admin` — and the registry filters by the caller's standing on every
-lookup, so a member cannot list, describe or run a staff action; it does not exist for
-them. An `everyone` action that touches a project checks `canReachProject` itself.
-Accounting is `admin`, matching the site.
+into `actionRegistry.ts`:
 
-This shape keeps the tool list small and stable while the site grows: adding a capability
-is adding an action file, never a tool. Tool descriptions are prose the caller's Claude
-reads, so they name the domain plainly.
+| Area | Action | Costs | What it does |
+| --- | --- | --- | --- |
+| `account` | `who_am_i` | — | email and standing |
+| `knowledge-bases` | `list_knowledge_bases` | — | every knowledge base the caller owns, with its id |
+| `knowledge-bases` | `ingest_data` | as an upload | sends text in to train a knowledge base's brains |
+| `brains` | `describe_knowledge_base` | — | the four brains of one knowledge base: what each answers and how much it holds |
+| `brains` | `read_expertise_index` | — | every bounded context and page of the expertise brain, a line each, keyed `brain-handle/page-slug` |
+| `brains` | `read_expertise_pages` | — | the full bodies of up to ten pages, by key |
+| `brains` | `read_experience` | — | the experience brain, newest entries first |
+| `brains` | `read_process_map` | — | the process brain: roles, tasks, handovers and journeys |
+| `brains` | `read_people` | — | the human brain: the people and how well each pair gets on |
+| `brains` | `ask_knowledge_base` | a question | the orchestrator answers from whichever of the four brains hold it |
+| `brains` | `ask_brain` | a question | the orchestrator answers from one brain alone |
+
+Every `brains` action takes `knowledge_base_id` and runs through `onOwnedKnowledgeBase`,
+which refuses any id that is not an unarchived knowledge base of the caller's — the row
+does not exist for them. The read actions render the brains exactly as the orchestrator
+sees them (`src/lib/server/knowledge/reading/`) and cost nothing: no Claude call is made
+on the server. The ask actions run the orchestrator
+([orchestrator-architecture.md](./orchestrator-architecture.md)) and spend the owner's
+credits as a question on the site does — the site model's floor reserved first, the
+marked-up bill settled after, the reserve refunded if the answer fails — and record the
+exchange in the primary expertise brain's log with `askedThrough: 'mcp'`.
+
+Each action names its audience — `everyone`, `owner` or `admin` — and the registry
+filters by the caller's standing on every lookup. This shape keeps the tool list small and
+stable while the site grows: adding a capability is adding an action file, never a tool.
+Tool descriptions are prose the caller's Claude reads, so they name the domain plainly.
 
 Every action runs against the service-role Supabase client, so row-level security is
-not the gate here — the action code is. A member's projects come from `project_members`
-at token resolution, never from input, and every shared action refuses a project that is
-not among them.
+not the gate here — the action code is. The caller's account comes from the token, never
+from input, and every action that touches a knowledge base checks its ownership itself.
 
 ## The route
 
@@ -60,7 +80,6 @@ src/lib/server/mcp/actionRegistry.ts        every action, filtered by standing
 src/lib/server/mcp/actions/*.ts             one file per concern
 src/lib/server/mcp/resolveMcpCaller.ts      the gate
 src/lib/server/mcp/toolFailureSentence.ts   database failures as sentences the model can act on
-src/lib/server/mcp/requestLimits.ts         the body cap and the daily ceiling
 src/lib/server/mcp/mcpErrors.ts             JSON-RPC error codes as named constants
 ```
 
@@ -75,84 +94,70 @@ again shortly" — a refusal the model can read beats an error it will retry.
 
 ## Authentication
 
-Two ways in, both resolved by `resolveMcpCaller`:
-
-**OAuth 2.1** — the way Claude's own connectors work. The server publishes
-`/.well-known/oauth-authorization-server` and `/.well-known/oauth-protected-resource/api/mcp`;
-an unauthenticated call gets 401 with a `WWW-Authenticate` header pointing at them.
-Clients register themselves at `/oauth/register` (RFC 7591), send the person to
-`/oauth/authorize` where they sign in as usual and press Connect, and exchange the code at
-`/oauth/token` with PKCE (S256, required). Access tokens (`ybt_at_`, one hour) and refresh
-tokens (`ybt_rt_`, sixty days) are opaque and SHA-256 hashed at rest, like every secret in
-this database. A confidential client's secret is verified at the token endpoint; a public
-client is bound by PKCE alone. Codes are single-use by construction — claiming one is a
-single conditional update. Only staff and client contacts can approve a connection; an
-account that is neither is told so on the authorize page rather than handed a token that
-would never work.
+OAuth 2.1, the way Claude's own connectors work, resolved by `resolveMcpCaller`. The
+server publishes `/.well-known/oauth-authorization-server` and
+`/.well-known/oauth-protected-resource/api/mcp`; an unauthenticated call gets 401 with a
+`WWW-Authenticate` header pointing at them. Clients register themselves at
+`/oauth/register` (RFC 7591), send the person to `/oauth/authorize` where they sign in as
+usual and press Connect, and exchange the code at `/oauth/token` with PKCE (S256,
+required). Access tokens (`ybt_at_`, one hour) and refresh tokens (`ybt_rt_`, sixty days)
+are opaque and SHA-256 hashed at rest, like every secret in this database. A confidential
+client's secret is verified at the token endpoint; a public client is bound by PKCE alone.
+Codes are single-use by construction — claiming one is a single conditional update. A
+restricted account's tokens stop working the day the account is restricted.
 
 The token endpoint is called server-to-server with no `Origin` header, which SvelteKit's
 own form-origin check would refuse. That check is therefore off in `svelte.config.js` and
 re-implemented in `hooks.server.ts` through `src/lib/server/http/crossSiteFormSubmission.ts`,
 which exempts exactly that one path and keeps every other form as protected as it was.
 
-**Client access token** — `ybt_` prefix, minted at `/portal/access` by a client contact
-themselves, for MCP clients that take a bearer header and nothing else. It resolves to
-the contact's account and from there to their memberships, so it reaches exactly what
-signing in would, and a restricted account's token stops working the day the account is
-restricted.
+[connect-claude.md](./connect-claude.md) is the walk-through for a person connecting
+Claude.ai, Claude Desktop or Claude Code.
 
-Tables: `client_api_tokens` (0036), `oauth_clients`, `oauth_authorization_codes`,
-`oauth_tokens` (0038).
+## Reading and asking from outside: MCP and REST
 
-## Abuse and limits
+Two doors onto the same readers and the same orchestrator, so anything that holds an
+OAuth connection or a brain API token reaches the same knowledge:
 
-The caller's Claude is an eager agent. Two limits, both named constants: a body cap on a
-message or a raised support task (`longestMessageBody`), so a runaway agent cannot paste
-a repository into `want`; and a per-account daily ceiling on raising support tasks
-(`dailyRaiseCeiling`), above which the action returns a plain refusal rather than an
-error. Duplicates are avoided by doctrine rather than code: every write action's guidance
-says search first and post on the match.
+| Over MCP | Over REST (`Authorization: Bearer <brain API token>`) |
+| --- | --- |
+| `describe_knowledge_base` and the `read_` actions | `GET /api/v1/knowledge-bases/{id}` — the four brains as JSON, plus the same markdown the orchestrator reads; `?brains=process,human` narrows it |
+| `read_expertise_pages` | `GET /api/v1/brains/{brainId}/pages/{slug}` |
+| `ask_knowledge_base`, `ask_brain` | `POST /api/v1/knowledge-bases/{id}/ask` with `{"question", "brains"?}` |
+| `ingest_data` | `POST /api/v1/brains/{brainId}/ingest` with `{"title", "text"}` |
 
-## Status
-
-Built and deployed. Proved against production: the discovery documents answer, an
-unauthenticated call gets 401 with the right header, GET gets 405, registration
-validates its input. Proved locally against the production build: the token endpoint
-accepts a form-encoded POST with no `Origin`, other forms without one are still refused,
-malformed bodies get an OAuth error rather than a crash. Migrations 0036 to 0039 are
-applied.
-
-Proved end to end against production on 5 September 2026: register (`client_secret_basic`),
-sign in, approve, exchange, replay refused, refresh with rotation, wrong secret refused,
-`initialize`, `ping`, `tools/list`, then `get_current_context`, `list_projects`,
-`read_task_queue`, `list_clients`, `list_triage_queue` and `read_accounting_overview` as an
-administrator. Migration 0039 lets `staff_directory()` answer the service role, which the
-MCP runs on; without it every action that reads the directory failed.
+A brain API token is minted on the knowledge base dashboard for its primary expertise
+brain; the knowledge-base routes accept it for the knowledge base that brain is filed in
+(`resolveKnowledgeBaseApiCaller`). The owner pays for questions and ingests on either
+door; reading is free on both.
 
 ## Training a brain from outside
 
 Two doors onto one path, `src/lib/server/brain/sentData/ingestSentData.ts`:
 
-- **MCP** — the `knowledge-bases` area: `list_knowledge_bases`, then `ingest_data` with a
-  knowledge base id, a title and the text.
-- **REST** — `POST /api/v1/brains/{id}/ingest` with `{"title", "text"}` and a brain API token,
-  for any other MCP server or script that holds a token rather than an OAuth connection.
+- **MCP** — `list_knowledge_bases`, then `ingest_data` with a knowledge base id, a title
+  and the text.
+- **REST** — `POST /api/v1/brains/{id}/ingest` with `{"title", "text"}` and a brain API token.
 
 Sent text is filed as a `brain_sources` row exactly like an upload, marked with
 `arrived_through` (`mcp` or `api`, migration 0054), and read by `runSourceIngest`, so the
-expertise model updates and the experience, process and human brains harvest from it. It shows
-in the knowledge base's **Ingested data** panel with a "Sent over MCP" / "Sent through the API"
-label. The owner pays as for an upload of that size: the reserve is taken server-side through
-`reserveCreditsForPayer` (handed straight back if it would take the balance below zero) and
-settled beyond it under `brain_ingest_sent`.
+expertise model updates and the experience, process and human brains harvest from it. It
+shows in the knowledge base's **Ingested data** panel with a "Sent over MCP" / "Sent
+through the API" label. The owner pays as for an upload of that size: the reserve is taken
+server-side through `reserveCreditsForPayer` (handed straight back if it would take the
+balance below zero) and settled beyond it under `brain_ingest_sent`.
 
 ## Known gaps, in order
 
+- Only an owner reaches a knowledge base over MCP; a viewer it is shared with (`kb_shares`)
+  is told it does not exist. Sharing a brain into someone else's Claude is the next story.
 - `/oauth/register` is unauthenticated and unrated; anyone can fill `oauth_clients`. Cap it
-  per IP or gate it behind an initial access token before the URL is public.
+  per IP or gate it behind an initial access token before the URL is widely public.
 - There is no page where a person sees and revokes their connections; the row-level
   policies in 0038 are ready for one.
 - Actions do not validate their input against `inputSchema` before running; a bad id is
-  caught by the database and reported honestly, but a read-and-refuse in the action would
-  read better. `create_task` in particular accepts a phase or parent from another project.
-- Input for `create_invoice`/`add_invoice_line` accepts zero and negative quantities.
+  caught by the ownership check or the database and reported honestly, but a read-and-refuse
+  in the action would read better.
+- The experience, process and human brains are printed under the caps in
+  `knowledgeReadingCaps.ts` rather than searched, so a large experience log shows only its
+  newest entries. Retrieval over items is the natural next step.

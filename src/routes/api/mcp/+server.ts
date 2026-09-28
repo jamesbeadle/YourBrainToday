@@ -48,7 +48,7 @@ async function answer(
 
 function askForAuthorisation(origin: string): Response {
 	const metadataUrl = `${origin}/.well-known/oauth-protected-resource${protectedResourcePath}`;
-	return new Response('Connect through OAuth, or send a client access token as a bearer token.', {
+	return new Response('Connect through OAuth to use this server.', {
 		status: unauthorised,
 		headers: { 'WWW-Authenticate': `Bearer resource_metadata="${metadataUrl}"` }
 	});
