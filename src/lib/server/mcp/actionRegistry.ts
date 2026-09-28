@@ -1,9 +1,18 @@
 import { accountActions } from './actions/accountActions';
+import { brainAskActions } from './actions/brainAskActions';
+import { brainReadActions } from './actions/brainReadActions';
+import { expertiseReadActions } from './actions/expertiseReadActions';
 import { knowledgeBaseActions } from './actions/knowledgeBaseActions';
 import type { ActionArea, McpAction } from './actionTypes';
 import type { AccountStanding } from './resolveAccountStanding';
 
-const everyAction: McpAction[] = [...accountActions, ...knowledgeBaseActions];
+const everyAction: McpAction[] = [
+	...accountActions,
+	...knowledgeBaseActions,
+	...brainReadActions,
+	...expertiseReadActions,
+	...brainAskActions
+];
 
 export function actionsFor(standing: AccountStanding, area: ActionArea | null): McpAction[] {
 	return everyAction

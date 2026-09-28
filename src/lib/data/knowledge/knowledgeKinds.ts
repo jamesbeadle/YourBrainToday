@@ -45,6 +45,14 @@ export const knowledgeKinds: KnowledgeKindDefinition[] = [
 	}
 ];
 
+export const everyKnowledgeKind: KnowledgeKind[] = knowledgeKinds.map(
+	(definition) => definition.kind
+);
+
+export function isKnowledgeKind(candidate: unknown): candidate is KnowledgeKind {
+	return everyKnowledgeKind.some((kind) => kind === candidate);
+}
+
 const kindByCategory: Record<BrainCategory, KnowledgeKind> = {
 	domain: 'expertise',
 	instance: 'experience',

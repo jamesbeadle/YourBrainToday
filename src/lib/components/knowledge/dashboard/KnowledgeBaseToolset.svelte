@@ -64,19 +64,19 @@
 {/snippet}
 
 {#snippet documentsPanel()}
-	<ExpertiseWorkbenchPanel tool="documents" {isOwner} {workbench} {onOutOfCredits} />
+	<ExpertiseWorkbenchPanel knowledgeBaseId={knowledgeBase.id} tool="documents" {isOwner} {workbench} {onOutOfCredits} />
 {/snippet}
 
 {#snippet reviewPanel()}
-	<ExpertiseWorkbenchPanel tool="review" {isOwner} {workbench} {onOutOfCredits} />
+	<ExpertiseWorkbenchPanel knowledgeBaseId={knowledgeBase.id} tool="review" {isOwner} {workbench} {onOutOfCredits} />
 {/snippet}
 
 {#snippet apiPanel()}
-	<ExpertiseWorkbenchPanel tool="api" {isOwner} {workbench} {onOutOfCredits} />
+	<ExpertiseWorkbenchPanel knowledgeBaseId={knowledgeBase.id} tool="api" {isOwner} {workbench} {onOutOfCredits} />
 {/snippet}
 
 {#snippet logPanel()}
-	<ExpertiseWorkbenchPanel tool="log" {isOwner} {workbench} {onOutOfCredits} />
+	<ExpertiseWorkbenchPanel knowledgeBaseId={knowledgeBase.id} tool="log" {isOwner} {workbench} {onOutOfCredits} />
 {/snippet}
 
 {#snippet sharePanel()}

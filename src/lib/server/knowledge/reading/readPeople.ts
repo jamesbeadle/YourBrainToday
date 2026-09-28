@@ -1,7 +1,7 @@
-import { chatbotKnowledgeCaps } from '$lib/data/chatbotKnowledgeCaps';
+import { knowledgeReadingCaps } from '$lib/data/knowledge/knowledgeReadingCaps';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
-export type ChatbotHumanItem = {
+export type HumanItem = {
 	itemKind: string;
 	title: string;
 	body: string;
@@ -10,19 +10,20 @@ export type ChatbotHumanItem = {
 
 const peopleCategory = 'people';
 
-// Runs on the service client after membership is proven: the people and
+// Runs on the service client once the caller has proved they may read the
+// knowledge base: the people and
 // relationships across every human brain of the knowledge base.
-export async function getChatbotPeople(
+export async function readPeople(
 	supabase: SupabaseClient,
 	knowledgeBaseId: string
-): Promise<ChatbotHumanItem[]> {
+): Promise<HumanItem[]> {
 	const { data, error } = await supabase
 		.from('kb_brain_items')
 		.select('item_kind, title, body, data, kb_brains!inner(knowledge_base_id, category)')
 		.eq('kb_brains.knowledge_base_id', knowledgeBaseId)
 		.eq('kb_brains.category', peopleCategory)
 		.order('created_at', { ascending: false })
-		.limit(chatbotKnowledgeCaps.mostHumanItems);
+		.limit(knowledgeReadingCaps.mostHumanItems);
 	if (error !== null) throw error;
 	return (data ?? []).map((row) => ({
 		itemKind: row.item_kind as string,

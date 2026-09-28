@@ -21,21 +21,28 @@ MCP server are working:
   they get on). Each is built by interview with an agent, by uploading the documents
   the business already files, or by adding a note — typed, dictated with the phone
   keyboard's microphone, or pasted from a voice memo transcript — and every answer is
-  grounded in those pages with citations;
-  [docs/domain-brain-architecture.md](./docs/domain-brain-architecture.md) and
-  [docs/process-brain-architecture.md](./docs/process-brain-architecture.md) and
-  [docs/human-brain-architecture.md](./docs/human-brain-architecture.md) cover the design.
+  grounded in those pages with citations. Asked from outside, the four brains answer as
+  one through the orchestrator;
+  [docs/domain-brain-architecture.md](./docs/domain-brain-architecture.md),
+  [docs/process-brain-architecture.md](./docs/process-brain-architecture.md),
+  [docs/human-brain-architecture.md](./docs/human-brain-architecture.md) and
+  [docs/orchestrator-architecture.md](./docs/orchestrator-architecture.md) cover the design.
 - Hand a chatbot to staff at `/chatbots` — the first tool built on a Knowledge Base. A
   manager names a bot on their base, invites members by email, funds it from their own
-  credits and sets each member's allowance; members ask, and never open the base itself;
-  [docs/chatbot-architecture.md](./docs/chatbot-architecture.md) is the design.
+  credits and sets each member's allowance; members ask, and never open the base itself.
+  Every question is kept on the bot's record for the manager — who asked, when, what it
+  answered — with a CSV to hand over, and the manager can set the answer they would rather
+  it gave; [docs/chatbot-architecture.md](./docs/chatbot-architecture.md) is the design.
 - Sell a brain at `/market` — publish an edition or a subscription, and buyers read it
   with their own credits.
 - Ask the Hive Mind at `/hive-mind` — approved brains answer across specialities and
   their owners earn from the questions.
 - Connect your own Claude through the MCP server at `/api/mcp` — OAuth sign-in from the
-  Connect button; the public API under `/api/v1` lets other software ask a brain, read
-  its pages and export it; [docs/mcp-architecture.md](./docs/mcp-architecture.md) is the design.
+  Connect button; it reads the four brains of every knowledge base you own, asks them, and
+  sends data in to train them. The public API under `/api/v1` lets other software read a
+  knowledge base, ask it, read its pages and export it;
+  [docs/connect-claude.md](./docs/connect-claude.md) is the walkthrough and
+  [docs/mcp-architecture.md](./docs/mcp-architecture.md) the design.
 - Admins (`/admin`) can set the site model — the Claude model behind every agent reply —
   grant promotional credits, restrict accounts, and delete accounts. The first admin is
   bootstrapped by email on signup.

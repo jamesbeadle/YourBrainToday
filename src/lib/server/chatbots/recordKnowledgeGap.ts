@@ -1,3 +1,4 @@
+import { readTheSame } from '$lib/data/comparableWording';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 type OpenGap = { id: string; question: string; times_asked: number };
@@ -38,8 +39,7 @@ async function findOpenGapAsking(
 		.eq('status', 'open')
 		.limit(openGapsConsidered);
 	if (error !== null) throw error;
-	const wording = comparableWording(question);
-	return (data ?? []).find((gap) => comparableWording(gap.question) === wording) ?? null;
+	return (data ?? []).find((gap) => readTheSame(gap.question, question)) ?? null;
 }
 
 async function countAnotherAsk(supabase: SupabaseClient, gap: OpenGap): Promise<void> {
@@ -48,8 +48,4 @@ async function countAnotherAsk(supabase: SupabaseClient, gap: OpenGap): Promise<
 		.update({ times_asked: gap.times_asked + 1, last_asked_at: new Date().toISOString() })
 		.eq('id', gap.id);
 	if (error !== null) throw error;
-}
-
-function comparableWording(question: string): string {
-	return question.toLowerCase().replace(/\s+/g, ' ').replace(/[?.!\s]+$/, '').trim();
 }

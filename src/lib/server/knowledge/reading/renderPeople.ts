@@ -1,13 +1,13 @@
 import { clipPromptSection, clipPromptText } from './clipPromptText';
-import { chatbotKnowledgeCaps } from '$lib/data/chatbotKnowledgeCaps';
+import { knowledgeReadingCaps } from '$lib/data/knowledge/knowledgeReadingCaps';
 import { findWarmth, humanItemKinds } from '$lib/data/knowledge/humanConnections';
-import type { ChatbotHumanItem } from './getChatbotPeople';
+import type { HumanItem } from './readPeople';
 
-const { longestHumanNote, longestHumanSection } = chatbotKnowledgeCaps;
+const { longestHumanNote, longestHumanSection } = knowledgeReadingCaps;
 
 const truncationNote = '(The rest of the network is not shown.)';
 
-export function renderChatbotPeople(items: ChatbotHumanItem[]): string {
+export function renderPeople(items: HumanItem[]): string {
 	const people = items.filter((item) => item.itemKind === humanItemKinds.person);
 	const connections = items.filter((item) => item.itemKind === humanItemKinds.connection);
 	if (people.length === 0) return 'The human brain knows nobody yet.';
@@ -20,7 +20,7 @@ export function renderChatbotPeople(items: ChatbotHumanItem[]): string {
 	return clipPromptSection(rendered, longestHumanSection, truncationNote);
 }
 
-function renderPerson(person: ChatbotHumanItem): string {
+function renderPerson(person: HumanItem): string {
 	const standing = [person.data.role, person.data.organisation]
 		.filter((value) => typeof value === 'string' && value !== '')
 		.join(', ');
@@ -28,7 +28,7 @@ function renderPerson(person: ChatbotHumanItem): string {
 	return `- ${person.title}${standing === '' ? '' : ` (${standing})`}${note}`;
 }
 
-function renderConnection(connection: ChatbotHumanItem): string {
+function renderConnection(connection: HumanItem): string {
 	const warmth = findWarmth(String(connection.data.warmth ?? ''));
 	const note =
 		connection.body === '' ? '' : ` — ${clipPromptText(connection.body, longestHumanNote)}`;

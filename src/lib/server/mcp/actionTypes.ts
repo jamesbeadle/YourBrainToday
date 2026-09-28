@@ -25,6 +25,12 @@ export function readOptionalText(input: Record<string, unknown>, field: string):
 	return value;
 }
 
+export function readTextList(input: Record<string, unknown>, field: string): string[] {
+	const value = input[field];
+	if (!Array.isArray(value)) return [];
+	return value.filter((item): item is string => typeof item === 'string' && item.trim() !== '');
+}
+
 export function objectSchema(
 	properties: Record<string, unknown>,
 	required: string[] = []
@@ -33,3 +39,9 @@ export function objectSchema(
 }
 
 export const textField = (description: string) => ({ type: 'string', description });
+
+export const textListField = (description: string) => ({
+	type: 'array',
+	items: { type: 'string' },
+	description
+});
