@@ -9,7 +9,6 @@ export const privacySharingSections: LegalSection[] = [
 			'Supabase — the database, authentication, and the storage where uploaded documents live.',
 			'Stripe — payment processing for credit packs.',
 			'Anthropic — AI processing of the content sent to generate replies and answers.',
-			'OpenAI — transcription of the voice recordings you upload.',
 			'Vercel — hosting of the application.',
 			'Resend — sending the service’s emails, such as invitations and enquiry notifications.'
 		]

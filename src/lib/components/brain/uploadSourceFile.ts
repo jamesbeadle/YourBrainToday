@@ -1,6 +1,3 @@
-import { isRecording } from '$lib/data/brainUploadRules';
-import { transcribeRecording } from './transcribeRecording';
-
 export type UploadOutcome =
 	| { status: 'ingested'; creditBalance: number }
 	| { status: 'proposed'; creditBalance: number }
@@ -30,14 +27,7 @@ export async function uploadSourceFile(file: File, brainId: string): Promise<Upl
 	});
 	if (!storageResponse.ok) return { status: 'failed', message: 'The file could not be uploaded.' };
 
-	return readSource(grant.sourceId, file.type);
-}
-
-export async function readSource(sourceId: string, mimeType: string): Promise<UploadOutcome> {
-	if (!isRecording(mimeType)) return ingestSource(sourceId);
-	const transcription = await transcribeRecording(sourceId);
-	if (transcription.status !== 'transcribed') return transcription;
-	return ingestSource(sourceId);
+	return ingestSource(grant.sourceId);
 }
 
 export async function ingestSource(sourceId: string): Promise<UploadOutcome> {

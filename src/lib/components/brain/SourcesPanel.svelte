@@ -18,9 +18,8 @@
 
 <section class="flex flex-col gap-4 p-4">
 	<p class="text-sm text-chalk/60">
-		Everything the brain has learned from — documents, links and voice recordings you add
-		here, and data sent in by an MCP server or through the API. Each piece is read once and
-		remembered in the model.
+		Everything the brain has learned from — documents and links you add here, and data sent in
+		by an MCP server or through the API. Each piece is read once and remembered in the model.
 	</p>
 	<SourceUploadPanel {brainId} {onOutOfCredits} />
 	{#if sources.length > 0}

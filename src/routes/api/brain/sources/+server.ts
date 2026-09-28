@@ -1,8 +1,7 @@
 import { error, json } from '@sveltejs/kit';
 import { createBrainSource } from '$lib/server/brain/createBrainSource';
 import { getDomainBrain } from '$lib/server/entities/getDomainBrain';
-import { isAcceptedUpload, isRecording, uploadLimitDescription } from '$lib/data/brainUploadRules';
-import { isTranscriptionConfigured } from '$lib/server/transcription/transcribeAudio';
+import { isAcceptedUpload, uploadLimitDescription } from '$lib/data/brainUploadRules';
 import type { RequestHandler } from './$types';
 
 export const POST: RequestHandler = async ({ locals, request }) => {
@@ -12,9 +11,6 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 	const upload = await readUploadRequest(request);
 	if (!isAcceptedUpload(upload.mimeType, upload.byteCount)) {
 		error(400, `That file type or size is not supported. ${uploadLimitDescription()}`);
-	}
-	if (isRecording(upload.mimeType) && !isTranscriptionConfigured()) {
-		error(400, 'Voice recordings cannot be transcribed yet — transcription is not set up.');
 	}
 	const brain = await getDomainBrain(locals.supabase, upload.brainId);
 	if (brain === null) error(404, 'That expertise brain could not be found');

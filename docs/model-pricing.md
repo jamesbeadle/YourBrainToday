@@ -83,18 +83,6 @@ to resolve a slider from, and settles the marked-up bill beyond the 10 against t
 under `brain_api_question_usage`. What a job finally owes is `max(reserve, floor, marked-up bill)`
 — the reserve is never refunded down.
 
-Voice recordings are transcribed before they are read, by OpenAI's `gpt-4o-transcribe-diarize`
-(`src/lib/server/transcription/transcribeAudio.ts`, needs `OPENAI_API_KEY`), and priced by length
-in `src/lib/data/transcriptionPricing.ts`: OpenAI's published estimate of $0.006 a minute, through
-the same `usdToGbp`, `costMarkup` and `creditValuePence` — about 4 credits a minute, 185 an hour.
-`/api/brain/sources/[id]/transcribe` reserves under `recording_transcription` for the length a
-64 kbit/s phone memo of that size would run, then `settleTranscriptionCredits` squares up against
-the length OpenAI reports: the surplus is refunded, a shortfall is settled under
-`recording_transcription_usage` without a balance check. Unlike the Modeller jobs the reserve can
-be refunded down, because it was only a guess from the file size. The transcript then takes the
-recording's place as a plain-text source and is read by the ordinary byte-priced ingest; the audio
-is deleted. Transcription calls are not recorded in `model_usage`, which holds Claude calls only.
-
 Chatbots settle against the pool instead: `settleChatbotQuestion` calls
 `settle_chatbot_question(chatbot, member, extra)` (service-role only, 0032), which moves `extra`
 from the pool onto the member's counter. Neither the allowance (James allows a member to run
