@@ -1,11 +1,9 @@
 <script lang="ts">
-	import IngestProgressLabel from './IngestProgressLabel.svelte';
 	import { inputClasses, quietButtonClasses } from '$lib/components/site/formStyles';
-	import { invalidateAll } from '$app/navigation';
 	import { noteTitleFor } from './noteTitle';
-	import { uploadSourceFile } from './uploadSourceFile';
+	import type { SourceUploadQueue } from './sourceUploadQueue.svelte';
 
-	let { brainId, onOutOfCredits }: { brainId: string; onOutOfCredits: () => void } = $props();
+	let { brainId, queue }: { brainId: string; queue: SourceUploadQueue } = $props();
 
 	const noteMimeType = 'text/plain';
 	const notePlaceholder =
@@ -14,24 +12,16 @@
 
 	let noteText = $state('');
 	let isSending = $state(false);
-	let noticeMessage = $state('');
 
 	const hasNote = $derived(noteText.trim() !== '');
 
 	async function addNote() {
 		isSending = true;
-		noticeMessage = '';
 		const note = new File([noteText.trim()], noteTitleFor(noteText), { type: noteMimeType });
-		const outcome = await uploadSourceFile(note, brainId);
+		const outcome = await queue.enqueue(note, brainId);
 		isSending = false;
-		await invalidateAll();
-		if (outcome.status === 'out_of_credits') return onOutOfCredits();
-		if (outcome.status === 'rejected' || outcome.status === 'failed') {
-			noticeMessage = outcome.message;
-			return;
-		}
-		noteText = '';
-		if (outcome.status === 'proposed') noticeMessage = 'Sent to the owner for review.';
+		const isKept = outcome.status === 'ingested' || outcome.status === 'proposed';
+		if (isKept) noteText = '';
 	}
 </script>
 
@@ -50,13 +40,6 @@
 		onclick={addNote}
 		class={`${quietButtonClasses} self-start disabled:opacity-40`}
 	>
-		{#if isSending}
-			<IngestProgressLabel />
-		{:else}
-			Add note — credits scale with its length
-		{/if}
+		{isSending ? 'Queued — see below' : 'Add note — credits scale with its length'}
 	</button>
-	{#if noticeMessage !== ''}
-		<p class="text-sm text-caution">{noticeMessage}</p>
-	{/if}
 </div>

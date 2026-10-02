@@ -1,3 +1,4 @@
+import { guardingConnection } from './connectionGuard';
 import { readSourceStages, type ReadingOutcome } from './readSourceStages';
 import { mimeTypeFor } from '$lib/data/brainUploadRules';
 
@@ -5,31 +6,60 @@ export type UploadOutcome = ReadingOutcome | { status: 'rejected'; message: stri
 
 export type UploadProgress = (stage: string) => void;
 
+type Grant = { sourceId: string; uploadUrl: string };
+
 /** Grants an upload, sends the file straight to storage, then reads it stage by stage. */
 export async function uploadSourceFile(
 	file: File,
 	brainId: string,
 	onProgress: UploadProgress = () => {}
 ): Promise<UploadOutcome> {
-	onProgress('sending the file');
+	const granted = await guardingConnection(() => requestGrant(file, brainId));
+	if (!('uploadUrl' in granted)) return granted;
+	const sent = await guardingConnection(() => sendToStorage(file, granted));
+	if (sent.status === 'failed') {
+		await discardGrant(granted.sourceId);
+		return sent;
+	}
+	return readSourceStages(granted.sourceId, onProgress);
+}
+
+async function requestGrant(
+	file: File,
+	brainId: string
+): Promise<Grant | { status: 'rejected' | 'failed'; message: string }> {
 	const mimeType = mimeTypeFor(file.name, file.type);
-	const grantResponse = await fetch('/api/brain/sources', {
+	const response = await fetch('/api/brain/sources', {
 		method: 'POST',
 		headers: { 'content-type': 'application/json' },
-		body: JSON.stringify({ brainId, filename: file.name, mimeType, byteCount: file.size })
+		body: JSON.stringify({
+			brainId,
+			filename: file.name,
+			mimeType,
+			byteCount: file.size
+		})
 	});
-	if (grantResponse.status === 400) return { status: 'rejected', message: await messageFrom(grantResponse) };
-	if (!grantResponse.ok) return { status: 'failed', message: 'The upload could not be started.' };
-	const grant = await grantResponse.json();
+	if (response.status === 400) return { status: 'rejected', message: await messageFrom(response) };
+	if (!response.ok) return { status: 'failed', message: 'The upload could not be started.' };
+	return response.json();
+}
 
-	const storageResponse = await fetch(grant.uploadUrl, {
+async function sendToStorage(
+	file: File,
+	grant: Grant
+): Promise<{ status: 'sent' } | { status: 'failed'; message: string }> {
+	const response = await fetch(grant.uploadUrl, {
 		method: 'PUT',
-		headers: { 'content-type': mimeType },
+		headers: { 'content-type': mimeTypeFor(file.name, file.type) },
 		body: file
 	});
-	if (!storageResponse.ok) return { status: 'failed', message: 'The file could not be uploaded.' };
+	if (!response.ok) return { status: 'failed', message: 'The file could not be uploaded.' };
+	return { status: 'sent' };
+}
 
-	return readSourceStages(grant.sourceId, onProgress);
+/** A granted row whose file never arrived is deleted, so no empty "Waiting" row is left behind. */
+async function discardGrant(sourceId: string): Promise<void> {
+	await fetch(`/api/brain/sources/${sourceId}`, { method: 'DELETE' }).catch(() => undefined);
 }
 
 async function messageFrom(response: Response): Promise<string> {

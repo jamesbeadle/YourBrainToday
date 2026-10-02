@@ -1,9 +1,11 @@
 <script lang="ts">
 	import IngestProgressLabel from './IngestProgressLabel.svelte';
 	import { badNotice, goodNotice, type SourceNotice } from './sourceNotice';
+	import { drivenSources } from './drivenSources.svelte';
 	import { invalidateAll } from '$app/navigation';
+	import { isStageStalled } from '$lib/data/sourceReading';
+	import { readSourceStages } from './readSourceStages';
 	import { readingSuccessLine } from './readingProgressSummary';
-	import { rereadSource } from './rereadSource';
 	import { sentForReviewMessage } from './uploadResolution';
 	import type { BrainSource } from '$lib/data/brainTypes';
 
@@ -17,20 +19,24 @@
 		onNotice: (notice: SourceNotice | null) => void;
 	} = $props();
 
-	let isConfirming = $state(false);
-	let isRereading = $state(false);
+	let isReading = $state(false);
 	let stageLabel = $state('');
 
-	async function requestReread() {
-		if (!isConfirming) {
-			isConfirming = true;
-			return;
-		}
-		isConfirming = false;
-		isRereading = true;
+	const action = $derived(actionFor(source));
+
+	function actionFor(candidate: BrainSource): string | null {
+		if (candidate.status === 'uploaded') return 'Read it';
+		if (candidate.status === 'failed') return 'Try again';
+		const isAbandoned = candidate.status === 'reading' && !drivenSources.has(candidate.id);
+		if (isAbandoned && isStageStalled(candidate.stageStartedAt)) return 'Resume';
+		return null;
+	}
+
+	async function read() {
+		isReading = true;
 		onNotice(null);
-		const outcome = await rereadSource(source.id, (stage) => (stageLabel = stage));
-		isRereading = false;
+		const outcome = await readSourceStages(source.id, (stage) => (stageLabel = stage));
+		isReading = false;
 		await invalidateAll();
 		if (outcome.status === 'out_of_credits') return onOutOfCredits();
 		if (outcome.status === 'failed') return onNotice(badNotice(outcome.message));
@@ -39,35 +45,16 @@
 	}
 </script>
 
-{#if isRereading}
+{#if isReading}
 	<span class="animate-pulse font-display text-xs text-chalk/50">
 		<IngestProgressLabel stage={stageLabel} />
 	</span>
-{:else if isConfirming}
-	<span class="flex items-center gap-2 font-display text-xs">
-		<span class="text-caution">Re-read — credits scale with its size?</span>
-		<button
-			type="button"
-			onclick={requestReread}
-			class="text-signal underline transition hover:brightness-110"
-		>
-			Yes
-		</button>
-		<button
-			type="button"
-			onclick={() => (isConfirming = false)}
-			class="text-chalk/60 underline transition hover:text-chalk"
-		>
-			No
-		</button>
-	</span>
-{:else}
+{:else if action !== null}
 	<button
 		type="button"
-		onclick={requestReread}
-		title="Read this document again with the current modeller — credits scale with its size"
+		onclick={read}
 		class="font-display text-xs text-chalk/70 underline transition hover:text-chalk"
 	>
-		Re-read
+		{action}
 	</button>
 {/if}

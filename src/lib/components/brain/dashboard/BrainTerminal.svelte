@@ -62,7 +62,6 @@
 			{pendingQuestion}
 			{isThinking}
 			{transferLines}
-			activeTransferName={null}
 		/>
 	</div>
 	<CommandBox bind:text={commandText} onSend={sendCommand} />
