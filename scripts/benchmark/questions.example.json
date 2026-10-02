@@ -1,0 +1,44 @@
+[
+	{
+		"id": "variation-sign-off",
+		"question": "Who has to sign off a variation before the site team can start the extra work?",
+		"goldAnswer": "The contracts manager signs off every variation; the site manager may not start extra work until the client's written instruction and the contracts manager's sign-off are both on file.",
+		"brain": "expertise",
+		"notes": "Replace with the rule as your documents state it, naming the roles your business uses."
+	},
+	{
+		"id": "last-missed-sign-off",
+		"question": "What happened the last time a variation was started without sign-off?",
+		"goldAnswer": "On the Larchwood job the extra drainage run was started on a verbal instruction, the client refused the invoice and the business absorbed around £8,000.",
+		"brain": "experience",
+		"notes": "An episode the experience brain holds; the documents may describe it in a site diary or a post-mortem."
+	},
+	{
+		"id": "valuation-handover",
+		"question": "After the quantity surveyor finishes a monthly valuation, who gets it next and what do they do with it?",
+		"goldAnswer": "The valuation goes to the contracts manager, who checks it against the programme and the variation log, then to accounts, who raise the application for payment to the client.",
+		"brain": "process",
+		"notes": "A handover in the process map: task, role, what is passed on."
+	},
+	{
+		"id": "who-to-approach",
+		"question": "We need the structural engineer to turn a detail round quickly. Who should ask, and how do they get on with us?",
+		"goldAnswer": "Ask through Priya, the contracts manager, who is on warm terms with the engineer; the site manager and the engineer fell out over the Larchwood foundations and the relationship is cool.",
+		"brain": "human",
+		"notes": "People and warmth from the human brain; the interview may hold this and the documents may not."
+	},
+	{
+		"id": "retention-rule-and-case",
+		"question": "What is our retention rule on subcontractor accounts, and when did we last have to withhold it?",
+		"goldAnswer": "5% retention is held on every subcontractor account, half released at practical completion and half at the end of defects; it was last withheld in full from the roofing subcontractor on the Mill Lane job over unfinished flashing.",
+		"brain": "cross",
+		"notes": "A rule (expertise) and an episode (experience) in one answer."
+	},
+	{
+		"id": "not-in-the-brains",
+		"question": "What is our policy on electric vehicle charging for site vans?",
+		"goldAnswer": "The knowledge base holds nothing on this; the right answer says so plainly rather than inventing one.",
+		"brain": "cross",
+		"notes": "A deliberate gap: groundedness should reward an honest 'not known' and punish an invented policy."
+	}
+]

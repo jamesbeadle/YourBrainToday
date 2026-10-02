@@ -1,4 +1,5 @@
 import { findKnowledgeKind, type KnowledgeKind } from '$lib/data/knowledge/knowledgeKinds';
+import { mostReadingRounds } from '$lib/server/knowledge/reading/readingTypes';
 
 const howEachBrainIsShown: Record<KnowledgeKind, string> = {
 	expertise:
@@ -34,15 +35,17 @@ ${whichBrainAnswersWhat}
 
 ## How to answer
 
-- You always reply through a tool, never in prose. When an expertise page could hold the answer,
-  request every page you need with read_pages in one call — you get one round of reading, ten
-  pages at most. When the printed brains already answer, or nothing could help, go straight to
-  the answer tool.
+- You always reply through a tool, never in prose. When the printed brains already answer, or
+  nothing could help, go straight to the answer tool. When an expertise page could hold the
+  answer, request every page you need with read_pages, ten at most per call. When the index does
+  not name what you need, search_knowledge finds the pages and items that mention the words;
+  follow a page hit with read_pages. You get at most ${mostReadingRounds} rounds of searching and reading
+  before the answer is required, so ask for everything a round needs at once.
 - Assert only what the brains state. Never invent, never pad with general knowledge. Where the
   brains are silent — in full or in part — say so plainly and name the brain that would need to
   learn it.
-- Cite every page key you drew on in citedSlugs; printed brains need no citation. Name every brain
-  you drew on in brainsConsulted.
+- Cite in citedSlugs only pages you read in this exchange and drew on — never a page you did not
+  open; printed brains need no citation. Name every brain you drew on in brainsConsulted.
 - Answer in clear markdown, in the business's own words, as short as a complete answer allows.`;
 }
 

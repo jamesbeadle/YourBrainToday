@@ -63,8 +63,8 @@ it, which *is* the orchestration.
 Nothing new. A reading of a knowledge base is derived on every request from the four
 brains as they stand, and never stored. An orchestrated answer asked from outside is
 recorded as a `question_answered` event on the primary expertise brain's log, with the
-question, the answer, the pages cited, the brains consulted and `askedThrough` (`mcp` or
-`api`) — the same log the dashboard shows.
+question, the answer, the pages cited, the pages read, the brains consulted and
+`askedThrough` (`mcp` or `api`) — the same log the dashboard shows.
 
 ## How it answers
 
@@ -78,15 +78,20 @@ question, the answer, the pages cited, the brains consulted and `askedThrough` (
    experience entries, the process map and the people in full, each under the caps in
    `knowledgeReadingCaps.ts` so the prompt stays bounded however large the knowledge base
    grows.
-3. **Decide and pull** — `readThenAnswer` runs the exchange. The system prompt
-   (`orchestratorPrompt`) says which brain answers what and how each is in front of the
-   model; the model must reply through a tool: `read_pages` for the expertise pages it
-   needs (one round, ten pages at most), or the answer tool at once when the printed brains
-   already answer. After the pages come back the answer tool is forced, so the exchange
-   always ends in an answer.
+3. **Decide and pull** — `readThenAnswer` runs the exchange (`readingExchange.ts`). The
+   system prompt (`orchestratorPrompt`) says which brain answers what and how each is in
+   front of the model; the model must reply through a tool each round: `search_knowledge`
+   when the index does not name what it needs (full-text search over every brain, hits
+   keyed for `read_pages`), `read_pages` for the expertise pages it wants (ten per call), or
+   the answer tool when the brains in front of it already answer. A round may hold several
+   tool calls, all answered in one message (`answerReadingTools.ts`). After
+   `mostReadingRounds` (three) the answer tool is forced, so the exchange always ends in an
+   answer. Every page key that actually came back is tracked as `pagesRead`.
 4. **Answer** — `orchestratorAnswerTool` requires `answerMarkdown`, `citedSlugs` (page
    keys) and `brainsConsulted` (kinds). `parseOrchestratedAnswer` keeps only kinds that were
-   asked, so an answer can never claim a brain it was not shown.
+   asked and only citations the exchange can vouch for — a page it read or one the index
+   names (`honestCitations.ts`) — so an answer can never claim a brain it was not shown or
+   a page it did not open. The answer carries `pagesRead` beside `citedPageKeys`.
 5. **Record and settle** — `askKnowledgeBaseAndSettle` wraps the above for callers outside
    the site: the owner's rate is checked (`countRecentSpends`), the site model's floor is
    reserved from their ledger (`reserveCreditsForPayer`, reason `knowledge_base_question`),
@@ -98,8 +103,8 @@ question, the answer, the pages cited, the brains consulted and `askedThrough` (
 
 The server's orchestrator is the one-shot answer. The caller's own Claude is the other
 orchestrator: over MCP it can `describe_knowledge_base`, `read_expertise_index`,
-`read_expertise_pages`, `read_experience`, `read_process_map` and `read_people` for
-nothing and reason over the raw knowledge itself, asking the server only when it wants the
+`read_expertise_pages`, `search_knowledge_base`, `read_experience`, `read_process_map` and
+`read_people` for nothing and reason over the raw knowledge itself, asking the server only when it wants the
 knowledge base to answer in its own words. Both layers use the same readers and the same
 renderers, so what Claude reads is exactly what the orchestrator is shown.
 
@@ -119,6 +124,7 @@ loop, three prompts.
 | Describe the brains | `DescribeKnowledgeBase(reading)` | `describeReading`; `describe_knowledge_base` (MCP), the `brains` field of `GET /api/v1/knowledge-bases/{id}` |
 | Read a brain | `ReadKnowledgeBase(knowledgeBaseId, kinds)` + the renderer for that kind | the `read_*` actions (MCP); `GET /api/v1/knowledge-bases/{id}?brains=` |
 | Read expertise pages | `FetchKeyedPages(brains, keys)` | `read_expertise_pages` (MCP); `GET /api/v1/brains/{brainId}/pages/{slug}` |
+| Search the brains | `SearchKnowledgeBase(knowledgeBaseId, query)` | the `search_knowledge` tool inside the exchange; `search_knowledge_base` (MCP); `GET /api/v1/knowledge-bases/{id}/search?q=` |
 
 The gates come first in every entry point: an MCP caller reaches only a knowledge base
 they own (`onOwnedKnowledgeBase`); an API token reaches only the knowledge base its brain
@@ -135,8 +141,11 @@ src/lib/server/knowledge/reading/
   readExperienceEntries.ts    newest entries            renderExperienceEntries.ts
   readProcessMaps.ts          latest map per workflow   renderProcessMaps.ts       roles, tasks, journeys
   readPeople.ts               people + connections      renderPeople.ts            with warmth
-  readExpertisePages.ts       fetchKeyedPages, renderKeyedPages, the tool-result message
-  readThenAnswer.ts           the one-round loop        describeReading.ts         what each brain holds
+  readExpertisePages.ts       fetchKeyedPages, renderKeyedPages, the tool result + keys read
+  readThenAnswer.ts           the tools, then the loop  readingExchange.ts         up to mostReadingRounds, then the answer
+  answerReadingTools.ts       one round's tool calls    searchKnowledgeTool.ts     search_knowledge over searchKnowledgeBase
+  honestCitations.ts          keep only citable keys    readingTypes.ts            ReadingExchange, ReadingOutcome
+  readBrainNames.ts           kb_brains id → name       describeReading.ts         what each brain holds
   clipPromptText.ts
 src/lib/data/knowledge/knowledgeReadingCaps.ts        how much of each brain is shown
 src/lib/server/orchestrator/
@@ -144,18 +153,18 @@ src/lib/server/orchestrator/
   orchestratorAnswerTool.ts   + brainsConsulted         parseOrchestratedAnswer.ts (tested)
   askKnowledgeBaseAndSettle.ts  reserve → ask → record → settle | refund
   recordKnowledgeBaseQuestion.ts  the question_answered event
-src/lib/server/mcp/actions/{brainReadActions,expertiseReadActions,brainAskActions}.ts
+src/lib/server/mcp/actions/{brainReadActions,expertiseReadActions,searchActions,brainAskActions}.ts
 src/lib/server/brainApi/{resolveApiToken,resolveKnowledgeBaseApiCaller,readKnowledgeKinds}.ts
-src/routes/api/v1/knowledge-bases/[knowledgeBaseId=uuid]/{+server.ts,ask/+server.ts}
+src/routes/api/v1/knowledge-bases/[knowledgeBaseId=uuid]/{+server.ts,ask/+server.ts,search/+server.ts}
 ```
 
 ## Deliberate gaps
 
-The experience, process and human brains are printed under caps rather than searched, so
-a knowledge base with more than 40 experience entries shows the orchestrator only its
-newest; retrieval over items — by date, by case, by person — is the next step and the
-`retrieval_config` on every brain is where it will be configured. There is one round of
-page reading, ten pages at most. Questions over MCP carry no conversation memory of their
+The experience, process and human brains are printed under caps, so a knowledge base with
+more than 40 experience entries shows the orchestrator only its newest; `search_knowledge`
+reaches the rest by words, but retrieval over items — by date, by case, by person — is
+still the next step and the `retrieval_config` on every brain is where it will be
+configured. Reading stops after three rounds, ten pages per call. Questions over MCP carry no conversation memory of their
 own: the caller's Claude holds the conversation and asks whole questions; the expertise
 API's `/ask` keeps threads by `conversationId` as before. A knowledge base shared with a
 viewer is not yet reachable over MCP. The orchestrator answers on the site model, priced

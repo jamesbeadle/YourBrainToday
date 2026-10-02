@@ -38,9 +38,11 @@ MCP server are working:
 - Ask the Hive Mind at `/hive-mind` — approved brains answer across specialities and
   their owners earn from the questions.
 - Connect your own Claude through the MCP server at `/api/mcp` — OAuth sign-in from the
-  Connect button; it reads the four brains of every knowledge base you own, asks them, and
-  sends data in to train them. The public API under `/api/v1` lets other software read a
-  knowledge base, ask it, read its pages and export it;
+  Connect button; it reads the four brains of every knowledge base you own, searches them
+  by words, asks them, and sends data in to train them. Asked, the orchestrator searches
+  and reads in up to three rounds and cites only the pages it read. The public API under
+  `/api/v1` lets other software read a knowledge base, search it, ask it, read its pages
+  and export it;
   [docs/connect-claude.md](./docs/connect-claude.md) is the walkthrough and
   [docs/mcp-architecture.md](./docs/mcp-architecture.md) the design.
 - Admins (`/admin`) can set the site model — the Claude model behind every agent reply —
@@ -74,7 +76,8 @@ npm run dev
 ## Architecture
 
 The agent roadmap — interviewer, cartographer, surveyor, planner — lives in
-[docs/agent-architecture.md](./docs/agent-architecture.md).
+[docs/agent-architecture.md](./docs/agent-architecture.md). `npm run benchmark` measures the
+four brains against the raw documents; [docs/benchmark.md](./docs/benchmark.md) says how.
 
 ## Stack
 

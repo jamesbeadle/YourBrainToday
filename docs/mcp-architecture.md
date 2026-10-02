@@ -43,6 +43,7 @@ into `actionRegistry.ts`:
 | `brains` | `describe_knowledge_base` | — | the four brains of one knowledge base: what each answers and how much it holds |
 | `brains` | `read_expertise_index` | — | every bounded context and page of the expertise brain, a line each, keyed `brain-handle/page-slug` |
 | `brains` | `read_expertise_pages` | — | the full bodies of up to ten pages, by key |
+| `brains` | `search_knowledge_base` | — | full-text search over every brain by words; page hits carry the key `read_expertise_pages` takes, item hits the brain they sit in |
 | `brains` | `read_experience` | — | the experience brain, newest entries first |
 | `brains` | `read_process_map` | — | the process brain: roles, tasks, handovers and journeys |
 | `brains` | `read_people` | — | the human brain: the people and how well each pair gets on |
@@ -123,6 +124,7 @@ OAuth connection or a brain API token reaches the same knowledge:
 | --- | --- |
 | `describe_knowledge_base` and the `read_` actions | `GET /api/v1/knowledge-bases/{id}` — the four brains as JSON, plus the same markdown the orchestrator reads; `?brains=process,human` narrows it |
 | `read_expertise_pages` | `GET /api/v1/brains/{brainId}/pages/{slug}` |
+| `search_knowledge_base` | `GET /api/v1/knowledge-bases/{id}/search?q=words` — `{ hits }`, each with `pageKey` (or null for an item) and `brainName` |
 | `ask_knowledge_base`, `ask_brain` | `POST /api/v1/knowledge-bases/{id}/ask` with `{"question", "brains"?}` |
 | `ingest_data` | `POST /api/v1/brains/{brainId}/ingest` with `{"title", "text"}` |
 
@@ -159,5 +161,5 @@ balance below zero) and settled beyond it under `brain_ingest_sent`.
   caught by the ownership check or the database and reported honestly, but a read-and-refuse
   in the action would read better.
 - The experience, process and human brains are printed under the caps in
-  `knowledgeReadingCaps.ts` rather than searched, so a large experience log shows only its
-  newest entries. Retrieval over items is the natural next step.
+  `knowledgeReadingCaps.ts`; `search_knowledge_base` reaches the rest by words, but
+  retrieval over items by date, case or person is still the natural next step.

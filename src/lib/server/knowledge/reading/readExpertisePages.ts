@@ -1,29 +1,31 @@
 import { getBrainPagesBySlugs } from '../../brain/getBrainPage';
 import { parseRequestedSlugs } from '../../brain/parseBrainAnswer';
-import type { AnthropicMessage, AnthropicToolUseBlock } from '$lib/server/anthropic/anthropicTypes';
+import type { AnthropicToolUseBlock } from '$lib/server/anthropic/anthropicTypes';
 import type { ExpertiseBrainModel } from './readExpertiseBrains';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 export type KeyedPage = { key: string; title: string; body: string };
 
+export type PagesReadResult = { resultBlock: unknown; keysRead: string[] };
+
 // Every expertise page is addressed by its key, brain-handle/page-slug, so
-// one request can span the knowledge base's expertise brains.
+// one request can span the knowledge base's expertise brains. The keys that
+// came back are the pages the model has truly read.
 export async function readExpertisePages(
 	supabase: SupabaseClient,
 	brains: ExpertiseBrainModel[],
-	readRequests: AnthropicToolUseBlock[]
-): Promise<AnthropicMessage> {
-	const resultBlocks = [];
-	for (const readRequest of readRequests) {
-		const requestedKeys = parseRequestedSlugs(readRequest.input);
-		const pages = await fetchKeyedPages(supabase, brains, requestedKeys);
-		resultBlocks.push({
+	readRequest: AnthropicToolUseBlock
+): Promise<PagesReadResult> {
+	const requestedKeys = parseRequestedSlugs(readRequest.input);
+	const pages = await fetchKeyedPages(supabase, brains, requestedKeys);
+	return {
+		resultBlock: {
 			type: 'tool_result',
 			tool_use_id: readRequest.id,
 			content: renderKeyedPages(requestedKeys, pages)
-		});
-	}
-	return { role: 'user', content: resultBlocks };
+		},
+		keysRead: pages.map((page) => page.key)
+	};
 }
 
 export async function fetchKeyedPages(

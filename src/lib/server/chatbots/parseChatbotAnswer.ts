@@ -1,3 +1,4 @@
+import { keepCitablePageKeys } from '../knowledge/reading/honestCitations';
 import { parseBrainAnswer } from '../brain/parseBrainAnswer';
 import type { ChatbotAnswer } from '$lib/data/chatbotTypes';
 
@@ -5,11 +6,18 @@ type AnswerInput = { isKnowledgeGap?: unknown; missingKnowledge?: unknown };
 
 const longestMissingKnowledge = 400;
 
-export function parseChatbotAnswer(input: unknown, question: string): ChatbotAnswer {
+// citableKeys are the pages the exchange read or the index names; when the
+// caller has none to offer, every citation stands.
+export function parseChatbotAnswer(
+	input: unknown,
+	question: string,
+	citableKeys?: string[]
+): ChatbotAnswer {
 	const answer = parseBrainAnswer(input);
 	return {
 		answerMarkdown: answer.answerMarkdown,
-		citedPageKeys: answer.citedSlugs,
+		citedPageKeys:
+			citableKeys === undefined ? answer.citedSlugs : keepCitablePageKeys(answer.citedSlugs, citableKeys),
 		missingKnowledge: missingKnowledgeFrom(input, question)
 	};
 }

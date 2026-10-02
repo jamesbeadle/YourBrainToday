@@ -59,6 +59,7 @@ in costs what an upload of that size costs.
 | `describe_knowledge_base` | — | the four brains of one knowledge base and how much each holds |
 | `read_expertise_index` | — | every bounded context and page of the expertise brain |
 | `read_expertise_pages` | — | the full bodies of up to ten pages |
+| `search_knowledge_base` | — | every brain searched by words; page hits keyed for `read_expertise_pages` |
 | `read_experience` | — | the experience brain, newest first |
 | `read_process_map` | — | roles, tasks, handovers and journeys |
 | `read_people` | — | the people and how well each pair gets on |

@@ -1,6 +1,7 @@
 import { chatbotAnswerTool } from './chatbotAnswerTool';
 import { chatbotQueryPrompt } from './chatbotQueryPrompt';
 import { parseChatbotAnswer } from './parseChatbotAnswer';
+import { indexedPageKeys } from '../knowledge/reading/readKnowledgeBase';
 import { readThenAnswer } from '../knowledge/reading/readThenAnswer';
 import { renderChatbotRulings } from './renderChatbotRulings';
 import { renderKnowledgeBase } from '../knowledge/reading/renderKnowledgeBase';
@@ -26,13 +27,14 @@ export async function askChatbot(
 	]
 		.filter((section) => section !== '')
 		.join('\n\n');
-	const answerCall = await readThenAnswer(supabase, knowledge, {
+	const outcome = await readThenAnswer(supabase, knowledge, {
 		system,
 		messages: messagesFromTurns(turns),
 		answerTool: chatbotAnswerTool,
 		model: chatbot.modelId
 	});
-	return parseChatbotAnswer(answerCall?.input, latestMemberQuestion(turns));
+	const citableKeys = [...outcome.pagesRead, ...indexedPageKeys(knowledge)];
+	return parseChatbotAnswer(outcome.answerCall?.input, latestMemberQuestion(turns), citableKeys);
 }
 
 function latestMemberQuestion(turns: ChatbotTurn[]): string {

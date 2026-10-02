@@ -14,6 +14,7 @@ export function describeQuestionOutcome(outcome: KnowledgeBaseQuestionOutcome): 
 		answer.answerMarkdown,
 		'',
 		brains.length === 0 ? 'Drawn from: none of the brains covered it.' : `Drawn from: ${brains.join(', ')}.`,
+		answer.pagesRead.length === 0 ? null : `Pages read: ${answer.pagesRead.join(', ')}.`,
 		answer.citedPageKeys.length === 0 ? null : `Pages cited: ${answer.citedPageKeys.join(', ')}.`,
 		`Credits left: ${outcome.creditBalance.toLocaleString('en-GB')}.`
 	]

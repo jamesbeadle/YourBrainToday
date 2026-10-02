@@ -3,6 +3,7 @@ import { brainAskActions } from './actions/brainAskActions';
 import { brainReadActions } from './actions/brainReadActions';
 import { expertiseReadActions } from './actions/expertiseReadActions';
 import { knowledgeBaseActions } from './actions/knowledgeBaseActions';
+import { searchActions } from './actions/searchActions';
 import type { ActionArea, McpAction } from './actionTypes';
 import type { AccountStanding } from './resolveAccountStanding';
 
@@ -11,6 +12,7 @@ const everyAction: McpAction[] = [
 	...knowledgeBaseActions,
 	...brainReadActions,
 	...expertiseReadActions,
+	...searchActions,
 	...brainAskActions
 ];
 

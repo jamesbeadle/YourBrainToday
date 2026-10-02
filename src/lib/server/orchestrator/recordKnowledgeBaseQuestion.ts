@@ -26,6 +26,7 @@ export async function recordKnowledgeBaseQuestion(
 				question,
 				answerMarkdown: answer.answerMarkdown,
 				citedSlugs: answer.citedPageKeys,
+				pagesRead: answer.pagesRead,
 				brainsConsulted: answer.brainsConsulted,
 				askedThrough
 			}
