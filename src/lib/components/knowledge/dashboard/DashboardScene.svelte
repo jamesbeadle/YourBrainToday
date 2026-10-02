@@ -19,12 +19,14 @@
 		knowledgeBase,
 		slots,
 		openBrainId,
+		isOnBrowse,
 		isOutOfCredits,
 		children
 	}: {
 		knowledgeBase: KnowledgeBase;
 		slots: ConstellationSlot[];
 		openBrainId: string | null;
+		isOnBrowse: boolean;
 		isOutOfCredits: boolean;
 		children: Snippet;
 	} = $props();
@@ -75,7 +77,7 @@
 		onSelect={selectSlot}
 	/>
 	{@render children()}
-	<DashboardTopBar {knowledgeBase} {openSlot} {openingSlot} />
+	<DashboardTopBar {knowledgeBase} {openSlot} {openingSlot} {isOnBrowse} />
 	<BrainStrip
 		knowledgeBaseId={knowledgeBase.id}
 		{slots}

@@ -3,6 +3,7 @@
 	import BrainQueryPanel from '../BrainQueryPanel.svelte';
 	import KindBrainSettingsPanel from '../KindBrainSettingsPanel.svelte';
 	import RegionBrain from '../../brain/RegionBrain.svelte';
+	import RegionEpisodesPanel from './RegionEpisodesPanel.svelte';
 	import { brainToolKeysFor, brainTools, brainToolsOwnerFor } from './brainViewTools';
 	import { findBrainType } from '$lib/data/knowledge/brainTypeCatalog';
 	import { useDashboardTools } from '../dashboard/dashboardTools.svelte';
@@ -26,6 +27,8 @@
 	const editor = $derived(findBrainType(brain.brainType)?.editor ?? 'notes');
 	const actionBasePath = $derived(brainHref(knowledgeBaseId, brain.id));
 	const toolKeys = $derived(brainToolKeysFor(['ask', 'contents'], 'settings', isOwner));
+
+	let selectedRegionId = $state<string | null>(null);
 
 	$effect(() => {
 		const toolsOwner = brainToolsOwnerFor('experience', brain.id);
@@ -60,4 +63,18 @@
 	/>
 {/snippet}
 
-<RegionBrain items={view.items} seed={brain.id} {onReady} />
+<RegionBrain
+	items={view.items}
+	seed={brain.id}
+	onSelectRegion={(regionId) => (selectedRegionId = regionId)}
+	{onReady}
+/>
+{#if selectedRegionId !== null}
+	<RegionEpisodesPanel
+		{knowledgeBaseId}
+		brainId={brain.id}
+		items={view.items}
+		seed={brain.id}
+		regionId={selectedRegionId}
+	/>
+{/if}

@@ -1,9 +1,14 @@
 <script lang="ts">
-	import { renderMarkdown } from './renderMarkdown';
+	import { renderMarkdown, renderMarkdownWithin } from './renderMarkdown';
 
-	let { markdown }: { markdown: string } = $props();
+	let {
+		markdown,
+		pageHrefFor = null
+	}: { markdown: string; pageHrefFor?: ((slug: string) => string) | null } = $props();
 
-	const html = $derived(renderMarkdown(markdown));
+	const html = $derived(
+		pageHrefFor === null ? renderMarkdown(markdown) : renderMarkdownWithin(markdown, pageHrefFor)
+	);
 </script>
 
 <div

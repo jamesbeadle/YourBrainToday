@@ -29,8 +29,7 @@
 		log
 	};
 
-	const pageBasePathFor = (primaryBrain: DomainBrain) =>
-		`/workspace/${primaryBrain.entityId}/domains/${primaryBrain.id}`;
+	const pageBasePath = $derived(workbench.pageBasePath ?? '');
 </script>
 
 {#snippet documents(primaryBrain: DomainBrain)}
@@ -39,7 +38,7 @@
 			brainId={primaryBrain.id}
 			{isOwner}
 			sources={workbench.sources}
-			pageBasePath={pageBasePathFor(primaryBrain)}
+			{pageBasePath}
 			{onOutOfCredits}
 		/>
 	</div>
@@ -57,7 +56,7 @@
 
 {#snippet log(primaryBrain: DomainBrain)}
 	<div class="min-h-0 flex-1 overflow-y-auto">
-		<BrainActivityLog events={workbench.events} pageBasePath={pageBasePathFor(primaryBrain)} />
+		<BrainActivityLog events={workbench.events} {pageBasePath} />
 	</div>
 {/snippet}
 

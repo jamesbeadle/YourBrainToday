@@ -28,6 +28,27 @@ export function brainHref(knowledgeBaseId: string, brainId: string): string {
 	return `${knowledgeBaseHref(knowledgeBaseId)}/brains/${brainId}`;
 }
 
+export function browseHref(knowledgeBaseId: string): string {
+	return `${knowledgeBaseHref(knowledgeBaseId)}/browse`;
+}
+
+/** Readers live under the brain's route; `brainId` is always the kb_brains id, never the domain brain's. */
+export function pageBaseHref(knowledgeBaseId: string, brainId: string): string {
+	return `${brainHref(knowledgeBaseId, brainId)}/pages`;
+}
+
+export function pageHref(knowledgeBaseId: string, brainId: string, slug: string): string {
+	return `${pageBaseHref(knowledgeBaseId, brainId)}/${slug}`;
+}
+
+export function itemBaseHref(knowledgeBaseId: string, brainId: string): string {
+	return `${brainHref(knowledgeBaseId, brainId)}/items`;
+}
+
+export function itemHref(knowledgeBaseId: string, brainId: string, itemId: string): string {
+	return `${itemBaseHref(knowledgeBaseId, brainId)}/${itemId}`;
+}
+
 export function newBrainHref(knowledgeBaseId: string, kind?: KnowledgeKind): string {
 	const base = `${knowledgeBaseHref(knowledgeBaseId)}/brains/new`;
 	return kind === undefined ? base : `${base}?kind=${kind}`;

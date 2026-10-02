@@ -8,7 +8,7 @@
 	import { brainToolKeysFor, brainTools, brainToolsOwnerFor } from './brainViewTools';
 	import { fetchBrainPage } from '../../brain/constellation/fetchBrainPage';
 	import { useDashboardTools } from '../dashboard/dashboardTools.svelte';
-	import { brainHref } from '$lib/data/knowledge/knowledgeBaseRoutes';
+	import { brainHref, pageBaseHref } from '$lib/data/knowledge/knowledgeBaseRoutes';
 	import { screen } from '$lib/client/screen.svelte';
 	import type { ExpertiseBrainView } from '$lib/server/knowledge/brainViews/loadExpertiseBrainView';
 
@@ -26,7 +26,7 @@
 
 	const toolbarTools = useDashboardTools().right;
 	const isOwner = $derived(view.accessRole === 'owner');
-	const pageBasePath = $derived(`/workspace/${view.brain.entityId}/domains/${view.brain.id}`);
+	const pageBasePath = $derived(pageBaseHref(knowledgeBaseId, brainId));
 	const actionBasePath = $derived(brainHref(knowledgeBaseId, brainId));
 	const toolKeys = $derived(brainToolKeysFor(['ask', 'model'], 'settings', isOwner));
 

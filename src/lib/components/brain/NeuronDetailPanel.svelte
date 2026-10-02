@@ -29,6 +29,9 @@
 	});
 
 	const kindLine = $derived(describeKind(payload));
+	const pageHrefFor = $derived(
+		pageBasePath === null ? null : (linkedSlug: string) => `${pageBasePath}/${linkedSlug}`
+	);
 
 	function describeKind(loaded: BrainPagePayload | null): string {
 		if (loaded === null) return '';
@@ -64,7 +67,7 @@
 			<p class="animate-pulse text-sm text-chalk/50">Reading the neuron…</p>
 		{:else}
 			<p class="mb-4 text-sm text-chalk/60">{payload.page.summary}</p>
-			<MarkdownBody markdown={payload.page.body} />
+			<MarkdownBody markdown={payload.page.body} {pageHrefFor} />
 		{/if}
 	</div>
 	{#if pageBasePath !== null}
