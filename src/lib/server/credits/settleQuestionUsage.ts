@@ -2,6 +2,7 @@ import { questionCreditsFor } from '$lib/data/creditPricing';
 import { meteredCallsSoFar } from '$lib/server/anthropic/modelContext';
 import { recordModelUsage } from './recordModelUsage';
 import { supabaseServiceClient } from '$lib/server/payments/supabaseServiceClient';
+import type { MeteredCall } from '$lib/data/anthropicUsage';
 
 // Reserve-then-settle: the reserve was taken before the work; once the
 // answer is in, anything the marked-up bill owes beyond it is taken now
@@ -9,14 +10,16 @@ import { supabaseServiceClient } from '$lib/server/payments/supabaseServiceClien
 // — a settlement that could bounce would make the reserve the real price.
 // Every metered call is recorded either way: with the credits the job
 // finally charged, or flagged with only the reserve when the settlement
-// itself failed, so the margin view shows the leak.
+// itself failed, so the margin view shows the leak. The calls default to
+// those metered in this request; a job spread over several requests hands
+// in the calls it kept.
 // Returns the payer's new balance, or null when nothing more was owed.
 export async function settleQuestionUsage(
 	payerId: string,
 	reservedCredits: number,
-	reason: string
+	reason: string,
+	calls: MeteredCall[] = meteredCallsSoFar()
 ): Promise<number | null> {
-	const calls = meteredCallsSoFar();
 	const owed = Math.max(reservedCredits, questionCreditsFor(calls));
 	const extra = owed - reservedCredits;
 	if (extra <= 0) {

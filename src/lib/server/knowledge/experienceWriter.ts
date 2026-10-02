@@ -1,4 +1,5 @@
 import { createBrainItem } from './createBrainItem';
+import { provenanceData, statedProvenance, type SourceProvenance } from './sourceProvenance';
 import type { HarvestedEvent } from '$lib/server/agent/parseHarvest';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
@@ -7,7 +8,7 @@ export async function fileExperienceEvents(
 	brainId: string,
 	events: HarvestedEvent[],
 	knownTerms: string[],
-	provenance = 'stated'
+	provenance: SourceProvenance = statedProvenance
 ): Promise<void> {
 	const casesByName = await existingCases(supabase, brainId);
 	const knownTermSet = new Set(knownTerms.map((term) => term.toLowerCase()));
@@ -61,11 +62,11 @@ async function caseIdFor(
 function episodeDataFor(
 	terms: string[],
 	knownTermSet: Set<string>,
-	provenance: string
+	provenance: SourceProvenance
 ): Record<string, unknown> {
 	return {
 		terms: terms.filter((term) => knownTermSet.has(term.toLowerCase())),
 		newTerms: terms.filter((term) => !knownTermSet.has(term.toLowerCase())),
-		provenance
+		...provenanceData(provenance)
 	};
 }

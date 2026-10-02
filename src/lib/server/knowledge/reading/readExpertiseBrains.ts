@@ -5,6 +5,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 
 export type ExpertiseBrainModel = {
 	brainId: string;
+	kbBrainId: string;
 	handle: string;
 	name: string;
 	description: string;
@@ -23,7 +24,7 @@ export async function readExpertiseBrains(
 ): Promise<ExpertiseBrainModel[]> {
 	const { data, error } = await supabase
 		.from('kb_brains')
-		.select('name, description, domain_brain_id')
+		.select('id, name, description, domain_brain_id')
 		.eq('knowledge_base_id', knowledgeBaseId)
 		.eq('category', 'domain')
 		.not('domain_brain_id', 'is', null)
@@ -34,6 +35,7 @@ export async function readExpertiseBrains(
 		const brainId = row.domain_brain_id as string;
 		models.push({
 			brainId,
+			kbBrainId: row.id as string,
 			handle: handleFor(row.name, brainId),
 			name: row.name,
 			description: row.description,

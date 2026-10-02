@@ -1,6 +1,7 @@
 import { meteredCallsSoFar } from '$lib/server/anthropic/modelContext';
 import { recordModelUsage } from './recordModelUsage';
 import { refundCredits } from './spendCredits';
+import type { MeteredCall } from '$lib/data/anthropicUsage';
 
 // A job that failed after Claude had already answered part of it still cost
 // Anthropic money. The reserve goes back to the payer as before; the calls
@@ -9,13 +10,14 @@ import { refundCredits } from './spendCredits';
 export async function refundQuestionUsage(
 	payerId: string,
 	reservedCredits: number,
-	reason: string
+	reason: string,
+	calls: MeteredCall[] = meteredCallsSoFar()
 ): Promise<void> {
 	await refundCredits(payerId, reservedCredits, reason);
 	await recordModelUsage({
 		payerId,
 		reason,
-		calls: meteredCallsSoFar(),
+		calls,
 		creditsCharged: 0,
 		hasFailedSettlement: false
 	});

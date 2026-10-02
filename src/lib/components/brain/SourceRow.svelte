@@ -3,7 +3,7 @@
 	import SourceArrivalLabel from './SourceArrivalLabel.svelte';
 	import SourceRemoveButton from './SourceRemoveButton.svelte';
 	import SourceRereadButton from './SourceRereadButton.svelte';
-	import { ingestSource } from './uploadSourceFile';
+	import { readSourceStages } from './readSourceStages';
 	import { invalidateAll } from '$app/navigation';
 	import type { BrainSource } from '$lib/data/brainTypes';
 
@@ -18,6 +18,7 @@
 
 	const statusStyles: Record<BrainSource['status'], string> = {
 		uploaded: 'border-chalk/30 text-chalk/60',
+		reading: 'border-caution/60 text-caution',
 		ingested: 'border-go/60 text-go',
 		failed: 'border-signal/60 text-signal',
 		proposed: 'border-caution/60 text-caution',
@@ -26,6 +27,7 @@
 
 	const statusLabels: Record<BrainSource['status'], string> = {
 		uploaded: 'Waiting',
+		reading: 'Reading',
 		ingested: 'In the brain',
 		failed: 'Failed',
 		proposed: 'Awaiting review',
@@ -37,7 +39,7 @@
 
 	async function retryIngest() {
 		isRetrying = true;
-		const outcome = await ingestSource(source.id);
+		const outcome = await readSourceStages(source.id);
 		isRetrying = false;
 		if (outcome.status === 'out_of_credits') return onOutOfCredits();
 		await invalidateAll();

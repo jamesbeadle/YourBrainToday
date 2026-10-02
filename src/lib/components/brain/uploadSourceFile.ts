@@ -1,20 +1,22 @@
-export type UploadOutcome =
-	| { status: 'ingested'; creditBalance: number }
-	| { status: 'proposed'; creditBalance: number }
-	| { status: 'out_of_credits' }
-	| { status: 'rejected'; message: string }
-	| { status: 'failed'; message: string };
+import { readSourceStages, type ReadingOutcome } from './readSourceStages';
+import { mimeTypeFor } from '$lib/data/brainUploadRules';
 
-export async function uploadSourceFile(file: File, brainId: string): Promise<UploadOutcome> {
+export type UploadOutcome = ReadingOutcome | { status: 'rejected'; message: string };
+
+export type UploadProgress = (stage: string) => void;
+
+/** Grants an upload, sends the file straight to storage, then reads it stage by stage. */
+export async function uploadSourceFile(
+	file: File,
+	brainId: string,
+	onProgress: UploadProgress = () => {}
+): Promise<UploadOutcome> {
+	onProgress('sending the file');
+	const mimeType = mimeTypeFor(file.name, file.type);
 	const grantResponse = await fetch('/api/brain/sources', {
 		method: 'POST',
 		headers: { 'content-type': 'application/json' },
-		body: JSON.stringify({
-			brainId,
-			filename: file.name,
-			mimeType: file.type,
-			byteCount: file.size
-		})
+		body: JSON.stringify({ brainId, filename: file.name, mimeType, byteCount: file.size })
 	});
 	if (grantResponse.status === 400) return { status: 'rejected', message: await messageFrom(grantResponse) };
 	if (!grantResponse.ok) return { status: 'failed', message: 'The upload could not be started.' };
@@ -22,25 +24,12 @@ export async function uploadSourceFile(file: File, brainId: string): Promise<Upl
 
 	const storageResponse = await fetch(grant.uploadUrl, {
 		method: 'PUT',
-		headers: { 'content-type': file.type },
+		headers: { 'content-type': mimeType },
 		body: file
 	});
 	if (!storageResponse.ok) return { status: 'failed', message: 'The file could not be uploaded.' };
 
-	return ingestSource(grant.sourceId);
-}
-
-export async function ingestSource(sourceId: string): Promise<UploadOutcome> {
-	const ingestResponse = await fetch('/api/brain/ingest', {
-		method: 'POST',
-		headers: { 'content-type': 'application/json' },
-		body: JSON.stringify({ sourceId })
-	});
-	if (ingestResponse.status === 402) return { status: 'out_of_credits' };
-	if (!ingestResponse.ok) return { status: 'failed', message: await messageFrom(ingestResponse) };
-	const payload = await ingestResponse.json();
-	if (payload.isProposal === true) return { status: 'proposed', creditBalance: payload.creditBalance };
-	return { status: 'ingested', creditBalance: payload.creditBalance };
+	return readSourceStages(grant.sourceId, onProgress);
 }
 
 async function messageFrom(response: Response): Promise<string> {

@@ -1,5 +1,5 @@
 import { findPrimaryExpertiseBrain } from '$lib/server/knowledge/interviewContext';
-import { getDomainBrain } from '$lib/server/entities/getDomainBrain';
+import { getDomainBrain, type DomainBrain } from '$lib/server/entities/getDomainBrain';
 import { getKnowledgeBase, type KnowledgeBase } from '$lib/server/knowledge/getKnowledgeBase';
 import { isUuid } from '$lib/data/isUuid';
 import { readText } from '../actionTypes';
@@ -65,7 +65,7 @@ export async function sentDataReceiverFor(
 	serviceSupabase: SupabaseClient,
 	accountId: string,
 	knowledgeBaseId: string
-): Promise<{ id: string; ownerId: string } | null> {
+): Promise<DomainBrain | null> {
 	const knowledgeBase = await findOwnedKnowledgeBase(serviceSupabase, accountId, knowledgeBaseId);
 	if (knowledgeBase === null) return null;
 	const primary = await findPrimaryExpertiseBrain(serviceSupabase, knowledgeBase.id);

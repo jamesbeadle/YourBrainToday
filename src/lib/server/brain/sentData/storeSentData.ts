@@ -1,5 +1,6 @@
 import { safeStorageFilename } from '$lib/server/storage/safeStorageFilename';
 import { sourcesBucket } from '../brainStorage';
+import { emptyReadingProgress } from '$lib/data/sourceReading';
 import type { StoredBrainSource } from '../findBrainSource';
 import type { SentData, SentDataOrigin } from './sentDataTypes';
 import type { SupabaseClient } from '@supabase/supabase-js';
@@ -26,7 +27,12 @@ export async function storeSentData(
 		storagePath: `${brain.ownerId}/${sourceId}/${safeStorageFilename(sent.title)}.txt`,
 		status: 'uploaded',
 		byteCount: sentDataByteCount(sent),
-		summary: ''
+		summary: '',
+		stage: null,
+		stageStartedAt: null,
+		failure: '',
+		reservedCredits: 0,
+		progress: emptyReadingProgress
 	};
 	await uploadText(serviceSupabase, source.storagePath, sent.text);
 	await insertSourceRow(serviceSupabase, source, origin);
