@@ -19,10 +19,15 @@ MCP server are working:
   as a domain model), experience (what it has done, as case files), process (how it
   works, as flows of work) and human (who it knows, as a network of people and how well
   they get on). Each is built by interview with an agent, by uploading the documents
-  the business already files, or by adding a note — typed, dictated with the phone
-  keyboard's microphone, or pasted from a voice memo transcript — and every answer is
-  grounded in those pages with citations. Asked from outside, the four brains answer as
-  one through the orchestrator;
+  the business already files — several at once, each read in four stages that resume
+  where they stopped ([docs/source-reading-architecture.md](./docs/source-reading-architecture.md)) —
+  or by adding a note — typed, dictated with the phone keyboard's microphone, or pasted
+  from a voice memo transcript. Browse every page, item and task across the brains, search
+  their bodies, and read any page with its backlinks at `/knowledge-base/{id}/browse`
+  ([docs/knowledge-explorer-architecture.md](./docs/knowledge-explorer-architecture.md)).
+  Every answer is grounded in pages the model actually read, with citations. Asked from
+  outside, the four brains answer as one through the orchestrator, which searches and
+  reads in rounds;
   [docs/domain-brain-architecture.md](./docs/domain-brain-architecture.md),
   [docs/process-brain-architecture.md](./docs/process-brain-architecture.md),
   [docs/human-brain-architecture.md](./docs/human-brain-architecture.md) and
@@ -38,9 +43,11 @@ MCP server are working:
 - Ask the Hive Mind at `/hive-mind` — approved brains answer across specialities and
   their owners earn from the questions.
 - Connect your own Claude through the MCP server at `/api/mcp` — OAuth sign-in from the
-  Connect button; it reads the four brains of every knowledge base you own, asks them, and
-  sends data in to train them. The public API under `/api/v1` lets other software read a
-  knowledge base, ask it, read its pages and export it;
+  Connect button; it reads the four brains of every knowledge base you own, searches them
+  by words, asks them, and sends data in to train them. Asked, the orchestrator searches
+  and reads in up to three rounds and cites only the pages it read. The public API under
+  `/api/v1` lets other software read a knowledge base, search it, ask it, read its pages
+  and export it;
   [docs/connect-claude.md](./docs/connect-claude.md) is the walkthrough and
   [docs/mcp-architecture.md](./docs/mcp-architecture.md) the design.
 - Admins (`/admin`) can set the site model — the Claude model behind every agent reply —
@@ -74,7 +81,8 @@ npm run dev
 ## Architecture
 
 The agent roadmap — interviewer, cartographer, surveyor, planner — lives in
-[docs/agent-architecture.md](./docs/agent-architecture.md).
+[docs/agent-architecture.md](./docs/agent-architecture.md). `npm run benchmark` measures the
+four brains against the raw documents; [docs/benchmark.md](./docs/benchmark.md) says how.
 
 ## Stack
 

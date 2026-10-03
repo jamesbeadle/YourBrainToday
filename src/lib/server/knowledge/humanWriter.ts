@@ -1,4 +1,5 @@
 import { createBrainItem } from './createBrainItem';
+import { provenanceData, statedProvenance, type SourceProvenance } from './sourceProvenance';
 import {
 	getHumanItems,
 	nameKey,
@@ -16,7 +17,7 @@ export async function fileHumanNetwork(
 	supabase: SupabaseClient,
 	brainId: string,
 	network: HumanNetwork,
-	provenance = 'stated'
+	provenance: SourceProvenance = statedProvenance
 ): Promise<void> {
 	const knownPeople = await knownPeopleIn(supabase, brainId);
 	for (const person of network.people) {
@@ -50,7 +51,7 @@ async function ensurePerson(
 	brainId: string,
 	knownPeople: Set<string>,
 	person: HarvestedPerson,
-	provenance: string
+	provenance: SourceProvenance
 ): Promise<void> {
 	if (knownPeople.has(nameKey(person.name))) return;
 	await createBrainItem(supabase, {
@@ -58,7 +59,7 @@ async function ensurePerson(
 		itemKind: humanItemKinds.person,
 		title: person.name,
 		body: person.note,
-		data: { role: person.role, organisation: person.organisation, provenance }
+		data: { role: person.role, organisation: person.organisation, ...provenanceData(provenance) }
 	});
 	knownPeople.add(nameKey(person.name));
 }
@@ -68,14 +69,19 @@ async function fileConnection(
 	brainId: string,
 	knownConnections: IndexedHumanItem[],
 	connection: HarvestedConnection,
-	provenance: string
+	provenance: SourceProvenance
 ): Promise<void> {
 	const existing = knownConnections.find((known) => isSameConnection(known, connection));
 	if (existing !== undefined) {
 		await saveConnectionFeeling(supabase, existing, connection);
 		return;
 	}
-	const data = { from: connection.from, to: connection.to, warmth: connection.warmth, provenance };
+	const data = {
+		from: connection.from,
+		to: connection.to,
+		warmth: connection.warmth,
+		...provenanceData(provenance)
+	};
 	const id = await createBrainItem(supabase, {
 		brainId,
 		itemKind: humanItemKinds.connection,

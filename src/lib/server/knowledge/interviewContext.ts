@@ -12,6 +12,7 @@ export type InterviewContext = {
 };
 
 export type PrimaryExpertiseBrain = {
+	knowledgeBaseId: string;
 	kbBrainId: string;
 	domainBrainId: string;
 	entityId: string;
@@ -34,7 +35,7 @@ export async function findPrimaryExpertiseBrain(
 	if (row === undefined) return null;
 	const entityId = entityIdFrom(row.domain_brains);
 	if (entityId === null) return null;
-	return { kbBrainId: row.id, domainBrainId: row.domain_brain_id, entityId };
+	return { knowledgeBaseId, kbBrainId: row.id, domainBrainId: row.domain_brain_id, entityId };
 }
 
 type PrimaryBrainRow = {

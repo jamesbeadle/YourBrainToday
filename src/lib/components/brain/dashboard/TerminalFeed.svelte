@@ -1,5 +1,4 @@
 <script lang="ts">
-	import IngestWorkingLine from './IngestWorkingLine.svelte';
 	import TerminalTurn from './TerminalTurn.svelte';
 	import type { BrainConversationMessage, BrainPageSummary } from '$lib/data/brainTypes';
 
@@ -9,8 +8,7 @@
 		pageBasePath,
 		pendingQuestion,
 		isThinking,
-		transferLines,
-		activeTransferName
+		transferLines
 	}: {
 		messages: BrainConversationMessage[];
 		pageIndex: BrainPageSummary[];
@@ -18,7 +16,6 @@
 		pendingQuestion: string | null;
 		isThinking: boolean;
 		transferLines: string[];
-		activeTransferName: string | null;
 	} = $props();
 </script>
 
@@ -38,7 +35,4 @@
 	{#each transferLines as line, index (index)}
 		<p class="text-chalk/60">{line}</p>
 	{/each}
-	{#if activeTransferName !== null}
-		<IngestWorkingLine sourceName={activeTransferName} />
-	{/if}
 </div>

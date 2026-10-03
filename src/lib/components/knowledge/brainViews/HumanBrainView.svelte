@@ -8,7 +8,7 @@
 	import { humanVocabulary } from '../../brain/people/humanVocabulary';
 	import { personPage } from '../../brain/people/personPage';
 	import { useDashboardTools } from '../dashboard/dashboardTools.svelte';
-	import { brainHref } from '$lib/data/knowledge/knowledgeBaseRoutes';
+	import { brainHref, itemBaseHref } from '$lib/data/knowledge/knowledgeBaseRoutes';
 	import type { HumanBrainView } from '$lib/server/knowledge/brainViews/loadHumanBrainView';
 
 	let {
@@ -59,7 +59,7 @@
 
 <BrainConstellation
 	loadPage={(personId) => personPage(view.items, personId)}
-	pageBasePath={null}
+	pageBasePath={itemBaseHref(knowledgeBaseId, brain.id)}
 	contexts={constellation.contexts}
 	pageIndex={constellation.pageIndex}
 	pageLinks={constellation.pageLinks}

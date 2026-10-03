@@ -1,60 +1,47 @@
-import { findBrainSource, markSourceStatus } from '../findBrainSource';
-import { runSourceIngest } from '../runSourceIngest';
-import { sentDataByteCount, storeSentData } from './storeSentData';
+import { readSourceToCompletion } from '../reading/readSourceToCompletion';
+import { findBrainSource } from '../findBrainSource';
+import { storeSentData } from './storeSentData';
 import { sentDataProblem } from './sentDataRules';
-import { countRecentSpends } from '$lib/server/credits/recentSpendCount';
-import { mostSpendsPerMinute, slowDownMessage } from '$lib/server/credits/requireSpendHeadroom';
-import { ingestCreditsFor } from '$lib/data/creditPricing';
-import { refundQuestionUsage } from '$lib/server/credits/refundQuestionUsage';
-import { reserveCreditsForPayer } from '$lib/server/credits/reserveCreditsForPayer';
-import { settleQuestionUsage } from '$lib/server/credits/settleQuestionUsage';
+import { slowDownMessage } from '$lib/server/credits/requireSpendHeadroom';
+import { getCreditBalanceFor } from '$lib/server/credits/getCreditBalanceFor';
+import type { DomainBrain } from '$lib/server/entities/getDomainBrain';
 import type { SentData, SentDataOrigin, SentDataOutcome } from './sentDataTypes';
 import type { SupabaseClient } from '@supabase/supabase-js';
-
-const sentIngestReason = 'brain_ingest_sent';
-const failureSummaryLimit = 160;
-
-type ReceivingBrain = { id: string; ownerId: string };
 
 /**
  * Data sent in from outside the site — by an MCP server or an API client —
  * trains the brain exactly as an uploaded document does, and appears among
- * its ingested data. The brain's owner pays, as for any upload.
+ * its ingested data. The brain's owner pays, as for any upload, and every
+ * stage runs here in turn because nobody is there to ask for the next one.
  */
 export async function ingestSentData(
 	serviceSupabase: SupabaseClient,
-	brain: ReceivingBrain,
+	brain: DomainBrain,
 	sent: SentData,
 	origin: SentDataOrigin
 ): Promise<SentDataOutcome> {
 	const problem = sentDataProblem(sent);
 	if (problem !== null) return { status: 'rejected', message: problem };
-	const recentSpends = await countRecentSpends(serviceSupabase, brain.ownerId);
-	if (recentSpends >= mostSpendsPerMinute) return { status: 'rejected', message: slowDownMessage };
-	const reserve = ingestCreditsFor(sentDataByteCount(sent));
-	const reservation = await reserveCreditsForPayer(brain.ownerId, reserve, sentIngestReason);
-	if (reservation === 'insufficient_credits') return { status: 'out_of_credits' };
-	if (reservation === 'account_restricted') return { status: 'account_restricted' };
 	const source = await storeSentData(serviceSupabase, brain, sent, origin);
-	try {
-		await runSourceIngest(serviceSupabase, source);
-	} catch (failure) {
-		console.error('Ingesting sent data failed', failure);
-		await markSourceStatus(serviceSupabase, source.id, 'failed', failureSummary(failure));
-		await refundQuestionUsage(brain.ownerId, reserve, sentIngestReason);
-		return { status: 'failed', message: 'Reading that data failed — the credits were refunded' };
+	const reading = await readSourceToCompletion(serviceSupabase, source, {
+		brain,
+		payer: { payerId: brain.ownerId, reason: 'brain_ingest_sent' },
+		proposer: null
+	});
+	if (reading.status === 'rate_limited') return { status: 'rejected', message: slowDownMessage };
+	if (reading.status === 'out_of_credits') return { status: 'out_of_credits' };
+	if (reading.status === 'account_restricted') return { status: 'account_restricted' };
+	if (reading.status === 'failed') {
+		return { status: 'failed', message: `Reading that data failed — ${reading.failure}. The credits were refunded.` };
 	}
-	const settledBalance = await settleQuestionUsage(brain.ownerId, reserve, sentIngestReason);
+	if (reading.status !== 'ingested') {
+		return { status: 'failed', message: 'That data is already being read.' };
+	}
 	const ingested = await findBrainSource(serviceSupabase, source.id);
 	return {
 		status: 'ingested',
 		sourceId: source.id,
 		summary: ingested?.summary ?? '',
-		creditBalance: settledBalance ?? reservation.creditBalance
+		creditBalance: reading.creditBalance ?? (await getCreditBalanceFor(brain.ownerId))
 	};
-}
-
-function failureSummary(failure: unknown): string {
-	const message = failure instanceof Error ? failure.message : 'Unknown failure';
-	return message.slice(0, failureSummaryLimit);
 }

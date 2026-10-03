@@ -1,21 +1,24 @@
 <script lang="ts">
 	import ToolIcon from './ToolIcon.svelte';
 	import { useDashboardTools } from './dashboardTools.svelte';
-	import { brainsIconPaths } from './knowledgeBaseTools';
-	import { knowledgeBaseHref } from '$lib/data/knowledge/knowledgeBaseRoutes';
+	import { brainsIconPaths, browseIconPaths } from './knowledgeBaseTools';
+	import { browseHref, knowledgeBaseHref } from '$lib/data/knowledge/knowledgeBaseRoutes';
 
 	let {
 		knowledgeBaseId,
 		isOnConstellation,
+		isOnBrowse,
 		badgeCounts = {}
 	}: {
 		knowledgeBaseId: string;
 		isOnConstellation: boolean;
+		isOnBrowse: boolean;
 		badgeCounts?: Record<string, number>;
 	} = $props();
 
 	const railTools = useDashboardTools().left;
 	const brainsLabel = 'Brains';
+	const browseLabel = 'Browse';
 
 	const railItemClass =
 		'relative flex h-11 min-w-11 shrink-0 items-center justify-center rounded-xl transition lg:h-auto lg:min-w-0 lg:p-2.5';
@@ -41,6 +44,15 @@
 		class={itemClass(isOnConstellation)}
 	>
 		<ToolIcon iconPaths={brainsIconPaths} size={20} />
+	</a>
+	<a
+		href={browseHref(knowledgeBaseId)}
+		title={browseLabel}
+		aria-label={browseLabel}
+		aria-current={isOnBrowse ? 'page' : undefined}
+		class={itemClass(isOnBrowse)}
+	>
+		<ToolIcon iconPaths={browseIconPaths} size={20} />
 	</a>
 	{#each railTools.tools as tool (tool.key)}
 		<button

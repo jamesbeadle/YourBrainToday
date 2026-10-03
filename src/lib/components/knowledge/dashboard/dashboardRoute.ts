@@ -6,3 +6,9 @@ export function isKnowledgeBaseDashboardRoute(routeId: string | null): boolean {
 	if (routeId === null) return false;
 	return routeId.startsWith(dashboardRoutePrefix) && !routeId.endsWith(newBrainRouteSuffix);
 }
+
+const browseRouteSuffix = '/browse';
+
+export function isBrowseRoute(routeId: string | null): boolean {
+	return routeId !== null && routeId.endsWith(browseRouteSuffix);
+}

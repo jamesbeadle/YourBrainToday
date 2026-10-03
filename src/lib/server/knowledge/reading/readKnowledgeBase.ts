@@ -1,3 +1,4 @@
+import { readBrainNames } from './readBrainNames';
 import { readExpertiseBrains, type ExpertiseBrainModel } from './readExpertiseBrains';
 import { readExperienceEntries, type ExperienceEntry } from './readExperienceEntries';
 import { readPeople, type HumanItem } from './readPeople';
@@ -6,11 +7,13 @@ import { everyKnowledgeKind, type KnowledgeKind } from '$lib/data/knowledge/know
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 export type KnowledgeBaseReading = {
+	knowledgeBaseId: string;
 	kinds: KnowledgeKind[];
 	expertise: ExpertiseBrainModel[];
 	experience: ExperienceEntry[];
 	processMaps: ProcessMap[];
 	people: HumanItem[];
+	brainNames: Map<string, string>;
 };
 
 // The brains of a knowledge base as an agent reads them. Runs on the service
@@ -23,11 +26,16 @@ export async function readKnowledgeBase(
 	kinds: KnowledgeKind[] = everyKnowledgeKind
 ): Promise<KnowledgeBaseReading> {
 	const isWanted = (kind: KnowledgeKind) => kinds.includes(kind);
-	const [expertise, experience, processMaps, people] = await Promise.all([
+	const [expertise, experience, processMaps, people, brainNames] = await Promise.all([
 		isWanted('expertise') ? readExpertiseBrains(supabase, knowledgeBaseId) : [],
 		isWanted('experience') ? readExperienceEntries(supabase, knowledgeBaseId) : [],
 		isWanted('process') ? readProcessMaps(supabase, knowledgeBaseId) : [],
-		isWanted('human') ? readPeople(supabase, knowledgeBaseId) : []
+		isWanted('human') ? readPeople(supabase, knowledgeBaseId) : [],
+		readBrainNames(supabase, knowledgeBaseId)
 	]);
-	return { kinds, expertise, experience, processMaps, people };
+	return { knowledgeBaseId, kinds, expertise, experience, processMaps, people, brainNames };
+}
+
+export function indexedPageKeys(reading: KnowledgeBaseReading): string[] {
+	return reading.expertise.flatMap((brain) => brain.pages.map((page) => `${brain.handle}/${page.slug}`));
 }

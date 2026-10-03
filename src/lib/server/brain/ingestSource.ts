@@ -1,8 +1,7 @@
 import { modellerIngestPrompt } from './modellerIngestPrompt';
 import { parseIngestRecord } from './parseIngestRecord';
 import { renderDomainModelIndex } from './getBrainPageIndex';
-import { requestAnthropic } from '$lib/server/anthropic/requestAnthropic';
-import { toolUseFrom } from '$lib/server/anthropic/anthropicTypes';
+import { requestToolCall } from '$lib/server/anthropic/requestToolCall';
 import { updateModelTool } from './updateModelTool';
 import type { BrainContext, BrainPageSummary } from '$lib/data/brainTypes';
 import type { DomainBrain } from '$lib/server/entities/getDomainBrain';
@@ -17,17 +16,16 @@ export async function ingestSource(
 	contexts: BrainContext[],
 	index: BrainPageSummary[]
 ): Promise<IngestRecord> {
-	const response = await requestAnthropic({
-		system: systemPromptFor(brain, contexts, index),
-		messages: [{ role: 'user', content: [instructionBlock(filename), contentBlock] }],
-		tools: [updateModelTool],
-		forcedToolName: updateModelTool.name,
-		maxTokens: maxIngestTokens
-	});
-	if (response.stop_reason === 'max_tokens') {
-		throw new Error('Ingest ran out of room before finishing the model update');
-	}
-	const record = parseIngestRecord(toolUseFrom(response, updateModelTool.name));
+	const call = await requestToolCall(
+		{
+			system: systemPromptFor(brain, contexts, index),
+			messages: [{ role: 'user', content: [instructionBlock(filename), contentBlock] }],
+			tools: [updateModelTool],
+			maxTokens: maxIngestTokens
+		},
+		updateModelTool.name
+	);
+	const record = parseIngestRecord(call);
 	if (record === null) throw new Error('Ingest produced no usable model update');
 	return record;
 }

@@ -1,4 +1,12 @@
-export type BrainSourceStatus = 'uploaded' | 'ingested' | 'failed' | 'proposed' | 'rejected';
+import type { ReadingProgress, ReadingStage } from './sourceReading';
+
+export type BrainSourceStatus =
+	| 'uploaded'
+	| 'reading'
+	| 'ingested'
+	| 'failed'
+	| 'proposed'
+	| 'rejected';
 
 export type BrainSourceArrival = 'upload' | 'mcp' | 'api';
 
@@ -11,6 +19,10 @@ export type BrainSource = {
 	summary: string;
 	arrivedThrough: BrainSourceArrival;
 	createdAt: string;
+	stage: ReadingStage | null;
+	stageStartedAt: string | null;
+	failure: string;
+	progress: ReadingProgress;
 };
 
 export type DomainBlockKind =

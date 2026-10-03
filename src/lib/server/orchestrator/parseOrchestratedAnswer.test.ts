@@ -26,6 +26,16 @@ describe('parseOrchestratedAnswer', () => {
 		expect(answer.brainsConsulted).toEqual(['human']);
 	});
 
+	it('keeps only citations the exchange read or the index names, and reports the pages read', () => {
+		const answer = parseOrchestratedAnswer(
+			{ answerMarkdown: 'Priya.', citedSlugs: ['ops/read', 'ops/indexed', 'ops/invented'], brainsConsulted: ['expertise'] },
+			[...everyKind],
+			{ pagesRead: ['ops/read'], indexedKeys: ['ops/indexed'] }
+		);
+		expect(answer.citedPageKeys).toEqual(['ops/read', 'ops/indexed']);
+		expect(answer.pagesRead).toEqual(['ops/read']);
+	});
+
 	it('falls back to a plain apology when the reply held no answer', () => {
 		const answer = parseOrchestratedAnswer(undefined, [...everyKind]);
 		expect(answer.answerMarkdown).toContain('could not put an answer together');

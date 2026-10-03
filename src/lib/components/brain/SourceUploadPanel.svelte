@@ -1,56 +1,68 @@
 <script lang="ts">
-	import IngestProgressLabel from './IngestProgressLabel.svelte';
 	import { acceptedUploadExtensions, uploadLimitDescription } from '$lib/data/brainUploadRules';
-	import { invalidateAll } from '$app/navigation';
-	import { uploadSourceFile } from './uploadSourceFile';
+	import type { SourceUploadQueue } from './sourceUploadQueue.svelte';
 
-	let { brainId, onOutOfCredits }: { brainId: string; onOutOfCredits: () => void } = $props();
+	let { brainId, queue }: { brainId: string; queue: SourceUploadQueue } = $props();
 
-	let isUploading = $state(false);
-	let noticeMessage = $state('');
 	let fileInput = $state<HTMLInputElement | null>(null);
+	let isDraggingOver = $state(false);
 
-	async function uploadChosenFile(event: Event) {
+	const dropZoneClasses = $derived(
+		isDraggingOver ? 'border-go bg-go/5' : 'border-transparent'
+	);
+
+	function queueChosenFiles(event: Event) {
 		const input = event.currentTarget as HTMLInputElement;
-		const file = input.files?.[0];
-		if (file === undefined) return;
-		isUploading = true;
-		noticeMessage = '';
-		const outcome = await uploadSourceFile(file, brainId);
-		isUploading = false;
+		queue.enqueueAll(Array.from(input.files ?? []), brainId);
 		input.value = '';
-		if (outcome.status === 'out_of_credits') return onOutOfCredits();
-		if (outcome.status === 'proposed') noticeMessage = 'Sent to the owner for review.';
-		if (outcome.status === 'rejected' || outcome.status === 'failed') {
-			noticeMessage = outcome.message;
-		}
-		await invalidateAll();
+	}
+
+	function queueDroppedFiles(event: DragEvent) {
+		event.preventDefault();
+		isDraggingOver = false;
+		queue.enqueueAll(Array.from(event.dataTransfer?.files ?? []), brainId);
+	}
+
+	function queuePastedFiles(event: ClipboardEvent) {
+		const files = Array.from(event.clipboardData?.files ?? []);
+		if (files.length === 0) return;
+		event.preventDefault();
+		queue.enqueueAll(files, brainId);
+	}
+
+	function showDropTarget(event: DragEvent) {
+		event.preventDefault();
+		isDraggingOver = true;
 	}
 </script>
 
-<div class="flex flex-col gap-3">
+<svelte:window onpaste={queuePastedFiles} />
+
+<div
+	role="region"
+	aria-label="Add documents"
+	ondragover={showDropTarget}
+	ondragleave={() => (isDraggingOver = false)}
+	ondrop={queueDroppedFiles}
+	class={`-m-3 flex flex-col gap-3 rounded-2xl border border-dashed p-3 transition ${dropZoneClasses}`}
+>
 	<input
 		bind:this={fileInput}
 		type="file"
+		multiple
 		accept={acceptedUploadExtensions}
-		onchange={uploadChosenFile}
+		onchange={queueChosenFiles}
 		class="hidden"
 	/>
 	<button
 		type="button"
-		disabled={isUploading}
 		onclick={() => fileInput?.click()}
 		class="rounded-full bg-signal px-6 py-3 font-display text-sm font-medium text-night
-			transition hover:brightness-110 disabled:opacity-40"
+			transition hover:brightness-110"
 	>
-		{#if isUploading}
-			<IngestProgressLabel />
-		{:else}
-			Add a document — credits scale with its size
-		{/if}
+		Add documents — credits scale with their size
 	</button>
-	<p class="text-xs text-chalk/50">{uploadLimitDescription()}</p>
-	{#if noticeMessage !== ''}
-		<p class="text-sm text-caution">{noticeMessage}</p>
-	{/if}
+	<p class="text-xs text-chalk/50">
+		Choose several at once, drop them here or paste them. {uploadLimitDescription()}
+	</p>
 </div>

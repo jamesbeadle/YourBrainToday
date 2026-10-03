@@ -1,7 +1,7 @@
 <script lang="ts">
 	import BindingsPanel from './BindingsPanel.svelte';
 	import DangerConfirmModal from '$lib/components/site/DangerConfirmModal.svelte';
-	import RetrievalSettingsPanel from './RetrievalSettingsPanel.svelte';
+	import HowBrainIsRead from './HowBrainIsRead.svelte';
 	import { findBrainType } from '$lib/data/knowledge/brainTypeCatalog';
 	import { kindForCategory } from '$lib/data/knowledge/knowledgeKinds';
 	import type { KbBrainSummary } from '$lib/data/knowledge/knowledgeTypes';
@@ -47,16 +47,10 @@
 			<BindingsPanel {domainBrains} {boundDomainBrainIds} {actionBasePath} />
 		</section>
 	{/if}
-	{#if brain.brainType !== 'ddd_model'}
-		<section class="flex flex-col gap-3">
-			<h4 class="font-mono text-xs tracking-widest text-chalk/50 uppercase">Retrieval</h4>
-			<RetrievalSettingsPanel
-				retrievalConfig={brain.retrievalConfig}
-				brainType={brain.brainType}
-				{actionBasePath}
-			/>
-		</section>
-	{/if}
+	<section class="flex flex-col gap-2">
+		<h4 class="font-mono text-xs tracking-widest text-chalk/50 uppercase">How it is read</h4>
+		<HowBrainIsRead category={brain.category} />
+	</section>
 	{#if isOwner}
 		<section class="flex flex-col items-start gap-2 border-t border-hairline pt-4">
 			<button

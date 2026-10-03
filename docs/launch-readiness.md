@@ -89,3 +89,27 @@ Session 4 — hygiene: CI green, rate limits, error sink, admin runbook and boot
 Blockers 1 to 4 are fixed in production: migrations 0040 and 0042 to 0046 are applied, so the free credit path and the self-refund are gone, the chatbot policies are tightened, and the Builder tables exist. Items 5 to 11, 13, 16, 17 and the lead-generation work are on the `launch-readiness` branch awaiting merge. Stripe (12), the rate limits, and the admin runbook are being finished in parallel on the same branch. Supabase auth hardening (14) still needs the dashboard steps written up in `docs/email-setup.md` — SMTP through Resend and leaked-password protection — before the box can be ticked. The admin item (15) is unchanged by request.
 
 What remains sits with the owner: fill in `src/lib/data/companyDetails.ts`, review the home and case-study copy, add the GitHub repository variables so CI has the public Supabase values, make one real purchase to prove the Stripe path end to end, and after the merge force-push so the old backups leave the history for good.
+
+## Progress — 2 October
+
+Three of the product's weakest parts were rebuilt on `claude/blissful-dijkstra-vh0hqz`:
+
+- **Ingestion** is a staged, resumable reading on the source's own row
+  ([source-reading-architecture.md](./source-reading-architecture.md)). The flakiness had
+  five causes, all closed: one request doing four Claude calls against the function's
+  ceiling; no lock, so two tabs read one file twice; the service role's writes failing on
+  null owners and `not_signed_in` spends (MCP's `ingest_data` could never create a page);
+  episodes keyed by filename; and a Claude client with no timeout or retry.
+- **Finding things**: Browse, a page reader and an item reader inside the dashboard, full-text
+  search over every brain, body links that work
+  ([knowledge-explorer-architecture.md](./knowledge-explorer-architecture.md)).
+- **Retrieval**: the orchestrator searches and reads in up to three rounds and cites only pages
+  it opened; the same search is an MCP action and an API endpoint. The retrieval settings that
+  offered vector and graph pipelines nothing ran are gone.
+- **The measure**: `npm run benchmark` compares a clean model given the raw documents with one
+  given the four brains ([benchmark.md](./benchmark.md)).
+
+Before deploying this branch: apply `migrations/0056_source_reading_and_search.sql` through
+`scripts/run-migration.sh` — the site reads the new columns and calls the new function. Then
+run the benchmark once against the JBB knowledge base with a real question set; the example
+questions are placeholders.

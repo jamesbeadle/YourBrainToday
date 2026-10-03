@@ -4,6 +4,7 @@
 	import KnowledgeBaseRail from './KnowledgeBaseRail.svelte';
 	import KnowledgeBaseToolset from './KnowledgeBaseToolset.svelte';
 	import { provideDashboardTools } from './dashboardTools.svelte';
+	import { isBrowseRoute } from './dashboardRoute';
 	import { openingKnowledgeBaseTool } from './knowledgeBaseTools';
 	import { buildConstellationSlots } from '../constellationSlots';
 	import { screen } from '$lib/client/screen.svelte';
@@ -40,6 +41,7 @@
 	const slots = $derived(buildConstellationSlots(knowledgeBase.id, brains, processMaps));
 	const openBrainId = $derived(page.params.brainId ?? null);
 	const openSlot = $derived(slots.find((slot) => slot.id === openBrainId) ?? null);
+	const isOnBrowse = $derived(isBrowseRoute(page.route.id));
 
 	let isOutOfCredits = $state(false);
 
@@ -60,11 +62,12 @@
 	/>
 	<KnowledgeBaseRail
 		knowledgeBaseId={knowledgeBase.id}
-		isOnConstellation={openSlot === null}
+		isOnConstellation={openSlot === null && !isOnBrowse}
+		{isOnBrowse}
 		badgeCounts={{ review: workbench.proposals.length }}
 	/>
 	<DashboardPanel side="left" />
-	<DashboardScene {knowledgeBase} {slots} {openBrainId} {isOutOfCredits}>
+	<DashboardScene {knowledgeBase} {slots} {openBrainId} {isOnBrowse} {isOutOfCredits}>
 		{@render children()}
 	</DashboardScene>
 	<DashboardPanel side="right" />

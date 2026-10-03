@@ -1,5 +1,6 @@
 <script lang="ts">
 	import BrainBreadcrumb from './BrainBreadcrumb.svelte';
+	import BrowseTitle from './BrowseTitle.svelte';
 	import DashboardToolbar from './DashboardToolbar.svelte';
 	import { topRowHeightPixels } from './dashboardLayout';
 	import { useDashboardTools } from './dashboardTools.svelte';
@@ -10,11 +11,13 @@
 	let {
 		knowledgeBase,
 		openSlot,
-		openingSlot
+		openingSlot,
+		isOnBrowse
 	}: {
 		knowledgeBase: KnowledgeBase;
 		openSlot: ConstellationSlot | null;
 		openingSlot: ConstellationSlot | null;
+		isOnBrowse: boolean;
 	} = $props();
 
 	const toolbarTools = useDashboardTools().right;
@@ -26,7 +29,9 @@
 		px-3"
 	style:height={`${topRowHeightPixels}px`}
 >
-	{#if shownSlot === null}
+	{#if isOnBrowse}
+		<BrowseTitle {knowledgeBase} />
+	{:else if shownSlot === null}
 		<a
 			href={newBrainHref(knowledgeBase.id)}
 			aria-label="Add a second brain"

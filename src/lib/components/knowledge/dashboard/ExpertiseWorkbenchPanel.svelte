@@ -28,11 +28,19 @@
 		api,
 		log
 	};
+
+	const pageBasePath = $derived(workbench.pageBasePath ?? '');
 </script>
 
 {#snippet documents(primaryBrain: DomainBrain)}
 	<div class="min-h-0 flex-1 overflow-y-auto">
-		<SourcesPanel brainId={primaryBrain.id} {isOwner} sources={workbench.sources} {onOutOfCredits} />
+		<SourcesPanel
+			brainId={primaryBrain.id}
+			{isOwner}
+			sources={workbench.sources}
+			{pageBasePath}
+			{onOutOfCredits}
+		/>
 	</div>
 {/snippet}
 
@@ -48,10 +56,7 @@
 
 {#snippet log(primaryBrain: DomainBrain)}
 	<div class="min-h-0 flex-1 overflow-y-auto">
-		<BrainActivityLog
-			events={workbench.events}
-			pageBasePath={`/workspace/${primaryBrain.entityId}/domains/${primaryBrain.id}`}
-		/>
+		<BrainActivityLog events={workbench.events} {pageBasePath} />
 	</div>
 {/snippet}
 

@@ -28,6 +28,9 @@ export const brainsIconPaths = [
 	'M12 12.5h.01'
 ];
 
+/** The magnifying glass: the rail's way to the knowledge explorer. */
+export const browseIconPaths = ['M10.5 4a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13z', 'M20 20l-4.8-4.8'];
+
 const chatbotIconPaths = [
 	'M12 2v4',
 	'M5 10a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z',

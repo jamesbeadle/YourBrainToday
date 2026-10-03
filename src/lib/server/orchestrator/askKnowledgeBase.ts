@@ -1,7 +1,7 @@
 import { orchestratorAnswerTool } from './orchestratorAnswerTool';
 import { orchestratorPrompt } from './orchestratorPrompt';
 import { parseOrchestratedAnswer, type OrchestratedAnswer } from './parseOrchestratedAnswer';
-import { readKnowledgeBase } from '$lib/server/knowledge/reading/readKnowledgeBase';
+import { indexedPageKeys, readKnowledgeBase } from '$lib/server/knowledge/reading/readKnowledgeBase';
 import { readThenAnswer } from '$lib/server/knowledge/reading/readThenAnswer';
 import { renderKnowledgeBase } from '$lib/server/knowledge/reading/renderKnowledgeBase';
 import { everyKnowledgeKind, type KnowledgeKind } from '$lib/data/knowledge/knowledgeKinds';
@@ -18,8 +18,9 @@ export type KnowledgeBaseAsk = {
  * The orchestrator: one question put to a knowledge base, answered from
  * whichever of its brains hold the answer. Reads the brains asked for (all
  * four unless narrowed), shows the model the expertise index and the other
- * brains in full, lets it read the expertise pages it needs once, and
- * returns the answer with its page citations and the brains it drew on.
+ * brains in full, lets it search and read expertise pages over a few rounds,
+ * and returns the answer with the pages it read, the citations it can vouch
+ * for and the brains it drew on.
  */
 export async function askKnowledgeBase(
 	supabase: SupabaseClient,
@@ -28,11 +29,14 @@ export async function askKnowledgeBase(
 	const kinds = ask.kinds ?? everyKnowledgeKind;
 	const reading = await readKnowledgeBase(supabase, ask.knowledgeBase.id, kinds);
 	const system = `${orchestratorPrompt(ask.knowledgeBase.name, kinds)}\n\n# The knowledge base\n\n${renderKnowledgeBase(reading)}`;
-	const answerCall = await readThenAnswer(supabase, reading, {
+	const outcome = await readThenAnswer(supabase, reading, {
 		system,
 		messages: [{ role: 'user', content: ask.question }],
 		answerTool: orchestratorAnswerTool,
 		model: ask.model
 	});
-	return parseOrchestratedAnswer(answerCall?.input, kinds);
+	return parseOrchestratedAnswer(outcome.answerCall?.input, kinds, {
+		pagesRead: outcome.pagesRead,
+		indexedKeys: indexedPageKeys(reading)
+	});
 }

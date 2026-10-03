@@ -30,7 +30,7 @@ export async function runSourceRemoval(
 		record.contextDeletes
 	);
 	await recordRemovalEvents(supabase, source, rewrites, deletedSlugs, deletedContexts, record);
-	await forgetSourceEpisodes(supabase, source.brainId, source.filename);
+	await forgetSourceEpisodes(supabase, source.brainId, source);
 	await deleteBrainSource(supabase, source);
 }
 

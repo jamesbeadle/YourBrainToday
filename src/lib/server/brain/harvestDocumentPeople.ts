@@ -1,7 +1,6 @@
 import { peopleHarvestPrompt, peopleHarvestTool } from './peopleHarvestPrompt';
 import { parseHarvest } from '$lib/server/agent/parseHarvest';
-import { requestAnthropic } from '$lib/server/anthropic/requestAnthropic';
-import { toolUseFrom } from '$lib/server/anthropic/anthropicTypes';
+import { requestToolCall } from '$lib/server/anthropic/requestToolCall';
 import type { HumanNetwork } from '$lib/server/knowledge/humanWriter';
 
 const maxHarvestTokens = 6000;
@@ -12,15 +11,15 @@ export async function harvestDocumentPeople(
 	brainName: string,
 	knownPeople: string[]
 ): Promise<HumanNetwork> {
-	const response = await requestAnthropic({
-		system: peopleHarvestPrompt(brainName, knownPeople),
-		messages: [{ role: 'user', content: [instructionBlock(filename), contentBlock] }],
-		tools: [peopleHarvestTool],
-		forcedToolName: peopleHarvestTool.name,
-		maxTokens: maxHarvestTokens
-	});
-	const harvest = toolUseFrom(response, peopleHarvestTool.name);
-	if (harvest === undefined) throw new Error('The people harvest produced no result');
+	const harvest = await requestToolCall(
+		{
+			system: peopleHarvestPrompt(brainName, knownPeople),
+			messages: [{ role: 'user', content: [instructionBlock(filename), contentBlock] }],
+			tools: [peopleHarvestTool],
+			maxTokens: maxHarvestTokens
+		},
+		peopleHarvestTool.name
+	);
 	const { people, connections } = parseHarvest(harvest as Record<string, unknown>);
 	return { people, connections };
 }

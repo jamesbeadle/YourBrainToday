@@ -1,8 +1,7 @@
 import { processMapPrompt, processMapUpdateTool } from './processMapPrompt';
 import { allTasks, type WorkflowModel } from '$lib/data/workflowModel';
 import { parseWorkflowModel } from '$lib/server/agent/parseWorkflowModel';
-import { requestAnthropic } from '$lib/server/anthropic/requestAnthropic';
-import { toolUseFrom } from '$lib/server/anthropic/anthropicTypes';
+import { requestToolCall } from '$lib/server/anthropic/requestToolCall';
 
 const maxMapTokens = 12_000;
 
@@ -14,20 +13,15 @@ export async function updateProcessFromSource(
 	businessName: string,
 	currentMap: WorkflowModel
 ): Promise<ProcessMapUpdate> {
-	const response = await requestAnthropic({
-		system: processMapPrompt(businessName, currentMap),
-		messages: [{ role: 'user', content: [instructionBlock(filename), contentBlock] }],
-		tools: [processMapUpdateTool],
-		forcedToolName: processMapUpdateTool.name,
-		maxTokens: maxMapTokens
-	});
-	if (response.stop_reason === 'max_tokens') {
-		throw new Error('The map update ran out of room before finishing');
-	}
-	const update = toolUseFrom(response, processMapUpdateTool.name) as
-		| { map?: unknown; changeNote?: unknown }
-		| undefined;
-	if (update === undefined) throw new Error('The map update produced no result');
+	const update = (await requestToolCall(
+		{
+			system: processMapPrompt(businessName, currentMap),
+			messages: [{ role: 'user', content: [instructionBlock(filename), contentBlock] }],
+			tools: [processMapUpdateTool],
+			maxTokens: maxMapTokens
+		},
+		processMapUpdateTool.name
+	)) as { map?: unknown; changeNote?: unknown };
 	const map = parseWorkflowModel(update.map) ?? currentMap;
 	return {
 		map,

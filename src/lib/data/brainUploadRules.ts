@@ -20,7 +20,28 @@ const maxByteCountByKind: Record<BrainSourceKind, number> = {
 	plainText: 2 * megabyte
 };
 
-export const acceptedUploadExtensions = '.pdf,.png,.jpg,.jpeg,.gif,.webp,.docx,.txt,.md';
+const mimeTypesByExtension: Record<string, string> = {
+	pdf: 'application/pdf',
+	png: 'image/png',
+	jpg: 'image/jpeg',
+	jpeg: 'image/jpeg',
+	gif: 'image/gif',
+	webp: 'image/webp',
+	docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+	txt: 'text/plain',
+	md: 'text/markdown'
+};
+
+export const acceptedUploadExtensions = Object.keys(mimeTypesByExtension)
+	.map((extension) => `.${extension}`)
+	.join(',');
+
+/** Browsers often declare no type for markdown or Word files; the extension says what they are. */
+export function mimeTypeFor(filename: string, declaredMimeType: string): string {
+	if (sourceKindFor(declaredMimeType) !== null) return declaredMimeType;
+	const extension = filename.split('.').pop()?.toLowerCase() ?? '';
+	return mimeTypesByExtension[extension] ?? declaredMimeType;
+}
 
 export function sourceKindFor(mimeType: string): BrainSourceKind | null {
 	return acceptedMimeTypes[mimeType] ?? null;

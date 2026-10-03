@@ -24,7 +24,7 @@
 	</p>
 {:else}
 	<div class="flex flex-col gap-2 pl-4 text-chalk/75">
-		<MarkdownBody markdown={message.body} />
+		<MarkdownBody markdown={message.body} pageHrefFor={(slug) => `${pageBasePath}/${slug}`} />
 		{#if message.citedSlugs.length > 0}
 			<p class="flex flex-wrap gap-x-3 gap-y-1 text-xs">
 				<span class="text-chalk/35 select-none">grounded in</span>

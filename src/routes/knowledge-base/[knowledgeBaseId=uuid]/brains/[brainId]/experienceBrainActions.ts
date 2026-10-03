@@ -6,9 +6,7 @@ import { deleteKbBrain } from '$lib/server/knowledge/deleteKbBrain';
 import { getKbBrain } from '$lib/server/knowledge/getKbBrain';
 import { parseBrainItemForm } from '$lib/server/knowledge/parseBrainItemForm';
 import { updateKbBrain } from '$lib/server/knowledge/updateKbBrain';
-import { parseRetrievalConfig } from '$lib/data/knowledge/retrievalConfig';
 import { knowledgeBaseHref } from '$lib/data/knowledge/knowledgeBaseRoutes';
-import type { BrainType } from '$lib/data/knowledge/knowledgeTypes';
 import { requireUser } from '$lib/server/auth/requireUser';
 import type { Actions } from './$types';
 
@@ -23,17 +21,6 @@ export const experienceBrainActions: Actions = {
 		await requireBrainInKnowledgeBase(locals, params.knowledgeBaseId, params.brainId);
 		const formData = await request.formData();
 		await deleteBrainItem(locals.supabase, String(formData.get('itemId') ?? ''));
-	},
-	saveRetrieval: async ({ locals, params, request }) => {
-		await requireBrainInKnowledgeBase(locals, params.knowledgeBaseId, params.brainId);
-		const formData = await request.formData();
-		const retrievalConfig = parseRetrievalConfig(retrievalBrainTypeFrom(formData), {
-			pipeline: String(formData.get('pipeline') ?? ''),
-			topK: Number(formData.get('topK')),
-			traversalDepth: Number(formData.get('traversalDepth')),
-			recencyWeight: Number(formData.get('recencyWeight'))
-		});
-		await updateKbBrain(locals.supabase, params.brainId, { retrievalConfig });
 	},
 	bindDomain: async ({ locals, params, request }) => {
 		await requireBrainInKnowledgeBase(locals, params.knowledgeBaseId, params.brainId);
@@ -70,8 +57,4 @@ async function requireBrainInKnowledgeBase(
 	if (brain === null || brain.knowledgeBaseId !== knowledgeBaseId) {
 		error(404, 'That brain is not in this knowledge base');
 	}
-}
-
-function retrievalBrainTypeFrom(formData: FormData): BrainType {
-	return String(formData.get('brainType') ?? 'vector_store') as BrainType;
 }

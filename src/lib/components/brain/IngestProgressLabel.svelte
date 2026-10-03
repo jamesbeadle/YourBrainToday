@@ -1,6 +1,8 @@
 <script lang="ts">
-	import { formatElapsedSeconds, ingestStageAt } from './ingestStages';
+	import { formatElapsedSeconds } from './elapsedTime';
 	import { onMount } from 'svelte';
+
+	let { stage }: { stage: string } = $props();
 
 	const elapsedDisplayThresholdSeconds = 5;
 
@@ -15,5 +17,5 @@
 	});
 </script>
 
-{ingestStageAt(elapsedSeconds)}…{#if elapsedSeconds >= elapsedDisplayThresholdSeconds}
+{stage}…{#if elapsedSeconds >= elapsedDisplayThresholdSeconds}
 	· {formatElapsedSeconds(elapsedSeconds)}{/if}
