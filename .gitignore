@@ -19,3 +19,5 @@ _to_delete/
 Claude outputs/
 .claude/worktrees/
 .env*
+
+__pycache__/
