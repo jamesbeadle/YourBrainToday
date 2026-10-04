@@ -1,5 +1,6 @@
 import { readExpertisePages } from './readExpertisePages';
-import { queryFrom, searchKnowledgeTool, searchReading } from './searchKnowledgeTool';
+import { searchKnowledgeTool, searchReading } from './searchKnowledgeTool';
+import { queryFrom } from '$lib/server/search/queryFrom';
 import { readPagesTool } from '$lib/server/brain/modellerAnswerTools';
 import type { AnthropicMessage, AnthropicToolUseBlock } from '$lib/server/anthropic/anthropicTypes';
 import type { KnowledgeBaseReading } from './readKnowledgeBase';

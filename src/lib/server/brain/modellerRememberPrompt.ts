@@ -1,4 +1,4 @@
-import { buildingBlocksSection } from './modellingDoctrine';
+import { buildingBlocksSection, domainStatement } from './modellingDoctrine';
 import { rememberMethodSection, rememberReplySection, rememberSituationSection } from './rememberDoctrine';
 
 export function modellerRememberPrompt(domainName: string, domainGoal: string): string {
@@ -19,14 +19,4 @@ ${buildingBlocksSection}
 ${rememberMethodSection}
 
 ${rememberReplySection}`;
-}
-
-function domainStatement(domainName: string, domainGoal: string): string {
-	if (domainGoal === '') {
-		return `The owner named this brain "${domainName}" and declared no further goal — take the
-domain to be ${domainName}, modelled at the level of general concepts.`;
-	}
-	return `The owner named this brain "${domainName}" and declared its goal:
-
-> ${domainGoal}`;
 }

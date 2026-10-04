@@ -7,7 +7,7 @@ import { renderDomainModelIndex } from './getBrainPageIndex';
 import { searchPagesTool } from './searchPagesTool';
 import { mostReadingRounds } from '$lib/server/knowledge/reading/readingTypes';
 import { requestAnthropic } from '$lib/server/anthropic/requestAnthropic';
-import type { AnthropicMessage } from '$lib/server/anthropic/anthropicTypes';
+import { messagesFromTurns } from '$lib/server/anthropic/messagesFromTurns';
 import type {
 	BrainAnswer,
 	BrainContext,
@@ -49,13 +49,4 @@ export async function askModeller(
 		messages.push(await answerModellerTools(supabase, brainId, readingCalls));
 	}
 	return parseBrainAnswer(undefined);
-}
-
-function messagesFromTurns(turns: BrainConversationTurn[]): AnthropicMessage[] {
-	const firstUserIndex = turns.findIndex((turn) => turn.speaker === 'user');
-	if (firstUserIndex < 0) return [];
-	return turns.slice(firstUserIndex).map((turn) => ({
-		role: turn.speaker === 'user' ? 'user' : 'assistant',
-		content: turn.text
-	}));
 }

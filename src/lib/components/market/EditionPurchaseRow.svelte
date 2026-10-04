@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { formatBritishDate } from '$lib/data/britishDate';
 	import FormErrorNote from '$lib/components/site/FormErrorNote.svelte';
 	import SubmitButton from '$lib/components/site/SubmitButton.svelte';
 	import { FormTracker } from '$lib/client/formTracker.svelte';
@@ -19,13 +20,6 @@
 
 	const tracker = new FormTracker();
 
-	function formatPublishedDate(isoDate: string): string {
-		return new Date(isoDate).toLocaleDateString('en-GB', {
-			day: 'numeric',
-			month: 'short',
-			year: 'numeric'
-		});
-	}
 </script>
 
 <li class="flex flex-col gap-2 rounded-2xl border border-hairline bg-carriage p-4">
@@ -33,7 +27,7 @@
 		<div class="flex flex-col">
 			<span class="font-display text-sm text-chalk">v{edition.version} — {edition.name}</span>
 			<span class="text-xs text-chalk/50">
-				Frozen {formatPublishedDate(edition.publishedAt)}
+				Frozen {formatBritishDate(edition.publishedAt)}
 			</span>
 		</div>
 		{#if isOwned}

@@ -1,5 +1,7 @@
 import { createSceneLoop } from '../../stage/animationLoop';
 import { createStage, fitStageTo } from '../../stage/createStage';
+import { disposeExperience } from '../../stage/disposeExperience';
+import { createModelUpdater } from '../../stage/modelUpdater';
 import { assembleConstellationScene } from './constellationSceneAssembly';
 import { attachExperienceInput } from './experienceInput';
 import { createFocusDirector } from './focusDirector';
@@ -51,7 +53,6 @@ export function createConstellationExperience(
 	view.mounted.pulses.group.visible = isAnimated;
 	if (options.shouldCascadeInitialModel) growth.plan(bodySlugsOf(model));
 	const resizeObserver = fitStageTo(stage, container);
-	let knownModel = model;
 
 	function frame(deltaSeconds: number, timeSeconds: number): void {
 		director.update(deltaSeconds);
@@ -67,24 +68,13 @@ export function createConstellationExperience(
 
 	const loop = createSceneLoop(frame, options.onReady);
 
-	function updateModel(updatedModel: ConstellationModel): void {
-		if (updatedModel === knownModel) return;
-		const newcomers = newcomerSlugs(knownModel, updatedModel);
-		knownModel = updatedModel;
+	const updateModel = createModelUpdater(model, (updatedModel, previousModel) => {
+		const newcomers = newcomerSlugs(previousModel, updatedModel);
 		view.rebuild(updatedModel);
 		view.mounted.pulses.group.visible = isAnimated;
 		director.refresh(updatedModel);
 		growth.plan(newcomers);
-	}
-
-	function destroy(): void {
-		loop.pause();
-		detachPointer();
-		resizeObserver.disconnect();
-		controls.dispose();
-		view.dispose();
-		stage.dispose();
-	}
+	});
 
 	return {
 		updateModel,
@@ -93,6 +83,7 @@ export function createConstellationExperience(
 		resetView: () => director.focusContext(null),
 		pause: loop.pause,
 		resume: loop.resume,
-		destroy
+		destroy: () =>
+			disposeExperience({ loop, detachPointer, resizeObserver, controls, view, stage })
 	};
 }

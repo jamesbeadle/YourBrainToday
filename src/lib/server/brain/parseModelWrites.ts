@@ -1,4 +1,5 @@
 import { isDomainBlockKind } from '$lib/data/domainBlocks';
+import { slugify } from '$lib/data/slugify';
 import type { BrainContextWrite } from './saveBrainContextWrites';
 import type { BrainPageWrite } from './saveBrainPageWrites';
 
@@ -58,13 +59,6 @@ export function parsePageWrite(candidate: unknown): BrainPageWrite[] {
 function asBlockKind(candidate: string): BrainPageWrite['kind'] {
 	if (isDomainBlockKind(candidate)) return candidate;
 	return 'entity';
-}
-
-function slugify(text: string): string {
-	return text
-		.toLowerCase()
-		.replace(/[^a-z0-9]+/g, '-')
-		.replace(/^-|-$/g, '');
 }
 
 export function asText(candidate: unknown): string {

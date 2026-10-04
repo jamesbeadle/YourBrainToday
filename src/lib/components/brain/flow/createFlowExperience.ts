@@ -1,5 +1,7 @@
 import { createSceneLoop } from '../../stage/animationLoop';
 import { createStage, fitStageTo } from '../../stage/createStage';
+import { disposeExperience } from '../../stage/disposeExperience';
+import { createModelUpdater } from '../../stage/modelUpdater';
 import { createOrbitRig, prefersReducedMotion } from '../constellation/orbitRig';
 import { createFlowDirector } from './flowDirector';
 import { attachFlowInput } from './flowInput';
@@ -41,7 +43,6 @@ export function createFlowExperience(
 		director
 	});
 	const resizeObserver = fitStageTo(stage, container);
-	let knownModel = model;
 
 	function frame(deltaSeconds: number, timeSeconds: number): void {
 		director.update(deltaSeconds);
@@ -55,21 +56,10 @@ export function createFlowExperience(
 
 	const loop = createSceneLoop(frame, options.onReady);
 
-	function updateModel(updatedModel: FlowModel): void {
-		if (updatedModel === knownModel) return;
-		knownModel = updatedModel;
+	const updateModel = createModelUpdater(model, (updatedModel) => {
 		view.rebuild(updatedModel);
 		director.refresh(updatedModel);
-	}
-
-	function destroy(): void {
-		loop.pause();
-		detachPointer();
-		resizeObserver.disconnect();
-		controls.dispose();
-		view.dispose();
-		stage.dispose();
-	}
+	});
 
 	return {
 		updateModel,
@@ -78,6 +68,7 @@ export function createFlowExperience(
 		resetView: () => director.focusNode(null),
 		pause: loop.pause,
 		resume: loop.resume,
-		destroy
+		destroy: () =>
+			disposeExperience({ loop, detachPointer, resizeObserver, controls, view, stage })
 	};
 }

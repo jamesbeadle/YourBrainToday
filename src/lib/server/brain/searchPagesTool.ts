@@ -1,4 +1,5 @@
 import { domainBlockLabels } from '$lib/data/domainBlocks';
+import { queryFrom } from '$lib/server/search/queryFrom';
 import { searchBrainPages, type BrainPageHit } from '$lib/server/search/searchBrainPages';
 import type { AnthropicTool, AnthropicToolUseBlock } from '$lib/server/anthropic/anthropicTypes';
 import type { SupabaseClient } from '@supabase/supabase-js';
@@ -33,10 +34,4 @@ export function renderPageHits(hits: BrainPageHit[]): string {
 function renderPageHit(hit: BrainPageHit): string {
 	const kindLabel = domainBlockLabels[hit.kind].singular;
 	return `- ${hit.slug} [${kindLabel}] — ${hit.title}: ${hit.snippet}`;
-}
-
-function queryFrom(input: unknown): string {
-	if (typeof input !== 'object' || input === null) return '';
-	const candidate = (input as { query?: unknown }).query;
-	return typeof candidate === 'string' ? candidate : '';
 }

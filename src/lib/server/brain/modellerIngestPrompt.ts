@@ -1,4 +1,4 @@
-import { buildingBlocksSection, strategicShapeSection } from './modellingDoctrine';
+import { buildingBlocksSection, domainStatement, strategicShapeSection } from './modellingDoctrine';
 
 export function modellerIngestPrompt(domainName: string, domainGoal: string): string {
 	return `You are The Modeller for Your Brain Today (YBT).
@@ -79,14 +79,4 @@ single log line describing what you did.
 A source that teaches the model nothing about this domain is a valid outcome: return no
 context or page writes, summarise what the document is, and say in the log line why the
 model is unchanged.`;
-}
-
-function domainStatement(domainName: string, domainGoal: string): string {
-	if (domainGoal === '') {
-		return `The owner named this brain "${domainName}" and declared no further goal — take the
-domain to be ${domainName}, modelled at the level of general concepts.`;
-	}
-	return `The owner named this brain "${domainName}" and declared its goal:
-
-> ${domainGoal}`;
 }

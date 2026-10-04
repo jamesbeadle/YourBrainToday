@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-04T17:50:17+00:00",
+  "generatedAt": "2026-10-04T19:52:03+00:00",
   "kitVersion": "1.14.0",
   "score": {
-    "overall": 76.9,
+    "overall": 78.9,
     "groups": [
       {
         "group": "Standard baseline checks",
-        "score": 91.0,
-        "weight": 52
+        "score": 92.3,
+        "weight": 60
       },
       {
         "group": "Design pattern file count",
@@ -16,7 +16,7 @@
       },
       {
         "group": "Prose",
-        "score": 76.4,
+        "score": 76.7,
         "weight": 20
       },
       {
@@ -39,9 +39,9 @@
         "zeroAt": 0.5,
         "unit": "files",
         "isMeasured": true,
-        "offenders": 2,
-        "measuredAgainst": 1124,
-        "score": 99.6
+        "offenders": 1,
+        "measuredAgainst": 1165,
+        "score": 99.8
       },
       {
         "key": "worstFile",
@@ -51,9 +51,9 @@
         "zeroAt": 9,
         "unit": "",
         "isMeasured": true,
-        "offenders": 0.09,
+        "offenders": 0.06,
         "measuredAgainst": 1,
-        "score": 99.0
+        "score": 99.3
       },
       {
         "key": "functionsOverLimit",
@@ -64,8 +64,8 @@
         "unit": "functions",
         "isMeasured": true,
         "offenders": 60,
-        "measuredAgainst": 1748,
-        "score": 86.3
+        "measuredAgainst": 1775,
+        "score": 86.5
       },
       {
         "key": "elseBlocks",
@@ -76,7 +76,7 @@
         "unit": "branches",
         "isMeasured": true,
         "offenders": 1,
-        "measuredAgainst": 1888,
+        "measuredAgainst": 1911,
         "score": 99.9
       },
       {
@@ -86,9 +86,10 @@
         "weight": 8,
         "zeroAt": 20,
         "unit": "",
-        "isMeasured": false,
-        "offenders": null,
-        "score": null
+        "isMeasured": true,
+        "offenders": 0.25,
+        "measuredAgainst": 1,
+        "score": 98.8
       },
       {
         "key": "comments",
@@ -98,9 +99,9 @@
         "zeroAt": 50,
         "unit": "thousand lines",
         "isMeasured": true,
-        "offenders": 264,
-        "measuredAgainst": 46.45,
-        "score": 88.6
+        "offenders": 263,
+        "measuredAgainst": 47.45,
+        "score": 88.9
       },
       {
         "key": "magicValues",
@@ -111,8 +112,8 @@
         "unit": "thousand lines",
         "isMeasured": true,
         "offenders": 36,
-        "measuredAgainst": 46.45,
-        "score": 96.1
+        "measuredAgainst": 47.45,
+        "score": 96.2
       },
       {
         "key": "orphans",
@@ -123,8 +124,8 @@
         "unit": "components and functions",
         "isMeasured": true,
         "offenders": 32,
-        "measuredAgainst": 1995,
-        "score": 84.0
+        "measuredAgainst": 2025,
+        "score": 84.2
       },
       {
         "key": "memberChains",
@@ -134,9 +135,9 @@
         "zeroAt": 30,
         "unit": "thousand lines",
         "isMeasured": true,
-        "offenders": 443,
-        "measuredAgainst": 46.45,
-        "score": 68.2
+        "offenders": 449,
+        "measuredAgainst": 47.45,
+        "score": 68.5
       },
       {
         "key": "deepIndentation",
@@ -146,9 +147,9 @@
         "zeroAt": 30,
         "unit": "thousand lines",
         "isMeasured": true,
-        "offenders": 304,
-        "measuredAgainst": 46.45,
-        "score": 78.2
+        "offenders": 287,
+        "measuredAgainst": 47.45,
+        "score": 79.8
       },
       {
         "key": "functionNames",
@@ -159,7 +160,7 @@
         "unit": "functions",
         "isMeasured": true,
         "offenders": 4,
-        "measuredAgainst": 1748,
+        "measuredAgainst": 1775,
         "score": 97.7
       },
       {
@@ -194,8 +195,8 @@
         "unit": "branches",
         "isMeasured": true,
         "offenders": 50,
-        "measuredAgainst": 1888,
-        "score": 89.4
+        "measuredAgainst": 1911,
+        "score": 89.5
       },
       {
         "key": "literalComparisons",
@@ -206,8 +207,8 @@
         "unit": "branches",
         "isMeasured": true,
         "offenders": 278,
-        "measuredAgainst": 1888,
-        "score": 41.1
+        "measuredAgainst": 1911,
+        "score": 41.8
       },
       {
         "key": "gluedAccessors",
@@ -218,8 +219,8 @@
         "unit": "functions",
         "isMeasured": true,
         "offenders": 10,
-        "measuredAgainst": 1748,
-        "score": 94.3
+        "measuredAgainst": 1775,
+        "score": 94.4
       },
       {
         "key": "handRolledWidgets",
@@ -249,18 +250,18 @@
   "summaries": {
     "fileLength": {
       "limit": 100,
-      "filesOverLimit": 2,
-      "totalFiles": 1124,
-      "totalLines": 46454,
-      "worstFileLines": 109,
-      "worstFileTimesOverLimit": 0.09
+      "filesOverLimit": 1,
+      "totalFiles": 1165,
+      "totalLines": 47446,
+      "worstFileLines": 106,
+      "worstFileTimesOverLimit": 0.06
     },
     "functionShape": {
       "limit": 30,
       "functionsOverLimit": 60,
-      "totalFunctions": 1748,
+      "totalFunctions": 1775,
       "elseBlocks": 1,
-      "ifBlocks": 1888,
+      "ifBlocks": 1911,
       "measurementIsHeuristic": true
     },
     "functionNames": {
@@ -273,15 +274,18 @@
       "measurementIsHeuristic": true
     },
     "duplication": {
-      "skipped": "jscpd is not installed (npm install -g jscpd)"
+      "clones": 13,
+      "duplicatedLines": 111,
+      "totalLines": 44697,
+      "duplicatedPercentage": 0.25
     },
     "naming": {
-      "bannedAbbreviationHits": 3,
+      "bannedAbbreviationHits": 6,
       "unprefixedBooleans": 2
     },
     "comments": {
-      "explanatoryCommentLines": 264,
-      "filesWithComments": 103,
+      "explanatoryCommentLines": 263,
+      "filesWithComments": 102,
       "taskMarkers": 0
     },
     "magicValues": {
@@ -290,8 +294,8 @@
       "repeatedStringLiterals": 30
     },
     "prose": {
-      "longMemberChainLines": 443,
-      "deeplyIndentedLines": 304,
+      "longMemberChainLines": 449,
+      "deeplyIndentedLines": 287,
       "overlongLines": 77,
       "measurementIsHeuristic": true
     },
@@ -302,10 +306,10 @@
     },
     "orphans": {
       "orphanFunctions": 23,
-      "functionsExamined": 1748
+      "functionsExamined": 1775
     },
     "designPatterns": {
-      "roleFamilies": 64,
+      "roleFamilies": 66,
       "predictedFiles": 77,
       "predictedFilesMissing": 13,
       "entities": 0,
@@ -314,7 +318,7 @@
     },
     "inventory": {
       "pages": 35,
-      "components": 247,
+      "components": 250,
       "orphanComponents": 9,
       "averagePageLines": 37
     },
@@ -329,16 +333,16 @@
       "looserLimits": 0
     },
     "fileAreas": {
-      "totalFiles": 1256,
-      "frontend": 510,
-      "backend": 444,
-      "shared": 92,
+      "totalFiles": 1394,
+      "frontend": 516,
+      "backend": 468,
+      "tooling": 104,
+      "shared": 97,
       "api": 64,
-      "database": 58,
-      "tests": 28,
-      "docs": 27,
-      "tooling": 20,
-      "infrastructure": 13
+      "database": 59,
+      "docs": 38,
+      "tests": 34,
+      "infrastructure": 14
     }
   },
   "details": {
@@ -346,17 +350,13 @@
       "name": "fileLength",
       "summary": {
         "limit": 100,
-        "filesOverLimit": 2,
-        "totalFiles": 1124,
-        "totalLines": 46454,
-        "worstFileLines": 109,
-        "worstFileTimesOverLimit": 0.09
+        "filesOverLimit": 1,
+        "totalFiles": 1165,
+        "totalLines": 47446,
+        "worstFileLines": 106,
+        "worstFileTimesOverLimit": 0.06
       },
       "offenders": [
-        {
-          "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-          "lines": 109
-        },
         {
           "file": "src/lib/data/brainTypes.ts",
           "lines": 106
@@ -368,9 +368,9 @@
       "summary": {
         "limit": 30,
         "functionsOverLimit": 60,
-        "totalFunctions": 1748,
+        "totalFunctions": 1775,
         "elseBlocks": 1,
-        "ifBlocks": 1888,
+        "ifBlocks": 1911,
         "measurementIsHeuristic": true
       },
       "offenders": [
@@ -417,6 +417,12 @@
           "line": 31
         },
         {
+          "file": "src/lib/server/brain/modellerPrunePrompt.ts",
+          "lines": 57,
+          "name": "modellerPrunePrompt",
+          "line": 1
+        },
+        {
           "file": "src/lib/components/brain/constellation/neuronBody.ts",
           "lines": 55,
           "name": "createNeuronBody",
@@ -433,12 +439,6 @@
           "lines": 55,
           "name": "createHiveSwarmOrbit",
           "line": 31
-        },
-        {
-          "file": "src/lib/server/brain/modellerPrunePrompt.ts",
-          "lines": 54,
-          "name": "modellerPrunePrompt",
-          "line": 1
         },
         {
           "file": "src/lib/components/brain/constellation/firingPulses.ts",
@@ -495,12 +495,6 @@
           "line": 23
         },
         {
-          "file": "src/routes/api/chatbots/[chatbotId=uuid]/ask/+server.ts",
-          "lines": 49,
-          "name": "POST",
-          "line": 27
-        },
-        {
           "file": "src/routes/api/v1/brains/[brainId]/ask/+server.ts",
           "lines": 49,
           "name": "POST",
@@ -531,6 +525,12 @@
           "line": 15
         },
         {
+          "file": "src/routes/api/chatbots/[chatbotId=uuid]/ask/+server.ts",
+          "lines": 46,
+          "name": "POST",
+          "line": 26
+        },
+        {
           "file": "src/lib/components/brain/constellation/synapseWeb.ts",
           "lines": 45,
           "name": "createSynapseWeb",
@@ -546,7 +546,7 @@
           "file": "src/routes/api/brain/ask/+server.ts",
           "lines": 42,
           "name": "POST",
-          "line": 24
+          "line": 22
         },
         {
           "file": "src/lib/components/brain/regions/tissueGlow.ts",
@@ -591,12 +591,6 @@
           "line": 58
         },
         {
-          "file": "src/lib/server/brain/askModeller.ts",
-          "lines": 38,
-          "name": "askModeller",
-          "line": 18
-        },
-        {
           "file": "src/lib/components/brain/constellation/constellationPointer.ts",
           "lines": 37,
           "name": "attachConstellationPointer",
@@ -627,16 +621,16 @@
           "line": 7
         },
         {
+          "file": "src/lib/server/brain/runModelPrune.ts",
+          "lines": 36,
+          "name": "runModelPrune",
+          "line": 23
+        },
+        {
           "file": "src/lib/components/brain/constellation/materialBank.ts",
           "lines": 35,
           "name": "createMaterialBank",
           "line": 17
-        },
-        {
-          "file": "src/lib/server/brain/runModelPrune.ts",
-          "lines": 35,
-          "name": "runModelPrune",
-          "line": 22
         },
         {
           "file": "src/lib/server/email/chatbotInviteEmail.ts",
@@ -648,7 +642,7 @@
           "file": "src/lib/server/knowledge/interviewPrompt.ts",
           "lines": 35,
           "name": "interviewSystemPrompt",
-          "line": 25
+          "line": 7
         },
         {
           "file": "src/lib/components/brain/regions/regionHalo.ts",
@@ -673,6 +667,12 @@
           "lines": 33,
           "name": "fibreGeometryFrom",
           "line": 10
+        },
+        {
+          "file": "src/lib/components/face/cubePlacements.ts",
+          "lines": 33,
+          "name": "collectCubePlacements",
+          "line": 60
         }
       ]
     },
@@ -725,7 +725,7 @@
         },
         {
           "file": "src/lib/server/brain/getBrainPageLinks.ts",
-          "line": 6,
+          "line": 5,
           "name": "getBrainPageLinks"
         },
         {
@@ -768,11 +768,23 @@
     "naming": {
       "name": "naming",
       "summary": {
-        "bannedAbbreviationHits": 3,
+        "bannedAbbreviationHits": 6,
         "unprefixedBooleans": 2
       },
       "offenders": {
         "abbreviations": [
+          {
+            "file": "src/lib/server/brain/askModeller.test.ts",
+            "line": 7
+          },
+          {
+            "file": "src/lib/server/brain/askModeller.test.ts",
+            "line": 8
+          },
+          {
+            "file": "src/lib/server/brain/askModeller.test.ts",
+            "line": 9
+          },
           {
             "file": "src/lib/server/knowledge/reading/readingExchange.test.ts",
             "line": 8
@@ -803,8 +815,8 @@
     "comments": {
       "name": "comments",
       "summary": {
-        "explanatoryCommentLines": 264,
-        "filesWithComments": 103,
+        "explanatoryCommentLines": 263,
+        "filesWithComments": 102,
         "taskMarkers": 0
       },
       "offenders": []
@@ -848,11 +860,11 @@
         "repeatedLiterals": [
           {
             "literal": "button",
-            "occurrences": 77
+            "occurrences": 76
           },
           {
             "literal": "flex flex-col gap-2",
-            "occurrences": 48
+            "occurrences": 49
           },
           {
             "literal": "flex flex-col gap-1",
@@ -864,7 +876,7 @@
           },
           {
             "literal": "flex flex-col gap-3",
-            "occurrences": 33
+            "occurrences": 32
           },
           {
             "literal": "text-xs text-chalk/50",
@@ -947,6 +959,10 @@
             "occurrences": 10
           },
           {
+            "literal": "text-xs text-chalk/40",
+            "occurrences": 9
+          },
+          {
             "literal": "description",
             "occurrences": 9
           },
@@ -959,10 +975,6 @@
             "occurrences": 8
           },
           {
-            "literal": "text-xs text-chalk/40",
-            "occurrences": 8
-          },
-          {
             "literal": "question",
             "occurrences": 7
           }
@@ -972,8 +984,8 @@
     "prose": {
       "name": "prose",
       "summary": {
-        "longMemberChainLines": 443,
-        "deeplyIndentedLines": 304,
+        "longMemberChainLines": 449,
+        "deeplyIndentedLines": 287,
         "overlongLines": 77,
         "measurementIsHeuristic": true
       },
@@ -1057,31 +1069,31 @@
           },
           {
             "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
-            "line": 39
+            "line": 41
           },
           {
             "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
-            "line": 40
+            "line": 42
           },
           {
             "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
-            "line": 47
+            "line": 49
           },
           {
             "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
-            "line": 51
+            "line": 53
           },
           {
             "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
-            "line": 61
+            "line": 62
           },
           {
             "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
-            "line": 64
+            "line": 65
           },
           {
             "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
-            "line": 75
+            "line": 74
           },
           {
             "file": "src/lib/components/brain/constellation/fibreGeometry.ts",
@@ -1149,15 +1161,15 @@
           },
           {
             "file": "src/lib/components/brain/flow/createFlowExperience.ts",
-            "line": 39
-          },
-          {
-            "file": "src/lib/components/brain/flow/createFlowExperience.ts",
-            "line": 49
+            "line": 41
           },
           {
             "file": "src/lib/components/brain/flow/createFlowExperience.ts",
             "line": 50
+          },
+          {
+            "file": "src/lib/components/brain/flow/createFlowExperience.ts",
+            "line": 51
           },
           {
             "file": "src/lib/components/brain/flow/flowDirector.ts",
@@ -1222,88 +1234,20 @@
             "line": 31
           },
           {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 65
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 71
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 74
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 75
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 76
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 77
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 78
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 79
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 80
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 85
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 88
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 89
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 90
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 91
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 92
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 93
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 94
+            "file": "src/lib/components/account/PurchaseHistoryTable.svelte",
+            "line": 21
           },
           {
             "file": "src/lib/components/account/PurchaseHistoryTable.svelte",
-            "line": 27
+            "line": 22
           },
           {
             "file": "src/lib/components/account/PurchaseHistoryTable.svelte",
-            "line": 28
+            "line": 25
           },
           {
             "file": "src/lib/components/account/PurchaseHistoryTable.svelte",
-            "line": 31
-          },
-          {
-            "file": "src/lib/components/account/PurchaseHistoryTable.svelte",
-            "line": 32
+            "line": 26
           },
           {
             "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
@@ -1380,6 +1324,74 @@
           {
             "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
             "line": 48
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 49
+          },
+          {
+            "file": "src/lib/components/brain/BrainActivityLog.svelte",
+            "line": 45
+          },
+          {
+            "file": "src/lib/components/brain/BrainActivityLog.svelte",
+            "line": 46
+          },
+          {
+            "file": "src/lib/components/brain/BrainActivityLog.svelte",
+            "line": 47
+          },
+          {
+            "file": "src/lib/components/brain/BrainActivityLog.svelte",
+            "line": 48
+          },
+          {
+            "file": "src/lib/components/brain/BrainActivityLog.svelte",
+            "line": 49
+          },
+          {
+            "file": "src/lib/components/brain/BrainActivityLog.svelte",
+            "line": 50
+          },
+          {
+            "file": "src/lib/components/brain/BrainActivityLog.svelte",
+            "line": 52
+          },
+          {
+            "file": "src/lib/components/brain/ConstellationLegend.svelte",
+            "line": 25
+          },
+          {
+            "file": "src/lib/components/brain/ConstellationLegend.svelte",
+            "line": 26
+          },
+          {
+            "file": "src/lib/components/brain/DomainModelIndex.svelte",
+            "line": 49
+          },
+          {
+            "file": "src/lib/components/brain/DomainModelIndex.svelte",
+            "line": 50
+          },
+          {
+            "file": "src/lib/components/brain/DomainModelIndex.svelte",
+            "line": 51
+          },
+          {
+            "file": "src/lib/components/brain/DomainModelIndex.svelte",
+            "line": 52
+          },
+          {
+            "file": "src/lib/components/brain/DomainModelIndex.svelte",
+            "line": 53
+          },
+          {
+            "file": "src/lib/components/brain/DomainModelIndex.svelte",
+            "line": 56
+          },
+          {
+            "file": "src/lib/components/brain/DomainModelIndex.svelte",
+            "line": 72
           }
         ],
         "overlongLines": [
@@ -1597,7 +1609,7 @@
         "tangled": [
           {
             "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
-            "line": 52
+            "line": 54
           },
           {
             "file": "src/lib/components/brain/constellation/focusChoreography.ts",
@@ -1693,7 +1705,7 @@
           },
           {
             "file": "src/lib/server/brain/readPagesExchange.ts",
-            "line": 45
+            "line": 46
           },
           {
             "file": "src/lib/server/brain/sentData/sentDataRules.ts",
@@ -1863,15 +1875,11 @@
           },
           {
             "file": "src/lib/components/brain/readSourceStages.ts",
-            "line": 58
+            "line": 59
           },
           {
             "file": "src/lib/components/brain/readSourceStages.ts",
-            "line": 69
-          },
-          {
-            "file": "src/lib/components/brain/readSourceStages.ts",
-            "line": 76
+            "line": 70
           },
           {
             "file": "src/lib/components/brain/readSourceStages.ts",
@@ -1879,7 +1887,11 @@
           },
           {
             "file": "src/lib/components/brain/readSourceStages.ts",
-            "line": 83
+            "line": 78
+          },
+          {
+            "file": "src/lib/components/brain/readSourceStages.ts",
+            "line": 84
           },
           {
             "file": "src/lib/components/brain/removeSource.ts",
@@ -1907,11 +1919,11 @@
           },
           {
             "file": "src/lib/components/brain/uploadSourceFile.ts",
-            "line": 20
+            "line": 21
           },
           {
             "file": "src/lib/components/brain/uploadSourceFile.ts",
-            "line": 42
+            "line": 43
           },
           {
             "file": "src/lib/components/chatbots/chatbotAsk.ts",
@@ -1931,7 +1943,7 @@
           },
           {
             "file": "src/lib/components/knowledge/interviewRequest.ts",
-            "line": 44
+            "line": 46
           },
           {
             "file": "src/lib/components/knowledge/kb3d/kbGalaxyInput.ts",
@@ -2004,7 +2016,7 @@
       "name": "orphans",
       "summary": {
         "orphanFunctions": 23,
-        "functionsExamined": 1748
+        "functionsExamined": 1775
       },
       "offenders": [
         {
@@ -2064,12 +2076,12 @@
         },
         {
           "file": "src/lib/server/brain/spendForBrainWork.ts",
-          "line": 15,
+          "line": 10,
           "name": "spendForBrainQuestion"
         },
         {
           "file": "src/lib/server/brain/spendForBrainWork.ts",
-          "line": 38,
+          "line": 25,
           "name": "refundForBrainQuestion"
         },
         {
@@ -2127,7 +2139,7 @@
     "designPatterns": {
       "name": "designPatterns",
       "summary": {
-        "roleFamilies": 64,
+        "roleFamilies": 66,
         "predictedFiles": 77,
         "predictedFilesMissing": 13,
         "entities": 0,
@@ -2149,7 +2161,8 @@
           "brains": 5,
           "button": 9,
           "card": 11,
-          "chatbot": 8,
+          "chat": 5,
+          "chatbot": 10,
           "client": 5,
           "constellation": 4,
           "context": 8,
@@ -2158,45 +2171,46 @@
           "director": 4,
           "editor": 16,
           "email": 7,
-          "experience": 7,
+          "experience": 8,
           "field": 4,
-          "form": 14,
+          "form": 15,
           "header": 5,
           "index": 9,
           "input": 4,
           "layout": 5,
           "line": 7,
-          "links": 4,
+          "links": 5,
           "list": 15,
-          "map": 4,
+          "map": 5,
           "maps": 4,
           "model": 14,
           "note": 4,
           "notice": 4,
           "page": 4,
-          "pages": 4,
+          "pages": 5,
           "palette": 5,
-          "panel": 38,
+          "panel": 37,
           "password": 4,
           "people": 4,
-          "prompt": 13,
-          "question": 6,
+          "prompt": 14,
+          "question": 7,
           "reading": 6,
-          "record": 4,
-          "request": 7,
+          "record": 5,
+          "request": 8,
           "row": 14,
           "rules": 4,
           "rulings": 4,
-          "section": 18,
+          "section": 19,
           "sections": 6,
           "source": 11,
           "stage": 6,
           "state": 4,
           "svelte": 14,
           "table": 4,
-          "test": 27,
-          "tool": 8,
-          "tools": 6,
+          "test": 33,
+          "tool": 10,
+          "tools": 7,
+          "turn": 4,
           "types": 24,
           "usage": 4,
           "view": 10
@@ -2256,7 +2270,7 @@
       "name": "inventory",
       "summary": {
         "pages": 35,
-        "components": 247,
+        "components": 250,
         "orphanComponents": 9,
         "averagePageLines": 37
       },
@@ -2516,6 +2530,10 @@
             "reusedBy": 3
           },
           {
+            "component": "src/lib/components/brain/PruneKnowledgeButton.svelte",
+            "reusedBy": 3
+          },
+          {
             "component": "src/lib/components/knowledge/explorer/ExplorerFrame.svelte",
             "reusedBy": 3
           },
@@ -2548,7 +2566,7 @@
             "reusedBy": 2
           },
           {
-            "component": "src/lib/components/brain/PruneKnowledgeButton.svelte",
+            "component": "src/lib/components/brain/PruneKnowledgeButtons.svelte",
             "reusedBy": 2
           },
           {
@@ -2732,6 +2750,10 @@
             "reusedBy": 1
           },
           {
+            "component": "src/lib/components/account/PayoutDetailsForm.svelte",
+            "reusedBy": 1
+          },
+          {
             "component": "src/lib/components/account/PurchaseHistoryTable.svelte",
             "reusedBy": 1
           },
@@ -2840,11 +2862,7 @@
             "reusedBy": 1
           },
           {
-            "component": "src/lib/components/brain/SourceLinkPanel.svelte",
-            "reusedBy": 1
-          },
-          {
-            "component": "src/lib/components/brain/SourceNotePanel.svelte",
+            "component": "src/lib/components/brain/SourceCapturePanel.svelte",
             "reusedBy": 1
           },
           {
@@ -3125,6 +3143,14 @@
           },
           {
             "component": "src/lib/components/knowledge/HowBrainIsRead.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/InterviewInvitation.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/InterviewProgress.svelte",
             "reusedBy": 1
           },
           {
@@ -3478,69 +3504,69 @@
     "fileAreas": {
       "name": "fileAreas",
       "summary": {
-        "totalFiles": 1256,
-        "frontend": 510,
-        "backend": 444,
-        "shared": 92,
+        "totalFiles": 1394,
+        "frontend": 516,
+        "backend": 468,
+        "tooling": 104,
+        "shared": 97,
         "api": 64,
-        "database": 58,
-        "tests": 28,
-        "docs": 27,
-        "tooling": 20,
-        "infrastructure": 13
+        "database": 59,
+        "docs": 38,
+        "tests": 34,
+        "infrastructure": 14
       },
       "offenders": [
         {
           "area": "frontend",
-          "files": 510,
-          "sourceFiles": 497,
-          "sourceLines": 23410
+          "files": 516,
+          "sourceFiles": 503,
+          "sourceLines": 23446
         },
         {
           "area": "backend",
-          "files": 444,
-          "sourceFiles": 444,
-          "sourceLines": 15644
+          "files": 468,
+          "sourceFiles": 468,
+          "sourceLines": 16319
+        },
+        {
+          "area": "tooling",
+          "files": 104,
+          "sourceFiles": 0,
+          "sourceLines": 0
         },
         {
           "area": "shared",
-          "files": 92,
-          "sourceFiles": 91,
-          "sourceLines": 3547
+          "files": 97,
+          "sourceFiles": 96,
+          "sourceLines": 3644
         },
         {
           "area": "api",
           "files": 64,
           "sourceFiles": 64,
-          "sourceLines": 2573
+          "sourceLines": 2525
         },
         {
           "area": "database",
-          "files": 58,
+          "files": 59,
+          "sourceFiles": 0,
+          "sourceLines": 0
+        },
+        {
+          "area": "docs",
+          "files": 38,
           "sourceFiles": 0,
           "sourceLines": 0
         },
         {
           "area": "tests",
-          "files": 28,
-          "sourceFiles": 28,
-          "sourceLines": 1280
-        },
-        {
-          "area": "docs",
-          "files": 27,
-          "sourceFiles": 0,
-          "sourceLines": 0
-        },
-        {
-          "area": "tooling",
-          "files": 20,
-          "sourceFiles": 0,
-          "sourceLines": 0
+          "files": 34,
+          "sourceFiles": 34,
+          "sourceLines": 1512
         },
         {
           "area": "infrastructure",
-          "files": 13,
+          "files": 14,
           "sourceFiles": 0,
           "sourceLines": 0
         }
@@ -3686,9 +3712,13 @@
           {
             "file": "src/routes/api/brain/ask/+server.ts",
             "tables": [
+              "brainchangeproposal",
+              "braincontext",
               "brainconversation",
               "brainevent",
-              "brainmessage"
+              "brainmessage",
+              "brainpage",
+              "brainpagerevision"
             ]
           },
           {
@@ -3774,6 +3804,11 @@
           {
             "file": "src/routes/api/chatbots/[chatbotId=uuid]/ask/+server.ts",
             "tables": [
+              "brainchangeproposal",
+              "braincontext",
+              "brainevent",
+              "brainpage",
+              "brainpagerevision",
               "chatbotconversation",
               "chatbotknowledgegap",
               "chatbotmessage"
@@ -4001,9 +4036,73 @@
     "duplication": {
       "name": "duplication",
       "summary": {
-        "skipped": "jscpd is not installed (npm install -g jscpd)"
+        "clones": 13,
+        "duplicatedLines": 111,
+        "totalLines": 44697,
+        "duplicatedPercentage": 0.25
       },
-      "offenders": []
+      "offenders": [
+        {
+          "file": "src/lib/components/brain/flow/createFlowExperience.ts",
+          "duplicatedLineInstances": 15
+        },
+        {
+          "file": "src/lib/components/brain/regions/createRegionExperience.ts",
+          "duplicatedLineInstances": 15
+        },
+        {
+          "file": "src/lib/components/knowledge/editors/HybridPackEditor.svelte:typescript",
+          "duplicatedLineInstances": 15
+        },
+        {
+          "file": "src/lib/components/knowledge/editors/SchemaEditor.svelte:typescript",
+          "duplicatedLineInstances": 15
+        },
+        {
+          "file": "src/lib/components/brain/constellation/constellationPicking.ts",
+          "duplicatedLineInstances": 14
+        },
+        {
+          "file": "src/lib/components/brain/flow/flowPicker.ts",
+          "duplicatedLineInstances": 13
+        },
+        {
+          "file": "src/lib/components/brain/regions/regionPicker.ts",
+          "duplicatedLineInstances": 13
+        },
+        {
+          "file": "src/routes/chatbots/[chatbotId=uuid]/manage/memberActions.ts",
+          "duplicatedLineInstances": 12
+        },
+        {
+          "file": "src/lib/components/brain/constellation/constellationInteractions.ts",
+          "duplicatedLineInstances": 11
+        },
+        {
+          "file": "src/lib/components/brain/flow/flowInput.ts",
+          "duplicatedLineInstances": 11
+        },
+        {
+          "file": "src/lib/components/chatbots/AllowancesForm.svelte:typescript",
+          "duplicatedLineInstances": 10
+        },
+        {
+          "file": "src/lib/components/chatbots/TopUpForm.svelte:typescript",
+          "duplicatedLineInstances": 10
+        },
+        {
+          "file": "src/routes/knowledge-base/[knowledgeBaseId=uuid]/brains/[brainId]/items/[itemId]/+page.server.ts",
+          "duplicatedLineInstances": 10
+        },
+        {
+          "file": "src/routes/knowledge-base/[knowledgeBaseId=uuid]/brains/[brainId]/pages/[slug]/+page.server.ts",
+          "duplicatedLineInstances": 10
+        },
+        {
+          "file": "src/routes/knowledge-base/[knowledgeBaseId=uuid]/brains/[brainId]/expertiseBrainActions.ts",
+          "duplicatedLineInstances": 9
+        }
+      ]
     }
   }
 }

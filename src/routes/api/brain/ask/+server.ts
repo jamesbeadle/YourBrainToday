@@ -6,7 +6,7 @@ import { recordConversationTurn } from '$lib/server/brain/recordConversationTurn
 import { replyInBrainChat } from '$lib/server/brain/replyInBrainChat';
 import { rememberedTurns } from '$lib/server/brain/rememberedTurns';
 import type { SupabaseClient } from '@supabase/supabase-js';
-import { longestQuestion } from '$lib/data/questionLimits';
+import { readQuestion } from '$lib/server/http/readQuestion';
 import { questionFloorCreditsFor } from '$lib/data/creditPricing';
 import { refundQuestionUsage } from '$lib/server/credits/refundQuestionUsage';
 import { requireSpendHeadroom } from '$lib/server/credits/requireSpendHeadroom';
@@ -61,12 +61,6 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 		error(502, 'That question failed — your credits have been refunded');
 	}
 };
-
-function readQuestion(payload: { question?: unknown }): string {
-	const question = typeof payload.question === 'string' ? payload.question.trim() : '';
-	if (question === '') error(400, 'A question is required');
-	return question.slice(0, longestQuestion);
-}
 
 function readBrainId(payload: { brainId?: unknown }): string {
 	const brainId = typeof payload.brainId === 'string' ? payload.brainId : '';

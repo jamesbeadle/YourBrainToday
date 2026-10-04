@@ -1,5 +1,6 @@
 import { TubeLineColours } from './tubeLineColours';
 import { labelAbove, station } from './stationBuilder';
+import { slugify } from './slugify';
 import type { RoleLine, Station } from './types';
 import type { WorkflowModel, WorkflowRole, WorkflowTask } from './workflowModel';
 
@@ -67,11 +68,4 @@ function asStation(role: WorkflowRole, task: WorkflowTask, taskIndex: number, y:
 function stationSpacing(taskCount: number): number {
 	if (taskCount <= 1) return 0;
 	return Math.min(maxStationSpacing, (lineEndX - lineStartX) / (taskCount - 1));
-}
-
-function slugify(text: string): string {
-	return text
-		.toLowerCase()
-		.replace(/[^a-z0-9]+/g, '-')
-		.replace(/^-|-$/g, '');
 }
