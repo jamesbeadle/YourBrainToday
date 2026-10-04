@@ -32,8 +32,8 @@ const replyWith = (...content: unknown[]) => ({ content, stop_reason: 'tool_use'
 
 const ask = () => askModeller(supabase, 'brain-1', [], [], turns);
 const requestNumber = (index: number): AnthropicRequest => {
-	const { calls } = requestAnthropic.mock as { calls: [AnthropicRequest][] };
-	return calls[index][0];
+	const { mock } = requestAnthropic;
+	return mock.calls[index][0] as AnthropicRequest;
 };
 const toolResultsOf = (request: AnthropicRequest) =>
 	request.messages[2].content as { tool_use_id: string; content: string }[];
