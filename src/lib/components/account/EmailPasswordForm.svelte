@@ -1,5 +1,6 @@
 <script lang="ts">
 	import FormErrorNote from '$lib/components/site/FormErrorNote.svelte';
+	import LegalAgreementNote from '$lib/components/site/LegalAgreementNote.svelte';
 	import {
 		fieldClasses,
 		fieldLabelClasses,
@@ -52,14 +53,7 @@
 		{isCreatingAccount ? 'Create account' : 'Sign in'}
 	</button>
 	{#if isCreatingAccount}
-		<p class="text-xs text-chalk/50">
-			By creating an account you agree to our
-			<a href="/terms" class="text-chalk/80 underline underline-offset-4 hover:text-chalk">Terms</a>
-			and
-			<a href="/privacy" class="text-chalk/80 underline underline-offset-4 hover:text-chalk">
-				Privacy Statement</a
-			>.
-		</p>
+		<LegalAgreementNote action="creating an account" />
 	{/if}
 	<div class="flex items-center justify-between">
 		<button

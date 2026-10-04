@@ -1,6 +1,7 @@
 <script lang="ts">
 	import CheckoutOutcomeNote from '$lib/components/account/CheckoutOutcomeNote.svelte';
 	import CreditPackCard from '$lib/components/account/CreditPackCard.svelte';
+	import LegalAgreementNote from '$lib/components/site/LegalAgreementNote.svelte';
 	import SendCreditsPanel from '$lib/components/account/SendCreditsPanel.svelte';
 
 	let { data, form } = $props();
@@ -58,5 +59,6 @@
 			terms of service</a
 		>.
 	</p>
+	<LegalAgreementNote action="buying a pack" />
 	<SendCreditsPanel />
 </div>

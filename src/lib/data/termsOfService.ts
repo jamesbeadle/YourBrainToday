@@ -6,7 +6,7 @@ import type { LegalDocument } from './legalDocument';
 export const termsOfService: LegalDocument = {
 	title: 'Terms of service',
 	metaDescription:
-		'The terms that govern your use of Your Brain Today — the consultancy, accounts and credits, knowledge bases, chatbots, the client portal, and the API and MCP server.',
-	lastUpdatedOn: '5 September 2026',
+		'The terms that govern your use of Your Brain Today — accounts and credits, knowledge bases, chatbots and their question log, and the API and MCP server.',
+	lastUpdatedOn: '4 October 2026',
 	sections: [...termsAccountSections, ...termsProductSections, ...termsGeneralSections]
 };
