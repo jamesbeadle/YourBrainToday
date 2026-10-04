@@ -1,4 +1,6 @@
-# Refactor audit
+# Refactor audit — baseline v2, adopted from drift
+
+Adopted 2026-10-04 from refactor/round-1 before round 1 began: six long member chain lines grew since the v1 baseline (443 → 449) with the chat "remember" feature and the company details, so the gate no longer passed. The v1 reading is below for the record; the figures the round starts from are in `tools/refactor/audit-output/audit-report.md`.
 
 Generated 2026-10-04 17:50 UTC.
 
