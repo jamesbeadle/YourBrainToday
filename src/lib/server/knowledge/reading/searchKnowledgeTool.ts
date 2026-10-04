@@ -26,9 +26,3 @@ export async function searchReading(
 	const hits = await searchKnowledgeBase(supabase, reading.knowledgeBaseId, query);
 	return renderKnowledgeHits(hits, reading.expertise, reading.brainNames);
 }
-
-export function queryFrom(input: unknown): string {
-	if (typeof input !== 'object' || input === null) return '';
-	const candidate = (input as { query?: unknown }).query;
-	return typeof candidate === 'string' ? candidate : '';
-}
