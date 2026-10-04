@@ -5,7 +5,7 @@ import { parseSpokenReply } from './parseSpokenReply';
 import { readPagesResultMessage, toolUseNamed, toolUsesNamed } from './readPagesExchange';
 import { renderDomainModelIndex } from './getBrainPageIndex';
 import { requestAnthropic } from '$lib/server/anthropic/requestAnthropic';
-import type { AnthropicMessage } from '$lib/server/anthropic/anthropicTypes';
+import { messagesFromTurns } from '$lib/server/anthropic/messagesFromTurns';
 import type { BrainContext, BrainPageSummary } from '$lib/data/brainTypes';
 import type { FaceChatReply, FaceChatTurn } from '$lib/data/faceChatTypes';
 import type { SupabaseClient } from '@supabase/supabase-js';
@@ -44,13 +44,4 @@ export async function converseWithFace(
 		maxTokens: maxReplyTokens
 	});
 	return parseSpokenReply(toolUseNamed(secondResponse.content, speakTool.name)?.input);
-}
-
-function messagesFromTurns(turns: FaceChatTurn[]): AnthropicMessage[] {
-	const firstUserIndex = turns.findIndex((turn) => turn.speaker === 'user');
-	if (firstUserIndex < 0) return [];
-	return turns.slice(firstUserIndex).map((turn) => ({
-		role: turn.speaker === 'user' ? 'user' : 'assistant',
-		content: turn.text
-	}));
 }
