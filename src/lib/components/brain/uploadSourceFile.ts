@@ -1,5 +1,6 @@
 import { guardingConnection } from './connectionGuard';
 import { readSourceStages, type ReadingOutcome } from './readSourceStages';
+import { messageFrom } from '$lib/client/responseMessage';
 import { mimeTypeFor } from '$lib/data/brainUploadRules';
 
 export type UploadOutcome = ReadingOutcome | { status: 'rejected'; message: string };
@@ -60,11 +61,4 @@ async function sendToStorage(
 /** A granted row whose file never arrived is deleted, so no empty "Waiting" row is left behind. */
 async function discardGrant(sourceId: string): Promise<void> {
 	await fetch(`/api/brain/sources/${sourceId}`, { method: 'DELETE' }).catch(() => undefined);
-}
-
-async function messageFrom(response: Response): Promise<string> {
-	const fallbackMessage = 'Something went wrong — please try again.';
-	const payload = await response.json().catch(() => null);
-	if (payload === null || typeof payload.message !== 'string') return fallbackMessage;
-	return payload.message;
 }

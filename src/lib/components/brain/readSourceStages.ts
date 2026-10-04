@@ -1,5 +1,6 @@
 import { connectionLostMessage } from './connectionGuard';
 import { drivenSources } from './drivenSources.svelte';
+import { messageFrom } from '$lib/client/responseMessage';
 import { readingStageLabels, type ReadingProgress } from '$lib/data/sourceReading';
 import type { BrainSource } from '$lib/data/brainTypes';
 
@@ -87,11 +88,4 @@ function outcomeOf(reply: StageReply): ReadingOutcome | null {
 		};
 	}
 	return null;
-}
-
-async function messageFrom(response: Response): Promise<string> {
-	const fallbackMessage = 'Something went wrong — please try again.';
-	const payload = await response.json().catch(() => null);
-	if (payload === null || typeof payload.message !== 'string') return fallbackMessage;
-	return payload.message;
 }
