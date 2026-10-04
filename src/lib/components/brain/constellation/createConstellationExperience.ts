@@ -1,5 +1,6 @@
 import { createSceneLoop } from '../../stage/animationLoop';
 import { createStage, fitStageTo } from '../../stage/createStage';
+import { disposeExperience } from '../../stage/disposeExperience';
 import { assembleConstellationScene } from './constellationSceneAssembly';
 import { attachExperienceInput } from './experienceInput';
 import { createFocusDirector } from './focusDirector';
@@ -77,15 +78,6 @@ export function createConstellationExperience(
 		growth.plan(newcomers);
 	}
 
-	function destroy(): void {
-		loop.pause();
-		detachPointer();
-		resizeObserver.disconnect();
-		controls.dispose();
-		view.dispose();
-		stage.dispose();
-	}
-
 	return {
 		updateModel,
 		focusContext: director.focusContext,
@@ -93,6 +85,7 @@ export function createConstellationExperience(
 		resetView: () => director.focusContext(null),
 		pause: loop.pause,
 		resume: loop.resume,
-		destroy
+		destroy: () =>
+			disposeExperience({ loop, detachPointer, resizeObserver, controls, view, stage })
 	};
 }

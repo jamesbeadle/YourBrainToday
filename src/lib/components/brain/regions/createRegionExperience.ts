@@ -1,5 +1,6 @@
 import { createSceneLoop } from '../../stage/animationLoop';
 import { createStage, fitStageTo } from '../../stage/createStage';
+import { disposeExperience } from '../../stage/disposeExperience';
 import { createOrbitRig, prefersReducedMotion } from '../constellation/orbitRig';
 import { createRegionDirector } from './regionDirector';
 import { attachRegionInput } from './regionInput';
@@ -64,15 +65,6 @@ export function createRegionExperience(
 		director.refresh(updatedModel);
 	}
 
-	function destroy(): void {
-		loop.pause();
-		detachPointer();
-		resizeObserver.disconnect();
-		controls.dispose();
-		view.dispose();
-		stage.dispose();
-	}
-
 	return {
 		updateModel,
 		hoverRegion: director.hoverRegion,
@@ -80,6 +72,7 @@ export function createRegionExperience(
 		resetView: () => director.focusRegion(null),
 		pause: loop.pause,
 		resume: loop.resume,
-		destroy
+		destroy: () =>
+			disposeExperience({ loop, detachPointer, resizeObserver, controls, view, stage })
 	};
 }

@@ -1,5 +1,6 @@
 import { createSceneLoop } from '../../stage/animationLoop';
 import { createStage, fitStageTo } from '../../stage/createStage';
+import { disposeExperience } from '../../stage/disposeExperience';
 import { createOrbitRig, prefersReducedMotion } from '../constellation/orbitRig';
 import { createFlowDirector } from './flowDirector';
 import { attachFlowInput } from './flowInput';
@@ -62,15 +63,6 @@ export function createFlowExperience(
 		director.refresh(updatedModel);
 	}
 
-	function destroy(): void {
-		loop.pause();
-		detachPointer();
-		resizeObserver.disconnect();
-		controls.dispose();
-		view.dispose();
-		stage.dispose();
-	}
-
 	return {
 		updateModel,
 		focusNode: director.focusNode,
@@ -78,6 +70,7 @@ export function createFlowExperience(
 		resetView: () => director.focusNode(null),
 		pause: loop.pause,
 		resume: loop.resume,
-		destroy
+		destroy: () =>
+			disposeExperience({ loop, detachPointer, resizeObserver, controls, view, stage })
 	};
 }
