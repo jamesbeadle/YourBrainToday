@@ -1,16 +1,10 @@
 <script lang="ts">
+	import { formatBritishDate } from '$lib/data/britishDate';
 	import { formatPenceAsPounds } from '$lib/data/creditPricing';
 	import type { Purchase } from '$lib/server/credits/getPurchaseHistory';
 
 	let { purchases }: { purchases: Purchase[] } = $props();
 
-	function formatPurchaseDate(isoDate: string): string {
-		return new Date(isoDate).toLocaleDateString('en-GB', {
-			day: 'numeric',
-			month: 'short',
-			year: 'numeric'
-		});
-	}
 </script>
 
 <section class="flex flex-col gap-3">
@@ -25,7 +19,7 @@
 				<li class="flex items-center justify-between gap-4 px-5 py-4">
 					<div>
 						<p class="font-display capitalize">{purchase.packId} pack</p>
-						<p class="text-xs text-chalk/50">{formatPurchaseDate(purchase.purchasedAt)}</p>
+						<p class="text-xs text-chalk/50">{formatBritishDate(purchase.purchasedAt)}</p>
 					</div>
 					<div class="text-right">
 						<p class="font-display text-go">+{purchase.credits} credits</p>

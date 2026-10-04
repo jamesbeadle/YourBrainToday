@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { formatBritishDate } from '$lib/data/britishDate';
 	import type { BrainSubscription, PurchasedEdition } from '$lib/data/marketTypes';
 
 	let {
@@ -11,14 +12,6 @@
 
 	function brainPath(entityId: string, brainId: string): string {
 		return `/workspace/${entityId}/domains/${brainId}`;
-	}
-
-	function formatDay(isoDate: string): string {
-		return new Date(isoDate).toLocaleDateString('en-GB', {
-			day: 'numeric',
-			month: 'short',
-			year: 'numeric'
-		});
 	}
 
 	function isLapsed(subscription: BrainSubscription): boolean {
@@ -41,7 +34,7 @@
 					</span>
 					<span class="text-xs text-chalk/50">
 						Edition v{purchased.editionVersion} — {purchased.editionName} · yours since
-						{formatDay(purchased.purchasedAt)}
+						{formatBritishDate(purchased.purchasedAt)}
 					</span>
 				</a>
 			</li>
@@ -60,14 +53,14 @@
 					</span>
 					{#if isLapsed(subscription)}
 						<span class="text-xs text-caution">
-							Subscription lapsed {formatDay(subscription.currentPeriodEnd)} — renew from the
+							Subscription lapsed {formatBritishDate(subscription.currentPeriodEnd)} — renew from the
 							listing
 						</span>
 					{:else}
 						<span class="text-xs text-chalk/50">
 							Live subscription ·
 							{subscription.status === 'cancelled' ? 'access until' : 'renews by'}
-							{formatDay(subscription.currentPeriodEnd)}
+							{formatBritishDate(subscription.currentPeriodEnd)}
 						</span>
 					{/if}
 				</a>

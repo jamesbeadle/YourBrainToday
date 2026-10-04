@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { formatBritishDate } from '$lib/data/britishDate';
 	import { invalidateAll } from '$app/navigation';
 	import { requestEditionPublish } from './sellRequests';
 	import type { BrainEdition } from '$lib/data/marketTypes';
@@ -22,13 +23,6 @@
 		await invalidateAll();
 	}
 
-	function formatPublishedDate(isoDate: string): string {
-		return new Date(isoDate).toLocaleDateString('en-GB', {
-			day: 'numeric',
-			month: 'short',
-			year: 'numeric'
-		});
-	}
 </script>
 
 <div class="flex flex-col gap-3">
@@ -59,7 +53,7 @@
 						text-sm"
 				>
 					<span class="text-chalk">v{edition.version} — {edition.name}</span>
-					<span class="text-xs text-chalk/50">{formatPublishedDate(edition.publishedAt)}</span>
+					<span class="text-xs text-chalk/50">{formatBritishDate(edition.publishedAt)}</span>
 				</li>
 			{/each}
 		</ul>
