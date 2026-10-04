@@ -1,4 +1,5 @@
 import { getBrainPagesBySlugs } from './getBrainPage';
+import { linkedSlugsFrom } from './pageCrossLinks';
 import { parseRequestedSlugs } from './parseBrainAnswer';
 import type { AnthropicMessage, AnthropicToolUseBlock } from '$lib/server/anthropic/anthropicTypes';
 import type { BrainPage } from '$lib/data/brainTypes';
@@ -41,7 +42,14 @@ async function resultBlockFor(
 function renderPages(requestedSlugList: string[], pages: BrainPage[]): string {
 	if (pages.length === 0) return 'None of the requested pages exist.';
 	const missing = requestedSlugList.filter((slug) => !pages.some((page) => page.slug === slug));
-	const rendered = pages.map((page) => `# ${page.title} (${page.slug})\n\n${page.body}`);
+	const rendered = pages.map(renderPageWithLinks);
 	if (missing.length > 0) rendered.push(`Pages that do not exist: ${missing.join(', ')}`);
 	return rendered.join('\n\n---\n\n');
+}
+
+function renderPageWithLinks(page: BrainPage): string {
+	const pageText = `# ${page.title} (${page.slug})\n\n${page.body}`;
+	const linkedSlugs = linkedSlugsFrom(page.slug, page.body);
+	if (linkedSlugs.length === 0) return pageText;
+	return `${pageText}\n\nLinks to: ${linkedSlugs.join(', ')}`;
 }

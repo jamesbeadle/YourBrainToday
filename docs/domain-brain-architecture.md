@@ -61,8 +61,11 @@ one-line summary. Any failure marks the source failed and refunds the credits; r
 one click.
 
 **Query (10 credits).** The query modeller gets the contexts, the index, and the
-question, requests the page bodies it needs (one read_pages round — the glossary is often
-among them), and answers in the ubiquitous language with citations. The answer and its
+question, then reads over up to three rounds: `read_pages` for the page bodies it needs
+(the glossary is often among them), `search_pages` — Postgres full-text over the brain's
+page bodies — for a fact no index summary names, and every page read ends with the pages it
+links to, so a round can follow a path the last one opened. It answers as soon as it can,
+is forced to after the last round, and answers in the ubiquitous language with citations. The answer and its
 cited slugs are recorded as a `question_answered` event, which is also how the ask panel
 shows history — the log is the conversation store, no extra tables.
 

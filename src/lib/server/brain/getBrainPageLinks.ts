@@ -1,7 +1,6 @@
+import { linkedSlugsFrom } from './pageCrossLinks';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { BrainPageLink } from '$lib/data/brainTypes';
-
-const crossLinkPattern = /\]\(\/domain-brain\/([a-z0-9-]+)\)/g;
 
 export async function getBrainPageLinks(
 	supabase: SupabaseClient,
@@ -16,7 +15,5 @@ export async function getBrainPageLinks(
 }
 
 function linksFrom(fromSlug: string, body: string): BrainPageLink[] {
-	const targets = [...body.matchAll(crossLinkPattern)].map((match) => match[1]);
-	const uniqueTargets = [...new Set(targets)].filter((target) => target !== fromSlug);
-	return uniqueTargets.map((toSlug) => ({ fromSlug, toSlug }));
+	return linkedSlugsFrom(fromSlug, body).map((toSlug) => ({ fromSlug, toSlug }));
 }
