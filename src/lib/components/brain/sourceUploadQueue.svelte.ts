@@ -1,20 +1,10 @@
 import { resolveUpload } from './uploadResolution';
+import { isStillActive, type QueuedUpload, type QueuedWork } from './queuedUpload';
 import { uploadSourceFile, type UploadOutcome } from './uploadSourceFile';
-
-export type QueuedUploadStatus = 'waiting' | 'sending' | 'reading' | 'done' | 'failed';
-
-export type QueuedUpload = {
-	id: number;
-	filename: string;
-	status: QueuedUploadStatus;
-	stageLabel: string;
-	message: string;
-};
 
 type QueueEntry = {
 	upload: QueuedUpload;
-	file: File;
-	brainId: string;
+	work: QueuedWork;
 	settle: (outcome: UploadOutcome) => void;
 };
 
@@ -23,9 +13,9 @@ type QueueListeners = {
 	onSettled: () => Promise<void>;
 };
 
-const activeStatuses: QueuedUploadStatus[] = ['waiting', 'sending', 'reading'];
+const sendingFileLine = 'sending the file…';
 
-/** Uploads and reads files one after another, so two readings never run at once. */
+/** Takes sources into the brain one after another, so two readings never run at once. */
 export class SourceUploadQueue {
 	#listeners: QueueListeners;
 	#pending: QueueEntry[] = [];
@@ -38,33 +28,40 @@ export class SourceUploadQueue {
 	}
 
 	get isBusy(): boolean {
-		return this.uploads.some((upload) => activeStatuses.includes(upload.status));
+		return this.uploads.some(isStillActive);
 	}
 
 	get hasFinished(): boolean {
-		return this.uploads.some((upload) => !activeStatuses.includes(upload.status));
+		return this.uploads.some((upload) => !isStillActive(upload));
 	}
 
-	enqueue(file: File, brainId: string): Promise<UploadOutcome> {
-		const upload = this.#track(file.name);
+	enqueue(filename: string, sendingLine: string, work: QueuedWork): Promise<UploadOutcome> {
+		const upload = this.#track(filename, sendingLine);
 		return new Promise((settle) => {
-			this.#pending.push({ upload, file, brainId, settle });
+			this.#pending.push({ upload, work, settle });
 			void this.#drain();
 		});
 	}
 
-	enqueueAll(files: File[], brainId: string): void {
-		files.forEach((file) => void this.enqueue(file, brainId));
+	enqueueFile(file: File, brainId: string): Promise<UploadOutcome> {
+		return this.enqueue(file.name, sendingFileLine, (onProgress) =>
+			uploadSourceFile(file, brainId, onProgress)
+		);
+	}
+
+	enqueueFiles(files: File[], brainId: string): void {
+		files.forEach((file) => void this.enqueueFile(file, brainId));
 	}
 
 	clearFinished = (): void => {
-		this.uploads = this.uploads.filter((upload) => activeStatuses.includes(upload.status));
+		this.uploads = this.uploads.filter(isStillActive);
 	};
 
-	#track(filename: string): QueuedUpload {
+	#track(filename: string, sendingLine: string): QueuedUpload {
 		this.uploads.push({
 			id: this.#nextId,
 			filename,
+			sendingLine,
 			status: 'waiting',
 			stageLabel: '',
 			message: ''
@@ -82,9 +79,9 @@ export class SourceUploadQueue {
 		this.#isDraining = false;
 	}
 
-	async #run({ upload, file, brainId, settle }: QueueEntry): Promise<void> {
+	async #run({ upload, work, settle }: QueueEntry): Promise<void> {
 		upload.status = 'sending';
-		const outcome = await uploadSourceFile(file, brainId, (stage) => {
+		const outcome = await work((stage) => {
 			upload.status = 'reading';
 			upload.stageLabel = stage;
 		});

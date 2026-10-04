@@ -1,6 +1,7 @@
 <script lang="ts">
 	import IngestProgressLabel from './IngestProgressLabel.svelte';
-	import type { QueuedUpload, QueuedUploadStatus, SourceUploadQueue } from './sourceUploadQueue.svelte';
+	import type { QueuedUpload, QueuedUploadStatus } from './queuedUpload';
+	import type { SourceUploadQueue } from './sourceUploadQueue.svelte';
 
 	let { queue }: { queue: SourceUploadQueue } = $props();
 
@@ -14,7 +15,7 @@
 
 	function describe(upload: QueuedUpload): string {
 		if (upload.status === 'waiting') return 'Waiting its turn';
-		if (upload.status === 'sending') return 'sending the file…';
+		if (upload.status === 'sending') return upload.sendingLine;
 		return upload.message;
 	}
 </script>

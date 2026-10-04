@@ -1,45 +1,56 @@
 import { error, json } from '@sveltejs/kit';
 import { createBrainSource } from '$lib/server/brain/createBrainSource';
-import { fetchLinkedPage } from '$lib/server/brain/fetchLinkedPage';
+import { linkedSourceMimeType } from '$lib/server/brain/links/linkLimits';
+import { readLinkedSource } from '$lib/server/brain/links/readLinkedSource';
 import { getDomainBrain } from '$lib/server/entities/getDomainBrain';
+import { isAcceptedUpload, uploadLimitDescription } from '$lib/data/brainUploadRules';
+import type { LinkedSource } from '$lib/server/brain/links/linkedSource';
 import type { RequestHandler } from './$types';
 
+export const config = { maxDuration: 120 };
+
+const unprocessable = 422;
+
+/** Reads a link into a source the brain can then study, exactly as an uploaded document. */
 export const POST: RequestHandler = async ({ locals, request }) => {
 	const { user } = await locals.safeGetSession();
 	if (user === null) error(401, 'Sign in to add links to your expertise brain');
 
 	const payload = await request.json();
 	const brainId = typeof payload.brainId === 'string' ? payload.brainId : '';
-	const pageUrl = typeof payload.url === 'string' ? payload.url.trim() : '';
-	if (brainId === '' || pageUrl === '') error(400, 'A expertise brain and a link are required');
+	const link = typeof payload.url === 'string' ? payload.url.trim() : '';
+	if (brainId === '' || link === '') error(400, 'An expertise brain and a link are required');
 
 	const brain = await getDomainBrain(locals.supabase, brainId);
 	if (brain === null) error(404, 'That expertise brain could not be found');
 
-	const page = await readLinkedPage(pageUrl);
-	const text = `Source link: ${pageUrl}\n\n${page.text}`;
+	const linked = await readLink(link);
+	const byteCount = new TextEncoder().encode(linked.text).length;
+	if (!isAcceptedUpload(linkedSourceMimeType, byteCount)) {
+		error(unprocessable, `That link holds too much text to read at once. ${uploadLimitDescription()}`);
+	}
 	const grant = await createBrainSource(locals.supabase, user.id, brain.id, {
-		filename: page.title,
-		mimeType: 'text/plain',
-		byteCount: new TextEncoder().encode(text).length
+		filename: linked.title,
+		mimeType: linkedSourceMimeType,
+		byteCount
 	});
-	await storePageText(grant.uploadUrl, text);
-	return json({ sourceId: grant.sourceId, title: page.title });
+	await storeLinkedText(grant.uploadUrl, linked.text);
+	return json({ sourceId: grant.sourceId, title: linked.title });
 };
 
-async function readLinkedPage(pageUrl: string) {
+async function readLink(link: string): Promise<LinkedSource> {
 	try {
-		return await fetchLinkedPage(pageUrl);
+		return await readLinkedSource(link);
 	} catch (failure) {
-		error(422, failure instanceof Error ? failure.message : 'That page could not be read');
+		error(unprocessable, failure instanceof Error ? failure.message : 'That link could not be read');
 	}
 }
 
-async function storePageText(uploadUrl: string, text: string): Promise<void> {
+async function storeLinkedText(uploadUrl: string, text: string): Promise<void> {
 	const response = await fetch(uploadUrl, {
 		method: 'PUT',
-		headers: { 'content-type': 'text/plain' },
+		headers: { 'content-type': linkedSourceMimeType },
 		body: text
 	});
-	if (!response.ok) throw new Error(`Storing the page failed with status ${response.status}`);
+	if (!response.ok) throw new Error(`Storing the link failed with status ${response.status}`);
 }

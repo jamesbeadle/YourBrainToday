@@ -13,21 +13,21 @@
 
 	function queueChosenFiles(event: Event) {
 		const input = event.currentTarget as HTMLInputElement;
-		queue.enqueueAll(Array.from(input.files ?? []), brainId);
+		queue.enqueueFiles(Array.from(input.files ?? []), brainId);
 		input.value = '';
 	}
 
 	function queueDroppedFiles(event: DragEvent) {
 		event.preventDefault();
 		isDraggingOver = false;
-		queue.enqueueAll(Array.from(event.dataTransfer?.files ?? []), brainId);
+		queue.enqueueFiles(Array.from(event.dataTransfer?.files ?? []), brainId);
 	}
 
 	function queuePastedFiles(event: ClipboardEvent) {
 		const files = Array.from(event.clipboardData?.files ?? []);
 		if (files.length === 0) return;
 		event.preventDefault();
-		queue.enqueueAll(files, brainId);
+		queue.enqueueFiles(files, brainId);
 	}
 
 	function showDropTarget(event: DragEvent) {
