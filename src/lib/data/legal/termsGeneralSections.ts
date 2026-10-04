@@ -24,7 +24,7 @@ export const termsGeneralSections: LegalSection[] = [
 		heading: 'Our liability',
 		paragraphs: [
 			'During early access the service is provided as it stands, without warranties beyond those the law implies. Nothing in these terms excludes liability that cannot be excluded under English law, including for death or personal injury caused by negligence, or for fraud.',
-			'Beyond that, our total liability to you under these terms is limited to the amount you paid us for the service in the 12 months before the event giving rise to the claim, and we are not liable for loss of profit, loss of business, or losses caused by relying on AI-generated output without checking it. Liability for consultancy work is governed by the written agreement for that engagement.'
+			'Beyond that, our total liability to you under these terms is limited to the amount you paid us for the service in the 12 months before the event giving rise to the claim, and we are not liable for loss of profit, loss of business, or losses caused by relying on AI-generated output without checking it.'
 		]
 	},
 	{
