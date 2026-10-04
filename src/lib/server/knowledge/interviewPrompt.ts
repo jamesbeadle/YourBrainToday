@@ -1,28 +1,11 @@
+import { interviewAgendaSection } from './interviewAgendaSection';
+import { focusLineFor, isAgendaLed, type InterviewFocus } from './interviewFocusLines';
 import type { InterviewContext } from './interviewContext';
 
-export type InterviewFocus = 'expertise' | 'experience' | 'process' | 'human' | null;
-
-const focusLines: Record<Exclude<InterviewFocus, null>, string> = {
-	expertise:
-		'- This interview is focused on EXPERTISE: chase the rules of the trade — what terms ' +
-		'mean, what must be true before work proceeds, the standards followed. Still harvest ' +
-		'any experience the owner volunteers along the way.',
-	experience:
-		'- This interview is focused on EXPERIENCE: chase what actually happened — recent jobs, ' +
-		'what went wrong, how cases ended. Ask for one story at a time. Still harvest any trade ' +
-		'rules the owner states along the way.',
-	process:
-		'- This interview is focused on PROCESS: chase how work moves — who does what, what each ' +
-		'task consumes and produces, what goes wrong at handovers. Still harvest rules and ' +
-		'events the owner states along the way.',
-	human:
-		'- This interview is focused on the HUMAN side: chase who the key people are — clients, ' +
-		'suppliers, staff, gatekeepers — who knows whom, and how well they get on. Ask who ' +
-		'trusts whom, who has fallen out, and who to go through to reach someone. Still harvest ' +
-		'rules and events the owner states along the way.'
-};
+export type { InterviewFocus } from './interviewFocusLines';
 
 export function interviewSystemPrompt(context: InterviewContext, focus: InterviewFocus): string {
+	const agenda = isAgendaLed(focus) ? interviewAgendaSection(context.processMap) : '';
 	return `You are The Interviewer for Your Brain Today (YBT).
 
 You are improving the knowledge base "${context.knowledgeBaseName}" — one business's second
@@ -41,8 +24,7 @@ People known: ${listOrNone(context.peopleNames)}
 
 - Ask exactly ONE question per reply, under 80 words, aimed at the biggest gap in the
   picture above. Empty or thin areas are the biggest gaps.
-${focus === null ? '' : `${focusLines[focus]}\n`}
-- Prefer concrete over abstract: "walk me through the last job that went wrong" beats
+${focusLineFor(focus)}- Prefer concrete over abstract: "walk me through the last job that went wrong" beats
   "describe your quality process".
 - Harvest only what is NEW in the owner's LATEST answer: durable trade rules as
   expertiseFacts, things that happened as experienceEvents, people named as people, and
@@ -55,7 +37,7 @@ ${focus === null ? '' : `${focusLines[focus]}\n`}
 - connections join two named people (the owner counts) with what connects them and how
   well they get on — close, warm, neutral, cool, or hostile. Use the names in "People
   known" when the owner means someone already there. Keep the owner's words as the note.
-- Never invent knowledge the owner did not state.`;
+- Never invent knowledge the owner did not state.${agenda}`;
 }
 
 function listOrNone(items: string[]): string {

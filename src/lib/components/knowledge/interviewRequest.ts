@@ -1,9 +1,10 @@
+import { isInterviewPhase, type InterviewPhase } from '$lib/data/knowledge/interviewPhases';
 import type { KnowledgeKind } from '$lib/data/knowledge/knowledgeKinds';
 
 export type InterviewKind = KnowledgeKind | null;
 
 export type InterviewTurnResult =
-	| { status: 'ok'; reply: string }
+	| { status: 'ok'; reply: string; phase: InterviewPhase | null }
 	| { status: 'out_of_credits' }
 	| { status: 'error' };
 
@@ -24,7 +25,8 @@ export const kindInterviewIntros: Record<KnowledgeKind, string> = {
 		'expertise brain.',
 	process:
 		'A focused interview on how work moves — who does what, what each task consumes and ' +
-		'produces, what goes wrong at handovers. The map redraws itself as you answer.',
+		'produces, what goes wrong at handovers. The interviewer reads the gaps in your process ' +
+		'map and asks about the next one; the map redraws itself as you answer.',
 	human:
 		'A focused interview on the people around your business — who knows whom, who trusts ' +
 		'whom, and who has fallen out. Everyone you name joins the network, with how well they ' +
@@ -44,5 +46,9 @@ export async function fetchInterviewReply(
 	if (response.status === 402) return { status: 'out_of_credits' };
 	if (!response.ok) return { status: 'error' };
 	const payload = await response.json();
-	return { status: 'ok', reply: typeof payload.reply === 'string' ? payload.reply : '' };
+	return {
+		status: 'ok',
+		reply: typeof payload.reply === 'string' ? payload.reply : '',
+		phase: isInterviewPhase(payload.phase) ? payload.phase : null
+	};
 }

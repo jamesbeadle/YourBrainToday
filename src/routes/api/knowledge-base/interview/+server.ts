@@ -1,15 +1,8 @@
 import { error, json } from '@sveltejs/kit';
-import { askInterviewer, type InterviewTurnInput } from '$lib/server/knowledge/interviewAgent';
-import type { InterviewFocus } from '$lib/server/knowledge/interviewPrompt';
-import {
-	buildInterviewContext,
-	findPrimaryExpertiseBrain
-} from '$lib/server/knowledge/interviewContext';
+import { takeInterviewTurn } from '$lib/server/knowledge/takeInterviewTurn';
 import { questionFloorCreditsFor } from '$lib/data/creditPricing';
 import { resolveRequestModel } from '$lib/server/anthropic/resolveRequestModel';
 import { settleQuestionUsage } from '$lib/server/credits/settleQuestionUsage';
-import { fileHarvestToKnowledgeBase } from '$lib/server/agent/fileHarvestedKnowledge';
-import { harvestedItemCount } from '$lib/server/agent/parseHarvest';
 import { readInterviewRequest } from '$lib/server/knowledge/readInterviewRequest';
 import { requireOwnedKnowledgeBase } from '$lib/server/knowledge/requireOwnedKnowledgeBase';
 import { isAnthropicConfigured } from '$lib/server/anthropic/isAnthropicConfigured';
@@ -37,7 +30,7 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 	if (spend === 'account_restricted') error(403, 'This account is currently restricted');
 
 	try {
-		const turn = await interviewTurn(locals, knowledgeBase, conversation, focus);
+		const turn = await takeInterviewTurn(locals.supabase, knowledgeBase, conversation, focus);
 		const settledBalance = await settleQuestionUsage(user.id, reserve, interviewSpendReason);
 		return json({ ...turn, creditBalance: settledBalance ?? spend.creditBalance });
 	} catch (failure) {
@@ -46,24 +39,3 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 		error(502, 'That turn failed — your credits have been refunded');
 	}
 };
-
-async function interviewTurn(
-	locals: App.Locals,
-	knowledgeBase: { id: string; name: string },
-	conversation: InterviewTurnInput[],
-	focus: InterviewFocus
-): Promise<{ reply: string; harvestedCount: number }> {
-	const primary = await findPrimaryExpertiseBrain(locals.supabase, knowledgeBase.id);
-	const context = await buildInterviewContext(
-		locals.supabase,
-		knowledgeBase.id,
-		knowledgeBase.name,
-		primary
-	);
-	const turn = await askInterviewer(conversation, context, focus);
-	await fileHarvestToKnowledgeBase(locals.supabase, knowledgeBase.id, turn.harvest);
-	return {
-		reply: turn.reply,
-		harvestedCount: harvestedItemCount(turn.harvest)
-	};
-}
