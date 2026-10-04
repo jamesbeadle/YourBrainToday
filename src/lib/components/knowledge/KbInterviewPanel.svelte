@@ -2,6 +2,8 @@
 	import AgentTypingIndicator from '../chat/AgentTypingIndicator.svelte';
 	import ChatComposer from '../chat/ChatComposer.svelte';
 	import ChatMessageBubble from '../chat/ChatMessageBubble.svelte';
+	import InterviewInvitation from './InterviewInvitation.svelte';
+	import InterviewProgress from './InterviewProgress.svelte';
 	import OutOfCreditsNotice from '../workspace/OutOfCreditsNotice.svelte';
 	import {
 		defaultInterviewIntro,
@@ -10,6 +12,7 @@
 		type InterviewKind
 	} from './interviewRequest';
 	import type { ChatMessage } from '$lib/data/chatTypes';
+	import type { InterviewPhase } from '$lib/data/knowledge/interviewPhases';
 
 	let {
 		knowledgeBaseId,
@@ -21,6 +24,7 @@
 	let isAgentTyping = $state(false);
 	let isOutOfCredits = $state(false);
 	let hasStarted = $state(false);
+	let phase = $state<InterviewPhase | null>(null);
 	let threadElement = $state<HTMLElement | null>(null);
 
 	function appendMessage(author: ChatMessage['author'], text: string) {
@@ -53,6 +57,7 @@
 			appendMessage('agent', 'Something went wrong on my end — please try that again.');
 			return;
 		}
+		phase = result.phase;
 		appendMessage('agent', result.reply);
 	}
 
@@ -64,19 +69,12 @@
 </script>
 
 {#if !hasStarted}
-	<div class="flex flex-col items-start gap-3">
-		<p class="text-sm text-chalk/60">{intro}</p>
-		<button
-			type="button"
-			onclick={startInterview}
-			class="rounded-full bg-signal px-6 py-2.5 font-display text-sm font-medium text-night
-				transition hover:brightness-110"
-		>
-			Start the interview
-		</button>
-	</div>
+	<InterviewInvitation {intro} onStart={startInterview} />
 {:else}
 	<div class="flex h-96 flex-col overflow-hidden rounded-xl border border-hairline bg-night">
+		{#if phase !== null}
+			<InterviewProgress {phase} />
+		{/if}
 		<div bind:this={threadElement} class="flex flex-1 flex-col gap-3 overflow-y-auto p-4 text-sm">
 			{#each messages as message (message.id)}
 				<ChatMessageBubble {message} />

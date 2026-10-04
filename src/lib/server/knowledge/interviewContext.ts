@@ -2,12 +2,14 @@ import { getBrainPageIndex } from '$lib/server/brain/getBrainPageIndex';
 import { getWorkflows } from '$lib/server/entities/getWorkflows';
 import { getKnownPeopleNames } from './getKnownPeopleNames';
 import type { SupabaseClient } from '@supabase/supabase-js';
+import type { WorkflowModel } from '$lib/data/workflowModel';
 
 export type InterviewContext = {
 	knowledgeBaseName: string;
 	expertisePages: string[];
 	recentEpisodes: string[];
 	processNames: string[];
+	processMap: WorkflowModel | null;
 	peopleNames: string[];
 };
 
@@ -56,13 +58,15 @@ export async function buildInterviewContext(
 	supabase: SupabaseClient,
 	knowledgeBaseId: string,
 	knowledgeBaseName: string,
-	primary: PrimaryExpertiseBrain | null
+	primary: PrimaryExpertiseBrain | null,
+	processMap: WorkflowModel | null
 ): Promise<InterviewContext> {
 	return {
 		knowledgeBaseName,
 		expertisePages: primary === null ? [] : await expertisePageTitles(supabase, primary),
 		recentEpisodes: await recentEpisodeTitles(supabase, knowledgeBaseId),
 		processNames: primary === null ? [] : await processNames(supabase, primary.entityId),
+		processMap,
 		peopleNames: await getKnownPeopleNames(supabase, knowledgeBaseId)
 	};
 }

@@ -144,6 +144,22 @@ src/lib/server/agent/deriveInterviewState.ts         composes the above
 `agentSystemPrompt + renderAgenda(deriveInterviewState(currentMap)) + currentMap`. The
 scripted fallback is untouched.
 
+The knowledge base interview (`/api/knowledge-base/interview`, drawn on every brain's
+Interview panel) runs on the same engine. `takeInterviewTurn` finds the knowledge base's
+first process map, `interviewAgendaSection` renders its agenda into the Interviewer's prompt
+when the interview is on process or roams the whole base, and the `interview_update` tool
+returns the redrawn map whenever an answer said something about how work moves. The reply
+carries the derived phase, and `InterviewProgress` shows it above the thread — including
+when the map is complete and there is nothing left to ask.
+
+```
+src/lib/server/knowledge/findInterviewProcessMap.ts   the map the interview redraws
+src/lib/server/knowledge/interviewAgendaSection.ts    agenda + map rules for the Interviewer
+src/lib/server/knowledge/takeInterviewTurn.ts         ask, harvest, save the map, derive the phase
+src/lib/data/knowledge/interviewPhases.ts             the phases as the owner reads them
+src/lib/components/knowledge/InterviewProgress.svelte the phase line above the thread
+```
+
 ## Migration notes
 
 - `handoverRoles: string[]` → `handovers: { toRole, failureNote? }[]` ripples through
