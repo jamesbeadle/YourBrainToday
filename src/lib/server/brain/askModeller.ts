@@ -1,8 +1,11 @@
+import { answerModellerTools, modellerReadingCallsIn } from './answerModellerTools';
 import { answerTool, readPagesTool } from './modellerAnswerTools';
 import { modellerQueryPrompt } from './modellerQueryPrompt';
 import { parseBrainAnswer } from './parseBrainAnswer';
-import { readPagesResultMessage, toolUseNamed, toolUsesNamed } from './readPagesExchange';
+import { toolUseNamed } from './readPagesExchange';
 import { renderDomainModelIndex } from './getBrainPageIndex';
+import { searchPagesTool } from './searchPagesTool';
+import { mostReadingRounds } from '$lib/server/knowledge/reading/readingTypes';
 import { requestAnthropic } from '$lib/server/anthropic/requestAnthropic';
 import type { AnthropicMessage } from '$lib/server/anthropic/anthropicTypes';
 import type {
@@ -14,6 +17,7 @@ import type {
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 const maxAnswerTokens = 4000;
+const tools = [searchPagesTool, readPagesTool, answerTool];
 
 export async function askModeller(
 	supabase: SupabaseClient,
@@ -27,31 +31,24 @@ export async function askModeller(
 ): Promise<BrainAnswer> {
 	const system = `${modellerQueryPrompt}\n\n## Model index\n\n${renderDomainModelIndex(contexts, index)}`;
 	const messages = messagesFromTurns(turns);
-	const firstResponse = await requestAnthropic({
-		system,
-		messages,
-		tools: [readPagesTool, answerTool],
-		maxTokens: maxAnswerTokens,
-		model
-	});
-	const hasImmediateAnswer = toolUseNamed(firstResponse.content, answerTool.name) !== undefined;
-	const readRequests = hasImmediateAnswer
-		? []
-		: toolUsesNamed(firstResponse.content, readPagesTool.name);
-	if (readRequests.length === 0) {
-		return parseBrainAnswer(toolUseNamed(firstResponse.content, answerTool.name)?.input);
+	for (let round = 0; round <= mostReadingRounds; round += 1) {
+		const isFinalRound = round === mostReadingRounds;
+		const response = await requestAnthropic({
+			system,
+			messages,
+			tools,
+			maxTokens: maxAnswerTokens,
+			model,
+			...(isFinalRound ? { forcedToolName: answerTool.name } : { mustUseTool: true })
+		});
+		const answerCall = toolUseNamed(response.content, answerTool.name);
+		if (answerCall !== undefined) return parseBrainAnswer(answerCall.input);
+		const readingCalls = modellerReadingCallsIn(response.content);
+		if (readingCalls.length === 0) return parseBrainAnswer(undefined);
+		messages.push({ role: 'assistant', content: response.content });
+		messages.push(await answerModellerTools(supabase, brainId, readingCalls));
 	}
-	messages.push({ role: 'assistant', content: firstResponse.content });
-	messages.push(await readPagesResultMessage(supabase, brainId, readRequests));
-	const secondResponse = await requestAnthropic({
-		system,
-		messages,
-		tools: [readPagesTool, answerTool],
-		forcedToolName: answerTool.name,
-		maxTokens: maxAnswerTokens,
-		model
-	});
-	return parseBrainAnswer(toolUseNamed(secondResponse.content, answerTool.name)?.input);
+	return parseBrainAnswer(undefined);
 }
 
 function messagesFromTurns(turns: BrainConversationTurn[]): AnthropicMessage[] {

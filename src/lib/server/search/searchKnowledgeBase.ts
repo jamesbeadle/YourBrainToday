@@ -1,3 +1,4 @@
+import { clipSearchWords, mostSearchHits, plainSnippet } from './searchWords';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 export type KnowledgeHit = {
@@ -11,8 +12,7 @@ export type KnowledgeHit = {
 	rank: number;
 };
 
-export const mostSearchHits = 20;
-const longestQuery = 200;
+export { mostSearchHits } from './searchWords';
 
 /**
  * Full-text search across every brain of a knowledge base — expertise pages
@@ -27,7 +27,7 @@ export async function searchKnowledgeBase(
 	query: string,
 	mostHits = mostSearchHits
 ): Promise<KnowledgeHit[]> {
-	const searched = query.trim().slice(0, longestQuery);
+	const searched = clipSearchWords(query);
 	if (searched === '') return [];
 	const { data, error } = await supabase.rpc('search_knowledge_base', {
 		searched_knowledge_base_id: knowledgeBaseId,
@@ -57,12 +57,8 @@ function asHit(row: SearchRow): KnowledgeHit {
 		slug: row.slug,
 		itemKind: row.item_kind,
 		title: row.title,
-		snippet: cleanSnippet(row.snippet ?? ''),
+		snippet: plainSnippet(row.snippet),
 		rank: Number(row.rank)
 	};
 }
 
-// Postgres marks matches with <b> tags; the snippet is plain text everywhere it is shown.
-function cleanSnippet(snippet: string): string {
-	return snippet.replace(/<\/?b>/g, '').replace(/\s+/g, ' ').trim();
-}
