@@ -28,3 +28,13 @@ Every other page is one tactical building block inside its context:
 - glossary — ONE page per context (slug "<context>-glossary"): the ubiquitous language.
   Every term the domain uses with a precise meaning, defined in the domain's own words.
   Update it whenever a source uses vocabulary the glossary lacks.`;
+
+export function domainStatement(domainName: string, domainGoal: string): string {
+	if (domainGoal === '') {
+		return `The owner named this brain "${domainName}" and declared no further goal — take the
+domain to be ${domainName}, modelled at the level of general concepts.`;
+	}
+	return `The owner named this brain "${domainName}" and declared its goal:
+
+> ${domainGoal}`;
+}
