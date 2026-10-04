@@ -21,6 +21,8 @@ MCP server are working:
   they get on). Each is built by interview with an agent, by uploading the documents
   the business already files — several at once, each read in four stages that resume
   where they stopped ([docs/source-reading-architecture.md](./docs/source-reading-architecture.md)) —
+  by pasting a link to a GitHub repository, an X profile or any web page
+  ([docs/link-ingestion-architecture.md](./docs/link-ingestion-architecture.md)),
   or by adding a note — typed, dictated with the phone keyboard's microphone, or pasted
   from a voice memo transcript. Browse every page, item and task across the brains, search
   their bodies, and read any page with its backlinks at `/knowledge-base/{id}/browse`
@@ -76,6 +78,7 @@ npm run dev
 | `STRIPE_SECRET_KEY` | Stripe secret key — optional, placeholder checkout without it |
 | `STRIPE_WEBHOOK_SECRET` | Signing secret for `/api/stripe-webhook` |
 | `SUPABASE_SECRET_KEY` | Supabase secret key — used by the Stripe webhook, the MCP server and to read the site model |
+| `GITHUB_TOKEN` | GitHub token — optional, lets links to private repositories be read and lifts GitHub's rate limit |
 | `RESEND_API_KEY` / `EMAIL_FROM` | Resend API key and sender address for transactional email — optional, sending is skipped without them |
 
 ## Architecture

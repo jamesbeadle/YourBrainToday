@@ -18,7 +18,7 @@
 	async function addNote() {
 		isSending = true;
 		const note = new File([noteText.trim()], noteTitleFor(noteText), { type: noteMimeType });
-		const outcome = await queue.enqueue(note, brainId);
+		const outcome = await queue.enqueueFile(note, brainId);
 		isSending = false;
 		const isKept = outcome.status === 'ingested' || outcome.status === 'proposed';
 		if (isKept) noteText = '';
