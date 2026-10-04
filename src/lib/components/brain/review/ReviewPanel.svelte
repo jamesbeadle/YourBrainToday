@@ -52,8 +52,8 @@
 	<div class="min-h-0 flex-1 overflow-y-auto p-4">
 		{#if proposals.length === 0}
 			<p class="text-sm text-chalk/50">
-				Nothing waiting. When a collaborator adds a document, its model changes land here for
-				your review.
+				Nothing waiting. When a collaborator adds a document, or someone tells the brain to
+				remember something in chat, the model changes land here for your review.
 			</p>
 		{:else}
 			<div class="mb-2 flex items-center justify-between">
