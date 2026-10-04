@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-04T19:42:44+00:00",
+  "generatedAt": "2026-10-04T19:52:03+00:00",
   "kitVersion": "1.14.0",
   "score": {
     "overall": 78.9,
     "groups": [
       {
         "group": "Standard baseline checks",
-        "score": 92.2,
+        "score": 92.3,
         "weight": 60
       },
       {
@@ -16,7 +16,7 @@
       },
       {
         "group": "Prose",
-        "score": 76.8,
+        "score": 76.7,
         "weight": 20
       },
       {
@@ -39,9 +39,9 @@
         "zeroAt": 0.5,
         "unit": "files",
         "isMeasured": true,
-        "offenders": 2,
-        "measuredAgainst": 1157,
-        "score": 99.7
+        "offenders": 1,
+        "measuredAgainst": 1165,
+        "score": 99.8
       },
       {
         "key": "worstFile",
@@ -51,9 +51,9 @@
         "zeroAt": 9,
         "unit": "",
         "isMeasured": true,
-        "offenders": 0.09,
+        "offenders": 0.06,
         "measuredAgainst": 1,
-        "score": 99.0
+        "score": 99.3
       },
       {
         "key": "functionsOverLimit",
@@ -64,8 +64,8 @@
         "unit": "functions",
         "isMeasured": true,
         "offenders": 60,
-        "measuredAgainst": 1790,
-        "score": 86.6
+        "measuredAgainst": 1775,
+        "score": 86.5
       },
       {
         "key": "elseBlocks",
@@ -76,7 +76,7 @@
         "unit": "branches",
         "isMeasured": true,
         "offenders": 1,
-        "measuredAgainst": 1919,
+        "measuredAgainst": 1911,
         "score": 99.9
       },
       {
@@ -87,9 +87,9 @@
         "zeroAt": 20,
         "unit": "",
         "isMeasured": true,
-        "offenders": 0.27,
+        "offenders": 0.25,
         "measuredAgainst": 1,
-        "score": 98.7
+        "score": 98.8
       },
       {
         "key": "comments",
@@ -100,7 +100,7 @@
         "unit": "thousand lines",
         "isMeasured": true,
         "offenders": 263,
-        "measuredAgainst": 47.48,
+        "measuredAgainst": 47.45,
         "score": 88.9
       },
       {
@@ -112,7 +112,7 @@
         "unit": "thousand lines",
         "isMeasured": true,
         "offenders": 36,
-        "measuredAgainst": 47.48,
+        "measuredAgainst": 47.45,
         "score": 96.2
       },
       {
@@ -124,8 +124,8 @@
         "unit": "components and functions",
         "isMeasured": true,
         "offenders": 32,
-        "measuredAgainst": 2039,
-        "score": 84.3
+        "measuredAgainst": 2025,
+        "score": 84.2
       },
       {
         "key": "memberChains",
@@ -136,7 +136,7 @@
         "unit": "thousand lines",
         "isMeasured": true,
         "offenders": 449,
-        "measuredAgainst": 47.48,
+        "measuredAgainst": 47.45,
         "score": 68.5
       },
       {
@@ -147,9 +147,9 @@
         "zeroAt": 30,
         "unit": "thousand lines",
         "isMeasured": true,
-        "offenders": 304,
-        "measuredAgainst": 47.48,
-        "score": 78.7
+        "offenders": 287,
+        "measuredAgainst": 47.45,
+        "score": 79.8
       },
       {
         "key": "functionNames",
@@ -160,8 +160,8 @@
         "unit": "functions",
         "isMeasured": true,
         "offenders": 4,
-        "measuredAgainst": 1790,
-        "score": 97.8
+        "measuredAgainst": 1775,
+        "score": 97.7
       },
       {
         "key": "predictedFiles",
@@ -195,8 +195,8 @@
         "unit": "branches",
         "isMeasured": true,
         "offenders": 50,
-        "measuredAgainst": 1919,
-        "score": 89.6
+        "measuredAgainst": 1911,
+        "score": 89.5
       },
       {
         "key": "literalComparisons",
@@ -207,8 +207,8 @@
         "unit": "branches",
         "isMeasured": true,
         "offenders": 278,
-        "measuredAgainst": 1919,
-        "score": 42.1
+        "measuredAgainst": 1911,
+        "score": 41.8
       },
       {
         "key": "gluedAccessors",
@@ -219,7 +219,7 @@
         "unit": "functions",
         "isMeasured": true,
         "offenders": 10,
-        "measuredAgainst": 1790,
+        "measuredAgainst": 1775,
         "score": 94.4
       },
       {
@@ -250,18 +250,18 @@
   "summaries": {
     "fileLength": {
       "limit": 100,
-      "filesOverLimit": 2,
-      "totalFiles": 1157,
-      "totalLines": 47484,
-      "worstFileLines": 109,
-      "worstFileTimesOverLimit": 0.09
+      "filesOverLimit": 1,
+      "totalFiles": 1165,
+      "totalLines": 47446,
+      "worstFileLines": 106,
+      "worstFileTimesOverLimit": 0.06
     },
     "functionShape": {
       "limit": 30,
       "functionsOverLimit": 60,
-      "totalFunctions": 1790,
+      "totalFunctions": 1775,
       "elseBlocks": 1,
-      "ifBlocks": 1919,
+      "ifBlocks": 1911,
       "measurementIsHeuristic": true
     },
     "functionNames": {
@@ -274,10 +274,10 @@
       "measurementIsHeuristic": true
     },
     "duplication": {
-      "clones": 14,
-      "duplicatedLines": 122,
-      "totalLines": 44960,
-      "duplicatedPercentage": 0.27
+      "clones": 13,
+      "duplicatedLines": 111,
+      "totalLines": 44697,
+      "duplicatedPercentage": 0.25
     },
     "naming": {
       "bannedAbbreviationHits": 6,
@@ -295,7 +295,7 @@
     },
     "prose": {
       "longMemberChainLines": 449,
-      "deeplyIndentedLines": 304,
+      "deeplyIndentedLines": 287,
       "overlongLines": 77,
       "measurementIsHeuristic": true
     },
@@ -306,7 +306,7 @@
     },
     "orphans": {
       "orphanFunctions": 23,
-      "functionsExamined": 1790
+      "functionsExamined": 1775
     },
     "designPatterns": {
       "roleFamilies": 66,
@@ -318,7 +318,7 @@
     },
     "inventory": {
       "pages": 35,
-      "components": 249,
+      "components": 250,
       "orphanComponents": 9,
       "averagePageLines": 37
     },
@@ -333,11 +333,11 @@
       "looserLimits": 0
     },
     "fileAreas": {
-      "totalFiles": 1386,
-      "frontend": 513,
-      "backend": 465,
+      "totalFiles": 1394,
+      "frontend": 516,
+      "backend": 468,
       "tooling": 104,
-      "shared": 95,
+      "shared": 97,
       "api": 64,
       "database": 59,
       "docs": 38,
@@ -350,17 +350,13 @@
       "name": "fileLength",
       "summary": {
         "limit": 100,
-        "filesOverLimit": 2,
-        "totalFiles": 1157,
-        "totalLines": 47484,
-        "worstFileLines": 109,
-        "worstFileTimesOverLimit": 0.09
+        "filesOverLimit": 1,
+        "totalFiles": 1165,
+        "totalLines": 47446,
+        "worstFileLines": 106,
+        "worstFileTimesOverLimit": 0.06
       },
       "offenders": [
-        {
-          "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-          "lines": 109
-        },
         {
           "file": "src/lib/data/brainTypes.ts",
           "lines": 106
@@ -372,9 +368,9 @@
       "summary": {
         "limit": 30,
         "functionsOverLimit": 60,
-        "totalFunctions": 1790,
+        "totalFunctions": 1775,
         "elseBlocks": 1,
-        "ifBlocks": 1919,
+        "ifBlocks": 1911,
         "measurementIsHeuristic": true
       },
       "offenders": [
@@ -989,7 +985,7 @@
       "name": "prose",
       "summary": {
         "longMemberChainLines": 449,
-        "deeplyIndentedLines": 304,
+        "deeplyIndentedLines": 287,
         "overlongLines": 77,
         "measurementIsHeuristic": true
       },
@@ -1073,31 +1069,31 @@
           },
           {
             "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
-            "line": 39
+            "line": 41
           },
           {
             "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
-            "line": 40
+            "line": 42
           },
           {
             "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
-            "line": 47
+            "line": 49
           },
           {
             "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
-            "line": 51
+            "line": 53
           },
           {
             "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
-            "line": 61
+            "line": 62
           },
           {
             "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
-            "line": 64
+            "line": 65
           },
           {
             "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
-            "line": 75
+            "line": 74
           },
           {
             "file": "src/lib/components/brain/constellation/fibreGeometry.ts",
@@ -1165,15 +1161,15 @@
           },
           {
             "file": "src/lib/components/brain/flow/createFlowExperience.ts",
-            "line": 39
-          },
-          {
-            "file": "src/lib/components/brain/flow/createFlowExperience.ts",
-            "line": 49
+            "line": 41
           },
           {
             "file": "src/lib/components/brain/flow/createFlowExperience.ts",
             "line": 50
+          },
+          {
+            "file": "src/lib/components/brain/flow/createFlowExperience.ts",
+            "line": 51
           },
           {
             "file": "src/lib/components/brain/flow/flowDirector.ts",
@@ -1238,88 +1234,20 @@
             "line": 31
           },
           {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 65
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 71
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 74
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 75
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 76
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 77
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 78
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 79
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 80
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 85
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 88
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 89
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 90
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 91
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 92
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 93
-          },
-          {
-            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "line": 94
+            "file": "src/lib/components/account/PurchaseHistoryTable.svelte",
+            "line": 21
           },
           {
             "file": "src/lib/components/account/PurchaseHistoryTable.svelte",
-            "line": 27
+            "line": 22
           },
           {
             "file": "src/lib/components/account/PurchaseHistoryTable.svelte",
-            "line": 28
+            "line": 25
           },
           {
             "file": "src/lib/components/account/PurchaseHistoryTable.svelte",
-            "line": 31
-          },
-          {
-            "file": "src/lib/components/account/PurchaseHistoryTable.svelte",
-            "line": 32
+            "line": 26
           },
           {
             "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
@@ -1396,6 +1324,74 @@
           {
             "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
             "line": 48
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 49
+          },
+          {
+            "file": "src/lib/components/brain/BrainActivityLog.svelte",
+            "line": 45
+          },
+          {
+            "file": "src/lib/components/brain/BrainActivityLog.svelte",
+            "line": 46
+          },
+          {
+            "file": "src/lib/components/brain/BrainActivityLog.svelte",
+            "line": 47
+          },
+          {
+            "file": "src/lib/components/brain/BrainActivityLog.svelte",
+            "line": 48
+          },
+          {
+            "file": "src/lib/components/brain/BrainActivityLog.svelte",
+            "line": 49
+          },
+          {
+            "file": "src/lib/components/brain/BrainActivityLog.svelte",
+            "line": 50
+          },
+          {
+            "file": "src/lib/components/brain/BrainActivityLog.svelte",
+            "line": 52
+          },
+          {
+            "file": "src/lib/components/brain/ConstellationLegend.svelte",
+            "line": 25
+          },
+          {
+            "file": "src/lib/components/brain/ConstellationLegend.svelte",
+            "line": 26
+          },
+          {
+            "file": "src/lib/components/brain/DomainModelIndex.svelte",
+            "line": 49
+          },
+          {
+            "file": "src/lib/components/brain/DomainModelIndex.svelte",
+            "line": 50
+          },
+          {
+            "file": "src/lib/components/brain/DomainModelIndex.svelte",
+            "line": 51
+          },
+          {
+            "file": "src/lib/components/brain/DomainModelIndex.svelte",
+            "line": 52
+          },
+          {
+            "file": "src/lib/components/brain/DomainModelIndex.svelte",
+            "line": 53
+          },
+          {
+            "file": "src/lib/components/brain/DomainModelIndex.svelte",
+            "line": 56
+          },
+          {
+            "file": "src/lib/components/brain/DomainModelIndex.svelte",
+            "line": 72
           }
         ],
         "overlongLines": [
@@ -1613,7 +1609,7 @@
         "tangled": [
           {
             "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
-            "line": 52
+            "line": 54
           },
           {
             "file": "src/lib/components/brain/constellation/focusChoreography.ts",
@@ -1879,15 +1875,11 @@
           },
           {
             "file": "src/lib/components/brain/readSourceStages.ts",
-            "line": 58
+            "line": 59
           },
           {
             "file": "src/lib/components/brain/readSourceStages.ts",
-            "line": 69
-          },
-          {
-            "file": "src/lib/components/brain/readSourceStages.ts",
-            "line": 76
+            "line": 70
           },
           {
             "file": "src/lib/components/brain/readSourceStages.ts",
@@ -1895,7 +1887,11 @@
           },
           {
             "file": "src/lib/components/brain/readSourceStages.ts",
-            "line": 83
+            "line": 78
+          },
+          {
+            "file": "src/lib/components/brain/readSourceStages.ts",
+            "line": 84
           },
           {
             "file": "src/lib/components/brain/removeSource.ts",
@@ -1923,11 +1919,11 @@
           },
           {
             "file": "src/lib/components/brain/uploadSourceFile.ts",
-            "line": 20
+            "line": 21
           },
           {
             "file": "src/lib/components/brain/uploadSourceFile.ts",
-            "line": 42
+            "line": 43
           },
           {
             "file": "src/lib/components/chatbots/chatbotAsk.ts",
@@ -2020,7 +2016,7 @@
       "name": "orphans",
       "summary": {
         "orphanFunctions": 23,
-        "functionsExamined": 1790
+        "functionsExamined": 1775
       },
       "offenders": [
         {
@@ -2175,9 +2171,9 @@
           "director": 4,
           "editor": 16,
           "email": 7,
-          "experience": 7,
+          "experience": 8,
           "field": 4,
-          "form": 14,
+          "form": 15,
           "header": 5,
           "index": 9,
           "input": 4,
@@ -2197,7 +2193,7 @@
           "password": 4,
           "people": 4,
           "prompt": 14,
-          "question": 6,
+          "question": 7,
           "reading": 6,
           "record": 5,
           "request": 8,
@@ -2274,7 +2270,7 @@
       "name": "inventory",
       "summary": {
         "pages": 35,
-        "components": 249,
+        "components": 250,
         "orphanComponents": 9,
         "averagePageLines": 37
       },
@@ -2751,6 +2747,10 @@
           },
           {
             "component": "src/lib/components/account/ModelChoicePanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/account/PayoutDetailsForm.svelte",
             "reusedBy": 1
           },
           {
@@ -3504,11 +3504,11 @@
     "fileAreas": {
       "name": "fileAreas",
       "summary": {
-        "totalFiles": 1386,
-        "frontend": 513,
-        "backend": 465,
+        "totalFiles": 1394,
+        "frontend": 516,
+        "backend": 468,
         "tooling": 104,
-        "shared": 95,
+        "shared": 97,
         "api": 64,
         "database": 59,
         "docs": 38,
@@ -3518,15 +3518,15 @@
       "offenders": [
         {
           "area": "frontend",
-          "files": 513,
-          "sourceFiles": 500,
-          "sourceLines": 23461
+          "files": 516,
+          "sourceFiles": 503,
+          "sourceLines": 23446
         },
         {
           "area": "backend",
-          "files": 465,
-          "sourceFiles": 465,
-          "sourceLines": 16333
+          "files": 468,
+          "sourceFiles": 468,
+          "sourceLines": 16319
         },
         {
           "area": "tooling",
@@ -3536,15 +3536,15 @@
         },
         {
           "area": "shared",
-          "files": 95,
-          "sourceFiles": 94,
-          "sourceLines": 3635
+          "files": 97,
+          "sourceFiles": 96,
+          "sourceLines": 3644
         },
         {
           "area": "api",
           "files": 64,
           "sourceFiles": 64,
-          "sourceLines": 2543
+          "sourceLines": 2525
         },
         {
           "area": "database",
@@ -4036,19 +4036,19 @@
     "duplication": {
       "name": "duplication",
       "summary": {
-        "clones": 14,
-        "duplicatedLines": 122,
-        "totalLines": 44960,
-        "duplicatedPercentage": 0.27
+        "clones": 13,
+        "duplicatedLines": 111,
+        "totalLines": 44697,
+        "duplicatedPercentage": 0.25
       },
       "offenders": [
         {
           "file": "src/lib/components/brain/flow/createFlowExperience.ts",
-          "duplicatedLineInstances": 18
+          "duplicatedLineInstances": 15
         },
         {
           "file": "src/lib/components/brain/regions/createRegionExperience.ts",
-          "duplicatedLineInstances": 18
+          "duplicatedLineInstances": 15
         },
         {
           "file": "src/lib/components/knowledge/editors/HybridPackEditor.svelte:typescript",
