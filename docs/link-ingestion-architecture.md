@@ -15,12 +15,18 @@ source the brain reads exactly as it reads an uploaded document.
 
 ## The view
 
-The Sources panel (`SourcesPanel`) gains a link box beneath the document drop zone
-(`SourceLinkPanel`): one input, one "Add link" button, Enter adds it. The link joins the
-same queue as documents and notes (`SourceUploadQueue`), shows "reading the link…" while
-the server fetches it, then the four reading stages like any other source, and settles
-with the same success or failure line. The source appears in the list under the title the
-reader gave it — `acme/ledger (GitHub)`, `@someone on X`, or the page's title.
+The Sources panel (`SourcesPanel`) opens with the quick capture box
+(`SourceCapturePanel`): one box for whatever the owner was just sent. It recognises what
+was pasted (`recogniseCapture`): a link on its own is read by the server; anything else —
+a post copied out of X, a forwarded message, a dictated note — is kept word for word as a
+note, so a page that refuses to be fetched still teaches the brain; a screenshot pasted
+into it is read as an image through the document path. The button says which it will do,
+Enter sends a link and Ctrl or Cmd with Enter sends a note. The capture joins the same
+queue as documents (`SourceUploadQueue`), shows "reading the link…" while the server
+fetches it, then the four reading stages like any other source, and settles with the same
+success or failure line. The source appears in the list under the title the reader gave
+it — `acme/ledger (GitHub)`, `@someone on X`, or the page's title — or, for a note, its
+first line.
 
 ## The flow
 
@@ -76,5 +82,5 @@ src/lib/server/brain/links/
            readGitHubRepository · readGitHubFile
   x/       xRequest · renderXPosts · readXPost · readXProfile
 src/routes/api/brain/sources/link/+server.ts
-src/lib/components/brain/{SourceLinkPanel.svelte, addLinkedSource.ts, queuedUpload.ts}
+src/lib/components/brain/{SourceCapturePanel.svelte, captureKind.ts, addLinkedSource.ts, queuedUpload.ts}
 ```

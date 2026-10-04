@@ -21,10 +21,12 @@ MCP server are working:
   they get on). Each is built by interview with an agent, by uploading the documents
   the business already files — several at once, each read in four stages that resume
   where they stopped ([docs/source-reading-architecture.md](./docs/source-reading-architecture.md)) —
-  by pasting a link to a GitHub repository, an X profile or any web page
-  ([docs/link-ingestion-architecture.md](./docs/link-ingestion-architecture.md)),
-  or by adding a note — typed, dictated with the phone keyboard's microphone, or pasted
-  from a voice memo transcript. Browse every page, item and task across the brains, search
+  or by quick capture — one box that takes whatever was just forwarded: a link to a
+  GitHub repository, an X profile or post or any web page is fetched and read
+  ([docs/link-ingestion-architecture.md](./docs/link-ingestion-architecture.md)); a
+  pasted post, message or voice memo transcript, or a note typed or dictated with the
+  phone keyboard's microphone, is kept word for word; a pasted screenshot is read as an
+  image. Browse every page, item and task across the brains, search
   their bodies, and read any page with its backlinks at `/knowledge-base/{id}/browse`
   ([docs/knowledge-explorer-architecture.md](./docs/knowledge-explorer-architecture.md)).
   Every answer is grounded in pages the model actually read, with citations. Asked from
