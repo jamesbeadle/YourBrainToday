@@ -1,6 +1,7 @@
 import { createSceneLoop } from '../../stage/animationLoop';
 import { createStage, fitStageTo } from '../../stage/createStage';
 import { disposeExperience } from '../../stage/disposeExperience';
+import { createModelUpdater } from '../../stage/modelUpdater';
 import { createOrbitRig, prefersReducedMotion } from '../constellation/orbitRig';
 import { createRegionDirector } from './regionDirector';
 import { attachRegionInput } from './regionInput';
@@ -45,7 +46,6 @@ export function createRegionExperience(
 		director
 	});
 	const resizeObserver = fitStageTo(stage, container);
-	let knownModel = model;
 
 	function frame(deltaSeconds: number, timeSeconds: number): void {
 		director.update(deltaSeconds);
@@ -58,12 +58,10 @@ export function createRegionExperience(
 
 	const loop = createSceneLoop(frame, options.onReady);
 
-	function updateModel(updatedModel: RegionModel): void {
-		if (updatedModel === knownModel) return;
-		knownModel = updatedModel;
+	const updateModel = createModelUpdater(model, (updatedModel) => {
 		view.rebuild(updatedModel);
 		director.refresh(updatedModel);
-	}
+	});
 
 	return {
 		updateModel,
