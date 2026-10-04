@@ -1,0 +1,113 @@
+{
+  "sourceGlobs": [
+    "src/**/*.ts",
+    "src/**/*.svelte"
+  ],
+  "excludeGlobs": [
+    "**/node_modules/**",
+    "**/.svelte-kit/**",
+    "**/*.d.ts",
+    "**/_to_delete/**"
+  ],
+  "maxFileLines": 100,
+  "maxFunctionLines": 30,
+  "fileLengthExemptGlobs": [
+    "src/app.d.ts",
+    "src/lib/data/legal/**"
+  ],
+  "booleanPrefixes": ["is", "has", "should", "can", "was", "will", "must", "allows"],
+  "bannedAbbreviations": [
+    "usr", "btn", "cfg", "tmp", "req", "res", "ctx", "idx", "err", "msg", "num", "val", "cnt", "arr", "obj2", "fn"
+  ],
+  "commentMarkers": {
+    "line": "//",
+    "documentation": ["/**", "*", "*/"],
+    "markup": "<!--"
+  },
+  "duplication": {
+    "minTokens": 70,
+    "ignoreGlobs": ["**/node_modules/**", "**/.svelte-kit/**", "**/migrations/**"]
+  },
+  "inventory": {
+    "pagesGlob": "src/routes/**/+page.svelte",
+    "componentsGlob": "src/lib/components/**/*.svelte",
+    "widgetMarkers": {
+      "table": "<table",
+      "modal": "Modal",
+      "form": "<form",
+      "submit": "SubmitButton",
+      "error": "FormErrorNote",
+      "list": "{#each",
+      "badge": "Badge",
+      "pill": "Pill"
+    }
+  },
+  "styleTokens": {
+    "markupGlobs": ["src/**/*.svelte", "src/**/*.css"],
+    "forbidInlineHexColours": true,
+    "forbidInlineStyleAttributes": true
+  },
+  "prose": {
+    "maxMemberChainDepth": 1,
+    "freeChainPrefixes": ["this.", "base.", "self.", "import.meta."],
+    "maxLineLength": 160,
+    "maxIndentDepth": 5,
+    "indentWidth": 4,
+    "indentedFileGlobs": ["src/**/*.ts", "src/**/*.svelte"]
+  },
+  "frameworkHandlers": {
+    "namePatterns": ["^on[A-Z]", "^handle[A-Z]", "^On[A-Z]", "^Handle[A-Z]"],
+    "names": [],
+    "coincidenceLines": 12
+  },
+  "functionNames": {
+    "maxWords": 5,
+    "maxLength": 40
+  },
+  "areas": [
+    {"name": "tests", "globs": ["**/*.test.*", "**/*.spec.*", "**/tests/**", "**/Tests/**", "**/*.Tests/**", "**/*Tests.cs"]},
+    {"name": "docs", "globs": ["**/*.md", "docs/**"]},
+    {"name": "tooling", "globs": ["tools/**", ".claude/**", "scripts/**"]},
+    {"name": "database", "globs": ["supabase/**", "**/migrations/**", "**/*.sql"]},
+    {"name": "api", "globs": ["src/routes/**/+server.*", "src/routes/api/**", "src/lib/server/mcp/**"]},
+    {"name": "backend", "globs": ["src/lib/server/**", "src/**/*.server.*", "src/hooks*"]},
+    {"name": "frontend", "globs": ["src/**/*.svelte", "src/**/*.css", "src/lib/components/**", "src/app.html", "static/**"]},
+    {"name": "shared", "globs": ["src/lib/**", "src/**/*.ts"]},
+    {"name": "infrastructure", "globs": [".github/**", "*.config.*", "*.json", "*.yml", "*.yaml", ".*"]}
+  ],
+  "designPatterns": {
+    "entityGlobs": ["src/lib/types/**/*.ts", "src/lib/entities/**/*.ts", "src/lib/domain/**/*.ts"],
+    "minimumFamilySize": 4,
+    "cooccurrenceThreshold": 0.75,
+    "fileCountBand": 2.0,
+    "acceptedGaps": []
+  },
+  "siteDefinition": {
+    "viewGlobs": ["**/*.svelte"],
+    "routeGlobs": ["**/routes/**/+page.svelte"],
+    "ignoredTags": [],
+    "catalogue": [],
+    "handRolled": [
+      {"element": "table", "ownedBy": "RecordsTable"},
+      {"element": "input", "ownedBy": "FormField", "unlessAttributes": ["type=\"checkbox\"", "type=\"radio\"", "type=\"file\"", "type=\"hidden\""]},
+      {"element": "select", "ownedBy": "FormField"},
+      {"element": "textarea", "ownedBy": "FormField"},
+      {"element": "h1", "ownedBy": "PageHeader", "unlessGlobs": ["**/routes/(landing)/**"]},
+      {"element": "h2", "ownedBy": "SectionHeader"},
+      {"element": "h3", "ownedBy": "SectionHeader"}
+    ],
+    "horizontalClasses": ["flex", "inline-flex"],
+    "verticalClasses": ["flex-col"],
+    "document": "tools/refactor/site-definition.md"
+  },
+  "inputValidation": {
+    "schemaGlobs": ["supabase/migrations/**/*.sql", "**/migrations/**/*.sql", "**/schema.sql"],
+    "entryPointGlobs": ["src/routes/**/+server.ts", "src/routes/**/+page.server.ts", "src/routes/**/+layout.server.ts", "src/lib/server/mcp/**/*.ts"],
+    "writePatterns": ["\\.from\\(\\s*['\\\"`](?P<table>\\w+)['\\\"`]\\s*\\)\\s*\\.(?:insert|update|upsert)\\(", "\\.insert\\(\\s*(?P<table>\\w+)\\s*\\)\\s*\\.values\\(", "\\.update\\(\\s*(?P<table>\\w+)\\s*\\)\\s*\\.set\\(", "\\.(?P<table>\\w+)\\.(?:create|createMany|update|updateMany|upsert)\\(", "insert\\s+into\\s+(?:\\w+\\.)?[\\\"`\\[]?(?P<table>\\w+)", "\\bupdate\\s+(?:\\w+\\.)?[\\\"`\\[]?(?P<table>\\w+)[\\\"`\\]]?\\s+set\\b"],
+    "validatorPatterns": ["\\bz\\.(?:object|string|number|enum|coerce)\\b", "\\bv\\.(?:object|string|pipe)\\(", "\\byup\\.", "\\bJoi\\.", "superValidate\\(", "\\.safeParse\\(", "\\bnew Ajv\\b", "\\bvalidate[A-Z]\\w*\\("],
+    "exemptGlobs": []
+  },
+  "score": {
+    "elements": {}
+  }
+}

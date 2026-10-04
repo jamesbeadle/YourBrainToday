@@ -1,0 +1,63 @@
+# Refactor pipeline
+
+Measurable, staged refactoring for any repository. Three sentences run it — **"Run the code quality check"** (`.claude/skills/code-quality-check`), **"Run the widget identification"** (`.claude/skills/widget-identification`, the read-only one) and **"Refactor the repo"** (`.claude/skills/refactor-round`) — and everything below is what those skills run. `playbook.md` is the process; `rules.json` is the standard; `audit/` measures compliance; `audit/gate.py` stops regression. This folder is installed and refreshed by the project-process kit (`kit-version` says which version); `baseline.json`, `baseline-report.md` and `refactor-plan.md` belong to this repository. `rules.json` is shared: the values the kit owns — the doctrine thresholds listed in the kit's `kit-owned.json` — are reset to the kit's on every bootstrap, so a rule the standard tightens reaches every repository by re-running it; everything else in the file (the globs, `areas`, `designPatterns`, the `siteDefinition` catalogue, the `score` overrides) is this repository's and is never touched. When a kit-owned value moves, the figures that value decides stop being comparable, so the same run measures the repository again and refreshes just those figures in `baseline.json` — `kit-owned.json` maps each value to them. Every other figure keeps the reading it was ratcheted to, so the upgrade cannot forgive a regression and can be run at any time. `baseline-report.md` is left as the record of the last full measurement and is rewritten by the next round. The run that changes a value rewrites this file in standard two-space JSON; the reformatting happens once.
+
+## Run the code quality check
+
+From the repository root:
+
+```
+python3 -m tools.refactor.audit.quality_check .
+```
+
+Runs the full audit, scores it, and writes three things: the box at the bottom of `README.md` (the score, with its breakdown, the repository's files by area and the refactoring plan expandable beneath it — only the block between the `code-quality` markers is touched), `refactor-plan.md` here (the steps a refactor of this repository follows, in order, with the measured detail behind the first targets), and `audit-output/`. It changes no source and never moves the baseline.
+
+## The site definition
+
+**"Run the widget identification"** writes `tools/refactor/site-definition.md` and nothing else — no branch, no pull request, no score — and the quality check refreshes the same file on its way. It is what a user sees at each route, read from the views themselves so it is never stale, in one notation: `a, b` stacked top to bottom · `[ a b ]` side by side · `(3) a` three of them, `(n) a` one per item · `?when: a` shown on a condition · `( a | b )` one or the other · `Widget{ … }` a catalogue widget with its content · `Part=( … )` one of the site's own components opened out · `⚠table→RecordsTable` markup written by hand where the named widget should be. Every component of the site is defined the same way, with how many views use it, and the document opens with the table of what is written by hand, widget by widget. The identification is two lines, the fast reading then the document:
+
+```
+python3 -m tools.refactor.audit.run_audit . --output tools/refactor/audit-output --fast
+python3 -m tools.refactor.audit.site.site_document .
+```
+
+It is measured from the `siteDefinition` block of `rules.json`: `viewGlobs` (the view files; `routeGlobs` for a router that names routes by path, as SvelteKit does — Razor's `@page` is read from the file), `catalogue` (the names of the shared widgets every view is meant to compose — empty means *not measured*), `handRolled` (each element a widget owns: `{"element": "table", "ownedBy": "RecordsTable"}`, with `unlessClassPrefixes` and `unlessAttributes` for the classes of markup the rule leaves alone, and `unlessLayouts` / `unlessGlobs` for the views outside the page layout it does not reach — a landing page's `<h1>` is not a `PageHeader`; an owner that is not in the catalogue yet is a widget to build), `containerWidgets` (the catalogue widgets that may draw a box — `Panel`, `Modal`, `Page` unless set) and `containerClassPatterns` (what a box looks like on an outer element: a panel or card class, `border`, `rounded`, `shadow`, `max-h-` unless set), `ignoredTags`, `horizontalClasses` / `verticalClasses` (how the layout axis is read off a wrapper's classes; a `grid-cols-N` above one is side by side), and `document` (where it is written). A widget's own file is never measured against the rules — it is where the hand-written markup is meant to live — and an owner counts as present anywhere inside it, so a `<table>` inside `RecordsTable` is right. A content widget — one that owns an element and is not in `containerWidgets` — draws only its content: when its outer element carries container styling or is itself a container widget, it is listed under `offenders.boxedWidgets`, because a boxed table cannot go inside a modal, a panel or a print sheet unchanged. The figure "markup written by hand where a widget should be" scores the *Widget adoption* group; it and "content widgets that draw their own box" ratchet in the gate and become Pass 1 of the refactoring plan: the box taken off each content widget first, then file-sized steps, the fullest first, each adopting one widget in a few files, ahead of component breakout.
+
+## Run the audit
+
+From the repository root:
+
+```
+python3 -m tools.refactor.audit.run_audit . --output tools/refactor/audit-output
+```
+
+Writes `audit-output/audit.json` (the score, every figure and offender list) and `audit-output/audit-report.md` (the human summary, led by the score, its breakdown, the repository by area and the against-the-baseline table). Add `--fast` between the steps of a round: it carries the duplication figure forward from the baseline instead of running jscpd again, so the reading takes seconds and the score stays comparable. `python3 -m tools.refactor.audit.plan .` rewrites `refactor-plan.md` from the last audit. Requires Python 3.10+. Duplication measurement additionally needs jscpd (`npm install -g jscpd`); without it that one check is skipped and everything else still runs — a report with duplication missing is incomplete, so install it before resetting a baseline.
+
+## Set / update the baseline
+
+```
+cp tools/refactor/audit-output/audit.json tools/refactor/baseline.json
+```
+
+Do this once per refactor round, at the end, never mid-round, and rewrite `baseline-report.md` in the shape the `refactor-round` skill gives.
+
+## Gate a change
+
+```
+python3 -m tools.refactor.audit.run_audit . --output tools/refactor/audit-output
+python3 -m tools.refactor.audit.gate tools/refactor/baseline.json tools/refactor/audit-output/audit.json
+```
+
+Exit code 1 when any ratcheted figure is worse than the baseline: files over the length limit, worst file length, over-long functions, else blocks, duplication percentage, explanatory comment lines, inline hex colours, orphan components, orphan functions, long member chains, deep indentation, overlong function names, accessor names that want to be a property, tangled conditions, comparisons to raw literals, files the design patterns predict but which are missing, markup written by hand where a widget should be, and content widgets that draw their own box. A figure the baseline does not hold yet is not gated until the next baseline. The `end-of-day` and `refactor-round` skills run exactly this; nothing runs on GitHub unless the kit was installed with `--with-ci-gate`.
+
+## Is a round due?
+
+```
+tools/refactor/deploys_since_baseline.sh        # or: … 5, for a rhythm of five
+```
+
+Counts the commits on the current branch since `baseline.json` was last committed and exits 0 when a round is due.
+
+## Point it at another repository
+
+Everything repository-specific lives in `rules.json`: `sourceGlobs`/`excludeGlobs` for the language mix, `inventory` globs and widget markers for the UI framework, `siteDefinition` for the site definition (above), `inputValidation` for the doors into the data (where the schema is, which files are entry points, what a write and a validator look like), `styleTokens.markupGlobs` for the styling layer, `prose.indentedFileGlobs` for the files whose indentation depth is measured, `prose.maxMemberChainDepth` for how many property hops one chain may take (one: `a.b` passes, `a.b.c` does not; method calls are not hops, so fluent query and array pipelines never count; `prose.freeChainPrefixes` lists the roots that are free, `this.`, `base.`, `self.` and `import.meta.`), `areas` for the repository's own grouping of its files (ordered, first match wins), `frameworkHandlers` for how a framework-owned handler is told apart from a duplicated utility — which is read from the code (bound from its own markup or the template beside it, invoked by an attribute or an `override`, imported by another file) rather than from a list of names, with `namePatterns` as a fallback shape, `coincidenceLines` for how long a shared body may be before matching stops being coincidence, and `names` starting empty and growing as the round records each judgement it is asked for, `designPatterns` for where the entities are declared and which predicted files are accepted gaps, `orphans` for the names and globs the framework calls by itself, and `score.elements` for any weight or zero point the repository sets for itself. The kit ships presets (`dotnet-blazor`, `sveltekit`, `generic`) and the bootstrap picks one by what it finds in the repository. Edit the copy here freely except for the paths named in the kit's `kit-owned.json` — `maxFileLines`, `maxFunctionLines`, `booleanPrefixes`, `bannedAbbreviations`, `duplication.minTokens`, the two `styleTokens` switches, the four `prose` limits and the two `functionNames` limits — which are the standard itself and are reset from the preset on every run. Change one of those in the kit, not here. The checks are heuristic and language-tolerant: C-family and TypeScript function shapes and names, C# and TypeScript booleans, `//`, `#`, `@*` and `<!--` comments.

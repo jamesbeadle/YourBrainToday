@@ -1,0 +1,4009 @@
+{
+  "generatedAt": "2026-10-04T17:50:17+00:00",
+  "kitVersion": "1.14.0",
+  "score": {
+    "overall": 76.9,
+    "groups": [
+      {
+        "group": "Standard baseline checks",
+        "score": 91.0,
+        "weight": 52
+      },
+      {
+        "group": "Design pattern file count",
+        "score": 66.2,
+        "weight": 10
+      },
+      {
+        "group": "Prose",
+        "score": 76.4,
+        "weight": 20
+      },
+      {
+        "group": "Widget adoption",
+        "score": null,
+        "weight": 0
+      },
+      {
+        "group": "Input validation",
+        "score": 0.0,
+        "weight": 8
+      }
+    ],
+    "elements": [
+      {
+        "key": "filesOverLimit",
+        "label": "Files over the line limit",
+        "group": "Standard baseline checks",
+        "weight": 10,
+        "zeroAt": 0.5,
+        "unit": "files",
+        "isMeasured": true,
+        "offenders": 2,
+        "measuredAgainst": 1124,
+        "score": 99.6
+      },
+      {
+        "key": "worstFile",
+        "label": "Worst file, in limits over",
+        "group": "Standard baseline checks",
+        "weight": 5,
+        "zeroAt": 9,
+        "unit": "",
+        "isMeasured": true,
+        "offenders": 0.09,
+        "measuredAgainst": 1,
+        "score": 99.0
+      },
+      {
+        "key": "functionsOverLimit",
+        "label": "Functions over the line limit",
+        "group": "Standard baseline checks",
+        "weight": 8,
+        "zeroAt": 0.25,
+        "unit": "functions",
+        "isMeasured": true,
+        "offenders": 60,
+        "measuredAgainst": 1748,
+        "score": 86.3
+      },
+      {
+        "key": "elseBlocks",
+        "label": "Else blocks",
+        "group": "Standard baseline checks",
+        "weight": 5,
+        "zeroAt": 0.5,
+        "unit": "branches",
+        "isMeasured": true,
+        "offenders": 1,
+        "measuredAgainst": 1888,
+        "score": 99.9
+      },
+      {
+        "key": "duplication",
+        "label": "Duplication %",
+        "group": "Standard baseline checks",
+        "weight": 8,
+        "zeroAt": 20,
+        "unit": "",
+        "isMeasured": false,
+        "offenders": null,
+        "score": null
+      },
+      {
+        "key": "comments",
+        "label": "Explanatory comment lines",
+        "group": "Standard baseline checks",
+        "weight": 4,
+        "zeroAt": 50,
+        "unit": "thousand lines",
+        "isMeasured": true,
+        "offenders": 264,
+        "measuredAgainst": 46.45,
+        "score": 88.6
+      },
+      {
+        "key": "magicValues",
+        "label": "Inline magic values",
+        "group": "Standard baseline checks",
+        "weight": 4,
+        "zeroAt": 20,
+        "unit": "thousand lines",
+        "isMeasured": true,
+        "offenders": 36,
+        "measuredAgainst": 46.45,
+        "score": 96.1
+      },
+      {
+        "key": "orphans",
+        "label": "Orphan components and functions",
+        "group": "Standard baseline checks",
+        "weight": 4,
+        "zeroAt": 0.1,
+        "unit": "components and functions",
+        "isMeasured": true,
+        "offenders": 32,
+        "measuredAgainst": 1995,
+        "score": 84.0
+      },
+      {
+        "key": "memberChains",
+        "label": "Long member chain lines",
+        "group": "Standard baseline checks",
+        "weight": 4,
+        "zeroAt": 30,
+        "unit": "thousand lines",
+        "isMeasured": true,
+        "offenders": 443,
+        "measuredAgainst": 46.45,
+        "score": 68.2
+      },
+      {
+        "key": "deepIndentation",
+        "label": "Deeply indented lines",
+        "group": "Standard baseline checks",
+        "weight": 4,
+        "zeroAt": 30,
+        "unit": "thousand lines",
+        "isMeasured": true,
+        "offenders": 304,
+        "measuredAgainst": 46.45,
+        "score": 78.2
+      },
+      {
+        "key": "functionNames",
+        "label": "Overlong function names",
+        "group": "Standard baseline checks",
+        "weight": 4,
+        "zeroAt": 0.1,
+        "unit": "functions",
+        "isMeasured": true,
+        "offenders": 4,
+        "measuredAgainst": 1748,
+        "score": 97.7
+      },
+      {
+        "key": "predictedFiles",
+        "label": "Files the patterns predict but are missing",
+        "group": "Design pattern file count",
+        "weight": 10,
+        "zeroAt": 0.5,
+        "unit": "predicted files",
+        "isMeasured": true,
+        "offenders": 13,
+        "measuredAgainst": 77,
+        "score": 66.2
+      },
+      {
+        "key": "entityFileCounts",
+        "label": "Entities outside their expected file count",
+        "group": "Design pattern file count",
+        "weight": 10,
+        "zeroAt": 0.5,
+        "unit": "entities",
+        "isMeasured": false,
+        "offenders": 0,
+        "score": null
+      },
+      {
+        "key": "tangledConditions",
+        "label": "Conditions with calls tangled inside calls",
+        "group": "Prose",
+        "weight": 8,
+        "zeroAt": 0.25,
+        "unit": "branches",
+        "isMeasured": true,
+        "offenders": 50,
+        "measuredAgainst": 1888,
+        "score": 89.4
+      },
+      {
+        "key": "literalComparisons",
+        "label": "Conditions compared to a raw literal",
+        "group": "Prose",
+        "weight": 6,
+        "zeroAt": 0.25,
+        "unit": "branches",
+        "isMeasured": true,
+        "offenders": 278,
+        "measuredAgainst": 1888,
+        "score": 41.1
+      },
+      {
+        "key": "gluedAccessors",
+        "label": "Accessor names that want to be a property",
+        "group": "Prose",
+        "weight": 6,
+        "zeroAt": 0.1,
+        "unit": "functions",
+        "isMeasured": true,
+        "offenders": 10,
+        "measuredAgainst": 1748,
+        "score": 94.3
+      },
+      {
+        "key": "handRolledWidgets",
+        "label": "Markup written by hand where a widget should be",
+        "group": "Widget adoption",
+        "weight": 8,
+        "zeroAt": 0.5,
+        "unit": "widget slots",
+        "isMeasured": false,
+        "offenders": null,
+        "score": null
+      },
+      {
+        "key": "unvalidatedWrites",
+        "label": "Doors that write without checking their input against the columns",
+        "group": "Input validation",
+        "weight": 8,
+        "zeroAt": 0.5,
+        "unit": "write doors",
+        "isMeasured": true,
+        "offenders": 58,
+        "measuredAgainst": 58,
+        "score": 0.0
+      }
+    ]
+  },
+  "summaries": {
+    "fileLength": {
+      "limit": 100,
+      "filesOverLimit": 2,
+      "totalFiles": 1124,
+      "totalLines": 46454,
+      "worstFileLines": 109,
+      "worstFileTimesOverLimit": 0.09
+    },
+    "functionShape": {
+      "limit": 30,
+      "functionsOverLimit": 60,
+      "totalFunctions": 1748,
+      "elseBlocks": 1,
+      "ifBlocks": 1888,
+      "measurementIsHeuristic": true
+    },
+    "functionNames": {
+      "overlongFunctionNames": 4,
+      "maxWords": 5,
+      "maxLength": 40
+    },
+    "accessorNames": {
+      "gluedAccessorNames": 10,
+      "measurementIsHeuristic": true
+    },
+    "duplication": {
+      "skipped": "jscpd is not installed (npm install -g jscpd)"
+    },
+    "naming": {
+      "bannedAbbreviationHits": 3,
+      "unprefixedBooleans": 2
+    },
+    "comments": {
+      "explanatoryCommentLines": 264,
+      "filesWithComments": 103,
+      "taskMarkers": 0
+    },
+    "magicValues": {
+      "inlineHexColours": 4,
+      "inlineStyleAttributes": 2,
+      "repeatedStringLiterals": 30
+    },
+    "prose": {
+      "longMemberChainLines": 443,
+      "deeplyIndentedLines": 304,
+      "overlongLines": 77,
+      "measurementIsHeuristic": true
+    },
+    "conditions": {
+      "tangledConditionLines": 50,
+      "literalComparisonLines": 278,
+      "measurementIsHeuristic": true
+    },
+    "orphans": {
+      "orphanFunctions": 23,
+      "functionsExamined": 1748
+    },
+    "designPatterns": {
+      "roleFamilies": 64,
+      "predictedFiles": 77,
+      "predictedFilesMissing": 13,
+      "entities": 0,
+      "entitiesOutOfRange": 0,
+      "measurementIsHeuristic": true
+    },
+    "inventory": {
+      "pages": 35,
+      "components": 247,
+      "orphanComponents": 9,
+      "averagePageLines": 37
+    },
+    "siteDefinition": {
+      "skipped": "no siteDefinition catalogue in rules.json"
+    },
+    "inputValidation": {
+      "schemaTables": 80,
+      "limitedColumns": 0,
+      "writeDoors": 58,
+      "unvalidatedDoors": 58,
+      "looserLimits": 0
+    },
+    "fileAreas": {
+      "totalFiles": 1256,
+      "frontend": 510,
+      "backend": 444,
+      "shared": 92,
+      "api": 64,
+      "database": 58,
+      "tests": 28,
+      "docs": 27,
+      "tooling": 20,
+      "infrastructure": 13
+    }
+  },
+  "details": {
+    "fileLength": {
+      "name": "fileLength",
+      "summary": {
+        "limit": 100,
+        "filesOverLimit": 2,
+        "totalFiles": 1124,
+        "totalLines": 46454,
+        "worstFileLines": 109,
+        "worstFileTimesOverLimit": 0.09
+      },
+      "offenders": [
+        {
+          "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
+          "lines": 109
+        },
+        {
+          "file": "src/lib/data/brainTypes.ts",
+          "lines": 106
+        }
+      ]
+    },
+    "functionShape": {
+      "name": "functionShape",
+      "summary": {
+        "limit": 30,
+        "functionsOverLimit": 60,
+        "totalFunctions": 1748,
+        "elseBlocks": 1,
+        "ifBlocks": 1888,
+        "measurementIsHeuristic": true
+      },
+      "offenders": [
+        {
+          "file": "src/lib/server/brain/modellerIngestPrompt.ts",
+          "lines": 80,
+          "name": "modellerIngestPrompt",
+          "line": 3
+        },
+        {
+          "file": "src/lib/components/knowledge/kb3d/createKbGalaxy.ts",
+          "lines": 71,
+          "name": "createKbGalaxy",
+          "line": 21
+        },
+        {
+          "file": "src/lib/components/brain/constellation/neuronField.ts",
+          "lines": 70,
+          "name": "createNeuronField",
+          "line": 25
+        },
+        {
+          "file": "src/lib/components/brain/flow/flowField.ts",
+          "lines": 67,
+          "name": "createFlowField",
+          "line": 25
+        },
+        {
+          "file": "src/lib/components/brain/constellation/cellMaterialBank.ts",
+          "lines": 66,
+          "name": "createCellMaterialBank",
+          "line": 22
+        },
+        {
+          "file": "src/lib/components/knowledge/kb3d/kbGalaxyInput.ts",
+          "lines": 66,
+          "name": "attachKbGalaxyInput",
+          "line": 9
+        },
+        {
+          "file": "src/lib/components/brain/constellation/constellationSceneAssembly.ts",
+          "lines": 62,
+          "name": "assembleConstellationScene",
+          "line": 31
+        },
+        {
+          "file": "src/lib/components/brain/constellation/neuronBody.ts",
+          "lines": 55,
+          "name": "createNeuronBody",
+          "line": 43
+        },
+        {
+          "file": "src/lib/components/brain/flow/flowSceneAssembly.ts",
+          "lines": 55,
+          "name": "assembleFlowScene",
+          "line": 26
+        },
+        {
+          "file": "src/lib/components/hive/constellation/hiveSwarmOrbit.ts",
+          "lines": 55,
+          "name": "createHiveSwarmOrbit",
+          "line": 31
+        },
+        {
+          "file": "src/lib/server/brain/modellerPrunePrompt.ts",
+          "lines": 54,
+          "name": "modellerPrunePrompt",
+          "line": 1
+        },
+        {
+          "file": "src/lib/components/brain/constellation/firingPulses.ts",
+          "lines": 52,
+          "name": "createFiringPulses",
+          "line": 19
+        },
+        {
+          "file": "src/lib/components/brain/constellation/settleFlash.ts",
+          "lines": 52,
+          "name": "createSettleFlashes",
+          "line": 24
+        },
+        {
+          "file": "src/lib/components/hive/constellation/hiveSwarmCloud.ts",
+          "lines": 52,
+          "name": "createHiveSwarmCloud",
+          "line": 28
+        },
+        {
+          "file": "src/lib/components/knowledge/kb3d/miniBrain.ts",
+          "lines": 52,
+          "name": "buildMiniBrain",
+          "line": 22
+        },
+        {
+          "file": "src/lib/components/brain/regions/regionSceneAssembly.ts",
+          "lines": 51,
+          "name": "assembleRegionScene",
+          "line": 22
+        },
+        {
+          "file": "src/lib/components/brain/constellation/focusDirector.ts",
+          "lines": 49,
+          "name": "createFocusDirector",
+          "line": 29
+        },
+        {
+          "file": "src/lib/components/brain/constellation/growthChoreographer.ts",
+          "lines": 49,
+          "name": "createGrowthChoreographer",
+          "line": 30
+        },
+        {
+          "file": "src/lib/components/brain/flow/tokenTraffic.ts",
+          "lines": 49,
+          "name": "createTokenTraffic",
+          "line": 15
+        },
+        {
+          "file": "src/lib/server/brain/processMapPrompt.ts",
+          "lines": 49,
+          "name": "processMapPrompt",
+          "line": 23
+        },
+        {
+          "file": "src/routes/api/chatbots/[chatbotId=uuid]/ask/+server.ts",
+          "lines": 49,
+          "name": "POST",
+          "line": 27
+        },
+        {
+          "file": "src/routes/api/v1/brains/[brainId]/ask/+server.ts",
+          "lines": 49,
+          "name": "POST",
+          "line": 24
+        },
+        {
+          "file": "src/lib/components/brain/regions/regionField.ts",
+          "lines": 48,
+          "name": "createRegionField",
+          "line": 20
+        },
+        {
+          "file": "src/lib/components/brain/constellation/ambientNeuralWeb.ts",
+          "lines": 47,
+          "name": "createAmbientNeuralWeb",
+          "line": 31
+        },
+        {
+          "file": "src/lib/server/chatbots/chatbotQueryPrompt.ts",
+          "lines": 47,
+          "name": "chatbotQueryPrompt",
+          "line": 1
+        },
+        {
+          "file": "src/lib/components/brain/constellation/constellationExploration.svelte.ts",
+          "lines": 46,
+          "name": "createConstellationExploration",
+          "line": 15
+        },
+        {
+          "file": "src/lib/components/brain/constellation/synapseWeb.ts",
+          "lines": 45,
+          "name": "createSynapseWeb",
+          "line": 27
+        },
+        {
+          "file": "src/lib/components/knowledge/kb3d/kbGalaxyFocus.ts",
+          "lines": 44,
+          "name": "createGalaxyFocus",
+          "line": 22
+        },
+        {
+          "file": "src/routes/api/brain/ask/+server.ts",
+          "lines": 42,
+          "name": "POST",
+          "line": 24
+        },
+        {
+          "file": "src/lib/components/brain/regions/tissueGlow.ts",
+          "lines": 41,
+          "name": "createTissueGlow",
+          "line": 21
+        },
+        {
+          "file": "src/lib/components/knowledge/kb3d/kbGalaxyScene.ts",
+          "lines": 41,
+          "name": "createKbGalaxyScene",
+          "line": 20
+        },
+        {
+          "file": "src/lib/components/brain/regions/regionDirector.ts",
+          "lines": 40,
+          "name": "createRegionDirector",
+          "line": 23
+        },
+        {
+          "file": "src/lib/components/brain/flow/flowStation.ts",
+          "lines": 39,
+          "name": "createFlowStation",
+          "line": 55
+        },
+        {
+          "file": "src/routes/api/hive-mind/ask/+server.ts",
+          "lines": 39,
+          "name": "answerHiveMindQuestion",
+          "line": 32
+        },
+        {
+          "file": "src/lib/components/brain/constellation/dendriteTree.ts",
+          "lines": 38,
+          "name": "growDendriteTree",
+          "line": 29
+        },
+        {
+          "file": "src/lib/components/knowledge/kb3d/kbGalaxyAssembly.ts",
+          "lines": 38,
+          "name": "buildSlotHandle",
+          "line": 58
+        },
+        {
+          "file": "src/lib/server/brain/askModeller.ts",
+          "lines": 38,
+          "name": "askModeller",
+          "line": 18
+        },
+        {
+          "file": "src/lib/components/brain/constellation/constellationPointer.ts",
+          "lines": 37,
+          "name": "attachConstellationPointer",
+          "line": 9
+        },
+        {
+          "file": "src/lib/components/brain/flow/flowInput.ts",
+          "lines": 37,
+          "name": "attachFlowInput",
+          "line": 7
+        },
+        {
+          "file": "src/hooks.server.ts",
+          "lines": 36,
+          "name": "handle",
+          "line": 14
+        },
+        {
+          "file": "src/lib/components/brain/flow/flowPathway.ts",
+          "lines": 36,
+          "name": "createFlowPathway",
+          "line": 49
+        },
+        {
+          "file": "src/lib/components/brain/regions/regionInput.ts",
+          "lines": 36,
+          "name": "attachRegionInput",
+          "line": 7
+        },
+        {
+          "file": "src/lib/components/brain/constellation/materialBank.ts",
+          "lines": 35,
+          "name": "createMaterialBank",
+          "line": 17
+        },
+        {
+          "file": "src/lib/server/brain/runModelPrune.ts",
+          "lines": 35,
+          "name": "runModelPrune",
+          "line": 22
+        },
+        {
+          "file": "src/lib/server/email/chatbotInviteEmail.ts",
+          "lines": 35,
+          "name": "renderChatbotInviteEmail",
+          "line": 5
+        },
+        {
+          "file": "src/lib/server/knowledge/interviewPrompt.ts",
+          "lines": 35,
+          "name": "interviewSystemPrompt",
+          "line": 25
+        },
+        {
+          "file": "src/lib/components/brain/regions/regionHalo.ts",
+          "lines": 34,
+          "name": "createRegionHalo",
+          "line": 22
+        },
+        {
+          "file": "src/lib/server/brain/documentHarvestPrompt.ts",
+          "lines": 34,
+          "name": "documentHarvestPrompt",
+          "line": 25
+        },
+        {
+          "file": "src/lib/server/email/inviteEmail.ts",
+          "lines": 34,
+          "name": "renderInviteEmail",
+          "line": 5
+        },
+        {
+          "file": "src/lib/components/brain/constellation/fibreGeometry.ts",
+          "lines": 33,
+          "name": "fibreGeometryFrom",
+          "line": 10
+        }
+      ]
+    },
+    "functionNames": {
+      "name": "functionNames",
+      "summary": {
+        "overlongFunctionNames": 4,
+        "maxWords": 5,
+        "maxLength": 40
+      },
+      "offenders": [
+        {
+          "file": "src/routes/api/brain/sources/[sourceId]/+server.ts",
+          "line": 17,
+          "name": "DELETE"
+        },
+        {
+          "file": "src/routes/api/brain/tokens/+server.ts",
+          "line": 24,
+          "name": "DELETE"
+        },
+        {
+          "file": "src/routes/api/workspace/shares/+server.ts",
+          "line": 42,
+          "name": "DELETE"
+        },
+        {
+          "file": "src/routes/knowledge-base/[knowledgeBaseId=uuid]/brains/[brainId]/processBrainActions.ts",
+          "line": 29,
+          "name": "requireProcessMapInKnowledgeBase"
+        }
+      ]
+    },
+    "accessorNames": {
+      "name": "accessorNames",
+      "summary": {
+        "gluedAccessorNames": 10,
+        "measurementIsHeuristic": true
+      },
+      "offenders": [
+        {
+          "file": "src/lib/server/accounts/getAccountDirectory.ts",
+          "line": 4,
+          "name": "getAccountDirectory"
+        },
+        {
+          "file": "src/lib/server/brain/getBrainPageIndex.ts",
+          "line": 5,
+          "name": "getBrainPageIndex"
+        },
+        {
+          "file": "src/lib/server/brain/getBrainPageLinks.ts",
+          "line": 6,
+          "name": "getBrainPageLinks"
+        },
+        {
+          "file": "src/lib/server/credits/getPurchaseHistory.ts",
+          "line": 12,
+          "name": "getPurchaseHistory"
+        },
+        {
+          "file": "src/lib/server/hive/hiveApplicationBrain.ts",
+          "line": 19,
+          "name": "getHiveApplicationContexts"
+        },
+        {
+          "file": "src/lib/server/hive/hiveApplicationBrain.ts",
+          "line": 35,
+          "name": "getHiveApplicationPages"
+        },
+        {
+          "file": "src/lib/server/knowledge/deleteKnowledgeBase.ts",
+          "line": 24,
+          "name": "getLinkedDomainBrains"
+        },
+        {
+          "file": "src/lib/server/knowledge/deleteKnowledgeBase.ts",
+          "line": 64,
+          "name": "getEntityDomainBrainIds"
+        },
+        {
+          "file": "src/lib/server/knowledge/getKnowledgeBaseList.ts",
+          "line": 14,
+          "name": "getKnowledgeBaseList"
+        },
+        {
+          "file": "src/lib/server/knowledge/knowledgeBaseShares.ts",
+          "line": 6,
+          "name": "getKnowledgeBaseShares"
+        }
+      ]
+    },
+    "naming": {
+      "name": "naming",
+      "summary": {
+        "bannedAbbreviationHits": 3,
+        "unprefixedBooleans": 2
+      },
+      "offenders": {
+        "abbreviations": [
+          {
+            "file": "src/lib/server/knowledge/reading/readingExchange.test.ts",
+            "line": 8
+          },
+          {
+            "file": "src/lib/server/knowledge/reading/readingExchange.test.ts",
+            "line": 9
+          },
+          {
+            "file": "src/lib/server/knowledge/reading/readingExchange.test.ts",
+            "line": 10
+          }
+        ],
+        "booleans": [
+          {
+            "file": "src/lib/server/brain/getBrainEvents.ts",
+            "line": 24,
+            "name": "ascending"
+          },
+          {
+            "file": "src/routes/face/+page.ts",
+            "line": 1,
+            "name": "ssr"
+          }
+        ]
+      }
+    },
+    "comments": {
+      "name": "comments",
+      "summary": {
+        "explanatoryCommentLines": 264,
+        "filesWithComments": 103,
+        "taskMarkers": 0
+      },
+      "offenders": []
+    },
+    "magicValues": {
+      "name": "magicValues",
+      "summary": {
+        "inlineHexColours": 4,
+        "inlineStyleAttributes": 2,
+        "repeatedStringLiterals": 30
+      },
+      "offenders": {
+        "hexColours": [
+          {
+            "file": "src/lib/components/account/GoogleSignInButton.svelte",
+            "line": 14
+          },
+          {
+            "file": "src/lib/components/account/GoogleSignInButton.svelte",
+            "line": 18
+          },
+          {
+            "file": "src/lib/components/account/GoogleSignInButton.svelte",
+            "line": 21
+          },
+          {
+            "file": "src/lib/components/account/GoogleSignInButton.svelte",
+            "line": 23
+          }
+        ],
+        "inlineStyles": [
+          {
+            "file": "src/lib/components/site/BrandMark.svelte",
+            "line": 10
+          },
+          {
+            "file": "src/lib/components/site/BrandWordmark.svelte",
+            "line": 7
+          }
+        ],
+        "repeatedLiterals": [
+          {
+            "literal": "button",
+            "occurrences": 77
+          },
+          {
+            "literal": "flex flex-col gap-2",
+            "occurrences": 48
+          },
+          {
+            "literal": "flex flex-col gap-1",
+            "occurrences": 34
+          },
+          {
+            "literal": "text-sm text-chalk/60",
+            "occurrences": 33
+          },
+          {
+            "literal": "flex flex-col gap-3",
+            "occurrences": 33
+          },
+          {
+            "literal": "text-xs text-chalk/50",
+            "occurrences": 31
+          },
+          {
+            "literal": "hidden",
+            "occurrences": 29
+          },
+          {
+            "literal": "font-display text-3xl font-medium",
+            "occurrences": 24
+          },
+          {
+            "literal": "px-5 py-3 text-right",
+            "occurrences": 20
+          },
+          {
+            "literal": "submit",
+            "occurrences": 19
+          },
+          {
+            "literal": "flex flex-col gap-4",
+            "occurrences": 17
+          },
+          {
+            "literal": "max-w-prose text-chalk/70",
+            "occurrences": 17
+          },
+          {
+            "literal": "font-display text-lg font-medium",
+            "occurrences": 15
+          },
+          {
+            "literal": "text-sm text-chalk/50",
+            "occurrences": 15
+          },
+          {
+            "literal": "font-display text-xl font-medium",
+            "occurrences": 14
+          },
+          {
+            "literal": "font-display text-sm text-chalk",
+            "occurrences": 14
+          },
+          {
+            "literal": "text-xs leading-relaxed text-chalk/60",
+            "occurrences": 14
+          },
+          {
+            "literal": "flex items-center gap-2",
+            "occurrences": 13
+          },
+          {
+            "literal": "text-sm text-chalk/40",
+            "occurrences": 12
+          },
+          {
+            "literal": "text-sm text-chalk/70",
+            "occurrences": 11
+          },
+          {
+            "literal": "text-chalk/80",
+            "occurrences": 11
+          },
+          {
+            "literal": "px-5 py-3",
+            "occurrences": 10
+          },
+          {
+            "literal": "px-5 py-3 text-right tabular-nums",
+            "occurrences": 10
+          },
+          {
+            "literal": "text-chalk",
+            "occurrences": 10
+          },
+          {
+            "literal": "flex flex-col divide-y divide-hairline",
+            "occurrences": 10
+          },
+          {
+            "literal": "description",
+            "occurrences": 9
+          },
+          {
+            "literal": "text-chalk/70",
+            "occurrences": 8
+          },
+          {
+            "literal": "min-h-0 flex-1 overflow-y-auto p-4",
+            "occurrences": 8
+          },
+          {
+            "literal": "text-xs text-chalk/40",
+            "occurrences": 8
+          },
+          {
+            "literal": "question",
+            "occurrences": 7
+          }
+        ]
+      }
+    },
+    "prose": {
+      "name": "prose",
+      "summary": {
+        "longMemberChainLines": 443,
+        "deeplyIndentedLines": 304,
+        "overlongLines": 77,
+        "measurementIsHeuristic": true
+      },
+      "offenders": {
+        "memberChains": [
+          {
+            "file": "src/hooks.server.ts",
+            "line": 18
+          },
+          {
+            "file": "src/hooks.server.ts",
+            "line": 29
+          },
+          {
+            "file": "src/hooks.server.ts",
+            "line": 30
+          },
+          {
+            "file": "src/hooks.server.ts",
+            "line": 31
+          },
+          {
+            "file": "src/hooks.server.ts",
+            "line": 33
+          },
+          {
+            "file": "src/hooks.server.ts",
+            "line": 39
+          },
+          {
+            "file": "src/lib/client/findReorderRow.ts",
+            "line": 36
+          },
+          {
+            "file": "src/lib/client/findReorderRow.ts",
+            "line": 43
+          },
+          {
+            "file": "src/lib/client/findReorderRow.ts",
+            "line": 53
+          },
+          {
+            "file": "src/lib/client/findReorderRow.ts",
+            "line": 60
+          },
+          {
+            "file": "src/lib/client/formTracker.svelte.ts",
+            "line": 14
+          },
+          {
+            "file": "src/lib/components/brain/constellation/branchGrowth.ts",
+            "line": 50
+          },
+          {
+            "file": "src/lib/components/brain/constellation/branchSprouting.ts",
+            "line": 20
+          },
+          {
+            "file": "src/lib/components/brain/constellation/cellMaterialBank.ts",
+            "line": 65
+          },
+          {
+            "file": "src/lib/components/brain/constellation/cellMaterialBank.ts",
+            "line": 70
+          },
+          {
+            "file": "src/lib/components/brain/constellation/cellMaterialBank.ts",
+            "line": 74
+          },
+          {
+            "file": "src/lib/components/brain/constellation/cellMaterialBank.ts",
+            "line": 78
+          },
+          {
+            "file": "src/lib/components/brain/constellation/constellationInteractions.ts",
+            "line": 18
+          },
+          {
+            "file": "src/lib/components/brain/constellation/constellationPicking.ts",
+            "line": 24
+          },
+          {
+            "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
+            "line": 39
+          },
+          {
+            "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
+            "line": 40
+          },
+          {
+            "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
+            "line": 47
+          },
+          {
+            "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
+            "line": 51
+          },
+          {
+            "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
+            "line": 61
+          },
+          {
+            "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
+            "line": 64
+          },
+          {
+            "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
+            "line": 75
+          },
+          {
+            "file": "src/lib/components/brain/constellation/fibreGeometry.ts",
+            "line": 11
+          },
+          {
+            "file": "src/lib/components/brain/constellation/fibreMaterial.ts",
+            "line": 42
+          },
+          {
+            "file": "src/lib/components/brain/constellation/fibreMaterial.ts",
+            "line": 46
+          },
+          {
+            "file": "src/lib/components/brain/constellation/firingPulses.ts",
+            "line": 42
+          },
+          {
+            "file": "src/lib/components/brain/constellation/firingPulses.ts",
+            "line": 58
+          },
+          {
+            "file": "src/lib/components/brain/constellation/firingPulses.ts",
+            "line": 61
+          },
+          {
+            "file": "src/lib/components/brain/constellation/focusDirector.ts",
+            "line": 43
+          },
+          {
+            "file": "src/lib/components/brain/constellation/growthChoreographer.ts",
+            "line": 73
+          },
+          {
+            "file": "src/lib/components/brain/constellation/materialBank.ts",
+            "line": 39
+          },
+          {
+            "file": "src/lib/components/brain/constellation/neuronField.ts",
+            "line": 37
+          },
+          {
+            "file": "src/lib/components/brain/constellation/settleFlash.ts",
+            "line": 60
+          },
+          {
+            "file": "src/lib/components/brain/constellation/settleFlash.ts",
+            "line": 61
+          },
+          {
+            "file": "src/lib/components/brain/dashboard/commandBox.ts",
+            "line": 10
+          },
+          {
+            "file": "src/lib/components/brain/dashboard/commandBox.ts",
+            "line": 12
+          },
+          {
+            "file": "src/lib/components/brain/flow/buildFlowModel.ts",
+            "line": 10
+          },
+          {
+            "file": "src/lib/components/brain/flow/buildFlowModel.ts",
+            "line": 90
+          },
+          {
+            "file": "src/lib/components/brain/flow/createFlowExperience.ts",
+            "line": 39
+          },
+          {
+            "file": "src/lib/components/brain/flow/createFlowExperience.ts",
+            "line": 49
+          },
+          {
+            "file": "src/lib/components/brain/flow/createFlowExperience.ts",
+            "line": 50
+          },
+          {
+            "file": "src/lib/components/brain/flow/flowDirector.ts",
+            "line": 33
+          },
+          {
+            "file": "src/lib/components/brain/flow/flowField.ts",
+            "line": 64
+          },
+          {
+            "file": "src/lib/components/brain/flow/flowField.ts",
+            "line": 66
+          },
+          {
+            "file": "src/lib/components/brain/flow/flowInput.ts",
+            "line": 19
+          },
+          {
+            "file": "src/lib/components/brain/flow/flowLayout.ts",
+            "line": 72
+          }
+        ],
+        "deepIndentation": [
+          {
+            "file": "src/lib/client/formTracker.svelte.ts",
+            "line": 42
+          },
+          {
+            "file": "src/lib/client/formTracker.svelte.ts",
+            "line": 43
+          },
+          {
+            "file": "src/lib/client/formTracker.svelte.ts",
+            "line": 44
+          },
+          {
+            "file": "src/lib/client/formTracker.svelte.ts",
+            "line": 46
+          },
+          {
+            "file": "src/lib/server/brain/pruneModelTool.ts",
+            "line": 25
+          },
+          {
+            "file": "src/lib/server/brain/pruneModelTool.ts",
+            "line": 26
+          },
+          {
+            "file": "src/lib/server/brain/updateModelTool.ts",
+            "line": 64
+          },
+          {
+            "file": "src/lib/server/brain/updateModelTool.ts",
+            "line": 65
+          },
+          {
+            "file": "src/lib/server/market/getMyListingPurchases.ts",
+            "line": 30
+          },
+          {
+            "file": "src/lib/server/market/getMyListingPurchases.ts",
+            "line": 31
+          },
+          {
+            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
+            "line": 65
+          },
+          {
+            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
+            "line": 71
+          },
+          {
+            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
+            "line": 74
+          },
+          {
+            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
+            "line": 75
+          },
+          {
+            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
+            "line": 76
+          },
+          {
+            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
+            "line": 77
+          },
+          {
+            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
+            "line": 78
+          },
+          {
+            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
+            "line": 79
+          },
+          {
+            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
+            "line": 80
+          },
+          {
+            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
+            "line": 85
+          },
+          {
+            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
+            "line": 88
+          },
+          {
+            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
+            "line": 89
+          },
+          {
+            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
+            "line": 90
+          },
+          {
+            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
+            "line": 91
+          },
+          {
+            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
+            "line": 92
+          },
+          {
+            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
+            "line": 93
+          },
+          {
+            "file": "src/lib/components/account/PayoutDetailsPanel.svelte",
+            "line": 94
+          },
+          {
+            "file": "src/lib/components/account/PurchaseHistoryTable.svelte",
+            "line": 27
+          },
+          {
+            "file": "src/lib/components/account/PurchaseHistoryTable.svelte",
+            "line": 28
+          },
+          {
+            "file": "src/lib/components/account/PurchaseHistoryTable.svelte",
+            "line": 31
+          },
+          {
+            "file": "src/lib/components/account/PurchaseHistoryTable.svelte",
+            "line": 32
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 26
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 27
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 28
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 29
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 30
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 31
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 32
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 37
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 38
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 39
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 40
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 41
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 42
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 43
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 44
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 45
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 46
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 47
+          },
+          {
+            "file": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "line": 48
+          }
+        ],
+        "overlongLines": [
+          {
+            "file": "src/lib/components/brain/dashboard/railIcons.ts",
+            "line": 81
+          },
+          {
+            "file": "src/lib/data/demoBrain/commercialContext.ts",
+            "line": 20
+          },
+          {
+            "file": "src/lib/data/demoBrain/commercialContext.ts",
+            "line": 29
+          },
+          {
+            "file": "src/lib/data/demoBrain/commercialContext.ts",
+            "line": 38
+          },
+          {
+            "file": "src/lib/data/demoBrain/commercialContext.ts",
+            "line": 47
+          },
+          {
+            "file": "src/lib/data/demoBrain/commercialContext.ts",
+            "line": 56
+          },
+          {
+            "file": "src/lib/data/demoBrain/deliveryContext.ts",
+            "line": 20
+          },
+          {
+            "file": "src/lib/data/demoBrain/deliveryContext.ts",
+            "line": 29
+          },
+          {
+            "file": "src/lib/data/demoBrain/deliveryContext.ts",
+            "line": 38
+          },
+          {
+            "file": "src/lib/data/demoBrain/deliveryContext.ts",
+            "line": 47
+          },
+          {
+            "file": "src/lib/data/demoBrain/deliveryContext.ts",
+            "line": 56
+          },
+          {
+            "file": "src/lib/data/demoBrain/demoBrain.ts",
+            "line": 19
+          },
+          {
+            "file": "src/lib/data/demoBrain/financeContext.ts",
+            "line": 20
+          },
+          {
+            "file": "src/lib/data/demoBrain/financeContext.ts",
+            "line": 29
+          },
+          {
+            "file": "src/lib/data/demoBrain/financeContext.ts",
+            "line": 38
+          },
+          {
+            "file": "src/lib/data/demoBrain/financeContext.ts",
+            "line": 47
+          },
+          {
+            "file": "src/lib/data/demoBrain/financeContext.ts",
+            "line": 56
+          },
+          {
+            "file": "src/lib/data/demoBrain/siteOperationsContext.ts",
+            "line": 20
+          },
+          {
+            "file": "src/lib/data/demoBrain/siteOperationsContext.ts",
+            "line": 29
+          },
+          {
+            "file": "src/lib/data/demoBrain/siteOperationsContext.ts",
+            "line": 38
+          },
+          {
+            "file": "src/lib/data/demoBrain/siteOperationsContext.ts",
+            "line": 47
+          },
+          {
+            "file": "src/lib/data/demoBrain/siteOperationsContext.ts",
+            "line": 56
+          },
+          {
+            "file": "src/lib/data/knowledge/domainBrainTypes.ts",
+            "line": 10
+          },
+          {
+            "file": "src/lib/data/knowledge/domainBrainTypes.ts",
+            "line": 21
+          },
+          {
+            "file": "src/lib/data/knowledge/domainBrainTypes.ts",
+            "line": 76
+          },
+          {
+            "file": "src/lib/data/knowledge/humanBrainTypes.ts",
+            "line": 10
+          },
+          {
+            "file": "src/lib/data/knowledgeServices.ts",
+            "line": 16
+          },
+          {
+            "file": "src/lib/data/knowledgeServices.ts",
+            "line": 25
+          },
+          {
+            "file": "src/lib/data/legal/privacyCollectionSections.ts",
+            "line": 8
+          },
+          {
+            "file": "src/lib/data/legal/privacyCollectionSections.ts",
+            "line": 9
+          },
+          {
+            "file": "src/lib/data/legal/privacyCollectionSections.ts",
+            "line": 17
+          },
+          {
+            "file": "src/lib/data/legal/privacyCollectionSections.ts",
+            "line": 19
+          },
+          {
+            "file": "src/lib/data/legal/privacyCollectionSections.ts",
+            "line": 21
+          },
+          {
+            "file": "src/lib/data/legal/privacyCollectionSections.ts",
+            "line": 28
+          },
+          {
+            "file": "src/lib/data/legal/privacyCollectionSections.ts",
+            "line": 29
+          },
+          {
+            "file": "src/lib/data/legal/privacyCollectionSections.ts",
+            "line": 36
+          },
+          {
+            "file": "src/lib/data/legal/privacyRightsSections.ts",
+            "line": 7
+          },
+          {
+            "file": "src/lib/data/legal/privacyRightsSections.ts",
+            "line": 13
+          },
+          {
+            "file": "src/lib/data/legal/privacyRightsSections.ts",
+            "line": 14
+          },
+          {
+            "file": "src/lib/data/legal/privacyRightsSections.ts",
+            "line": 20
+          },
+          {
+            "file": "src/lib/data/legal/privacyRightsSections.ts",
+            "line": 26
+          },
+          {
+            "file": "src/lib/data/legal/privacySharingSections.ts",
+            "line": 19
+          },
+          {
+            "file": "src/lib/data/legal/privacySharingSections.ts",
+            "line": 25
+          },
+          {
+            "file": "src/lib/data/legal/privacySharingSections.ts",
+            "line": 31
+          },
+          {
+            "file": "src/lib/data/legal/privacySharingSections.ts",
+            "line": 32
+          },
+          {
+            "file": "src/lib/data/legal/privacySharingSections.ts",
+            "line": 33
+          },
+          {
+            "file": "src/lib/data/legal/privacySharingSections.ts",
+            "line": 34
+          },
+          {
+            "file": "src/lib/data/legal/termsAccountSections.ts",
+            "line": 8
+          },
+          {
+            "file": "src/lib/data/legal/termsAccountSections.ts",
+            "line": 9
+          },
+          {
+            "file": "src/lib/data/legal/termsAccountSections.ts",
+            "line": 15
+          }
+        ]
+      }
+    },
+    "conditions": {
+      "name": "conditions",
+      "summary": {
+        "tangledConditionLines": 50,
+        "literalComparisonLines": 278,
+        "measurementIsHeuristic": true
+      },
+      "offenders": {
+        "tangled": [
+          {
+            "file": "src/lib/components/brain/constellation/createConstellationExperience.ts",
+            "line": 52
+          },
+          {
+            "file": "src/lib/components/brain/constellation/focusChoreography.ts",
+            "line": 46
+          },
+          {
+            "file": "src/lib/components/brain/constellation/focusDirector.ts",
+            "line": 54
+          },
+          {
+            "file": "src/lib/components/brain/constellation/focusDirector.ts",
+            "line": 56
+          },
+          {
+            "file": "src/lib/components/brain/flow/flowEdges.ts",
+            "line": 20
+          },
+          {
+            "file": "src/lib/components/brain/flow/flowStubs.ts",
+            "line": 24
+          },
+          {
+            "file": "src/lib/components/brain/people/humanConstellation.ts",
+            "line": 35
+          },
+          {
+            "file": "src/lib/components/brain/people/personPage.ts",
+            "line": 11
+          },
+          {
+            "file": "src/lib/components/brain/regions/buildRegionModel.ts",
+            "line": 19
+          },
+          {
+            "file": "src/lib/components/brain/regions/buildRegionModel.ts",
+            "line": 20
+          },
+          {
+            "file": "src/lib/components/face/reliefShade.ts",
+            "line": 28
+          },
+          {
+            "file": "src/lib/components/knowledge/dashboard/brainFlight.svelte.ts",
+            "line": 92
+          },
+          {
+            "file": "src/lib/components/knowledge/dashboard/brainFlight.svelte.ts",
+            "line": 93
+          },
+          {
+            "file": "src/lib/components/knowledge/editors/caseGrouping.ts",
+            "line": 36
+          },
+          {
+            "file": "src/lib/components/knowledge/explorer/itemDataFields.ts",
+            "line": 28
+          },
+          {
+            "file": "src/lib/server/brain/getBrainPageIndex.ts",
+            "line": 34
+          },
+          {
+            "file": "src/lib/server/brain/links/github/githubRequest.ts",
+            "line": 15
+          },
+          {
+            "file": "src/lib/server/brain/links/github/githubRequest.ts",
+            "line": 29
+          },
+          {
+            "file": "src/lib/server/brain/links/github/renderRepositoryDocument.ts",
+            "line": 41
+          },
+          {
+            "file": "src/lib/server/brain/links/github/repositoryFileRules.ts",
+            "line": 30
+          },
+          {
+            "file": "src/lib/server/brain/links/github/repositoryFileRules.ts",
+            "line": 32
+          },
+          {
+            "file": "src/lib/server/brain/links/x/renderXPosts.ts",
+            "line": 14
+          },
+          {
+            "file": "src/lib/server/brain/links/x/xRequest.ts",
+            "line": 38
+          },
+          {
+            "file": "src/lib/server/brain/links/x/xRequest.ts",
+            "line": 46
+          },
+          {
+            "file": "src/lib/server/brain/readPagesExchange.ts",
+            "line": 45
+          },
+          {
+            "file": "src/lib/server/brain/sentData/sentDataRules.ts",
+            "line": 19
+          },
+          {
+            "file": "src/lib/server/brain/sourceContentBlock.ts",
+            "line": 13
+          },
+          {
+            "file": "src/lib/server/hive/readHivePagesExchange.ts",
+            "line": 66
+          },
+          {
+            "file": "src/lib/server/http/addressRateLimit.ts",
+            "line": 39
+          },
+          {
+            "file": "src/lib/server/knowledge/brainQuery.ts",
+            "line": 52
+          },
+          {
+            "file": "src/lib/server/knowledge/brainQuery.ts",
+            "line": 55
+          },
+          {
+            "file": "src/lib/server/knowledge/humanWriter.ts",
+            "line": 56
+          },
+          {
+            "file": "src/lib/server/knowledge/reading/readExpertisePages.ts",
+            "line": 50
+          },
+          {
+            "file": "src/lib/server/knowledge/reading/renderProcessMaps.ts",
+            "line": 39
+          },
+          {
+            "file": "src/lib/server/knowledge/reading/renderProcessMaps.ts",
+            "line": 40
+          },
+          {
+            "file": "src/lib/server/knowledge/reading/renderProcessMaps.ts",
+            "line": 41
+          },
+          {
+            "file": "src/lib/server/mcp/resolveMcpCaller.ts",
+            "line": 22
+          },
+          {
+            "file": "src/lib/server/oauth/isAuthorizationCodeUsable.ts",
+            "line": 21
+          },
+          {
+            "file": "src/lib/server/oauth/readTokenRequest.ts",
+            "line": 50
+          },
+          {
+            "file": "src/lib/server/oauth/refreshAccessToken.ts",
+            "line": 19
+          },
+          {
+            "file": "src/lib/server/tokens/apiToken.ts",
+            "line": 18
+          },
+          {
+            "file": "src/routes/account/sign-in/+page.server.ts",
+            "line": 18
+          },
+          {
+            "file": "src/routes/api/workspace/shares/+server.ts",
+            "line": 21
+          },
+          {
+            "file": "src/routes/chatbots/[chatbotId=uuid]/manage/memberActions.ts",
+            "line": 33
+          },
+          {
+            "file": "src/routes/oauth/authorize/+page.server.ts",
+            "line": 61
+          },
+          {
+            "file": "src/routes/oauth/register/+server.ts",
+            "line": 16
+          },
+          {
+            "file": "src/lib/components/brain/SourceReadingControls.svelte",
+            "line": 42
+          },
+          {
+            "file": "src/lib/components/brain/SourceReadingControls.svelte",
+            "line": 43
+          },
+          {
+            "file": "src/lib/components/brain/SourceRereadButton.svelte",
+            "line": 36
+          },
+          {
+            "file": "src/lib/components/brain/SourceRereadButton.svelte",
+            "line": 37
+          }
+        ],
+        "literalComparisons": [
+          {
+            "file": "src/lib/client/formTracker.svelte.ts",
+            "line": 41
+          },
+          {
+            "file": "src/lib/client/formTracker.svelte.ts",
+            "line": 45
+          },
+          {
+            "file": "src/lib/components/brain/constellation/cameraFlight.ts",
+            "line": 54
+          },
+          {
+            "file": "src/lib/components/brain/constellation/fibreShaders.ts",
+            "line": 33
+          },
+          {
+            "file": "src/lib/components/brain/dashboard/shareGrouping.ts",
+            "line": 27
+          },
+          {
+            "file": "src/lib/components/brain/dashboard/terminalAsk.ts",
+            "line": 22
+          },
+          {
+            "file": "src/lib/components/brain/flow/flowEdges.ts",
+            "line": 45
+          },
+          {
+            "file": "src/lib/components/brain/flow/flowEdges.ts",
+            "line": 52
+          },
+          {
+            "file": "src/lib/components/brain/flow/flowLayout.ts",
+            "line": 48
+          },
+          {
+            "file": "src/lib/components/brain/flow/flowLayout.ts",
+            "line": 67
+          },
+          {
+            "file": "src/lib/components/brain/flow/flowLayout.ts",
+            "line": 68
+          },
+          {
+            "file": "src/lib/components/brain/flow/flowStubs.ts",
+            "line": 24
+          },
+          {
+            "file": "src/lib/components/brain/flow/pathwayTints.ts",
+            "line": 6
+          },
+          {
+            "file": "src/lib/components/brain/flow/pathwayTints.ts",
+            "line": 7
+          },
+          {
+            "file": "src/lib/components/brain/flow/pathwayTints.ts",
+            "line": 8
+          },
+          {
+            "file": "src/lib/components/brain/flow/tokenTraffic.ts",
+            "line": 66
+          },
+          {
+            "file": "src/lib/components/brain/readSourceStages.ts",
+            "line": 58
+          },
+          {
+            "file": "src/lib/components/brain/readSourceStages.ts",
+            "line": 69
+          },
+          {
+            "file": "src/lib/components/brain/readSourceStages.ts",
+            "line": 76
+          },
+          {
+            "file": "src/lib/components/brain/readSourceStages.ts",
+            "line": 77
+          },
+          {
+            "file": "src/lib/components/brain/readSourceStages.ts",
+            "line": 83
+          },
+          {
+            "file": "src/lib/components/brain/removeSource.ts",
+            "line": 8
+          },
+          {
+            "file": "src/lib/components/brain/renderMarkdown.ts",
+            "line": 55
+          },
+          {
+            "file": "src/lib/components/brain/sourceUploadQueue.svelte.ts",
+            "line": 89
+          },
+          {
+            "file": "src/lib/components/brain/uploadResolution.ts",
+            "line": 12
+          },
+          {
+            "file": "src/lib/components/brain/uploadResolution.ts",
+            "line": 15
+          },
+          {
+            "file": "src/lib/components/brain/uploadResolution.ts",
+            "line": 16
+          },
+          {
+            "file": "src/lib/components/brain/uploadSourceFile.ts",
+            "line": 20
+          },
+          {
+            "file": "src/lib/components/brain/uploadSourceFile.ts",
+            "line": 42
+          },
+          {
+            "file": "src/lib/components/chatbots/chatbotAsk.ts",
+            "line": 32
+          },
+          {
+            "file": "src/lib/components/face/faceWorld.ts",
+            "line": 83
+          },
+          {
+            "file": "src/lib/components/knowledge/explorer/searchKnowledgeHits.ts",
+            "line": 45
+          },
+          {
+            "file": "src/lib/components/knowledge/explorer/searchKnowledgeHits.ts",
+            "line": 52
+          },
+          {
+            "file": "src/lib/components/knowledge/interviewRequest.ts",
+            "line": 44
+          },
+          {
+            "file": "src/lib/components/knowledge/kb3d/kbGalaxyInput.ts",
+            "line": 48
+          },
+          {
+            "file": "src/lib/data/emailDelivery.ts",
+            "line": 9
+          },
+          {
+            "file": "src/lib/server/admin/usage/summariseUsageByUser.ts",
+            "line": 49
+          },
+          {
+            "file": "src/lib/server/admin/usage/summariseUsageByUser.ts",
+            "line": 50
+          },
+          {
+            "file": "src/lib/server/admin/usage/summariseUsageByUser.ts",
+            "line": 51
+          },
+          {
+            "file": "src/lib/server/admin/usage/summariseUsageByUser.ts",
+            "line": 52
+          },
+          {
+            "file": "src/lib/server/agent/interview/findGaps.ts",
+            "line": 40
+          },
+          {
+            "file": "src/lib/server/agent/interview/findGaps.ts",
+            "line": 91
+          },
+          {
+            "file": "src/lib/server/agent/interview/questionArchetypes.ts",
+            "line": 4
+          },
+          {
+            "file": "src/lib/server/agent/interview/questionArchetypes.ts",
+            "line": 5
+          },
+          {
+            "file": "src/lib/server/agent/interview/questionArchetypes.ts",
+            "line": 8
+          },
+          {
+            "file": "src/lib/server/agent/interview/questionArchetypes.ts",
+            "line": 11
+          },
+          {
+            "file": "src/lib/server/agent/interview/questionArchetypes.ts",
+            "line": 14
+          },
+          {
+            "file": "src/lib/server/agent/interview/questionArchetypes.ts",
+            "line": 17
+          },
+          {
+            "file": "src/lib/server/agent/interview/questionArchetypes.ts",
+            "line": 20
+          },
+          {
+            "file": "src/lib/server/agent/interview/questionArchetypes.ts",
+            "line": 23
+          }
+        ]
+      }
+    },
+    "orphans": {
+      "name": "orphans",
+      "summary": {
+        "orphanFunctions": 23,
+        "functionsExamined": 1748
+      },
+      "offenders": [
+        {
+          "file": "src/lib/components/brain/dashboard/shareRequests.ts",
+          "line": 8,
+          "name": "requestShare"
+        },
+        {
+          "file": "src/lib/components/brain/regions/regionLayout.ts",
+          "line": 24,
+          "name": "regionRadiusFor"
+        },
+        {
+          "file": "src/lib/data/britishDate.ts",
+          "line": 11,
+          "name": "formatBritishDateTime"
+        },
+        {
+          "file": "src/lib/data/knowledge/brainTypeCatalog.ts",
+          "line": 30,
+          "name": "brainTypesFor"
+        },
+        {
+          "file": "src/lib/data/knowledge/retrievalPipelines.ts",
+          "line": 42,
+          "name": "findRetrievalPipeline"
+        },
+        {
+          "file": "src/lib/server/accounts/findAccountByEmail.ts",
+          "line": 4,
+          "name": "findAccountByEmail"
+        },
+        {
+          "file": "src/lib/server/accounts/getAccountDirectory.ts",
+          "line": 4,
+          "name": "getAccountDirectory"
+        },
+        {
+          "file": "src/lib/server/anthropic/webSearchResults.ts",
+          "line": 9,
+          "name": "webSearchSourcesFrom"
+        },
+        {
+          "file": "src/lib/server/anthropic/webSearchResults.ts",
+          "line": 23,
+          "name": "isPausedForSearch"
+        },
+        {
+          "file": "src/lib/server/anthropic/webSearchTool.ts",
+          "line": 9,
+          "name": "webSearchTool"
+        },
+        {
+          "file": "src/lib/server/auth/requireStaff.ts",
+          "line": 6,
+          "name": "requireStaff"
+        },
+        {
+          "file": "src/lib/server/brain/spendForBrainWork.ts",
+          "line": 15,
+          "name": "spendForBrainQuestion"
+        },
+        {
+          "file": "src/lib/server/brain/spendForBrainWork.ts",
+          "line": 38,
+          "name": "refundForBrainQuestion"
+        },
+        {
+          "file": "src/lib/server/credits/payoutDetails.ts",
+          "line": 9,
+          "name": "getPayoutDetails"
+        },
+        {
+          "file": "src/lib/server/credits/payoutDetails.ts",
+          "line": 36,
+          "name": "parsePayoutDetailsForm"
+        },
+        {
+          "file": "src/lib/server/email/clientInviteEmail.ts",
+          "line": 1,
+          "name": "clientInviteEmailSubject"
+        },
+        {
+          "file": "src/lib/server/email/clientInviteEmail.ts",
+          "line": 5,
+          "name": "renderClientInviteEmail"
+        },
+        {
+          "file": "src/lib/server/hive/getHiveBrainStatus.ts",
+          "line": 4,
+          "name": "getHiveBrainStatus"
+        },
+        {
+          "file": "src/lib/server/knowledge/brainBindings.ts",
+          "line": 5,
+          "name": "getBindingsForKnowledgeBase"
+        },
+        {
+          "file": "src/lib/server/market/getBrainMarketState.ts",
+          "line": 15,
+          "name": "getBrainMarketState"
+        },
+        {
+          "file": "src/lib/server/mcp/actionTypes.ts",
+          "line": 22,
+          "name": "readOptionalText"
+        },
+        {
+          "file": "src/lib/server/sharing/workspaceInvites.ts",
+          "line": 28,
+          "name": "getInvitesForBrain"
+        },
+        {
+          "file": "src/lib/server/web/readResponseWithin.ts",
+          "line": 1,
+          "name": "readResponseWithin"
+        }
+      ]
+    },
+    "designPatterns": {
+      "name": "designPatterns",
+      "summary": {
+        "roleFamilies": 64,
+        "predictedFiles": 77,
+        "predictedFilesMissing": 13,
+        "entities": 0,
+        "entitiesOutOfRange": 0,
+        "measurementIsHeuristic": true
+      },
+      "offenders": {
+        "roleFamilies": {
+          "+page.server.ts": 37,
+          "+page.svelte": 35,
+          "+server.ts": 42,
+          "actions": 15,
+          "agent": 4,
+          "answer": 5,
+          "assembly": 5,
+          "bar": 4,
+          "base": 11,
+          "brain": 17,
+          "brains": 5,
+          "button": 9,
+          "card": 11,
+          "chatbot": 8,
+          "client": 5,
+          "constellation": 4,
+          "context": 8,
+          "conversation": 5,
+          "count": 4,
+          "director": 4,
+          "editor": 16,
+          "email": 7,
+          "experience": 7,
+          "field": 4,
+          "form": 14,
+          "header": 5,
+          "index": 9,
+          "input": 4,
+          "layout": 5,
+          "line": 7,
+          "links": 4,
+          "list": 15,
+          "map": 4,
+          "maps": 4,
+          "model": 14,
+          "note": 4,
+          "notice": 4,
+          "page": 4,
+          "pages": 4,
+          "palette": 5,
+          "panel": 38,
+          "password": 4,
+          "people": 4,
+          "prompt": 13,
+          "question": 6,
+          "reading": 6,
+          "record": 4,
+          "request": 7,
+          "row": 14,
+          "rules": 4,
+          "rulings": 4,
+          "section": 18,
+          "sections": 6,
+          "source": 11,
+          "stage": 6,
+          "state": 4,
+          "svelte": 14,
+          "table": 4,
+          "test": 27,
+          "tool": 8,
+          "tools": 6,
+          "types": 24,
+          "usage": 4,
+          "view": 10
+        },
+        "patterns": [
+          {
+            "pattern": "every palette has a types",
+            "predicted": 5,
+            "missing": [
+              "src/lib/components/face/reliefTypes.ts"
+            ]
+          },
+          {
+            "pattern": "every +page.server.ts has a +page.svelte",
+            "predicted": 37,
+            "missing": [
+              "src/routes/hive-mind/+page.svelte",
+              "src/routes/knowledge/+page.svelte",
+              "src/routes/knowledge-base/+page.svelte",
+              "src/routes/knowledge-base/[knowledgeBaseId=uuid]/brains/new/+page.svelte",
+              "src/routes/knowledge/[...rest]/+page.svelte",
+              "src/routes/workspace/+page.svelte",
+              "src/routes/workspace/[entityId]/+page.svelte"
+            ]
+          },
+          {
+            "pattern": "every +page.svelte has a +page.server.ts",
+            "predicted": 35,
+            "missing": [
+              "src/routes/+page.server.ts",
+              "src/routes/contact/+page.server.ts",
+              "src/routes/privacy/+page.server.ts",
+              "src/routes/terms/+page.server.ts",
+              "src/routes/vision/+page.server.ts"
+            ]
+          }
+        ],
+        "missingPredictedFiles": [
+          "src/lib/components/face/reliefTypes.ts",
+          "src/routes/hive-mind/+page.svelte",
+          "src/routes/knowledge/+page.svelte",
+          "src/routes/knowledge-base/+page.svelte",
+          "src/routes/knowledge-base/[knowledgeBaseId=uuid]/brains/new/+page.svelte",
+          "src/routes/knowledge/[...rest]/+page.svelte",
+          "src/routes/workspace/+page.svelte",
+          "src/routes/workspace/[entityId]/+page.svelte",
+          "src/routes/+page.server.ts",
+          "src/routes/contact/+page.server.ts",
+          "src/routes/privacy/+page.server.ts",
+          "src/routes/terms/+page.server.ts",
+          "src/routes/vision/+page.server.ts"
+        ],
+        "entityFileCounts": []
+      }
+    },
+    "inventory": {
+      "name": "inventory",
+      "summary": {
+        "pages": 35,
+        "components": 247,
+        "orphanComponents": 9,
+        "averagePageLines": 37
+      },
+      "offenders": {
+        "pages": [
+          {
+            "page": "src/routes/workspace/[entityId]/workflows/[workflowId]/+page.svelte",
+            "lines": 88,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/vision/+page.svelte",
+            "lines": 84,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/knowledge-base/all/+page.svelte",
+            "lines": 82,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/account/+page.svelte",
+            "lines": 76,
+            "widgets": [
+              "modal",
+              "form",
+              "submit"
+            ]
+          },
+          {
+            "page": "src/routes/market/[listingId]/+page.svelte",
+            "lines": 74,
+            "widgets": [
+              "list"
+            ]
+          },
+          {
+            "page": "src/routes/workspace/[entityId]/domains/new/+page.svelte",
+            "lines": 64,
+            "widgets": [
+              "form",
+              "submit",
+              "error"
+            ]
+          },
+          {
+            "page": "src/routes/account/credits/+page.svelte",
+            "lines": 62,
+            "widgets": [
+              "list"
+            ]
+          },
+          {
+            "page": "src/routes/admin/hive/[applicationId]/+page.svelte",
+            "lines": 59,
+            "widgets": [
+              "list"
+            ]
+          },
+          {
+            "page": "src/routes/demo-brain/+page.svelte",
+            "lines": 51,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/chatbots/+page.svelte",
+            "lines": 48,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/account/set-password/+page.svelte",
+            "lines": 47,
+            "widgets": [
+              "form",
+              "error"
+            ]
+          },
+          {
+            "page": "src/routes/market/+page.svelte",
+            "lines": 44,
+            "widgets": [
+              "list"
+            ]
+          },
+          {
+            "page": "src/routes/account/sign-in/+page.svelte",
+            "lines": 41,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/admin/+page.svelte",
+            "lines": 39,
+            "widgets": [
+              "list"
+            ]
+          },
+          {
+            "page": "src/routes/oauth/authorize/+page.svelte",
+            "lines": 39,
+            "widgets": [
+              "form",
+              "submit"
+            ]
+          },
+          {
+            "page": "src/routes/knowledge-base/[knowledgeBaseId=uuid]/brains/[brainId]/+page.svelte",
+            "lines": 38,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/admin/usage/+page.svelte",
+            "lines": 35,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/contact/+page.svelte",
+            "lines": 33,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/chatbots/[chatbotId=uuid]/manage/+page.svelte",
+            "lines": 32,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/trade-talk/+page.svelte",
+            "lines": 31,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/+page.svelte",
+            "lines": 29,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/workspace/[entityId]/domains/[domainId]/[slug]/+page.svelte",
+            "lines": 29,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/chatbots/[chatbotId=uuid]/+page.svelte",
+            "lines": 28,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/workspace/[entityId]/domains/[domainId]/+page.svelte",
+            "lines": 22,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/shared/[workflowId]/+page.svelte",
+            "lines": 18,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/face/+page.svelte",
+            "lines": 15,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/knowledge-base/[knowledgeBaseId=uuid]/brains/[brainId]/items/[itemId]/+page.svelte",
+            "lines": 14,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/knowledge-base/[knowledgeBaseId=uuid]/brains/[brainId]/pages/[slug]/+page.svelte",
+            "lines": 14,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/knowledge-base/[knowledgeBaseId=uuid]/browse/+page.svelte",
+            "lines": 14,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/privacy/+page.svelte",
+            "lines": 11,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/terms/+page.svelte",
+            "lines": 11,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/shared/+page.svelte",
+            "lines": 8,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/knowledge-base/[knowledgeBaseId=uuid]/+page.svelte",
+            "lines": 7,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/domain-brain/+page.svelte",
+            "lines": 4,
+            "widgets": []
+          },
+          {
+            "page": "src/routes/domain-brain/[slug]/+page.svelte",
+            "lines": 4,
+            "widgets": []
+          }
+        ],
+        "componentReuse": [
+          {
+            "component": "src/lib/components/site/SubmitButton.svelte",
+            "reusedBy": 32
+          },
+          {
+            "component": "src/lib/components/site/FormErrorNote.svelte",
+            "reusedBy": 27
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/ItemGroup.svelte",
+            "reusedBy": 10
+          },
+          {
+            "component": "src/lib/components/brain/MarkdownBody.svelte",
+            "reusedBy": 9
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/ItemRow.svelte",
+            "reusedBy": 8
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/ItemComposer.svelte",
+            "reusedBy": 7
+          },
+          {
+            "component": "src/lib/components/workspace/OutOfCreditsNotice.svelte",
+            "reusedBy": 7
+          },
+          {
+            "component": "src/lib/components/chat/AgentTypingIndicator.svelte",
+            "reusedBy": 5
+          },
+          {
+            "component": "src/lib/components/brain/BrainConstellation.svelte",
+            "reusedBy": 4
+          },
+          {
+            "component": "src/lib/components/chat/ChatComposer.svelte",
+            "reusedBy": 4
+          },
+          {
+            "component": "src/lib/components/site/BrandMark.svelte",
+            "reusedBy": 4
+          },
+          {
+            "component": "src/lib/components/site/DangerConfirmModal.svelte",
+            "reusedBy": 4
+          },
+          {
+            "component": "src/lib/components/brain/IngestProgressLabel.svelte",
+            "reusedBy": 3
+          },
+          {
+            "component": "src/lib/components/knowledge/explorer/ExplorerFrame.svelte",
+            "reusedBy": 3
+          },
+          {
+            "component": "src/lib/components/site/BrandWordmark.svelte",
+            "reusedBy": 3
+          },
+          {
+            "component": "src/lib/components/workspace/WorkspaceMap.svelte",
+            "reusedBy": 3
+          },
+          {
+            "component": "src/lib/components/admin/HiveBrainPageCard.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/admin/HiveDecisionForms.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/admin/usage/ModelUsageRow.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/brain/DomainModelIndex.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/brain/FlowBrain.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/brain/PruneKnowledgeButton.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/brain/SourceContributions.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/BrainDashboard.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/BrainTerminal.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/DeleteDomainBrainSection.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/DomainGoalForm.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/SectionPanel.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/SectionRail.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/chat/ChatMessageBubble.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/chatbots/ChatbotCard.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/chatbots/MemberAllowanceFields.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/chatbots/MemberModelSelect.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/chatbots/PreferredAnswerForm.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/chatbots/RemoveMemberButton.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/chatbots/ResendInviteButton.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/chatbots/YourChatbotsSection.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/knowledge/BrainEditor.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/knowledge/BrainQueryPanel.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/knowledge/KbConstellation.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/knowledge/KbInterviewPanel.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/knowledge/KindBrainSettingsPanel.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/knowledge/brainViews/ExperienceBrainView.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/knowledge/brainViews/ExpertiseBrainView.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/knowledge/brainViews/HumanBrainView.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/knowledge/brainViews/ProcessBrainView.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/knowledge/dashboard/DashboardPanel.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/knowledge/dashboard/DashboardPanelHeader.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/knowledge/dashboard/ToolIcon.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/ChunkStoreEditor.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/knowledge/explorer/ExplorerBreadcrumb.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/map/LineLegend.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/map/StationDetailPanel.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/map/TubeMap.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/site/CopyButton.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/site/CreditBalancePill.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/site/LegalArticle.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/site/ModelSlider.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/workspace/ShareMapPanel.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/workspace/WorkspaceChat.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/workspace/WorkspaceMapNotice.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/account/CheckoutOutcomeNote.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/account/CreditPackCard.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/account/DisplayNameForm.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/account/EmailPasswordForm.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/account/GoogleSignInButton.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/account/ModelChoicePanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/account/PurchaseHistoryTable.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/account/SendCreditsPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/admin/AdjustCreditsModal.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/admin/AdminActionsMenu.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/admin/AdminMenuAction.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/admin/AdminPurchasesTable.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/admin/AdminUserRow.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/admin/HiveBrainContextSection.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/admin/HiveReviewRow.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/admin/SiteModelPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/admin/UserModelSelect.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/admin/usage/ModelUsageTable.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/admin/usage/UsageFigure.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/admin/usage/UsageTotalsPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/admin/usage/UsageWindowSwitch.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/admin/usage/UserUsageRow.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/admin/usage/UserUsageTable.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/BrainActivityLog.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/ConstellationHud.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/ConstellationLegend.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/ConstellationOverlays.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/FlowTooltip.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/NeuronDetailPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/NeuronTooltip.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/RegionBrain.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/RegionTooltip.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/SourceArrivalLabel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/SourceLinkPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/SourceNotePanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/SourceReadingControls.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/SourceRemoveButton.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/SourceRereadButton.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/SourceRow.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/SourceStatusBadge.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/SourceUploadPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/SourceUploadQueueList.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/SourcesPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/AgentBriefingPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/ApiPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/ApiTokenList.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/BrainDashboardFooter.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/BrainDashboardPanels.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/BrainSettingsPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/BrainStage.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/CommandBox.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/EditionList.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/FileIntoKnowledgeBasePanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/ListingForm.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/MintedTokenNotice.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/TerminalFeed.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/TerminalTurn.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/review/DiffView.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/review/ProposalRow.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/review/ReviewDecisionBar.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/brain/review/ReviewPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/AllowancesForm.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/AnsweredGapsList.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/ChatbotAllowancePill.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/ChatbotChat.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/ChatbotChatHeader.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/ChatbotManageHeader.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/ChatbotMemberCard.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/ChatbotMemberRow.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/ChatbotMembersSection.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/ChatbotMessageBubble.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/ChatbotQuietState.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/ChatbotSettingsSection.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/ChatbotThread.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/ChatbotsPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/InviteMemberForm.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/KnowledgeGapCard.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/KnowledgeGapsSection.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/NewChatbotForm.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/OwnedChatbotsSection.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/PreferredAnswersList.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/QuestionLogEntry.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/QuestionLogSection.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/TopUpForm.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/chatbots/TopUpHistory.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/face/FaceConversation.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/face/FaceExperience.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/hive/HiveAnswerCard.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/hive/HiveAskPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/hive/HiveConstellation.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/hive/HiveHeroSection.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/hive/HiveJoinSection.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/hive/HiveMemberCard.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/hive/HiveRecentQuestions.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/hive/HiveRosterSection.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/home/BenefitsSection.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/home/HeroSection.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/home/KnowledgeKindCard.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/home/KnowledgeKindsSection.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/home/OneConversationSection.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/home/ServiceCard.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/home/ServicesSection.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/BindingsPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/BrainGlyph.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/HowBrainIsRead.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/KbSettingsPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/KindPickerCard.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/KnowledgeBaseSharePanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/NewKnowledgeBaseForm.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/NewSecondBrainForm.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/RegisterBrainRow.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/SecondBrainRegister.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/SharedWithYouSection.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/brainViews/ExpertiseSettingsPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/brainViews/ProcessMapOverlay.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/brainViews/RegionEpisodesPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/dashboard/BrainBreadcrumb.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/dashboard/BrainStrip.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/dashboard/BrainStripChip.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/dashboard/BrainViewFrame.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/dashboard/BrowseTitle.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/dashboard/DashboardScene.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/dashboard/DashboardSheet.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/dashboard/DashboardToolbar.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/dashboard/DashboardTopBar.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/dashboard/ExpertiseWorkbenchPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/dashboard/FocusedInterviewPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/dashboard/KnowledgeBaseDashboard.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/dashboard/KnowledgeBaseRail.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/dashboard/KnowledgeBaseToolset.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/CaseFileSection.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/DddModelPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/EventLogEditor.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/EventSchemaEditor.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/GraphVectorEditor.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/HybridPackEditor.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/JournalEditor.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/NotesEditor.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/OutlinerEditor.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/PeopleEditor.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/ProcessEditor.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/RecordsEditor.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/RulesEditor.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/SchemaEditor.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/TaxonomyEditor.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/editors/TemporalGraphEditor.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/explorer/ExplorerChips.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/explorer/ExplorerEntryRow.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/explorer/ExplorerHitList.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/explorer/ExplorerHitRow.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/explorer/ExplorerResultList.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/explorer/ExplorerSearchBox.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/explorer/ItemDataList.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/explorer/ItemLinkList.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/explorer/ItemReader.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/explorer/KnowledgeExplorer.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/explorer/PageLinkList.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/explorer/PageReader.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/knowledge/explorer/PageReaderPager.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/map/MapStation.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/map/TaskFlowList.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/map/TubeLinePath.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/market/EditionPurchaseRow.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/market/MarketLibrary.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/market/MarketListingCard.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/market/SubscriptionPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/site/AccountMenu.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/site/KnowledgeBaseSwitcher.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/site/KnowledgeBaseSwitcherMenu.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/site/MobileMenuButton.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/site/MobileNavDrawer.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/site/MobileNavGroup.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/site/Modal.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/site/NavigationProgressBar.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/site/SiteFooter.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/site/SiteHeader.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/workspace/InvitationsPanel.svelte",
+            "reusedBy": 1
+          },
+          {
+            "component": "src/lib/components/account/PayoutDetailsPanel.svelte",
+            "reusedBy": 0
+          },
+          {
+            "component": "src/lib/components/account/RevenueSharePanel.svelte",
+            "reusedBy": 0
+          },
+          {
+            "component": "src/lib/components/admin/HiveReviewPanel.svelte",
+            "reusedBy": 0
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/HiveMindPanel.svelte",
+            "reusedBy": 0
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/SellPanel.svelte",
+            "reusedBy": 0
+          },
+          {
+            "component": "src/lib/components/brain/dashboard/ShareList.svelte",
+            "reusedBy": 0
+          },
+          {
+            "component": "src/lib/components/chat/ChatPanelHeader.svelte",
+            "reusedBy": 0
+          },
+          {
+            "component": "src/lib/components/face/FaceControlBar.svelte",
+            "reusedBy": 0
+          },
+          {
+            "component": "src/lib/components/site/ReorderableRow.svelte",
+            "reusedBy": 0
+          }
+        ],
+        "orphans": [
+          "src/lib/components/account/PayoutDetailsPanel.svelte",
+          "src/lib/components/account/RevenueSharePanel.svelte",
+          "src/lib/components/admin/HiveReviewPanel.svelte",
+          "src/lib/components/brain/dashboard/HiveMindPanel.svelte",
+          "src/lib/components/brain/dashboard/SellPanel.svelte",
+          "src/lib/components/brain/dashboard/ShareList.svelte",
+          "src/lib/components/chat/ChatPanelHeader.svelte",
+          "src/lib/components/face/FaceControlBar.svelte",
+          "src/lib/components/site/ReorderableRow.svelte"
+        ]
+      }
+    },
+    "siteDefinition": {
+      "name": "siteDefinition",
+      "summary": {
+        "skipped": "no siteDefinition catalogue in rules.json"
+      },
+      "offenders": {
+        "handRolled": [],
+        "boxedWidgets": []
+      }
+    },
+    "fileAreas": {
+      "name": "fileAreas",
+      "summary": {
+        "totalFiles": 1256,
+        "frontend": 510,
+        "backend": 444,
+        "shared": 92,
+        "api": 64,
+        "database": 58,
+        "tests": 28,
+        "docs": 27,
+        "tooling": 20,
+        "infrastructure": 13
+      },
+      "offenders": [
+        {
+          "area": "frontend",
+          "files": 510,
+          "sourceFiles": 497,
+          "sourceLines": 23410
+        },
+        {
+          "area": "backend",
+          "files": 444,
+          "sourceFiles": 444,
+          "sourceLines": 15644
+        },
+        {
+          "area": "shared",
+          "files": 92,
+          "sourceFiles": 91,
+          "sourceLines": 3547
+        },
+        {
+          "area": "api",
+          "files": 64,
+          "sourceFiles": 64,
+          "sourceLines": 2573
+        },
+        {
+          "area": "database",
+          "files": 58,
+          "sourceFiles": 0,
+          "sourceLines": 0
+        },
+        {
+          "area": "tests",
+          "files": 28,
+          "sourceFiles": 28,
+          "sourceLines": 1280
+        },
+        {
+          "area": "docs",
+          "files": 27,
+          "sourceFiles": 0,
+          "sourceLines": 0
+        },
+        {
+          "area": "tooling",
+          "files": 20,
+          "sourceFiles": 0,
+          "sourceLines": 0
+        },
+        {
+          "area": "infrastructure",
+          "files": 13,
+          "sourceFiles": 0,
+          "sourceLines": 0
+        }
+      ]
+    },
+    "inputValidation": {
+      "name": "inputValidation",
+      "summary": {
+        "schemaTables": 80,
+        "limitedColumns": 0,
+        "writeDoors": 58,
+        "unvalidatedDoors": 58,
+        "looserLimits": 0
+      },
+      "offenders": {
+        "unvalidated": [
+          {
+            "file": "src/lib/server/mcp/actionRegistry.ts",
+            "tables": [
+              "brainevent",
+              "brainsource",
+              "oauthtoken"
+            ]
+          },
+          {
+            "file": "src/lib/server/mcp/actionTypes.ts",
+            "tables": [
+              "oauthtoken"
+            ]
+          },
+          {
+            "file": "src/lib/server/mcp/actions/accountActions.ts",
+            "tables": [
+              "oauthtoken"
+            ]
+          },
+          {
+            "file": "src/lib/server/mcp/actions/brainAskActions.ts",
+            "tables": [
+              "brainevent",
+              "oauthtoken"
+            ]
+          },
+          {
+            "file": "src/lib/server/mcp/actions/brainReadActions.ts",
+            "tables": [
+              "oauthtoken"
+            ]
+          },
+          {
+            "file": "src/lib/server/mcp/actions/expertiseReadActions.ts",
+            "tables": [
+              "oauthtoken"
+            ]
+          },
+          {
+            "file": "src/lib/server/mcp/actions/knowledgeBaseActions.ts",
+            "tables": [
+              "brainchangeproposal",
+              "braincontext",
+              "brainevent",
+              "brainpage",
+              "brainpagerevision",
+              "brainsource",
+              "oauthtoken"
+            ]
+          },
+          {
+            "file": "src/lib/server/mcp/actions/ownedKnowledgeBases.ts",
+            "tables": [
+              "oauthtoken"
+            ]
+          },
+          {
+            "file": "src/lib/server/mcp/actions/questionOutcomeSentence.ts",
+            "tables": [
+              "brainevent"
+            ]
+          },
+          {
+            "file": "src/lib/server/mcp/actions/searchActions.ts",
+            "tables": [
+              "oauthtoken"
+            ]
+          },
+          {
+            "file": "src/lib/server/mcp/browseActions.ts",
+            "tables": [
+              "brainevent",
+              "brainsource",
+              "oauthtoken"
+            ]
+          },
+          {
+            "file": "src/lib/server/mcp/describeContext.ts",
+            "tables": [
+              "brainevent",
+              "brainsource",
+              "oauthtoken"
+            ]
+          },
+          {
+            "file": "src/lib/server/mcp/mcpMethods.ts",
+            "tables": [
+              "oauthtoken"
+            ]
+          },
+          {
+            "file": "src/lib/server/mcp/mcpTools.ts",
+            "tables": [
+              "brainsource",
+              "oauthtoken"
+            ]
+          },
+          {
+            "file": "src/lib/server/mcp/resolveMcpCaller.ts",
+            "tables": [
+              "oauthtoken"
+            ]
+          },
+          {
+            "file": "src/lib/server/mcp/runAction.ts",
+            "tables": [
+              "brainevent",
+              "brainsource",
+              "oauthtoken"
+            ]
+          },
+          {
+            "file": "src/routes/account/+page.server.ts",
+            "tables": [
+              "usermodelpreference"
+            ]
+          },
+          {
+            "file": "src/routes/api/agent-chat/+server.ts",
+            "tables": [
+              "agentmessage",
+              "kbbrain",
+              "kbbrainitem"
+            ]
+          },
+          {
+            "file": "src/routes/api/brain/ask/+server.ts",
+            "tables": [
+              "brainconversation",
+              "brainevent",
+              "brainmessage"
+            ]
+          },
+          {
+            "file": "src/routes/api/brain/conversations/+server.ts",
+            "tables": [
+              "brainconversation"
+            ]
+          },
+          {
+            "file": "src/routes/api/brain/export/+server.ts",
+            "tables": [
+              "brainevent"
+            ]
+          },
+          {
+            "file": "src/routes/api/brain/proposals/+server.ts",
+            "tables": [
+              "brainchangeproposal",
+              "braincontext",
+              "brainevent",
+              "brainpage",
+              "brainpagerevision",
+              "brainsource"
+            ]
+          },
+          {
+            "file": "src/routes/api/brain/prune/+server.ts",
+            "tables": [
+              "braincontext",
+              "brainevent",
+              "brainpage",
+              "brainpagerevision"
+            ]
+          },
+          {
+            "file": "src/routes/api/brain/sources/+server.ts",
+            "tables": [
+              "brainsource"
+            ]
+          },
+          {
+            "file": "src/routes/api/brain/sources/[sourceId]/+server.ts",
+            "tables": [
+              "braincontext",
+              "brainevent",
+              "brainpage",
+              "brainpagerevision",
+              "brainsource",
+              "kbbrain"
+            ]
+          },
+          {
+            "file": "src/routes/api/brain/sources/[sourceId]/contributions/+server.ts",
+            "tables": [
+              "brainsource"
+            ]
+          },
+          {
+            "file": "src/routes/api/brain/sources/[sourceId]/read/+server.ts",
+            "tables": [
+              "brainchangeproposal",
+              "braincontext",
+              "brainevent",
+              "brainpage",
+              "brainpagerevision",
+              "brainsource",
+              "kbbrain",
+              "kbbrainitem"
+            ]
+          },
+          {
+            "file": "src/routes/api/brain/sources/link/+server.ts",
+            "tables": [
+              "brainsource"
+            ]
+          },
+          {
+            "file": "src/routes/api/brain/tokens/+server.ts",
+            "tables": [
+              "brainapitoken"
+            ]
+          },
+          {
+            "file": "src/routes/api/chatbots/[chatbotId=uuid]/ask/+server.ts",
+            "tables": [
+              "chatbotconversation",
+              "chatbotknowledgegap",
+              "chatbotmessage"
+            ]
+          },
+          {
+            "file": "src/routes/api/face-chat/+server.ts",
+            "tables": [
+              "brainconversation",
+              "brainevent",
+              "brainmessage"
+            ]
+          },
+          {
+            "file": "src/routes/api/hive-mind/ask/+server.ts",
+            "tables": [
+              "hivemindquestion"
+            ]
+          },
+          {
+            "file": "src/routes/api/knowledge-base/interview/+server.ts",
+            "tables": [
+              "kbbrain",
+              "kbbrainitem"
+            ]
+          },
+          {
+            "file": "src/routes/api/market/editions/+server.ts",
+            "tables": [
+              "brainevent"
+            ]
+          },
+          {
+            "file": "src/routes/api/market/listing/+server.ts",
+            "tables": [
+              "brainlisting"
+            ]
+          },
+          {
+            "file": "src/routes/api/mcp/+server.ts",
+            "tables": [
+              "oauthtoken"
+            ]
+          },
+          {
+            "file": "src/routes/api/v1/brains/[brainId]/+server.ts",
+            "tables": [
+              "brainapitoken"
+            ]
+          },
+          {
+            "file": "src/routes/api/v1/brains/[brainId]/ask/+server.ts",
+            "tables": [
+              "brainapitoken",
+              "brainconversation",
+              "brainevent",
+              "brainmessage"
+            ]
+          },
+          {
+            "file": "src/routes/api/v1/brains/[brainId]/export/+server.ts",
+            "tables": [
+              "brainapitoken",
+              "brainevent"
+            ]
+          },
+          {
+            "file": "src/routes/api/v1/brains/[brainId]/ingest/+server.ts",
+            "tables": [
+              "brainapitoken",
+              "brainchangeproposal",
+              "braincontext",
+              "brainevent",
+              "brainpage",
+              "brainpagerevision",
+              "brainsource"
+            ]
+          },
+          {
+            "file": "src/routes/api/v1/brains/[brainId]/pages/[slug]/+server.ts",
+            "tables": [
+              "brainapitoken"
+            ]
+          },
+          {
+            "file": "src/routes/api/v1/knowledge-bases/[knowledgeBaseId=uuid]/+server.ts",
+            "tables": [
+              "brainapitoken"
+            ]
+          },
+          {
+            "file": "src/routes/api/v1/knowledge-bases/[knowledgeBaseId=uuid]/ask/+server.ts",
+            "tables": [
+              "brainapitoken",
+              "brainevent"
+            ]
+          },
+          {
+            "file": "src/routes/api/v1/knowledge-bases/[knowledgeBaseId=uuid]/search/+server.ts",
+            "tables": [
+              "brainapitoken"
+            ]
+          },
+          {
+            "file": "src/routes/api/workspace/shares/+server.ts",
+            "tables": [
+              "workspaceinvite"
+            ]
+          },
+          {
+            "file": "src/routes/chatbots/[chatbotId=uuid]/+page.server.ts",
+            "tables": [
+              "chatbotconversation"
+            ]
+          },
+          {
+            "file": "src/routes/chatbots/[chatbotId=uuid]/manage/+page.server.ts",
+            "tables": [
+              "brainchangeproposal",
+              "braincontext",
+              "brainevent",
+              "brainpage",
+              "brainpagerevision",
+              "brainsource",
+              "chatbot",
+              "chatbotknowledgegap",
+              "chatbotmember",
+              "chatbotruling"
+            ]
+          },
+          {
+            "file": "src/routes/knowledge-base/[knowledgeBaseId=uuid]/+layout.server.ts",
+            "tables": [
+              "brainapitoken",
+              "kbbrain",
+              "kbshare"
+            ]
+          },
+          {
+            "file": "src/routes/knowledge-base/[knowledgeBaseId=uuid]/+page.server.ts",
+            "tables": [
+              "chatbot",
+              "kbshare",
+              "knowledgebase"
+            ]
+          },
+          {
+            "file": "src/routes/knowledge-base/[knowledgeBaseId=uuid]/brains/[brainId]/+page.server.ts",
+            "tables": [
+              "domainbrain",
+              "kbbrain",
+              "kbbrainbinding",
+              "kbbrainitem",
+              "mapviewer"
+            ]
+          },
+          {
+            "file": "src/routes/knowledge-base/[knowledgeBaseId=uuid]/brains/new/+page.server.ts",
+            "tables": [
+              "domainbrain",
+              "entity",
+              "kbbrain",
+              "kbbrainbinding",
+              "knowledgebase",
+              "workflow"
+            ]
+          },
+          {
+            "file": "src/routes/knowledge-base/all/+page.server.ts",
+            "tables": [
+              "domainbrain",
+              "entity",
+              "kbbrain",
+              "kbbrainbinding",
+              "knowledgebase",
+              "workflow",
+              "workspaceinvite"
+            ]
+          },
+          {
+            "file": "src/routes/oauth/authorize/+page.server.ts",
+            "tables": [
+              "oauthauthorizationcode",
+              "oauthtoken"
+            ]
+          },
+          {
+            "file": "src/routes/oauth/register/+server.ts",
+            "tables": [
+              "oauthclient",
+              "oauthtoken"
+            ]
+          },
+          {
+            "file": "src/routes/oauth/token/+server.ts",
+            "tables": [
+              "oauthauthorizationcode",
+              "oauthtoken"
+            ]
+          },
+          {
+            "file": "src/routes/workspace/[entityId]/domains/[domainId]/+page.server.ts",
+            "tables": [
+              "domainbrain",
+              "kbbrain",
+              "knowledgebase"
+            ]
+          },
+          {
+            "file": "src/routes/workspace/[entityId]/domains/new/+page.server.ts",
+            "tables": [
+              "domainbrain"
+            ]
+          },
+          {
+            "file": "src/routes/workspace/[entityId]/workflows/[workflowId]/+page.server.ts",
+            "tables": [
+              "mapviewer"
+            ]
+          }
+        ],
+        "looserLimits": []
+      }
+    },
+    "duplication": {
+      "name": "duplication",
+      "summary": {
+        "skipped": "jscpd is not installed (npm install -g jscpd)"
+      },
+      "offenders": []
+    }
+  }
+}
