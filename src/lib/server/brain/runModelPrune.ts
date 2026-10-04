@@ -10,6 +10,7 @@ import { saveBrainPageWrites } from './saveBrainPageWrites';
 import { sweepEmptyBrainContexts } from './sweepEmptyBrainContexts';
 import type { BrainPageSummary } from '$lib/data/brainTypes';
 import type { PruneRecord } from './parsePruneRecord';
+import type { PruneTier } from '$lib/data/pruneTiers';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 export type PruneOutcome = {
@@ -21,7 +22,8 @@ export type PruneOutcome = {
 
 export async function runModelPrune(
 	supabase: SupabaseClient,
-	brainId: string
+	brainId: string,
+	tier: PruneTier
 ): Promise<PruneOutcome> {
 	const brain = await getDomainBrain(supabase, brainId);
 	if (brain === null) throw new Error('That expertise brain no longer exists');
@@ -31,7 +33,7 @@ export async function runModelPrune(
 	if (index.length === 0) {
 		return emptyModelOutcome(supabase, brainId, sweptBefore.length);
 	}
-	const record = await auditModelForPrune(supabase, brain, contexts, index);
+	const record = await auditModelForPrune(supabase, brain, contexts, index, tier);
 	const appliedContextWrites = await saveBrainContextWrites(supabase, brainId, record.contextWrites);
 	const appliedPageWrites = await saveBrainPageWrites(supabase, brainId, record.pageWrites);
 	const deletedSlugs = await deleteBrainPages(
@@ -50,7 +52,7 @@ export async function runModelPrune(
 	await recordBrainEvent(supabase, {
 		brainId,
 		kind: 'model_pruned',
-		detail: { ...outcome, findings: record.findings }
+		detail: { ...outcome, findings: record.findings, tier: tier.key }
 	});
 	return outcome;
 }

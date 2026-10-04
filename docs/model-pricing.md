@@ -83,6 +83,21 @@ to resolve a slider from, and settles the marked-up bill beyond the 10 against t
 under `brain_api_question_usage`. What a job finally owes is `max(reserve, floor, marked-up bill)`
 — the reserve is never refunded down.
 
+### Pruning on a stronger model
+
+A prune comes in two tiers (`src/lib/data/pruneTiers.ts`, added 2026-10-04). The standard pass
+runs on the owner's own model choice, reserves the prune price (25) under `brain_prune` through
+`spend_credits_for`, and reads the model index in up to three rounds. The advanced pass pins the
+most capable rung (`mostCapableModelId`, Fable 5.1 today — it moves with the ladder), reads in up
+to six rounds, and reserves `brainPruneReserveCreditsFor(model)` = `max(prune price, rung floor)`
+(100 for Fable) under `brain_prune_advanced`. Both settle through `settleQuestionUsage`, so the
+pass owes `max(reserve, floor, marked-up bill)` exactly as a question does: a Fable pass that
+reads a hundred thousand tokens and rewrites twelve pages owes on the order of a thousand
+credits, and that is what the owner pays — the stronger model's cost is passed on, never
+absorbed. The button says "from N credits" for each tier for that reason. A failed pass refunds
+its own reserve through `refundQuestionUsage`, and the `model_pruned` event carries the tier.
+The fixed `spend_for_brain_prune` RPC (migration 0027) is no longer called.
+
 Chatbots settle against the pool instead: `settleChatbotQuestion` calls
 `settle_chatbot_question(chatbot, member, extra)` (service-role only, 0032), which moves `extra`
 from the pool onto the member's counter. Neither the allowance (James allows a member to run

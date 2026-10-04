@@ -4,7 +4,7 @@
 	import DomainModelIndex from '../../brain/DomainModelIndex.svelte';
 	import ExpertiseSettingsPanel from './ExpertiseSettingsPanel.svelte';
 	import OutOfCreditsNotice from '../../workspace/OutOfCreditsNotice.svelte';
-	import PruneKnowledgeButton from '../../brain/PruneKnowledgeButton.svelte';
+	import PruneKnowledgeButtons from '../../brain/PruneKnowledgeButtons.svelte';
 	import { brainToolKeysFor, brainTools, brainToolsOwnerFor } from './brainViewTools';
 	import { fetchBrainPage } from '../../brain/constellation/fetchBrainPage';
 	import { useDashboardTools } from '../dashboard/dashboardTools.svelte';
@@ -61,7 +61,7 @@
 	<div class="min-h-0 flex-1 overflow-y-auto">
 		{#if isOwner}
 			<div class="px-4 pt-4">
-				<PruneKnowledgeButton brainId={view.brain.id} onOutOfCredits={() => (isOutOfCredits = true)} />
+				<PruneKnowledgeButtons brainId={view.brain.id} onOutOfCredits={() => (isOutOfCredits = true)} />
 			</div>
 		{/if}
 		<DomainModelIndex

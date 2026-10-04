@@ -61,6 +61,10 @@ export function questionFloorCreditsFor(modelId: string): number {
 	return rungFor(modelId).floorCredits;
 }
 
+export function brainPruneReserveCreditsFor(modelId: string): number {
+	return Math.max(creditsPerBrainPrune, questionFloorCreditsFor(modelId));
+}
+
 export function usageCostPence(modelId: string, usage: AnthropicUsage): number {
 	const rung = rungFor(modelId);
 	const inputTokens =

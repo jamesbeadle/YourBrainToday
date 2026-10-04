@@ -1,27 +1,14 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import {
-	creditsPerBrainPrune,
-	creditsPerBrainQuestion,
-	creditsPerBrainUnlearn
-} from '$lib/data/creditPricing';
+import { creditsPerBrainQuestion, creditsPerBrainUnlearn } from '$lib/data/creditPricing';
 import { refundQuestionUsage } from '$lib/server/credits/refundQuestionUsage';
 
 export type BrainSpend = { creditBalance: number } | 'insufficient_credits' | 'account_restricted';
 
 const brainQuestionReason = 'brain_question';
-export const brainPruneReason = 'brain_prune';
 export const brainUnlearnReason = 'brain_unlearn';
 
 export async function spendForBrainQuestion(supabase: SupabaseClient): Promise<BrainSpend> {
 	return spendThrough(supabase, 'spend_for_brain_question', {});
-}
-
-export async function spendForBrainPrune(supabase: SupabaseClient): Promise<BrainSpend> {
-	return spendThrough(supabase, 'spend_for_brain_prune', {});
-}
-
-export async function refundForBrainPrune(payerId: string): Promise<void> {
-	await refundQuestionUsage(payerId, creditsPerBrainPrune, brainPruneReason);
 }
 
 export async function spendForBrainUnlearn(
