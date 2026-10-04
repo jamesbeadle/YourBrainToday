@@ -15,7 +15,7 @@ import {
 import { requireSpendHeadroom } from '$lib/server/credits/requireSpendHeadroom';
 import { resolveApiCaller } from '$lib/server/brainApi/resolveApiCaller';
 import { getSiteModel } from '$lib/server/anthropic/getSiteModel';
-import { longestQuestion } from '$lib/data/questionLimits';
+import { readQuestion } from '$lib/server/http/readQuestion';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { RequestHandler } from './$types';
 
@@ -70,12 +70,6 @@ export const POST: RequestHandler = async ({ request, params }) => {
 		error(502, 'That question failed — the credits have been refunded');
 	}
 };
-
-function readQuestion(payload: { question?: unknown }): string {
-	const question = typeof payload.question === 'string' ? payload.question.trim() : '';
-	if (question === '') error(400, 'A question is required');
-	return question.slice(0, longestQuestion);
-}
 
 async function resolveConversationId(
 	supabase: SupabaseClient,

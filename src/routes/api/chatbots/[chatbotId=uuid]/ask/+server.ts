@@ -4,7 +4,7 @@ import { chatbotRefusalFor, notAMemberRefusal } from '$lib/server/chatbots/chatb
 import { getChatbot } from '$lib/server/chatbots/getChatbot';
 import { getChatbotConversation } from '$lib/server/chatbots/getChatbotConversation';
 import { getChatbotMembership } from '$lib/server/chatbots/getChatbotMembership';
-import { longestQuestion } from '$lib/data/questionLimits';
+import { readQuestion } from '$lib/server/http/readQuestion';
 import { questionFloorCreditsFor } from '$lib/data/creditPricing';
 import { recordChatbotTurn } from '$lib/server/chatbots/recordChatbotTurn';
 import { recordKnowledgeGap } from '$lib/server/chatbots/recordKnowledgeGap';
@@ -84,10 +84,4 @@ async function noteKnowledgeGap(
 	} catch (failure) {
 		console.error('Recording the knowledge gap failed', failure);
 	}
-}
-
-function readQuestion(payload: { question?: unknown }): string {
-	const question = typeof payload.question === 'string' ? payload.question.trim() : '';
-	if (question === '') error(400, 'A question is required');
-	return question.slice(0, longestQuestion);
 }
