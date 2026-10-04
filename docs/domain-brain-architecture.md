@@ -66,6 +66,16 @@ among them), and answers in the ubiquitous language with citations. The answer a
 cited slugs are recorded as a `question_answered` event, which is also how the ask panel
 shows history — the log is the conversation store, no extra tables.
 
+**Remember (10 credits, 2026-10-04).** A terminal message that opens with "remember" is
+not a question: `replyInBrainChat` sends it to `rememberInBrainChat`, which runs the
+Modeller over the conversation against the index (`rememberFromChat`, prompt
+`modellerRememberPrompt`, one read_pages round, then the forced `remember_from_chat`
+tool) and files the page and context writes it returns as `brain_change_proposals` with
+no source behind them (`proposeChatCorrection`, "Remembered from chat"). Nothing lands in
+the model until the owner approves it under Review — the owner included, so every change
+to the model passes through the one door. The same path serves a chatbot member's
+"remember this" on the knowledge base's primary expertise brain.
+
 **Export (free).** `GET /api/brain/export` streams a zip of Markdown files generated
 straight from the database: one folder per bounded context, one `.md` per page with YAML
 frontmatter (title, summary, kind, context, updated), plus `index.md`, `log.md`, and the

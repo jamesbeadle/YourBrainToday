@@ -1,11 +1,9 @@
 import { error, json } from '@sveltejs/kit';
-import { askModeller } from '$lib/server/brain/askModeller';
 import { createBrainConversation } from '$lib/server/brain/createBrainConversation';
-import { getBrainContexts } from '$lib/server/brain/getBrainContexts';
-import { getBrainPageIndex } from '$lib/server/brain/getBrainPageIndex';
 import { getDomainBrain } from '$lib/server/entities/getDomainBrain';
 import { recordBrainEvent } from '$lib/server/brain/recordBrainEvent';
 import { recordConversationTurn } from '$lib/server/brain/recordConversationTurn';
+import { replyInBrainChat } from '$lib/server/brain/replyInBrainChat';
 import { rememberedTurns } from '$lib/server/brain/rememberedTurns';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { longestQuestion } from '$lib/data/questionLimits';
@@ -38,12 +36,12 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 	try {
 		const conversationId = await resolveConversationId(locals.supabase, brain.id, payload.conversationId);
 		const priorTurns = await rememberedTurns(locals.supabase, conversationId);
-		const contexts = await getBrainContexts(locals.supabase, brain.id);
-		const index = await getBrainPageIndex(locals.supabase, brain.id);
-		const answer = await askModeller(locals.supabase, brain.id, contexts, index, [
-			...priorTurns,
-			{ speaker: 'user', text: question }
-		]);
+		const answer = await replyInBrainChat(
+			locals.supabase,
+			brain,
+			{ id: user.id, email: user.email ?? '' },
+			[...priorTurns, { speaker: 'user', text: question }]
+		);
 		await recordConversationTurn(locals.supabase, conversationId, question, answer);
 		await recordBrainEvent(locals.supabase, {
 			brainId: brain.id,
