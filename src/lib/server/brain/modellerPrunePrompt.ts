@@ -33,6 +33,9 @@ would not contain:
 - A STALE CONTEXT MAP — if contexts changed, update the context-map page to match.
 - GLOSSARY DRIFT — duplicate terms across glossaries, or terms whose definitions the
   model no longer supports.
+- LOOSE REFERENCES — a page that names a concept the model holds under another title,
+  or refers to a page a merge retires. Tighten each reference to the surviving page's
+  exact title and slug so the model reads as one connected whole.
 
 ## Discipline
 

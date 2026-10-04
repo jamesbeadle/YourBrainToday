@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import {
+	brainPruneReserveCreditsFor,
 	costMarkup,
 	creditValuePence,
+	creditsPerBrainPrune,
 	ingestCreditsFor,
 	questionCreditsFor,
 	questionFloorCreditsFor,
@@ -64,6 +66,19 @@ describe('questionCreditsFor', () => {
 		];
 		const billPence = usageCostPence(haiku, heavyUsage) * calls.length;
 		expect(questionCreditsFor(calls)).toBe(Math.ceil((billPence * costMarkup) / creditValuePence));
+	});
+});
+
+describe('brainPruneReserveCreditsFor', () => {
+	it('reserves the prune price when the model floor sits below it', () => {
+		expect(questionFloorCreditsFor(haiku)).toBeLessThan(creditsPerBrainPrune);
+		expect(brainPruneReserveCreditsFor(haiku)).toBe(creditsPerBrainPrune);
+	});
+
+	it('reserves the model floor when it stands above the prune price', () => {
+		const fable = 'claude-fable-5-1';
+		expect(questionFloorCreditsFor(fable)).toBeGreaterThan(creditsPerBrainPrune);
+		expect(brainPruneReserveCreditsFor(fable)).toBe(questionFloorCreditsFor(fable));
 	});
 });
 

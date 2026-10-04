@@ -50,6 +50,8 @@ export const modelLadder: ModelRung[] = [
 
 export const cheapestModelId = modelLadder[0].modelId;
 
+export const mostCapableModelId = modelLadder[modelLadder.length - 1].modelId;
+
 export const defaultModelId = 'claude-opus-5-5';
 
 // Models the site setting or an admin pin may still name; priced at a rung

@@ -3,7 +3,7 @@
 	import BrainTerminal from './BrainTerminal.svelte';
 	import DomainModelIndex from '../DomainModelIndex.svelte';
 	import KbInterviewPanel from '../../knowledge/KbInterviewPanel.svelte';
-	import PruneKnowledgeButton from '../PruneKnowledgeButton.svelte';
+	import PruneKnowledgeButtons from '../PruneKnowledgeButtons.svelte';
 	import { kindInterviewIntros } from '../../knowledge/interviewRequest';
 	import type { DomainBrain } from '$lib/server/entities/getDomainBrain';
 	import type { KnowledgeBaseSummary } from '$lib/data/knowledge/knowledgeTypes';
@@ -71,7 +71,7 @@
 	<div class="min-h-0 flex-1 overflow-y-auto">
 		{#if isOwner}
 			<div class="px-4 pt-4">
-				<PruneKnowledgeButton brainId={brain.id} {onOutOfCredits} />
+				<PruneKnowledgeButtons brainId={brain.id} {onOutOfCredits} />
 			</div>
 		{/if}
 		<DomainModelIndex {contexts} {pageIndex} {pageBasePath} {onSelectPage} />
