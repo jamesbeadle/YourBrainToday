@@ -4,6 +4,7 @@ import {
 	type HarvestedConnection,
 	type HarvestedPerson
 } from './parseHumanHarvest';
+import { storedMomentFrom } from '$lib/server/knowledge/storedMoment';
 
 export type HarvestedEvent = {
 	title: string;
@@ -63,12 +64,17 @@ function parseEvents(value: unknown): HarvestedEvent[] {
 			{
 				title: record.title.trim(),
 				note: typeof record.note === 'string' ? record.note.trim() : '',
-				occurredAt: typeof record.occurredAt === 'string' ? record.occurredAt : null,
+				occurredAt: occurredAtFrom(record.occurredAt),
 				caseName: parseCaseName(record.caseName),
 				terms: parseStrings(record.terms)
 			}
 		];
 	});
+}
+
+function occurredAtFrom(value: unknown): string | null {
+	if (typeof value !== 'string') return null;
+	return storedMomentFrom(value);
 }
 
 function parseCaseName(value: unknown): string | null {

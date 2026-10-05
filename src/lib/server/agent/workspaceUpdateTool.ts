@@ -20,7 +20,9 @@ export const experienceEventSchema = {
 		note: { type: 'string', description: 'The detail in the owner’s own words.' },
 		occurredAt: {
 			type: 'string',
-			description: 'ISO date if the owner said when it happened; omit otherwise.'
+			description:
+				'The full ISO date (YYYY-MM-DD) if the owner said when it happened; omit it ' +
+				'when only a month or a year is known.'
 		},
 		caseName: {
 			type: 'string',

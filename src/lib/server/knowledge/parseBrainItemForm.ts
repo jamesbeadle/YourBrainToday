@@ -1,3 +1,5 @@
+import { storedMomentFrom } from './storedMoment';
+
 export type ParsedBrainItem = {
 	itemKind: string;
 	title: string;
@@ -34,10 +36,7 @@ function identifierFrom(formData: FormData, name: string): string | null {
 }
 
 function momentFrom(formData: FormData, name: string): string | null {
-	const value = textFrom(formData, name);
-	if (value === '') return null;
-	const parsed = new Date(value);
-	return Number.isNaN(parsed.getTime()) ? null : parsed.toISOString();
+	return storedMomentFrom(textFrom(formData, name));
 }
 
 function dataEntriesFrom(formData: FormData): Record<string, string> {
