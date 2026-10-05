@@ -53,7 +53,10 @@ MCP server are working:
   `/api/v1` lets other software read a knowledge base, search it, ask it, read its pages
   and export it;
   [docs/connect-claude.md](./docs/connect-claude.md) is the walkthrough and
-  [docs/mcp-architecture.md](./docs/mcp-architecture.md) the design.
+  [docs/mcp-architecture.md](./docs/mcp-architecture.md) the design. With Anthropic's
+  Microsoft 365 connector switched on beside it, Claude reads your mail, SharePoint and
+  Teams and files what matters into the brain;
+  [docs/connect-microsoft-365.md](./docs/connect-microsoft-365.md) is that walkthrough.
 - Admins (`/admin`) can set the site model — the Claude model behind every agent reply —
   grant promotional credits, restrict accounts, and delete accounts. The first admin is
   bootstrapped by email on signup.

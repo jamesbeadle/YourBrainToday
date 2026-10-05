@@ -67,6 +67,13 @@ in costs what an upload of that size costs.
 | `ask_brain` | a question | the orchestrator answers from one brain alone |
 | `ingest_data` | as an upload | sends text in to train the brains |
 
+## Your mail, SharePoint and Teams
+
+Switch on Anthropic's Microsoft 365 connector beside this one and Claude can read your
+mailbox, SharePoint sites and Teams channels and file what matters into the brain with
+`ingest_data`. [connect-microsoft-365.md](./connect-microsoft-365.md) is the walkthrough,
+including what an administrator approves.
+
 ## Any other agent
 
 Anything that can send a bearer token can use the same knowledge through the API. On the
