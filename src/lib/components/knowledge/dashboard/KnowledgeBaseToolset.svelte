@@ -5,11 +5,8 @@
 	import KbSettingsPanel from '../KbSettingsPanel.svelte';
 	import KnowledgeBaseSharePanel from '../KnowledgeBaseSharePanel.svelte';
 	import { useDashboardTools } from './dashboardTools.svelte';
-	import {
-		knowledgeBaseToolDefinitions,
-		knowledgeBaseToolKeysFor,
-		type KnowledgeBaseToolKey
-	} from './knowledgeBaseTools';
+	import { registerKnowledgeBaseTools } from './knowledgeBaseToolRegistration.svelte';
+	import type { KnowledgeBaseToolKey } from './knowledgeBaseTools';
 	import type { Snippet } from 'svelte';
 	import type { ChatbotSummary } from '$lib/data/chatbotTypes';
 	import type { KbWorkbenchData } from '$lib/server/knowledge/kbWorkbenchData';
@@ -35,7 +32,6 @@
 		onOutOfCredits: () => void;
 	} = $props();
 
-	const toolsOwner = 'knowledge-base';
 	const railTools = useDashboardTools().left;
 
 	const panels: Record<KnowledgeBaseToolKey, Snippet> = {
@@ -49,14 +45,7 @@
 		settings: settingsPanel
 	};
 
-	$effect(() => {
-		const tools = knowledgeBaseToolKeysFor(isOwner).map((key) => ({
-			...knowledgeBaseToolDefinitions[key],
-			panel: panels[key]
-		}));
-		railTools.register(toolsOwner, tools);
-		return () => railTools.release(toolsOwner);
-	});
+	registerKnowledgeBaseTools(railTools, () => isOwner, panels);
 </script>
 
 {#snippet interviewPanel()}
