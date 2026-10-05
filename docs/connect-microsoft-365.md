@@ -21,10 +21,7 @@ the Your Brain Today connector ([connect-claude.md](./connect-claude.md)) writes
 2. In **Settings → Connectors**, find **Microsoft 365**, press **Connect**, sign in with
    your work account and accept the permissions it asks for. They let Claude read on your
    behalf; nothing is sent or changed unless you ask it to.
-3. If Microsoft answers **Need admin approval**, your organisation lets only an
-   administrator consent to apps. Pass the administrator section below to them, then
-   connect again once they have approved it.
-4. In a chat, switch both connectors on in the tools menu.
+3. In a chat, switch both connectors on in the tools menu.
 
 ## Check it works
 
@@ -54,24 +51,13 @@ Reading in Microsoft 365 costs nothing in Your Brain Today. Each piece filed cos
 upload of that size costs. A mailbox holds thousands of threads, so name a subject and a
 date range rather than asking for everything.
 
-## For the administrator
+## If Microsoft asks for approval
 
-Anthropic's Microsoft 365 connector is a Microsoft Entra application that each person
-consents to for their own account. Where the tenant restricts user consent, approve it
-once for everyone:
-
-1. Have one person attempt to connect, so the application appears in your tenant.
-2. In the Entra admin centre, open **Enterprise applications**, find the Claude application,
-   open **Permissions** and press **Grant admin consent**. Alternatively, turn on the
-   **admin consent request workflow** so staff can request approval from the consent screen.
-3. For a shared mailbox someone should feed from, give their account **Full Access** to it
-   in Exchange; it then appears under their own connection.
-
-The connector asks for read permissions over mail, files, SharePoint sites, Teams and
-calendars, and for some write permissions that Your Brain Today never asks it to use.
-Conditional access and multi-factor policies apply as normal, because each person signs in
-to Microsoft directly. To revoke, remove the connector in Claude's settings, or remove the
-person's assignment to the application in Entra.
+Some organisations let only an administrator approve new apps, and Microsoft then shows
+**Need admin approval** when you connect. The app is Anthropic's Microsoft 365 connector,
+not ours, and your administrator approves it once for everyone in the Entra admin centre
+under Enterprise applications; then connect again. To stop, remove the connector in
+Claude's settings.
 
 ## What stays manual
 
