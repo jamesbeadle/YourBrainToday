@@ -1,11 +1,10 @@
+import { describeReadingFailure } from './describeReadingFailure';
 import { refundReading, settleReading, type ReadingPayer } from './readingPayments';
 import { recordBrainEvent } from '../recordBrainEvent';
 import { meteredCallsSoFar } from '$lib/server/anthropic/modelContext';
 import type { ReadingProgress } from '$lib/data/sourceReading';
 import type { StoredBrainSource } from '../findBrainSource';
 import type { SupabaseClient } from '@supabase/supabase-js';
-
-const failureLimit = 300;
 
 /** The last stage is done: the reading is on the log, the row is in the brain, the bill is settled. */
 export async function completeReading(
@@ -41,7 +40,7 @@ export async function failReading(
 	failure: unknown,
 	payer: ReadingPayer
 ): Promise<string> {
-	const reason = describeFailure(failure);
+	const reason = describeReadingFailure(failure);
 	console.error('Reading a source failed', source.id, source.stage, failure);
 	const { error } = await supabase
 		.from('brain_sources')
@@ -50,9 +49,4 @@ export async function failReading(
 	if (error !== null) console.error('Marking the source failed also failed', error);
 	await refundReading(payer, source.reservedCredits, [...source.progress.meteredCalls, ...meteredCallsSoFar()]);
 	return reason;
-}
-
-function describeFailure(failure: unknown): string {
-	const message = failure instanceof Error ? failure.message : 'Unknown failure';
-	return message.slice(0, failureLimit);
 }
