@@ -53,6 +53,7 @@
 	<button
 		type="button"
 		onclick={read}
+		title="Read this document into the brain — credits scale with its size"
 		class="font-display text-xs text-chalk/70 underline transition hover:text-chalk"
 	>
 		{action}

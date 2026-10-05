@@ -6,6 +6,7 @@
 	import SourceRereadButton from './SourceRereadButton.svelte';
 	import SourceStatusBadge from './SourceStatusBadge.svelte';
 	import { badNotice, type SourceNotice } from './sourceNotice';
+	import { sourceDetailLine } from './sourceDetailLine';
 	import type { BrainSource } from '$lib/data/brainTypes';
 
 	let {
@@ -26,7 +27,7 @@
 	const canReread = $derived(isOwner && source.status === 'ingested');
 	const isInTheBrain = $derived(source.status === 'ingested');
 	const hasFailed = $derived(source.status === 'failed');
-	const detailLine = $derived(hasFailed ? source.failure : source.summary);
+	const detailLine = $derived(sourceDetailLine(source));
 </script>
 
 <li class="border-b border-hairline py-3 last:border-b-0">

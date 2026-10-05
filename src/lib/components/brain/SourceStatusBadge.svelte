@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { drivenSources } from './drivenSources.svelte';
 	import { readingStageLabels } from '$lib/data/sourceReading';
 	import type { BrainSource } from '$lib/data/brainTypes';
 
@@ -14,7 +15,7 @@
 	};
 
 	const statusLabels: Record<BrainSource['status'], string> = {
-		uploaded: 'Waiting',
+		uploaded: 'Not read yet',
 		reading: 'Reading',
 		ingested: 'In the brain',
 		failed: 'Failed',
@@ -22,13 +23,19 @@
 		rejected: 'Rejected'
 	};
 
-	const label = $derived(
-		source.status === 'reading' && source.stage !== null
-			? `Reading — ${readingStageLabels[source.stage]}`
-			: statusLabels[source.status]
-	);
+	const isBeingReadHere = $derived(drivenSources.has(source.id));
+	const status = $derived(isBeingReadHere ? 'reading' : source.status);
+	const label = $derived(labelFor(source, isBeingReadHere));
+
+	function labelFor(candidate: BrainSource, isReadingHere: boolean): string {
+		if (isReadingHere) return statusLabels.reading;
+		const stage = candidate.stage;
+		const isReading = candidate.status === 'reading';
+		if (isReading && stage !== null) return `Reading — ${readingStageLabels[stage]}`;
+		return statusLabels[candidate.status];
+	}
 </script>
 
-<span class={`rounded-full border px-3 py-1 font-display text-xs ${statusStyles[source.status]}`}>
+<span class={`rounded-full border px-3 py-1 font-display text-xs ${statusStyles[status]}`}>
 	{label}
 </span>
