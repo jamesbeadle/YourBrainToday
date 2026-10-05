@@ -43,9 +43,13 @@ export const emptyReadingProgress: ReadingProgress = {
 	meteredCalls: []
 };
 
-// A stage that began longer ago than this has outlived any serverless
-// function that could still be running it, so it may be taken up again.
-export const stageStallMilliseconds = 8 * 60 * 1000;
+// The function that runs a stage is cut off after five minutes, so a stage
+// that began longer ago than this has outlived it and may be taken up again.
+export const longestStageMinutes = 5;
+
+const stallGraceMinutes = 1;
+
+export const stageStallMilliseconds = (longestStageMinutes + stallGraceMinutes) * 60 * 1000;
 
 export function isReadingStage(candidate: unknown): candidate is ReadingStage {
 	return readingStages.some((stage) => stage === candidate);
