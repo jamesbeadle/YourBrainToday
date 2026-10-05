@@ -1,18 +1,15 @@
 import { questionCreditsFor } from '$lib/data/creditPricing';
 import { meteredCallsSoFar } from '$lib/server/anthropic/modelContext';
 import { recordModelUsage } from './recordModelUsage';
-import { supabaseServiceClient } from '$lib/server/payments/supabaseServiceClient';
+import { settleCreditsFor } from './settleCreditsFor';
 import type { MeteredCall } from '$lib/data/anthropicUsage';
 
 // Reserve-then-settle: the reserve was taken before the work; once the
-// answer is in, anything the marked-up bill owes beyond it is taken now
-// through the service-role settle_credits_for, which has no balance check
-// — a settlement that could bounce would make the reserve the real price.
-// Every metered call is recorded either way: with the credits the job
-// finally charged, or flagged with only the reserve when the settlement
-// itself failed, so the margin view shows the leak. The calls default to
-// those metered in this request; a job spread over several requests hands
-// in the calls it kept.
+// answer is in, anything the marked-up bill owes beyond it is settled now.
+// The balance never goes below zero, so a settlement takes what the balance
+// can cover and the job is recorded with the credits it actually charged —
+// the margin view shows the shortfall against the cost. A settlement that
+// itself failed is recorded with only the reserve and flagged.
 // Returns the payer's new balance, or null when nothing more was owed.
 export async function settleQuestionUsage(
 	payerId: string,
@@ -26,13 +23,13 @@ export async function settleQuestionUsage(
 		await recordModelUsage({ payerId, reason, calls, creditsCharged: owed, hasFailedSettlement: false });
 		return null;
 	}
-	const { data, error } = await supabaseServiceClient().rpc('settle_credits_for', {
-		payer: payerId,
-		credit_amount: extra,
-		settle_reason: `${reason}_usage`
-	});
-	if (error !== null) {
-		console.error('Usage settlement failed', reason, error);
+	try {
+		const settlement = await settleCreditsFor(payerId, extra, `${reason}_usage`);
+		const creditsCharged = reservedCredits + settlement.creditsTaken;
+		await recordModelUsage({ payerId, reason, calls, creditsCharged, hasFailedSettlement: false });
+		return settlement.creditBalance;
+	} catch (failure) {
+		console.error('Usage settlement failed', reason, failure);
 		await recordModelUsage({
 			payerId,
 			reason,
@@ -42,6 +39,4 @@ export async function settleQuestionUsage(
 		});
 		return null;
 	}
-	await recordModelUsage({ payerId, reason, calls, creditsCharged: owed, hasFailedSettlement: false });
-	return data;
 }

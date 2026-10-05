@@ -3,6 +3,7 @@ import { countRecentSpends } from '$lib/server/credits/recentSpendCount';
 import { mostSpendsPerMinute } from '$lib/server/credits/requireSpendHeadroom';
 import { refundQuestionUsage } from '$lib/server/credits/refundQuestionUsage';
 import { reserveCreditsForPayer, type PayerReserve } from '$lib/server/credits/reserveCreditsForPayer';
+import { settleCreditsFor } from '$lib/server/credits/settleCreditsFor';
 import { settleQuestionUsage } from '$lib/server/credits/settleQuestionUsage';
 import { supabaseServiceClient } from '$lib/server/payments/supabaseServiceClient';
 import type { MeteredCall } from '$lib/data/anthropicUsage';
@@ -33,12 +34,11 @@ export async function reserveReadingCredits(
 
 export async function chargeHarvest(payerId: string, itemCount: number): Promise<void> {
 	if (itemCount <= 0) return;
-	const { error } = await supabaseServiceClient().rpc('settle_credits_for', {
-		payer: payerId,
-		credit_amount: harvestCreditsFor(itemCount),
-		settle_reason: harvestReason
-	});
-	if (error !== null) console.error('Harvest charge failed', { payerId, itemCount }, error);
+	try {
+		await settleCreditsFor(payerId, harvestCreditsFor(itemCount), harvestReason);
+	} catch (failure) {
+		console.error('Harvest charge failed', { payerId, itemCount }, failure);
+	}
 }
 
 export async function settleReading(
