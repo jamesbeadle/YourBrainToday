@@ -3,7 +3,6 @@
 	import { badNotice, goodNotice, type SourceNotice } from './sourceNotice';
 	import { drivenSources } from './drivenSources.svelte';
 	import { invalidateAll } from '$app/navigation';
-	import { isStageStalled } from '$lib/data/sourceReading';
 	import { readSourceStages } from './readSourceStages';
 	import { readingSuccessLine } from './readingProgressSummary';
 	import { sentForReviewMessage } from './uploadResolution';
@@ -28,7 +27,7 @@
 		if (candidate.status === 'uploaded') return 'Read it';
 		if (candidate.status === 'failed') return 'Try again';
 		const isAbandoned = candidate.status === 'reading' && !drivenSources.has(candidate.id);
-		if (isAbandoned && isStageStalled(candidate.stageStartedAt)) return 'Resume';
+		if (isAbandoned) return 'Resume';
 		return null;
 	}
 
