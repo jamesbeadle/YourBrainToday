@@ -1,4 +1,5 @@
 import { refundCredits } from './spendCredits';
+import { settleCreditsFor } from './settleCreditsFor';
 import { supabaseServiceClient } from '$lib/server/payments/supabaseServiceClient';
 
 export type PayerReserve =
@@ -8,9 +9,9 @@ export type PayerReserve =
 
 /**
  * The reserve for work nobody is signed in to ask for — data an MCP server or
- * an API client sends — taken from the owner's ledger by the server.
- * settle_credits_for never refuses, so a reserve the balance could not cover
- * is handed straight back and reported as insufficient.
+ * an API client sends — taken from the owner's ledger by the server. A
+ * reserve the balance could only partly cover is handed straight back and
+ * reported as insufficient.
  */
 export async function reserveCreditsForPayer(
 	payerId: string,
@@ -18,14 +19,9 @@ export async function reserveCreditsForPayer(
 	reason: string
 ): Promise<PayerReserve> {
 	if (await isRestricted(payerId)) return 'account_restricted';
-	const { data, error } = await supabaseServiceClient().rpc('settle_credits_for', {
-		payer: payerId,
-		credit_amount: amount,
-		settle_reason: reason
-	});
-	if (error !== null) throw error;
-	if (data >= 0) return { creditBalance: data };
-	await refundCredits(payerId, amount, reason);
+	const settlement = await settleCreditsFor(payerId, amount, reason);
+	if (settlement.creditsTaken === amount) return { creditBalance: settlement.creditBalance };
+	if (settlement.creditsTaken > 0) await refundCredits(payerId, settlement.creditsTaken, reason);
 	return 'insufficient_credits';
 }
 

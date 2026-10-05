@@ -60,9 +60,12 @@ Endpoints follow reserve-then-settle: take the floor for the resolved model befo
 (`spendCredits(reserve, reason)`), answer, then `settleQuestionUsage(payer, reserve, reason)`
 takes whatever `owed − reserve` is positive under `reason + '_usage'` (`brain_question_usage`,
 `kb_interview_usage`, `hive_mind_question_usage`, `agent_reply_usage`…) through the service-role
-RPC `settle_credits_for(payer, amount, reason)`, which has **no balance check** — the balance may
-go negative until the next pack. That is deliberate: a settlement that could bounce would make
-the floor the real price for anyone who keeps their balance near it. Failure before the answer
+RPC `settle_credits_for(payer, amount, reason)` (`settleCreditsFor` in TypeScript). **The balance
+never goes below zero**: the settlement takes what the balance can cover, reports how much it
+took, and the job is recorded with the credits it actually charged, so a shortfall shows in the
+margin view as cost the user's balance did not cover rather than as a debt (migration 0058 —
+James ruled a negative balance a bug on 2026-10-05; 0032 had let it go negative until the next
+pack). The floor reserved before the work is the least the user keeps enough for. Failure before the answer
 refunds the reserve through `refundQuestionUsage`, which also records what the failed attempt
 cost (below). Wired into `/api/brain/ask`, `/api/face-chat`, `/api/knowledge-base/brain-ask`,
 `/api/knowledge-base/interview`, `/api/hive-mind/ask` and `/api/agent-chat`. The last two keep
@@ -112,11 +115,13 @@ writes, admin reads): the payer, the ledger reason, the chatbot when the pool pa
 the four token counts, Anthropic's cost in pence (`usageCostPence`) and the share of the credits
 the job charged — one number per job, apportioned across its calls in proportion to cost so the
 rows always sum back to the ledger. `recordModelUsage` is the only writer; `settleQuestionUsage`,
-`refundQuestionUsage` and `settleChatbotQuestion` are the only callers. Three outcomes land:
+`refundQuestionUsage` and `settleChatbotQuestion` are the only callers. Four outcomes land:
 
 - settled — `credits_charged` is what the job finally owed (reserve plus settlement);
 - refunded — the job failed after Claude had answered part of it, the reserve went back, and the
   calls are recorded at zero credits: the cost of the failure, visible;
+- short — the balance could not cover the whole settlement, the row carries the reserve plus
+  what was taken, and the rest shows as leakage against the cost;
 - `has_failed_settlement` — `settle_credits_for` (or the chatbot settle) itself failed, the row
   carries only the reserve, and the shortfall shows as leakage instead of a log line.
 

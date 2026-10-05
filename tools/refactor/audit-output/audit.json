@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-04T19:52:03+00:00",
+  "generatedAt": "2026-10-05T10:44:54+00:00",
   "kitVersion": "1.14.0",
   "score": {
-    "overall": 78.9,
+    "overall": 79.0,
     "groups": [
       {
         "group": "Standard baseline checks",
-        "score": 92.3,
+        "score": 92.4,
         "weight": 60
       },
       {
@@ -40,7 +40,7 @@
         "unit": "files",
         "isMeasured": true,
         "offenders": 1,
-        "measuredAgainst": 1165,
+        "measuredAgainst": 1174,
         "score": 99.8
       },
       {
@@ -63,9 +63,9 @@
         "zeroAt": 0.25,
         "unit": "functions",
         "isMeasured": true,
-        "offenders": 60,
-        "measuredAgainst": 1775,
-        "score": 86.5
+        "offenders": 59,
+        "measuredAgainst": 1782,
+        "score": 86.8
       },
       {
         "key": "elseBlocks",
@@ -76,7 +76,7 @@
         "unit": "branches",
         "isMeasured": true,
         "offenders": 1,
-        "measuredAgainst": 1911,
+        "measuredAgainst": 1915,
         "score": 99.9
       },
       {
@@ -99,9 +99,9 @@
         "zeroAt": 50,
         "unit": "thousand lines",
         "isMeasured": true,
-        "offenders": 263,
-        "measuredAgainst": 47.45,
-        "score": 88.9
+        "offenders": 260,
+        "measuredAgainst": 47.66,
+        "score": 89.1
       },
       {
         "key": "magicValues",
@@ -112,7 +112,7 @@
         "unit": "thousand lines",
         "isMeasured": true,
         "offenders": 36,
-        "measuredAgainst": 47.45,
+        "measuredAgainst": 47.66,
         "score": 96.2
       },
       {
@@ -124,8 +124,8 @@
         "unit": "components and functions",
         "isMeasured": true,
         "offenders": 32,
-        "measuredAgainst": 2025,
-        "score": 84.2
+        "measuredAgainst": 2033,
+        "score": 84.3
       },
       {
         "key": "memberChains",
@@ -136,8 +136,8 @@
         "unit": "thousand lines",
         "isMeasured": true,
         "offenders": 449,
-        "measuredAgainst": 47.45,
-        "score": 68.5
+        "measuredAgainst": 47.66,
+        "score": 68.6
       },
       {
         "key": "deepIndentation",
@@ -148,8 +148,8 @@
         "unit": "thousand lines",
         "isMeasured": true,
         "offenders": 287,
-        "measuredAgainst": 47.45,
-        "score": 79.8
+        "measuredAgainst": 47.66,
+        "score": 79.9
       },
       {
         "key": "functionNames",
@@ -160,8 +160,8 @@
         "unit": "functions",
         "isMeasured": true,
         "offenders": 4,
-        "measuredAgainst": 1775,
-        "score": 97.7
+        "measuredAgainst": 1782,
+        "score": 97.8
       },
       {
         "key": "predictedFiles",
@@ -195,8 +195,8 @@
         "unit": "branches",
         "isMeasured": true,
         "offenders": 50,
-        "measuredAgainst": 1911,
-        "score": 89.5
+        "measuredAgainst": 1915,
+        "score": 89.6
       },
       {
         "key": "literalComparisons",
@@ -207,8 +207,8 @@
         "unit": "branches",
         "isMeasured": true,
         "offenders": 278,
-        "measuredAgainst": 1911,
-        "score": 41.8
+        "measuredAgainst": 1915,
+        "score": 41.9
       },
       {
         "key": "gluedAccessors",
@@ -219,7 +219,7 @@
         "unit": "functions",
         "isMeasured": true,
         "offenders": 10,
-        "measuredAgainst": 1775,
+        "measuredAgainst": 1782,
         "score": 94.4
       },
       {
@@ -251,17 +251,17 @@
     "fileLength": {
       "limit": 100,
       "filesOverLimit": 1,
-      "totalFiles": 1165,
-      "totalLines": 47446,
+      "totalFiles": 1174,
+      "totalLines": 47656,
       "worstFileLines": 106,
       "worstFileTimesOverLimit": 0.06
     },
     "functionShape": {
       "limit": 30,
-      "functionsOverLimit": 60,
-      "totalFunctions": 1775,
+      "functionsOverLimit": 59,
+      "totalFunctions": 1782,
       "elseBlocks": 1,
-      "ifBlocks": 1911,
+      "ifBlocks": 1915,
       "measurementIsHeuristic": true
     },
     "functionNames": {
@@ -277,14 +277,15 @@
       "clones": 13,
       "duplicatedLines": 111,
       "totalLines": 44697,
-      "duplicatedPercentage": 0.25
+      "duplicatedPercentage": 0.25,
+      "carriedFromBaseline": true
     },
     "naming": {
       "bannedAbbreviationHits": 6,
       "unprefixedBooleans": 2
     },
     "comments": {
-      "explanatoryCommentLines": 263,
+      "explanatoryCommentLines": 260,
       "filesWithComments": 102,
       "taskMarkers": 0
     },
@@ -296,7 +297,7 @@
     "prose": {
       "longMemberChainLines": 449,
       "deeplyIndentedLines": 287,
-      "overlongLines": 77,
+      "overlongLines": 78,
       "measurementIsHeuristic": true
     },
     "conditions": {
@@ -306,10 +307,10 @@
     },
     "orphans": {
       "orphanFunctions": 23,
-      "functionsExamined": 1775
+      "functionsExamined": 1782
     },
     "designPatterns": {
-      "roleFamilies": 66,
+      "roleFamilies": 67,
       "predictedFiles": 77,
       "predictedFilesMissing": 13,
       "entities": 0,
@@ -318,7 +319,7 @@
     },
     "inventory": {
       "pages": 35,
-      "components": 250,
+      "components": 251,
       "orphanComponents": 9,
       "averagePageLines": 37
     },
@@ -333,15 +334,15 @@
       "looserLimits": 0
     },
     "fileAreas": {
-      "totalFiles": 1394,
-      "frontend": 516,
-      "backend": 468,
-      "tooling": 104,
+      "totalFiles": 1405,
+      "frontend": 518,
+      "backend": 470,
+      "tooling": 105,
       "shared": 97,
       "api": 64,
       "database": 59,
-      "docs": 38,
-      "tests": 34,
+      "docs": 40,
+      "tests": 38,
       "infrastructure": 14
     }
   },
@@ -351,8 +352,8 @@
       "summary": {
         "limit": 100,
         "filesOverLimit": 1,
-        "totalFiles": 1165,
-        "totalLines": 47446,
+        "totalFiles": 1174,
+        "totalLines": 47656,
         "worstFileLines": 106,
         "worstFileTimesOverLimit": 0.06
       },
@@ -367,10 +368,10 @@
       "name": "functionShape",
       "summary": {
         "limit": 30,
-        "functionsOverLimit": 60,
-        "totalFunctions": 1775,
+        "functionsOverLimit": 59,
+        "totalFunctions": 1782,
         "elseBlocks": 1,
-        "ifBlocks": 1911,
+        "ifBlocks": 1915,
         "measurementIsHeuristic": true
       },
       "offenders": [
@@ -815,7 +816,7 @@
     "comments": {
       "name": "comments",
       "summary": {
-        "explanatoryCommentLines": 263,
+        "explanatoryCommentLines": 260,
         "filesWithComments": 102,
         "taskMarkers": 0
       },
@@ -986,7 +987,7 @@
       "summary": {
         "longMemberChainLines": 449,
         "deeplyIndentedLines": 287,
-        "overlongLines": 77,
+        "overlongLines": 78,
         "measurementIsHeuristic": true
       },
       "offenders": {
@@ -1521,11 +1522,19 @@
           },
           {
             "file": "src/lib/data/legal/privacyCollectionSections.ts",
+            "line": 18
+          },
+          {
+            "file": "src/lib/data/legal/privacyCollectionSections.ts",
             "line": 19
           },
           {
             "file": "src/lib/data/legal/privacyCollectionSections.ts",
-            "line": 21
+            "line": 20
+          },
+          {
+            "file": "src/lib/data/legal/privacyCollectionSections.ts",
+            "line": 27
           },
           {
             "file": "src/lib/data/legal/privacyCollectionSections.ts",
@@ -1533,11 +1542,7 @@
           },
           {
             "file": "src/lib/data/legal/privacyCollectionSections.ts",
-            "line": 29
-          },
-          {
-            "file": "src/lib/data/legal/privacyCollectionSections.ts",
-            "line": 36
+            "line": 35
           },
           {
             "file": "src/lib/data/legal/privacyRightsSections.ts",
@@ -1561,15 +1566,19 @@
           },
           {
             "file": "src/lib/data/legal/privacySharingSections.ts",
+            "line": 11
+          },
+          {
+            "file": "src/lib/data/legal/privacySharingSections.ts",
+            "line": 12
+          },
+          {
+            "file": "src/lib/data/legal/privacySharingSections.ts",
             "line": 19
           },
           {
             "file": "src/lib/data/legal/privacySharingSections.ts",
             "line": 25
-          },
-          {
-            "file": "src/lib/data/legal/privacySharingSections.ts",
-            "line": 31
           },
           {
             "file": "src/lib/data/legal/privacySharingSections.ts",
@@ -1586,14 +1595,6 @@
           {
             "file": "src/lib/data/legal/termsAccountSections.ts",
             "line": 8
-          },
-          {
-            "file": "src/lib/data/legal/termsAccountSections.ts",
-            "line": 9
-          },
-          {
-            "file": "src/lib/data/legal/termsAccountSections.ts",
-            "line": 15
           }
         ]
       }
@@ -2016,7 +2017,7 @@
       "name": "orphans",
       "summary": {
         "orphanFunctions": 23,
-        "functionsExamined": 1775
+        "functionsExamined": 1782
       },
       "offenders": [
         {
@@ -2139,7 +2140,7 @@
     "designPatterns": {
       "name": "designPatterns",
       "summary": {
-        "roleFamilies": 66,
+        "roleFamilies": 67,
         "predictedFiles": 77,
         "predictedFilesMissing": 13,
         "entities": 0,
@@ -2173,6 +2174,7 @@
           "email": 7,
           "experience": 8,
           "field": 4,
+          "for": 4,
           "form": 15,
           "header": 5,
           "index": 9,
@@ -2184,7 +2186,7 @@
           "map": 5,
           "maps": 4,
           "model": 14,
-          "note": 4,
+          "note": 5,
           "notice": 4,
           "page": 4,
           "pages": 5,
@@ -2205,9 +2207,9 @@
           "source": 11,
           "stage": 6,
           "state": 4,
-          "svelte": 14,
+          "svelte": 16,
           "table": 4,
-          "test": 33,
+          "test": 36,
           "tool": 10,
           "tools": 7,
           "turn": 4,
@@ -2270,7 +2272,7 @@
       "name": "inventory",
       "summary": {
         "pages": 35,
-        "components": 250,
+        "components": 251,
         "orphanComponents": 9,
         "averagePageLines": 37
       },
@@ -2308,19 +2310,19 @@
             ]
           },
           {
+            "page": "src/routes/account/credits/+page.svelte",
+            "lines": 64,
+            "widgets": [
+              "list"
+            ]
+          },
+          {
             "page": "src/routes/workspace/[entityId]/domains/new/+page.svelte",
             "lines": 64,
             "widgets": [
               "form",
               "submit",
               "error"
-            ]
-          },
-          {
-            "page": "src/routes/account/credits/+page.svelte",
-            "lines": 62,
-            "widgets": [
-              "list"
             ]
           },
           {
@@ -2703,6 +2705,10 @@
           },
           {
             "component": "src/lib/components/site/CreditBalancePill.svelte",
+            "reusedBy": 2
+          },
+          {
+            "component": "src/lib/components/site/LegalAgreementNote.svelte",
             "reusedBy": 2
           },
           {
@@ -3504,33 +3510,33 @@
     "fileAreas": {
       "name": "fileAreas",
       "summary": {
-        "totalFiles": 1394,
-        "frontend": 516,
-        "backend": 468,
-        "tooling": 104,
+        "totalFiles": 1405,
+        "frontend": 518,
+        "backend": 470,
+        "tooling": 105,
         "shared": 97,
         "api": 64,
         "database": 59,
-        "docs": 38,
-        "tests": 34,
+        "docs": 40,
+        "tests": 38,
         "infrastructure": 14
       },
       "offenders": [
         {
           "area": "frontend",
-          "files": 516,
-          "sourceFiles": 503,
-          "sourceLines": 23446
+          "files": 518,
+          "sourceFiles": 505,
+          "sourceLines": 23471
         },
         {
           "area": "backend",
-          "files": 468,
-          "sourceFiles": 468,
-          "sourceLines": 16319
+          "files": 470,
+          "sourceFiles": 471,
+          "sourceLines": 16374
         },
         {
           "area": "tooling",
-          "files": 104,
+          "files": 105,
           "sourceFiles": 0,
           "sourceLines": 0
         },
@@ -3538,7 +3544,7 @@
           "area": "shared",
           "files": 97,
           "sourceFiles": 96,
-          "sourceLines": 3644
+          "sourceLines": 3637
         },
         {
           "area": "api",
@@ -3554,15 +3560,15 @@
         },
         {
           "area": "docs",
-          "files": 38,
+          "files": 40,
           "sourceFiles": 0,
           "sourceLines": 0
         },
         {
           "area": "tests",
-          "files": 34,
-          "sourceFiles": 34,
-          "sourceLines": 1512
+          "files": 38,
+          "sourceFiles": 38,
+          "sourceLines": 1649
         },
         {
           "area": "infrastructure",
@@ -4039,7 +4045,8 @@
         "clones": 13,
         "duplicatedLines": 111,
         "totalLines": 44697,
-        "duplicatedPercentage": 0.25
+        "duplicatedPercentage": 0.25,
+        "carriedFromBaseline": true
       },
       "offenders": [
         {
