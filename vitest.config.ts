@@ -5,12 +5,16 @@ import { fileURLToPath } from 'node:url';
 /** Tests run in node, where runes would otherwise compile as server code and effects never run. */
 const compileRunesForTheClient = () => ({ generate: 'client' as const });
 
+/** The runner resolves packages as a server would, which would hand the tests Svelte's server build, where untrack and flushSync do nothing. */
+const browserConditions = ['browser'];
+
 export default defineConfig({
 	plugins: [svelte({ dynamicCompileOptions: compileRunesForTheClient })],
 	resolve: {
 		alias: { $lib: fileURLToPath(new URL('./src/lib', import.meta.url)) },
-		conditions: ['browser']
+		conditions: browserConditions
 	},
+	ssr: { resolve: { conditions: browserConditions } },
 	test: {
 		include: ['src/lib/**/*.test.ts', 'src/lib/**/*.test.svelte.ts']
 	}
