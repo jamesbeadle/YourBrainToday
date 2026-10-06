@@ -87,7 +87,12 @@
       "src/routes/knowledge-base/[knowledgeBaseId=uuid]/brains/new/+page.svelte",
       "src/routes/knowledge/[...rest]/+page.svelte",
       "src/routes/workspace/+page.svelte",
-      "src/routes/workspace/[entityId]/+page.svelte"
+      "src/routes/workspace/[entityId]/+page.svelte",
+      "src/routes/+page.server.ts",
+      "src/routes/contact/+page.server.ts",
+      "src/routes/privacy/+page.server.ts",
+      "src/routes/terms/+page.server.ts",
+      "src/routes/vision/+page.server.ts"
     ]
   },
   "siteDefinition": {
