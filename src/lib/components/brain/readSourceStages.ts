@@ -3,6 +3,7 @@ import { drivenSources } from './drivenSources.svelte';
 import { isStageBusy, outcomeOf, stageLabelOf, type ReadingOutcome, type StageReply } from './stageReply';
 import { messageFrom } from '$lib/client/responseMessage';
 import { readingStageLabels } from '$lib/data/sourceReading';
+import { HttpStatus } from '$lib/data/httpStatus';
 
 export type { ReadingOutcome } from './stageReply';
 
@@ -66,7 +67,7 @@ async function requestStage(
 	sourceId: string
 ): Promise<{ stageReply: StageReply } | ReadingOutcome> {
 	const response = await fetch(`/api/brain/sources/${sourceId}/read`, { method: 'POST' });
-	if (response.status === 402) return { status: 'out_of_credits' };
+	if (response.status === HttpStatus.paymentRequired) return { status: 'out_of_credits' };
 	if (!response.ok) return { status: 'failed', message: await messageFrom(response) };
 	return { stageReply: await response.json() };
 }

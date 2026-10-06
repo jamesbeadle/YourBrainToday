@@ -1,6 +1,6 @@
 import { asBrainSource } from '../getBrainSources';
 import { storedSourceColumns } from '../findBrainSource';
-import type { BrainSource } from '$lib/data/brainTypes';
+import type { BrainSource } from '$lib/data/brainSourceTypes';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 /** Where a source's reading stands now, as the sources list shows it. */

@@ -1,4 +1,4 @@
-import type { BrainSourceArrival } from '$lib/data/brainTypes';
+import type { BrainSourceArrival } from '$lib/data/brainSourceTypes';
 
 export type SentData = { title: string; text: string };
 

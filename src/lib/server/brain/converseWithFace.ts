@@ -6,7 +6,7 @@ import { readPagesResultMessage, toolUseNamed, toolUsesNamed } from './readPages
 import { renderDomainModelIndex } from './getBrainPageIndex';
 import { requestAnthropic } from '$lib/server/anthropic/requestAnthropic';
 import { messagesFromTurns } from '$lib/server/anthropic/messagesFromTurns';
-import type { BrainContext, BrainPageSummary } from '$lib/data/brainTypes';
+import type { BrainContext, BrainPageSummary } from '$lib/data/brainModelTypes';
 import type { FaceChatReply, FaceChatTurn } from '$lib/data/faceChatTypes';
 import type { SupabaseClient } from '@supabase/supabase-js';
 

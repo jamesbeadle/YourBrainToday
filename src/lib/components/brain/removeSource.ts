@@ -1,3 +1,5 @@
+import { HttpStatus } from '$lib/data/httpStatus';
+
 export type RemovalOutcome =
 	| { status: 'removed'; creditBalance: number }
 	| { status: 'out_of_credits' }
@@ -5,7 +7,7 @@ export type RemovalOutcome =
 
 export async function removeSource(sourceId: string): Promise<RemovalOutcome> {
 	const response = await fetch(`/api/brain/sources/${sourceId}`, { method: 'DELETE' });
-	if (response.status === 402) return { status: 'out_of_credits' };
+	if (response.status === HttpStatus.paymentRequired) return { status: 'out_of_credits' };
 	if (!response.ok) return { status: 'failed', message: await messageFrom(response) };
 	const payload = await response.json();
 	return { status: 'removed', creditBalance: payload.creditBalance };

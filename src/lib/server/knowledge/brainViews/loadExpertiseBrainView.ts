@@ -7,12 +7,8 @@ import { getDomainBrain, type DomainBrain } from '$lib/server/entities/getDomain
 import { resolveBrainAccessRole } from '$lib/server/market/resolveBrainAccessRole';
 import type { BrainAccessRole } from '$lib/data/marketTypes';
 import type { KbBrainSummary } from '$lib/data/knowledge/knowledgeTypes';
-import type {
-	BrainContext,
-	BrainConversationThread,
-	BrainPageLink,
-	BrainPageSummary
-} from '$lib/data/brainTypes';
+import type { BrainContext, BrainPageLink, BrainPageSummary } from '$lib/data/brainModelTypes';
+import type { BrainConversationThread } from '$lib/data/brainConversationTypes';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 export type ExpertiseBrainView = {

@@ -1,5 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { BrainEvent } from '$lib/data/brainTypes';
+import type { BrainEvent } from '$lib/data/brainEventTypes';
 
 const recentEventCount = 30;
 const maxExportedEventCount = 2000;

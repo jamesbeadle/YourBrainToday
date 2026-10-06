@@ -1,6 +1,6 @@
 import { renderDomainModelIndex } from '../brain/getBrainPageIndex';
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { BrainContext, BrainPageSummary, DomainBlockKind } from '$lib/data/brainTypes';
+import type { BrainContext, BrainPageSummary, DomainBlockKind } from '$lib/data/brainModelTypes';
 import type { HiveMember } from '$lib/data/hiveTypes';
 
 export type HiveSpecialistModel = {

@@ -2,6 +2,7 @@ import { guardingConnection } from './connectionGuard';
 import { readSourceStages, type ReadingOutcome } from './readSourceStages';
 import { messageFrom } from '$lib/client/responseMessage';
 import { mimeTypeFor } from '$lib/data/brainUploadRules';
+import { HttpStatus } from '$lib/data/httpStatus';
 
 export type UploadOutcome = ReadingOutcome | { status: 'rejected'; message: string };
 
@@ -40,7 +41,7 @@ async function requestGrant(
 			byteCount: file.size
 		})
 	});
-	if (response.status === 400) return { status: 'rejected', message: await messageFrom(response) };
+	if (response.status === HttpStatus.badRequest) return { status: 'rejected', message: await messageFrom(response) };
 	if (!response.ok) return { status: 'failed', message: 'The upload could not be started.' };
 	return response.json();
 }

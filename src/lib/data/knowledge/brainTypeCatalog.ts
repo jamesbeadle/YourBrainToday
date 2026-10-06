@@ -27,10 +27,6 @@ export const categoryLabels: Record<BrainCategory, string> = {
 	people: 'Human Brain'
 };
 
-export function brainTypesFor(category: BrainCategory): BrainTypeDefinition[] {
-	return brainTypeCatalog.filter((definition) => definition.category === category);
-}
-
 export function findBrainType(type: string): BrainTypeDefinition | null {
 	return brainTypeCatalog.find((definition) => definition.type === type) ?? null;
 }

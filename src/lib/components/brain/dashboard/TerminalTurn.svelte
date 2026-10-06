@@ -1,6 +1,7 @@
 <script lang="ts">
 	import MarkdownBody from '../MarkdownBody.svelte';
-	import type { BrainConversationMessage, BrainPageSummary } from '$lib/data/brainTypes';
+	import type { BrainConversationMessage } from '$lib/data/brainConversationTypes';
+	import type { BrainPageSummary } from '$lib/data/brainModelTypes';
 
 	let {
 		message,

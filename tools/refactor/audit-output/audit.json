@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-10-05T10:44:54+00:00",
+  "generatedAt": "2026-10-06T18:52:14+00:00",
   "kitVersion": "1.14.0",
   "score": {
-    "overall": 79.0,
+    "overall": 83.3,
     "groups": [
       {
         "group": "Standard baseline checks",
-        "score": 92.4,
+        "score": 93.4,
         "weight": 60
       },
       {
         "group": "Design pattern file count",
-        "score": 66.2,
+        "score": 100.0,
         "weight": 10
       },
       {
         "group": "Prose",
-        "score": 76.7,
+        "score": 78.0,
         "weight": 20
       },
       {
@@ -39,9 +39,9 @@
         "zeroAt": 0.5,
         "unit": "files",
         "isMeasured": true,
-        "offenders": 1,
-        "measuredAgainst": 1174,
-        "score": 99.8
+        "offenders": 0,
+        "measuredAgainst": 1150,
+        "score": 100.0
       },
       {
         "key": "worstFile",
@@ -51,9 +51,9 @@
         "zeroAt": 9,
         "unit": "",
         "isMeasured": true,
-        "offenders": 0.06,
+        "offenders": 0.0,
         "measuredAgainst": 1,
-        "score": 99.3
+        "score": 100.0
       },
       {
         "key": "functionsOverLimit",
@@ -64,8 +64,8 @@
         "unit": "functions",
         "isMeasured": true,
         "offenders": 59,
-        "measuredAgainst": 1782,
-        "score": 86.8
+        "measuredAgainst": 1727,
+        "score": 86.3
       },
       {
         "key": "elseBlocks",
@@ -76,7 +76,7 @@
         "unit": "branches",
         "isMeasured": true,
         "offenders": 1,
-        "measuredAgainst": 1915,
+        "measuredAgainst": 1833,
         "score": 99.9
       },
       {
@@ -99,9 +99,9 @@
         "zeroAt": 50,
         "unit": "thousand lines",
         "isMeasured": true,
-        "offenders": 260,
-        "measuredAgainst": 47.66,
-        "score": 89.1
+        "offenders": 259,
+        "measuredAgainst": 46.37,
+        "score": 88.8
       },
       {
         "key": "magicValues",
@@ -112,8 +112,8 @@
         "unit": "thousand lines",
         "isMeasured": true,
         "offenders": 36,
-        "measuredAgainst": 47.66,
-        "score": 96.2
+        "measuredAgainst": 46.37,
+        "score": 96.1
       },
       {
         "key": "orphans",
@@ -123,9 +123,9 @@
         "zeroAt": 0.1,
         "unit": "components and functions",
         "isMeasured": true,
-        "offenders": 32,
-        "measuredAgainst": 2033,
-        "score": 84.3
+        "offenders": 0,
+        "measuredAgainst": 1965,
+        "score": 100.0
       },
       {
         "key": "memberChains",
@@ -135,9 +135,9 @@
         "zeroAt": 30,
         "unit": "thousand lines",
         "isMeasured": true,
-        "offenders": 449,
-        "measuredAgainst": 47.66,
-        "score": 68.6
+        "offenders": 435,
+        "measuredAgainst": 46.37,
+        "score": 68.7
       },
       {
         "key": "deepIndentation",
@@ -147,9 +147,9 @@
         "zeroAt": 30,
         "unit": "thousand lines",
         "isMeasured": true,
-        "offenders": 287,
-        "measuredAgainst": 47.66,
-        "score": 79.9
+        "offenders": 284,
+        "measuredAgainst": 46.37,
+        "score": 79.6
       },
       {
         "key": "functionNames",
@@ -160,8 +160,8 @@
         "unit": "functions",
         "isMeasured": true,
         "offenders": 4,
-        "measuredAgainst": 1782,
-        "score": 97.8
+        "measuredAgainst": 1727,
+        "score": 97.7
       },
       {
         "key": "predictedFiles",
@@ -171,9 +171,9 @@
         "zeroAt": 0.5,
         "unit": "predicted files",
         "isMeasured": true,
-        "offenders": 13,
+        "offenders": 0,
         "measuredAgainst": 77,
-        "score": 66.2
+        "score": 100.0
       },
       {
         "key": "entityFileCounts",
@@ -195,8 +195,8 @@
         "unit": "branches",
         "isMeasured": true,
         "offenders": 50,
-        "measuredAgainst": 1915,
-        "score": 89.6
+        "measuredAgainst": 1833,
+        "score": 89.1
       },
       {
         "key": "literalComparisons",
@@ -206,9 +206,9 @@
         "zeroAt": 0.25,
         "unit": "branches",
         "isMeasured": true,
-        "offenders": 278,
-        "measuredAgainst": 1915,
-        "score": 41.9
+        "offenders": 251,
+        "measuredAgainst": 1833,
+        "score": 45.2
       },
       {
         "key": "gluedAccessors",
@@ -218,9 +218,9 @@
         "zeroAt": 0.1,
         "unit": "functions",
         "isMeasured": true,
-        "offenders": 10,
-        "measuredAgainst": 1782,
-        "score": 94.4
+        "offenders": 7,
+        "measuredAgainst": 1727,
+        "score": 95.9
       },
       {
         "key": "handRolledWidgets",
@@ -250,18 +250,18 @@
   "summaries": {
     "fileLength": {
       "limit": 100,
-      "filesOverLimit": 1,
-      "totalFiles": 1174,
-      "totalLines": 47656,
-      "worstFileLines": 106,
-      "worstFileTimesOverLimit": 0.06
+      "filesOverLimit": 0,
+      "totalFiles": 1150,
+      "totalLines": 46366,
+      "worstFileLines": 0,
+      "worstFileTimesOverLimit": 0.0
     },
     "functionShape": {
       "limit": 30,
       "functionsOverLimit": 59,
-      "totalFunctions": 1782,
+      "totalFunctions": 1727,
       "elseBlocks": 1,
-      "ifBlocks": 1915,
+      "ifBlocks": 1833,
       "measurementIsHeuristic": true
     },
     "functionNames": {
@@ -270,23 +270,22 @@
       "maxLength": 40
     },
     "accessorNames": {
-      "gluedAccessorNames": 10,
+      "gluedAccessorNames": 7,
       "measurementIsHeuristic": true
     },
     "duplication": {
       "clones": 13,
       "duplicatedLines": 111,
-      "totalLines": 44697,
-      "duplicatedPercentage": 0.25,
-      "carriedFromBaseline": true
+      "totalLines": 43656,
+      "duplicatedPercentage": 0.25
     },
     "naming": {
-      "bannedAbbreviationHits": 6,
+      "bannedAbbreviationHits": 8,
       "unprefixedBooleans": 2
     },
     "comments": {
-      "explanatoryCommentLines": 260,
-      "filesWithComments": 102,
+      "explanatoryCommentLines": 259,
+      "filesWithComments": 101,
       "taskMarkers": 0
     },
     "magicValues": {
@@ -295,32 +294,32 @@
       "repeatedStringLiterals": 30
     },
     "prose": {
-      "longMemberChainLines": 449,
-      "deeplyIndentedLines": 287,
+      "longMemberChainLines": 435,
+      "deeplyIndentedLines": 284,
       "overlongLines": 78,
       "measurementIsHeuristic": true
     },
     "conditions": {
       "tangledConditionLines": 50,
-      "literalComparisonLines": 278,
+      "literalComparisonLines": 251,
       "measurementIsHeuristic": true
     },
     "orphans": {
-      "orphanFunctions": 23,
-      "functionsExamined": 1782
+      "orphanFunctions": 0,
+      "functionsExamined": 1727
     },
     "designPatterns": {
-      "roleFamilies": 67,
+      "roleFamilies": 66,
       "predictedFiles": 77,
-      "predictedFilesMissing": 13,
+      "predictedFilesMissing": 0,
       "entities": 0,
       "entitiesOutOfRange": 0,
       "measurementIsHeuristic": true
     },
     "inventory": {
       "pages": 35,
-      "components": 251,
-      "orphanComponents": 9,
+      "components": 238,
+      "orphanComponents": 0,
       "averagePageLines": 37
     },
     "siteDefinition": {
@@ -334,15 +333,15 @@
       "looserLimits": 0
     },
     "fileAreas": {
-      "totalFiles": 1405,
-      "frontend": 518,
-      "backend": 470,
+      "totalFiles": 1383,
+      "frontend": 505,
+      "backend": 457,
       "tooling": 105,
-      "shared": 97,
+      "shared": 98,
       "api": 64,
-      "database": 59,
+      "database": 60,
+      "tests": 40,
       "docs": 40,
-      "tests": 38,
       "infrastructure": 14
     }
   },
@@ -351,27 +350,22 @@
       "name": "fileLength",
       "summary": {
         "limit": 100,
-        "filesOverLimit": 1,
-        "totalFiles": 1174,
-        "totalLines": 47656,
-        "worstFileLines": 106,
-        "worstFileTimesOverLimit": 0.06
+        "filesOverLimit": 0,
+        "totalFiles": 1150,
+        "totalLines": 46366,
+        "worstFileLines": 0,
+        "worstFileTimesOverLimit": 0.0
       },
-      "offenders": [
-        {
-          "file": "src/lib/data/brainTypes.ts",
-          "lines": 106
-        }
-      ]
+      "offenders": []
     },
     "functionShape": {
       "name": "functionShape",
       "summary": {
         "limit": 30,
         "functionsOverLimit": 59,
-        "totalFunctions": 1782,
+        "totalFunctions": 1727,
         "elseBlocks": 1,
-        "ifBlocks": 1915,
+        "ifBlocks": 1833,
         "measurementIsHeuristic": true
       },
       "offenders": [
@@ -673,7 +667,7 @@
           "file": "src/lib/components/face/cubePlacements.ts",
           "lines": 33,
           "name": "collectCubePlacements",
-          "line": 60
+          "line": 61
         }
       ]
     },
@@ -710,15 +704,10 @@
     "accessorNames": {
       "name": "accessorNames",
       "summary": {
-        "gluedAccessorNames": 10,
+        "gluedAccessorNames": 7,
         "measurementIsHeuristic": true
       },
       "offenders": [
-        {
-          "file": "src/lib/server/accounts/getAccountDirectory.ts",
-          "line": 4,
-          "name": "getAccountDirectory"
-        },
         {
           "file": "src/lib/server/brain/getBrainPageIndex.ts",
           "line": 5,
@@ -733,16 +722,6 @@
           "file": "src/lib/server/credits/getPurchaseHistory.ts",
           "line": 12,
           "name": "getPurchaseHistory"
-        },
-        {
-          "file": "src/lib/server/hive/hiveApplicationBrain.ts",
-          "line": 19,
-          "name": "getHiveApplicationContexts"
-        },
-        {
-          "file": "src/lib/server/hive/hiveApplicationBrain.ts",
-          "line": 35,
-          "name": "getHiveApplicationPages"
         },
         {
           "file": "src/lib/server/knowledge/deleteKnowledgeBase.ts",
@@ -769,11 +748,19 @@
     "naming": {
       "name": "naming",
       "summary": {
-        "bannedAbbreviationHits": 6,
+        "bannedAbbreviationHits": 8,
         "unprefixedBooleans": 2
       },
       "offenders": {
         "abbreviations": [
+          {
+            "file": "src/lib/components/brain/readSourceStages.test.ts",
+            "line": 22
+          },
+          {
+            "file": "src/lib/components/brain/readSourceStages.test.ts",
+            "line": 39
+          },
           {
             "file": "src/lib/server/brain/askModeller.test.ts",
             "line": 7
@@ -816,8 +803,8 @@
     "comments": {
       "name": "comments",
       "summary": {
-        "explanatoryCommentLines": 260,
-        "filesWithComments": 102,
+        "explanatoryCommentLines": 259,
+        "filesWithComments": 101,
         "taskMarkers": 0
       },
       "offenders": []
@@ -861,31 +848,31 @@
         "repeatedLiterals": [
           {
             "literal": "button",
-            "occurrences": 76
+            "occurrences": 68
           },
           {
             "literal": "flex flex-col gap-2",
-            "occurrences": 49
+            "occurrences": 44
           },
           {
             "literal": "flex flex-col gap-1",
-            "occurrences": 34
-          },
-          {
-            "literal": "text-sm text-chalk/60",
             "occurrences": 33
           },
           {
             "literal": "flex flex-col gap-3",
-            "occurrences": 32
+            "occurrences": 30
           },
           {
-            "literal": "text-xs text-chalk/50",
-            "occurrences": 31
+            "literal": "text-sm text-chalk/60",
+            "occurrences": 30
           },
           {
             "literal": "hidden",
             "occurrences": 29
+          },
+          {
+            "literal": "text-xs text-chalk/50",
+            "occurrences": 26
           },
           {
             "literal": "font-display text-3xl font-medium",
@@ -897,10 +884,6 @@
           },
           {
             "literal": "submit",
-            "occurrences": 19
-          },
-          {
-            "literal": "flex flex-col gap-4",
             "occurrences": 17
           },
           {
@@ -908,36 +891,36 @@
             "occurrences": 17
           },
           {
-            "literal": "font-display text-lg font-medium",
-            "occurrences": 15
+            "literal": "flex flex-col gap-4",
+            "occurrences": 16
           },
           {
             "literal": "text-sm text-chalk/50",
             "occurrences": 15
           },
           {
+            "literal": "font-display text-lg font-medium",
+            "occurrences": 14
+          },
+          {
             "literal": "font-display text-xl font-medium",
-            "occurrences": 14
-          },
-          {
-            "literal": "font-display text-sm text-chalk",
-            "occurrences": 14
-          },
-          {
-            "literal": "text-xs leading-relaxed text-chalk/60",
-            "occurrences": 14
+            "occurrences": 13
           },
           {
             "literal": "flex items-center gap-2",
             "occurrences": 13
           },
           {
-            "literal": "text-sm text-chalk/40",
+            "literal": "font-display text-sm text-chalk",
             "occurrences": 12
           },
           {
-            "literal": "text-sm text-chalk/70",
-            "occurrences": 11
+            "literal": "text-xs leading-relaxed text-chalk/60",
+            "occurrences": 12
+          },
+          {
+            "literal": "text-sm text-chalk/40",
+            "occurrences": 12
           },
           {
             "literal": "text-chalk/80",
@@ -952,10 +935,6 @@
             "occurrences": 10
           },
           {
-            "literal": "text-chalk",
-            "occurrences": 10
-          },
-          {
             "literal": "flex flex-col divide-y divide-hairline",
             "occurrences": 10
           },
@@ -964,11 +943,19 @@
             "occurrences": 9
           },
           {
+            "literal": "text-chalk",
+            "occurrences": 9
+          },
+          {
             "literal": "description",
             "occurrences": 9
           },
           {
             "literal": "text-chalk/70",
+            "occurrences": 8
+          },
+          {
+            "literal": "text-sm text-chalk/70",
             "occurrences": 8
           },
           {
@@ -985,8 +972,8 @@
     "prose": {
       "name": "prose",
       "summary": {
-        "longMemberChainLines": 449,
-        "deeplyIndentedLines": 287,
+        "longMemberChainLines": 435,
+        "deeplyIndentedLines": 284,
         "overlongLines": 78,
         "measurementIsHeuristic": true
       },
@@ -1015,22 +1002,6 @@
           {
             "file": "src/hooks.server.ts",
             "line": 39
-          },
-          {
-            "file": "src/lib/client/findReorderRow.ts",
-            "line": 36
-          },
-          {
-            "file": "src/lib/client/findReorderRow.ts",
-            "line": 43
-          },
-          {
-            "file": "src/lib/client/findReorderRow.ts",
-            "line": 53
-          },
-          {
-            "file": "src/lib/client/findReorderRow.ts",
-            "line": 60
           },
           {
             "file": "src/lib/client/formTracker.svelte.ts",
@@ -1191,6 +1162,22 @@
           {
             "file": "src/lib/components/brain/flow/flowLayout.ts",
             "line": 72
+          },
+          {
+            "file": "src/lib/components/brain/flow/flowPicker.ts",
+            "line": 23
+          },
+          {
+            "file": "src/lib/components/brain/flow/flowStation.ts",
+            "line": 71
+          },
+          {
+            "file": "src/lib/components/brain/flow/flowStation.ts",
+            "line": 82
+          },
+          {
+            "file": "src/lib/components/brain/flow/flowStation.ts",
+            "line": 84
           }
         ],
         "deepIndentation": [
@@ -1442,7 +1429,7 @@
           },
           {
             "file": "src/lib/data/demoBrain/demoBrain.ts",
-            "line": 19
+            "line": 14
           },
           {
             "file": "src/lib/data/demoBrain/financeContext.ts",
@@ -1603,7 +1590,7 @@
       "name": "conditions",
       "summary": {
         "tangledConditionLines": 50,
-        "literalComparisonLines": 278,
+        "literalComparisonLines": 251,
         "measurementIsHeuristic": true
       },
       "offenders": {
@@ -1794,11 +1781,11 @@
           },
           {
             "file": "src/lib/components/brain/SourceReadingControls.svelte",
-            "line": 42
+            "line": 41
           },
           {
             "file": "src/lib/components/brain/SourceReadingControls.svelte",
-            "line": 43
+            "line": 42
           },
           {
             "file": "src/lib/components/brain/SourceRereadButton.svelte",
@@ -1825,14 +1812,6 @@
           {
             "file": "src/lib/components/brain/constellation/fibreShaders.ts",
             "line": 33
-          },
-          {
-            "file": "src/lib/components/brain/dashboard/shareGrouping.ts",
-            "line": 27
-          },
-          {
-            "file": "src/lib/components/brain/dashboard/terminalAsk.ts",
-            "line": 22
           },
           {
             "file": "src/lib/components/brain/flow/flowEdges.ts",
@@ -1875,36 +1854,24 @@
             "line": 66
           },
           {
-            "file": "src/lib/components/brain/readSourceStages.ts",
-            "line": 59
-          },
-          {
-            "file": "src/lib/components/brain/readSourceStages.ts",
-            "line": 70
-          },
-          {
-            "file": "src/lib/components/brain/readSourceStages.ts",
-            "line": 77
-          },
-          {
-            "file": "src/lib/components/brain/readSourceStages.ts",
-            "line": 78
-          },
-          {
-            "file": "src/lib/components/brain/readSourceStages.ts",
-            "line": 84
-          },
-          {
-            "file": "src/lib/components/brain/removeSource.ts",
-            "line": 8
-          },
-          {
             "file": "src/lib/components/brain/renderMarkdown.ts",
             "line": 55
           },
           {
             "file": "src/lib/components/brain/sourceUploadQueue.svelte.ts",
             "line": 89
+          },
+          {
+            "file": "src/lib/components/brain/stageReply.ts",
+            "line": 34
+          },
+          {
+            "file": "src/lib/components/brain/stageReply.ts",
+            "line": 41
+          },
+          {
+            "file": "src/lib/components/brain/stageReply.ts",
+            "line": 42
           },
           {
             "file": "src/lib/components/brain/uploadResolution.ts",
@@ -1920,15 +1887,7 @@
           },
           {
             "file": "src/lib/components/brain/uploadSourceFile.ts",
-            "line": 21
-          },
-          {
-            "file": "src/lib/components/brain/uploadSourceFile.ts",
-            "line": 43
-          },
-          {
-            "file": "src/lib/components/chatbots/chatbotAsk.ts",
-            "line": 32
+            "line": 22
           },
           {
             "file": "src/lib/components/face/faceWorld.ts",
@@ -1943,32 +1902,12 @@
             "line": 52
           },
           {
-            "file": "src/lib/components/knowledge/interviewRequest.ts",
-            "line": 46
-          },
-          {
             "file": "src/lib/components/knowledge/kb3d/kbGalaxyInput.ts",
             "line": 48
           },
           {
             "file": "src/lib/data/emailDelivery.ts",
             "line": 9
-          },
-          {
-            "file": "src/lib/server/admin/usage/summariseUsageByUser.ts",
-            "line": 49
-          },
-          {
-            "file": "src/lib/server/admin/usage/summariseUsageByUser.ts",
-            "line": 50
-          },
-          {
-            "file": "src/lib/server/admin/usage/summariseUsageByUser.ts",
-            "line": 51
-          },
-          {
-            "file": "src/lib/server/admin/usage/summariseUsageByUser.ts",
-            "line": 52
           },
           {
             "file": "src/lib/server/agent/interview/findGaps.ts",
@@ -1979,36 +1918,84 @@
             "line": 91
           },
           {
-            "file": "src/lib/server/agent/interview/questionArchetypes.ts",
-            "line": 4
+            "file": "src/lib/server/brain/harvestSourceExperience.ts",
+            "line": 43
           },
           {
-            "file": "src/lib/server/agent/interview/questionArchetypes.ts",
-            "line": 5
+            "file": "src/lib/server/brain/harvestSourcePeople.ts",
+            "line": 45
           },
           {
-            "file": "src/lib/server/agent/interview/questionArchetypes.ts",
-            "line": 8
+            "file": "src/lib/server/brain/links/github/repositoryFileRules.ts",
+            "line": 48
           },
           {
-            "file": "src/lib/server/agent/interview/questionArchetypes.ts",
+            "file": "src/lib/server/brain/links/github/repositoryFileRules.ts",
+            "line": 49
+          },
+          {
+            "file": "src/lib/server/brain/links/linkTargets.ts",
+            "line": 25
+          },
+          {
+            "file": "src/lib/server/brain/links/linkTargets.ts",
+            "line": 28
+          },
+          {
+            "file": "src/lib/server/brain/links/linkTargets.ts",
+            "line": 37
+          },
+          {
+            "file": "src/lib/server/brain/links/linkUrl.ts",
             "line": 11
           },
           {
-            "file": "src/lib/server/agent/interview/questionArchetypes.ts",
+            "file": "src/lib/server/brain/links/readLinkedSource.ts",
             "line": 14
           },
           {
-            "file": "src/lib/server/agent/interview/questionArchetypes.ts",
+            "file": "src/lib/server/brain/links/readLinkedSource.ts",
+            "line": 15
+          },
+          {
+            "file": "src/lib/server/brain/links/readLinkedSource.ts",
+            "line": 16
+          },
+          {
+            "file": "src/lib/server/brain/links/readLinkedSource.ts",
             "line": 17
           },
           {
-            "file": "src/lib/server/agent/interview/questionArchetypes.ts",
-            "line": 20
+            "file": "src/lib/server/brain/mapSourceProcess.ts",
+            "line": 40
           },
           {
-            "file": "src/lib/server/agent/interview/questionArchetypes.ts",
-            "line": 23
+            "file": "src/lib/server/brain/mapSourceProcess.ts",
+            "line": 41
+          },
+          {
+            "file": "src/lib/server/brain/reading/claimReadingStage.ts",
+            "line": 16
+          },
+          {
+            "file": "src/lib/server/brain/reading/claimSourceReading.ts",
+            "line": 29
+          },
+          {
+            "file": "src/lib/server/brain/reading/claimSourceReading.ts",
+            "line": 30
+          },
+          {
+            "file": "src/lib/server/brain/reading/claimSourceReading.ts",
+            "line": 31
+          },
+          {
+            "file": "src/lib/server/brain/reading/readSourceToCompletion.ts",
+            "line": 21
+          },
+          {
+            "file": "src/lib/server/brain/reading/readSourceToCompletion.ts",
+            "line": 25
           }
         ]
       }
@@ -2016,133 +2003,17 @@
     "orphans": {
       "name": "orphans",
       "summary": {
-        "orphanFunctions": 23,
-        "functionsExamined": 1782
+        "orphanFunctions": 0,
+        "functionsExamined": 1727
       },
-      "offenders": [
-        {
-          "file": "src/lib/components/brain/dashboard/shareRequests.ts",
-          "line": 8,
-          "name": "requestShare"
-        },
-        {
-          "file": "src/lib/components/brain/regions/regionLayout.ts",
-          "line": 24,
-          "name": "regionRadiusFor"
-        },
-        {
-          "file": "src/lib/data/britishDate.ts",
-          "line": 11,
-          "name": "formatBritishDateTime"
-        },
-        {
-          "file": "src/lib/data/knowledge/brainTypeCatalog.ts",
-          "line": 30,
-          "name": "brainTypesFor"
-        },
-        {
-          "file": "src/lib/data/knowledge/retrievalPipelines.ts",
-          "line": 42,
-          "name": "findRetrievalPipeline"
-        },
-        {
-          "file": "src/lib/server/accounts/findAccountByEmail.ts",
-          "line": 4,
-          "name": "findAccountByEmail"
-        },
-        {
-          "file": "src/lib/server/accounts/getAccountDirectory.ts",
-          "line": 4,
-          "name": "getAccountDirectory"
-        },
-        {
-          "file": "src/lib/server/anthropic/webSearchResults.ts",
-          "line": 9,
-          "name": "webSearchSourcesFrom"
-        },
-        {
-          "file": "src/lib/server/anthropic/webSearchResults.ts",
-          "line": 23,
-          "name": "isPausedForSearch"
-        },
-        {
-          "file": "src/lib/server/anthropic/webSearchTool.ts",
-          "line": 9,
-          "name": "webSearchTool"
-        },
-        {
-          "file": "src/lib/server/auth/requireStaff.ts",
-          "line": 6,
-          "name": "requireStaff"
-        },
-        {
-          "file": "src/lib/server/brain/spendForBrainWork.ts",
-          "line": 10,
-          "name": "spendForBrainQuestion"
-        },
-        {
-          "file": "src/lib/server/brain/spendForBrainWork.ts",
-          "line": 25,
-          "name": "refundForBrainQuestion"
-        },
-        {
-          "file": "src/lib/server/credits/payoutDetails.ts",
-          "line": 9,
-          "name": "getPayoutDetails"
-        },
-        {
-          "file": "src/lib/server/credits/payoutDetails.ts",
-          "line": 36,
-          "name": "parsePayoutDetailsForm"
-        },
-        {
-          "file": "src/lib/server/email/clientInviteEmail.ts",
-          "line": 1,
-          "name": "clientInviteEmailSubject"
-        },
-        {
-          "file": "src/lib/server/email/clientInviteEmail.ts",
-          "line": 5,
-          "name": "renderClientInviteEmail"
-        },
-        {
-          "file": "src/lib/server/hive/getHiveBrainStatus.ts",
-          "line": 4,
-          "name": "getHiveBrainStatus"
-        },
-        {
-          "file": "src/lib/server/knowledge/brainBindings.ts",
-          "line": 5,
-          "name": "getBindingsForKnowledgeBase"
-        },
-        {
-          "file": "src/lib/server/market/getBrainMarketState.ts",
-          "line": 15,
-          "name": "getBrainMarketState"
-        },
-        {
-          "file": "src/lib/server/mcp/actionTypes.ts",
-          "line": 22,
-          "name": "readOptionalText"
-        },
-        {
-          "file": "src/lib/server/sharing/workspaceInvites.ts",
-          "line": 28,
-          "name": "getInvitesForBrain"
-        },
-        {
-          "file": "src/lib/server/web/readResponseWithin.ts",
-          "line": 1,
-          "name": "readResponseWithin"
-        }
-      ]
+      "offenders": []
     },
     "designPatterns": {
       "name": "designPatterns",
       "summary": {
-        "roleFamilies": 67,
+        "roleFamilies": 66,
         "predictedFiles": 77,
-        "predictedFilesMissing": 13,
+        "predictedFilesMissing": 0,
         "entities": 0,
         "entitiesOutOfRange": 0,
         "measurementIsHeuristic": true
@@ -2156,7 +2027,6 @@
           "agent": 4,
           "answer": 5,
           "assembly": 5,
-          "bar": 4,
           "base": 11,
           "brain": 17,
           "brains": 5,
@@ -2171,18 +2041,18 @@
           "count": 4,
           "director": 4,
           "editor": 16,
-          "email": 7,
+          "email": 5,
           "experience": 8,
           "field": 4,
           "for": 4,
-          "form": 15,
-          "header": 5,
+          "form": 13,
+          "header": 4,
           "index": 9,
           "input": 4,
           "layout": 5,
-          "line": 7,
+          "line": 8,
           "links": 5,
-          "list": 15,
+          "list": 13,
           "map": 5,
           "maps": 4,
           "model": 14,
@@ -2191,29 +2061,29 @@
           "page": 4,
           "pages": 5,
           "palette": 5,
-          "panel": 37,
+          "panel": 32,
           "password": 4,
           "people": 4,
           "prompt": 14,
           "question": 7,
           "reading": 6,
-          "record": 5,
+          "record": 4,
+          "reply": 4,
           "request": 8,
-          "row": 14,
+          "row": 11,
           "rules": 4,
           "rulings": 4,
           "section": 19,
           "sections": 6,
           "source": 11,
           "stage": 6,
-          "state": 4,
-          "svelte": 16,
+          "svelte": 15,
           "table": 4,
-          "test": 36,
-          "tool": 10,
+          "test": 38,
+          "tool": 9,
           "tools": 7,
           "turn": 4,
-          "types": 24,
+          "types": 28,
           "usage": 4,
           "view": 10
         },
@@ -2221,9 +2091,7 @@
           {
             "pattern": "every palette has a types",
             "predicted": 5,
-            "missing": [
-              "src/lib/components/face/reliefTypes.ts"
-            ]
+            "missing": []
           },
           {
             "pattern": "every +page.server.ts has a +page.svelte",
@@ -2250,21 +2118,7 @@
             ]
           }
         ],
-        "missingPredictedFiles": [
-          "src/lib/components/face/reliefTypes.ts",
-          "src/routes/hive-mind/+page.svelte",
-          "src/routes/knowledge/+page.svelte",
-          "src/routes/knowledge-base/+page.svelte",
-          "src/routes/knowledge-base/[knowledgeBaseId=uuid]/brains/new/+page.svelte",
-          "src/routes/knowledge/[...rest]/+page.svelte",
-          "src/routes/workspace/+page.svelte",
-          "src/routes/workspace/[entityId]/+page.svelte",
-          "src/routes/+page.server.ts",
-          "src/routes/contact/+page.server.ts",
-          "src/routes/privacy/+page.server.ts",
-          "src/routes/terms/+page.server.ts",
-          "src/routes/vision/+page.server.ts"
-        ],
+        "missingPredictedFiles": [],
         "entityFileCounts": []
       }
     },
@@ -2272,8 +2126,8 @@
       "name": "inventory",
       "summary": {
         "pages": 35,
-        "components": 251,
-        "orphanComponents": 9,
+        "components": 238,
+        "orphanComponents": 0,
         "averagePageLines": 37
       },
       "offenders": {
@@ -2481,11 +2335,11 @@
         "componentReuse": [
           {
             "component": "src/lib/components/site/SubmitButton.svelte",
-            "reusedBy": 32
+            "reusedBy": 30
           },
           {
             "component": "src/lib/components/site/FormErrorNote.svelte",
-            "reusedBy": 27
+            "reusedBy": 25
           },
           {
             "component": "src/lib/components/knowledge/editors/ItemGroup.svelte",
@@ -2520,10 +2374,6 @@
             "reusedBy": 4
           },
           {
-            "component": "src/lib/components/site/BrandMark.svelte",
-            "reusedBy": 4
-          },
-          {
             "component": "src/lib/components/site/DangerConfirmModal.svelte",
             "reusedBy": 4
           },
@@ -2540,6 +2390,10 @@
             "reusedBy": 3
           },
           {
+            "component": "src/lib/components/site/BrandMark.svelte",
+            "reusedBy": 3
+          },
+          {
             "component": "src/lib/components/site/BrandWordmark.svelte",
             "reusedBy": 3
           },
@@ -2549,10 +2403,6 @@
           },
           {
             "component": "src/lib/components/admin/HiveBrainPageCard.svelte",
-            "reusedBy": 2
-          },
-          {
-            "component": "src/lib/components/admin/HiveDecisionForms.svelte",
             "reusedBy": 2
           },
           {
@@ -2756,10 +2606,6 @@
             "reusedBy": 1
           },
           {
-            "component": "src/lib/components/account/PayoutDetailsForm.svelte",
-            "reusedBy": 1
-          },
-          {
             "component": "src/lib/components/account/PurchaseHistoryTable.svelte",
             "reusedBy": 1
           },
@@ -2792,7 +2638,7 @@
             "reusedBy": 1
           },
           {
-            "component": "src/lib/components/admin/HiveReviewRow.svelte",
+            "component": "src/lib/components/admin/HiveDecisionForms.svelte",
             "reusedBy": 1
           },
           {
@@ -2936,15 +2782,7 @@
             "reusedBy": 1
           },
           {
-            "component": "src/lib/components/brain/dashboard/EditionList.svelte",
-            "reusedBy": 1
-          },
-          {
             "component": "src/lib/components/brain/dashboard/FileIntoKnowledgeBasePanel.svelte",
-            "reusedBy": 1
-          },
-          {
-            "component": "src/lib/components/brain/dashboard/ListingForm.svelte",
             "reusedBy": 1
           },
           {
@@ -3446,55 +3284,9 @@
           {
             "component": "src/lib/components/workspace/InvitationsPanel.svelte",
             "reusedBy": 1
-          },
-          {
-            "component": "src/lib/components/account/PayoutDetailsPanel.svelte",
-            "reusedBy": 0
-          },
-          {
-            "component": "src/lib/components/account/RevenueSharePanel.svelte",
-            "reusedBy": 0
-          },
-          {
-            "component": "src/lib/components/admin/HiveReviewPanel.svelte",
-            "reusedBy": 0
-          },
-          {
-            "component": "src/lib/components/brain/dashboard/HiveMindPanel.svelte",
-            "reusedBy": 0
-          },
-          {
-            "component": "src/lib/components/brain/dashboard/SellPanel.svelte",
-            "reusedBy": 0
-          },
-          {
-            "component": "src/lib/components/brain/dashboard/ShareList.svelte",
-            "reusedBy": 0
-          },
-          {
-            "component": "src/lib/components/chat/ChatPanelHeader.svelte",
-            "reusedBy": 0
-          },
-          {
-            "component": "src/lib/components/face/FaceControlBar.svelte",
-            "reusedBy": 0
-          },
-          {
-            "component": "src/lib/components/site/ReorderableRow.svelte",
-            "reusedBy": 0
           }
         ],
-        "orphans": [
-          "src/lib/components/account/PayoutDetailsPanel.svelte",
-          "src/lib/components/account/RevenueSharePanel.svelte",
-          "src/lib/components/admin/HiveReviewPanel.svelte",
-          "src/lib/components/brain/dashboard/HiveMindPanel.svelte",
-          "src/lib/components/brain/dashboard/SellPanel.svelte",
-          "src/lib/components/brain/dashboard/ShareList.svelte",
-          "src/lib/components/chat/ChatPanelHeader.svelte",
-          "src/lib/components/face/FaceControlBar.svelte",
-          "src/lib/components/site/ReorderableRow.svelte"
-        ]
+        "orphans": []
       }
     },
     "siteDefinition": {
@@ -3510,29 +3302,29 @@
     "fileAreas": {
       "name": "fileAreas",
       "summary": {
-        "totalFiles": 1405,
-        "frontend": 518,
-        "backend": 470,
+        "totalFiles": 1383,
+        "frontend": 505,
+        "backend": 457,
         "tooling": 105,
-        "shared": 97,
+        "shared": 98,
         "api": 64,
-        "database": 59,
+        "database": 60,
+        "tests": 40,
         "docs": 40,
-        "tests": 38,
         "infrastructure": 14
       },
       "offenders": [
         {
           "area": "frontend",
-          "files": 518,
-          "sourceFiles": 505,
-          "sourceLines": 23471
+          "files": 505,
+          "sourceFiles": 492,
+          "sourceLines": 22709
         },
         {
           "area": "backend",
-          "files": 470,
-          "sourceFiles": 471,
-          "sourceLines": 16374
+          "files": 457,
+          "sourceFiles": 457,
+          "sourceLines": 16004
         },
         {
           "area": "tooling",
@@ -3542,33 +3334,33 @@
         },
         {
           "area": "shared",
-          "files": 97,
-          "sourceFiles": 96,
-          "sourceLines": 3637
+          "files": 98,
+          "sourceFiles": 97,
+          "sourceLines": 3406
         },
         {
           "area": "api",
           "files": 64,
           "sourceFiles": 64,
-          "sourceLines": 2525
+          "sourceLines": 2519
         },
         {
           "area": "database",
-          "files": 59,
+          "files": 60,
           "sourceFiles": 0,
           "sourceLines": 0
+        },
+        {
+          "area": "tests",
+          "files": 40,
+          "sourceFiles": 40,
+          "sourceLines": 1728
         },
         {
           "area": "docs",
           "files": 40,
           "sourceFiles": 0,
           "sourceLines": 0
-        },
-        {
-          "area": "tests",
-          "files": 38,
-          "sourceFiles": 38,
-          "sourceLines": 1649
         },
         {
           "area": "infrastructure",
@@ -4044,9 +3836,8 @@
       "summary": {
         "clones": 13,
         "duplicatedLines": 111,
-        "totalLines": 44697,
-        "duplicatedPercentage": 0.25,
-        "carriedFromBaseline": true
+        "totalLines": 43656,
+        "duplicatedPercentage": 0.25
       },
       "offenders": [
         {

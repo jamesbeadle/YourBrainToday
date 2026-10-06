@@ -4,7 +4,7 @@ import { hasChanges } from './parseRememberRecord';
 import { rememberFromChat } from './rememberFromChat';
 import { proposeChatCorrection, type ChatProposer } from '$lib/server/sharing/proposeChatCorrection';
 import { rememberedReply } from '$lib/server/sharing/rememberedReply';
-import type { BrainAnswer, BrainConversationTurn } from '$lib/data/brainTypes';
+import type { BrainAnswer, BrainConversationTurn } from '$lib/data/brainConversationTypes';
 import type { DomainBrain } from '$lib/server/entities/getDomainBrain';
 import type { SupabaseClient } from '@supabase/supabase-js';
 

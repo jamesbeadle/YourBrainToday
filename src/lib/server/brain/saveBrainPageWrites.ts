@@ -1,5 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { DomainBlockKind } from '$lib/data/brainTypes';
+import type { DomainBlockKind } from '$lib/data/brainModelTypes';
 
 export type BrainPageWrite = {
 	slug: string;

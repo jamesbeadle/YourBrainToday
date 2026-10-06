@@ -1,5 +1,5 @@
 import type { Vector3 } from 'three';
-import type { DomainBlockKind } from '$lib/data/brainTypes';
+import type { DomainBlockKind } from '$lib/data/brainModelTypes';
 
 export type Neuron = {
 	slug: string;

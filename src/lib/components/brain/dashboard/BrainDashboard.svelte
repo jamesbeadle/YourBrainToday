@@ -9,12 +9,8 @@
 	import type { BrainAccessRole } from '$lib/data/marketTypes';
 	import type { DomainBrain } from '$lib/server/entities/getDomainBrain';
 	import type { KnowledgeBaseSummary } from '$lib/data/knowledge/knowledgeTypes';
-	import type {
-		BrainContext,
-		BrainConversationThread,
-		BrainPageLink,
-		BrainPageSummary
-	} from '$lib/data/brainTypes';
+	import type { BrainContext, BrainPageLink, BrainPageSummary } from '$lib/data/brainModelTypes';
+	import type { BrainConversationThread } from '$lib/data/brainConversationTypes';
 
 	let {
 		brain,

@@ -8,12 +8,8 @@ import { searchPagesTool } from './searchPagesTool';
 import { mostReadingRounds } from '$lib/server/knowledge/reading/readingTypes';
 import { requestAnthropic } from '$lib/server/anthropic/requestAnthropic';
 import { messagesFromTurns } from '$lib/server/anthropic/messagesFromTurns';
-import type {
-	BrainAnswer,
-	BrainContext,
-	BrainConversationTurn,
-	BrainPageSummary
-} from '$lib/data/brainTypes';
+import type { BrainAnswer, BrainConversationTurn } from '$lib/data/brainConversationTypes';
+import type { BrainContext, BrainPageSummary } from '$lib/data/brainModelTypes';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 const maxAnswerTokens = 4000;

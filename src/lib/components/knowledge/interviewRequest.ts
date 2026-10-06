@@ -1,5 +1,6 @@
 import { isInterviewPhase, type InterviewPhase } from '$lib/data/knowledge/interviewPhases';
 import type { KnowledgeKind } from '$lib/data/knowledge/knowledgeKinds';
+import { HttpStatus } from '$lib/data/httpStatus';
 
 export type InterviewKind = KnowledgeKind | null;
 
@@ -43,7 +44,7 @@ export async function fetchInterviewReply(
 		headers: { 'content-type': 'application/json' },
 		body: JSON.stringify({ knowledgeBaseId, conversation, focusKind })
 	});
-	if (response.status === 402) return { status: 'out_of_credits' };
+	if (response.status === HttpStatus.paymentRequired) return { status: 'out_of_credits' };
 	if (!response.ok) return { status: 'error' };
 	const payload = await response.json();
 	return {

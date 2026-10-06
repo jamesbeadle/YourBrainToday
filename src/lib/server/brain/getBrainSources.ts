@@ -1,6 +1,6 @@
 import { isReadingStage, parseReadingProgress } from '$lib/data/sourceReading';
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { BrainSource } from '$lib/data/brainTypes';
+import type { BrainSource } from '$lib/data/brainSourceTypes';
 
 const sourceColumns: string =
 	'id, filename, mime_type, byte_count, status, summary, arrived_through, created_at, stage, ' +

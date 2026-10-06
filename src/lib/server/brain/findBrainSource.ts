@@ -1,5 +1,5 @@
 import { isReadingStage, parseReadingProgress } from '$lib/data/sourceReading';
-import type { BrainSourceStatus } from '$lib/data/brainTypes';
+import type { BrainSourceStatus } from '$lib/data/brainSourceTypes';
 import type { ReadingProgress, ReadingStage } from '$lib/data/sourceReading';
 import type { SupabaseClient } from '@supabase/supabase-js';
 

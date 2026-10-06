@@ -1,22 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 
-export type BrainBinding = { instanceBrainId: string; domainBrainId: string };
-
-export async function getBindingsForKnowledgeBase(
-	supabase: SupabaseClient,
-	knowledgeBaseId: string
-): Promise<BrainBinding[]> {
-	const { data, error } = await supabase
-		.from('kb_brain_bindings')
-		.select('instance_brain_id, domain_brain_id, instance:kb_brains!instance_brain_id(knowledge_base_id)')
-		.eq('instance.knowledge_base_id', knowledgeBaseId);
-	if (error !== null) throw error;
-	return (data ?? []).map((row) => ({
-		instanceBrainId: row.instance_brain_id,
-		domainBrainId: row.domain_brain_id
-	}));
-}
-
 export async function getBoundDomainBrainIds(
 	supabase: SupabaseClient,
 	instanceBrainId: string

@@ -1,5 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { BrainEventKind } from '$lib/data/brainTypes';
+import type { BrainEventKind } from '$lib/data/brainEventTypes';
 
 export async function recordBrainEvent(
 	supabase: SupabaseClient,

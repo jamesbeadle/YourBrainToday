@@ -19,12 +19,6 @@ export function readText(input: Record<string, unknown>, field: string): string 
 	return String(input[field] ?? '').trim();
 }
 
-export function readOptionalText(input: Record<string, unknown>, field: string): string | null {
-	const value = readText(input, field);
-	if (value === '') return null;
-	return value;
-}
-
 export function readTextList(input: Record<string, unknown>, field: string): string[] {
 	const value = input[field];
 	if (!Array.isArray(value)) return [];

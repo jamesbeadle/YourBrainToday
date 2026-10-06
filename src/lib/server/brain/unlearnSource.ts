@@ -4,7 +4,7 @@ import { renderDomainModelIndex } from './getBrainPageIndex';
 import { requestAnthropic } from '$lib/server/anthropic/requestAnthropic';
 import { retireSourceTool } from './retireSourceTool';
 import { toolUseFrom } from '$lib/server/anthropic/anthropicTypes';
-import type { BrainContext, BrainPage, BrainPageSummary } from '$lib/data/brainTypes';
+import type { BrainContext, BrainPage, BrainPageSummary } from '$lib/data/brainModelTypes';
 import type { DomainBrain } from '$lib/server/entities/getDomainBrain';
 import type { RetirementRecord } from './parseRetirementRecord';
 

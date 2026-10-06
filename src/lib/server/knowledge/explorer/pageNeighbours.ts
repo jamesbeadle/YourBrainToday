@@ -1,4 +1,4 @@
-import type { BrainPageLink, BrainPageSummary } from '$lib/data/brainTypes';
+import type { BrainPageLink, BrainPageSummary } from '$lib/data/brainModelTypes';
 
 export type PageNeighbours = {
 	linkedFrom: BrainPageSummary[];

@@ -2,7 +2,8 @@
 	import CommandBox from './CommandBox.svelte';
 	import TerminalFeed from './TerminalFeed.svelte';
 	import { createTerminalAsk } from './terminalAsk';
-	import type { BrainConversationMessage, BrainPageSummary } from '$lib/data/brainTypes';
+	import type { BrainConversationMessage } from '$lib/data/brainConversationTypes';
+	import type { BrainPageSummary } from '$lib/data/brainModelTypes';
 
 	let {
 		brainId,

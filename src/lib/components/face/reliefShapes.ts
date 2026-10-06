@@ -1,4 +1,4 @@
-export type ReliefCentre = { across: number; up: number };
+import type { ReliefCentre } from './reliefTypes';
 
 export function bumpAt(
 	across: number,

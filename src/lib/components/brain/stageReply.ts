@@ -1,5 +1,5 @@
 import { readingStageLabels, type ReadingProgress } from '$lib/data/sourceReading';
-import type { BrainSource } from '$lib/data/brainTypes';
+import type { BrainSource } from '$lib/data/brainSourceTypes';
 
 export type ReadingOutcome =
 	| {

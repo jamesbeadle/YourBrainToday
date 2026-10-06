@@ -1,4 +1,4 @@
-import type { DomainBlockKind } from '$lib/data/brainTypes';
+import type { DomainBlockKind } from '$lib/data/brainModelTypes';
 
 export const NIGHT_SKY = 0x0c0d11;
 export const CHALK = 0xedeef3;

@@ -1,6 +1,6 @@
 import { domainBlockLabels } from '$lib/data/domainBlocks';
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { BrainContext, BrainPageSummary } from '$lib/data/brainTypes';
+import type { BrainContext, BrainPageSummary } from '$lib/data/brainModelTypes';
 
 export async function getBrainPageIndex(
 	supabase: SupabaseClient,

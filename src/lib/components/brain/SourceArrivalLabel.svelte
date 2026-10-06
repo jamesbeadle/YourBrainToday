@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { BrainSourceArrival } from '$lib/data/brainTypes';
+	import type { BrainSourceArrival } from '$lib/data/brainSourceTypes';
 
 	let { arrivedThrough }: { arrivedThrough: BrainSourceArrival } = $props();
 

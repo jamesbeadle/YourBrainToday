@@ -1,6 +1,6 @@
 import { getBrainContexts } from '../../brain/getBrainContexts';
 import { getBrainPageIndex } from '../../brain/getBrainPageIndex';
-import type { BrainContext, BrainPageSummary } from '$lib/data/brainTypes';
+import type { BrainContext, BrainPageSummary } from '$lib/data/brainModelTypes';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 export type ExpertiseBrainModel = {

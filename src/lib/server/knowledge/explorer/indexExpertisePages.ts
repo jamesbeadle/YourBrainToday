@@ -2,7 +2,7 @@ import { getBrainContexts } from '$lib/server/brain/getBrainContexts';
 import { getBrainPageIndex } from '$lib/server/brain/getBrainPageIndex';
 import { domainBlockLabels } from '$lib/data/domainBlocks';
 import { pageHref } from '$lib/data/knowledge/knowledgeBaseRoutes';
-import type { BrainContext, BrainPageSummary } from '$lib/data/brainTypes';
+import type { BrainContext, BrainPageSummary } from '$lib/data/brainModelTypes';
 import type { KbBrainSummary } from '$lib/data/knowledge/knowledgeTypes';
 import type { KnowledgeIndexEntry } from '$lib/data/knowledge/knowledgeIndex';
 import type { SupabaseClient } from '@supabase/supabase-js';

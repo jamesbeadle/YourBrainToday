@@ -1,5 +1,5 @@
 import { domainBlockLabels } from '$lib/data/domainBlocks';
-import type { BrainContext, BrainPageSummary } from '$lib/data/brainTypes';
+import type { BrainContext, BrainPageSummary } from '$lib/data/brainModelTypes';
 
 /** The words a constellation uses for what its neurons and nuclei stand for. */
 export type ConstellationVocabulary = {

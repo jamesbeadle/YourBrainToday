@@ -1,5 +1,5 @@
 import { clipSearchWords, mostSearchHits, plainSnippet } from './searchWords';
-import type { DomainBlockKind } from '$lib/data/brainTypes';
+import type { DomainBlockKind } from '$lib/data/brainModelTypes';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 export type BrainPageHit = {

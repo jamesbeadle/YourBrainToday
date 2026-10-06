@@ -6,7 +6,8 @@ import { rememberModelTool } from './rememberModelTool';
 import { renderDomainModelIndex } from './getBrainPageIndex';
 import { requestAnthropic } from '$lib/server/anthropic/requestAnthropic';
 import type { AnthropicMessage, AnthropicResponse } from '$lib/server/anthropic/anthropicTypes';
-import type { BrainContext, BrainConversationTurn, BrainPageSummary } from '$lib/data/brainTypes';
+import type { BrainContext, BrainPageSummary } from '$lib/data/brainModelTypes';
+import type { BrainConversationTurn } from '$lib/data/brainConversationTypes';
 import type { DomainBrain } from '$lib/server/entities/getDomainBrain';
 import type { SupabaseClient } from '@supabase/supabase-js';
 

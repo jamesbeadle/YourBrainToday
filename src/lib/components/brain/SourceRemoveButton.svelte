@@ -2,7 +2,7 @@
 	import { creditsPerBrainUnlearn } from '$lib/data/creditPricing';
 	import { invalidateAll } from '$app/navigation';
 	import { removeSource } from './removeSource';
-	import type { BrainSource } from '$lib/data/brainTypes';
+	import type { BrainSource } from '$lib/data/brainSourceTypes';
 
 	let {
 		source,

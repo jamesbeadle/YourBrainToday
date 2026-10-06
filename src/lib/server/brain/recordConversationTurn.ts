@@ -1,5 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { BrainAnswer } from '$lib/data/brainTypes';
+import type { BrainAnswer } from '$lib/data/brainConversationTypes';
 
 export async function recordConversationTurn(
 	supabase: SupabaseClient,

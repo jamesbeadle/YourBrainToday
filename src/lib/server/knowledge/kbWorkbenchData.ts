@@ -6,7 +6,8 @@ import { getPendingProposals } from '$lib/server/sharing/getPendingProposals';
 import { pageBaseHref } from '$lib/data/knowledge/knowledgeBaseRoutes';
 import type { BrainChangeProposal } from '$lib/data/sharingTypes';
 import type { BrainApiToken } from '$lib/data/brainApiTypes';
-import type { BrainEvent, BrainSource } from '$lib/data/brainTypes';
+import type { BrainEvent } from '$lib/data/brainEventTypes';
+import type { BrainSource } from '$lib/data/brainSourceTypes';
 import type { PrimaryExpertiseBrain } from './interviewContext';
 import type { SupabaseClient } from '@supabase/supabase-js';
 

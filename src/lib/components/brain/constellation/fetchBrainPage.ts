@@ -1,4 +1,4 @@
-import type { BrainPage } from '$lib/data/brainTypes';
+import type { BrainPage } from '$lib/data/brainModelTypes';
 
 export type BrainPagePayload = { page: BrainPage; contextName: string | null };
 

@@ -8,7 +8,7 @@ import { proposeChatCorrection, type ChatProposer } from '../sharing/proposeChat
 import { rememberedReply } from '../sharing/rememberedReply';
 import type { ChatbotTurn } from './askChatbot';
 import type { ChatbotAnswer } from '$lib/data/chatbotTypes';
-import type { BrainConversationTurn } from '$lib/data/brainTypes';
+import type { BrainConversationTurn } from '$lib/data/brainConversationTypes';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 const noExpertiseBrainReply =

@@ -1,6 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { DomainBrain } from '$lib/server/entities/getDomainBrain';
-import type { ReceivedInvite, ShareScope, WorkspaceInvite } from '$lib/data/sharingTypes';
+import type { ReceivedInvite, ShareScope } from '$lib/data/sharingTypes';
 
 export async function createWorkspaceInvite(
 	supabase: SupabaseClient,
@@ -23,26 +22,6 @@ export async function createWorkspaceInvite(
 	if (error === null) return 'created';
 	if (error.code === '23505') return 'already_invited';
 	throw error;
-}
-
-export async function getInvitesForBrain(
-	supabase: SupabaseClient,
-	brain: DomainBrain
-): Promise<WorkspaceInvite[]> {
-	const { data, error } = await supabase
-		.from('workspace_invites')
-		.select('id, invited_email, entity_id, brain_id, declined_at, created_at')
-		.is('claimed_at', null)
-		.or(`brain_id.eq.${brain.id},entity_id.eq.${brain.entityId}`)
-		.order('created_at');
-	if (error !== null) throw error;
-	return (data ?? []).map((row) => ({
-		id: row.id,
-		invitedEmail: row.invited_email,
-		scope: row.brain_id === null ? 'entity' : 'brain',
-		status: row.declined_at === null ? 'pending' : 'declined',
-		createdAt: row.created_at
-	}));
 }
 
 export async function getReceivedInvites(

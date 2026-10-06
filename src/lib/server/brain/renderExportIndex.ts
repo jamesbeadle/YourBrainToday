@@ -1,5 +1,6 @@
 import { domainBlockLabels } from '$lib/data/domainBlocks';
-import type { BrainContext, BrainEvent, BrainPageSummary } from '$lib/data/brainTypes';
+import type { BrainContext, BrainPageSummary } from '$lib/data/brainModelTypes';
+import type { BrainEvent } from '$lib/data/brainEventTypes';
 
 export function renderExportIndex(
 	contexts: BrainContext[],

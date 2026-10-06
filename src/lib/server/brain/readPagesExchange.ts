@@ -2,7 +2,7 @@ import { getBrainPagesBySlugs } from './getBrainPage';
 import { linkedSlugsFrom } from './pageCrossLinks';
 import { parseRequestedSlugs } from './parseBrainAnswer';
 import type { AnthropicMessage, AnthropicToolUseBlock } from '$lib/server/anthropic/anthropicTypes';
-import type { BrainPage } from '$lib/data/brainTypes';
+import type { BrainPage } from '$lib/data/brainModelTypes';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 export function toolUseNamed(content: unknown[], name: string): AnthropicToolUseBlock | undefined {

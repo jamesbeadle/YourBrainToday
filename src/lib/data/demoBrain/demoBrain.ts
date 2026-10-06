@@ -2,12 +2,7 @@ import { commercialContext, commercialPages } from './commercialContext';
 import { deliveryContext, deliveryPages } from './deliveryContext';
 import { financeContext, financePages } from './financeContext';
 import { siteOperationsContext, siteOperationsPages } from './siteOperationsContext';
-import type {
-	BrainContext,
-	BrainPage,
-	BrainPageLink,
-	BrainPageSummary
-} from '$lib/data/brainTypes';
+import type { BrainContext, BrainPage, BrainPageLink, BrainPageSummary } from '$lib/data/brainModelTypes';
 
 const contextMapPage: BrainPage = {
 	slug: 'context-map',
