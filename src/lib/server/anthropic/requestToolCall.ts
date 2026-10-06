@@ -1,5 +1,5 @@
 import { requestAnthropic, type AnthropicRequest } from './requestAnthropic';
-import { textFrom, toolUseFrom, type AnthropicResponse } from './anthropicTypes';
+import { StopReason, textFrom, toolUseFrom, type AnthropicResponse } from './anthropicTypes';
 
 const nudgeAttempts = 1;
 
@@ -15,7 +15,7 @@ export async function requestToolCall(request: AnthropicRequest, toolName: strin
 	for (let attempt = 0; attempt < nudgeAttempts && isProseOnly(response, toolName); attempt += 1) {
 		response = await requestAnthropic({ ...demanded, messages: nudged(demanded, response, toolName) });
 	}
-	if (response.stop_reason === 'max_tokens') {
+	if (response.stop_reason === StopReason.maxTokens) {
 		throw new Error('The reply ran out of room before the tool call was complete');
 	}
 	const call = toolUseFrom(response, toolName);

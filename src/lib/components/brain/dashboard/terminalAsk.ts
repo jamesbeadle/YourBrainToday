@@ -1,4 +1,5 @@
 import { invalidateAll } from '$app/navigation';
+import { HttpStatus } from '$lib/data/httpStatus';
 
 export type TerminalAsk = (question: string, conversationId: string | null) => Promise<void>;
 
@@ -19,7 +20,7 @@ export function createTerminalAsk(dependencies: {
 		});
 		if (response.ok) await invalidateAll();
 		setPendingQuestion(null);
-		if (response.status === 402) return onOutOfCredits();
+		if (response.status === HttpStatus.paymentRequired) return onOutOfCredits();
 		if (!response.ok) {
 			const failure = await response.json().catch(() => null);
 			appendLine(`✗ ${failure?.message ?? 'that turn went wrong — try again'}`);

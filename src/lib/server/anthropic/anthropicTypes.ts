@@ -26,6 +26,8 @@ export type AnthropicUsageBlock = {
 	cache_creation_input_tokens?: number;
 };
 
+export const StopReason = { maxTokens: 'max_tokens' } as const;
+
 export type AnthropicResponse = {
 	model: string;
 	content: AnthropicContentBlock[];

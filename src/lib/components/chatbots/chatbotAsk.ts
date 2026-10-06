@@ -1,4 +1,5 @@
 import type { ChatbotAnswer } from '$lib/data/chatbotTypes';
+import { HttpStatus } from '$lib/data/httpStatus';
 
 export type ChatbotAskResult =
 	| { kind: 'answered'; answer: ChatbotAnswer; allowanceRemaining: number }
@@ -29,7 +30,9 @@ export async function askChatbotEndpoint(
 		};
 	}
 	const message = await readErrorMessage(response);
-	if (response.status === 402 || response.status === 403) return { kind: 'refused', message };
+	const isRefused =
+		response.status === HttpStatus.paymentRequired || response.status === HttpStatus.forbidden;
+	if (isRefused) return { kind: 'refused', message };
 	return { kind: 'failed', message };
 }
 

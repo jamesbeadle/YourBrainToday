@@ -1,4 +1,4 @@
-import { classifyLedgerMovement } from './classifyLedgerMovement';
+import { classifyLedgerMovement, type LedgerMovementKind } from './classifyLedgerMovement';
 import { creditValuePence } from '$lib/data/creditPacks';
 import type { LedgerMovement } from './getLedgerMovements';
 import type { ModelUsageRow } from './getModelUsageRows';
@@ -17,6 +17,15 @@ export type UserUsageSummary = {
 };
 
 const unknownEmail = '(deleted account)';
+
+type CreditTally = 'creditsBought' | 'creditsGranted' | 'creditsSpent' | 'creditsRefunded';
+
+const tallyFor: Record<LedgerMovementKind, { field: CreditTally; sign: 1 | -1 }> = {
+	bought: { field: 'creditsBought', sign: 1 },
+	granted: { field: 'creditsGranted', sign: 1 },
+	refunded: { field: 'creditsRefunded', sign: 1 },
+	spent: { field: 'creditsSpent', sign: -1 }
+};
 
 // Credits move in the window; the balance is all-time; revenue values the
 // credits a user net-spent at what the business sold them for, so the
@@ -45,11 +54,8 @@ export function summariseUsageByUser(
 function addMovement(summary: UserUsageSummary, movement: LedgerMovement, since: Date): void {
 	summary.balance += movement.delta;
 	if (movement.createdAt < since) return;
-	const kind = classifyLedgerMovement(movement);
-	if (kind === 'bought') summary.creditsBought += movement.delta;
-	if (kind === 'granted') summary.creditsGranted += movement.delta;
-	if (kind === 'refunded') summary.creditsRefunded += movement.delta;
-	if (kind === 'spent') summary.creditsSpent -= movement.delta;
+	const tally = tallyFor[classifyLedgerMovement(movement)];
+	summary[tally.field] += tally.sign * movement.delta;
 }
 
 function withRevenueAndMargin(summary: UserUsageSummary): UserUsageSummary {

@@ -5,7 +5,7 @@ import { pruneModelTool } from './pruneModelTool';
 import { readPagesResultMessage, toolUseNamed, toolUsesNamed } from './readPagesExchange';
 import { readPagesTool } from './modellerAnswerTools';
 import { requestAnthropic } from '$lib/server/anthropic/requestAnthropic';
-import type { AnthropicMessage } from '$lib/server/anthropic/anthropicTypes';
+import { StopReason, type AnthropicMessage } from '$lib/server/anthropic/anthropicTypes';
 import type { BrainContext, BrainPageSummary } from '$lib/data/brainModelTypes';
 import type { DomainBrain } from '$lib/server/entities/getDomainBrain';
 import type { PruneTier } from '$lib/data/pruneTiers';
@@ -58,7 +58,7 @@ async function forcePruneRecord(
 		maxTokens: maxPruneTokens,
 		model
 	});
-	if (finalResponse.stop_reason === 'max_tokens') {
+	if (finalResponse.stop_reason === StopReason.maxTokens) {
 		throw new Error('Pruning ran out of room before finishing the model update');
 	}
 	const record = parsePruneRecord(toolUseNamed(finalResponse.content, pruneModelTool.name)?.input);
