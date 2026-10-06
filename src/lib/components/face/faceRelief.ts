@@ -3,6 +3,7 @@ import { upperFeatureDepthAt } from './faceUpperFeatures';
 import { mouthDepthAt } from './mouthRelief';
 import { noseDepthAt } from './noseRelief';
 import { bumpAt } from './reliefShapes';
+import type { ReliefSample } from './reliefTypes';
 
 const CHEEK_RELIEF = 0.055;
 const CHEEK_CENTRES = [
@@ -17,8 +18,6 @@ const NEIGHBOUR_DIRECTIONS = [
 	{ across: 0, up: -1 }
 ];
 const OCCLUSION_STRENGTH = 13;
-
-export type ReliefSample = { depth: number; occlusion: number; standProud: number };
 
 function cheeksAt(across: number, up: number): number {
 	let relief = 0;

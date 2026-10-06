@@ -1,4 +1,5 @@
-import { reliefSampleAt, type ReliefSample } from './faceRelief';
+import { reliefSampleAt } from './faceRelief';
+import type { ReliefSample } from './reliefTypes';
 import { noiseAt } from './gridNoise';
 import { HEAD_CHIN, HEAD_CROWN, headHalfWidthAt } from './headSilhouette';
 import { collectMouthInteriorPlacements } from './mouthInterior';
