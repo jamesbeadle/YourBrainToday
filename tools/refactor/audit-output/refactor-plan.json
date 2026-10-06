@@ -1,16 +1,6 @@
 {
-  "score": 78.9,
+  "score": 83.3,
   "steps": [
-    {
-      "pass": "Pass 3 \u2014 Utility function identification",
-      "title": "Remove the 32 components and functions nothing calls",
-      "detail": "Listed in audit.json under details.orphans and details.inventory.offenders.orphans; confirm each has no caller before it goes."
-    },
-    {
-      "pass": "Pass 4 \u2014 Design pattern identification",
-      "title": "Complete the pattern: every palette has a types",
-      "detail": "1 of 5 lack it. Predicted: src/lib/components/face/reliefTypes.ts. Find the code doing that job now and move it there; a subject that truly has no such job goes in acceptedGaps."
-    },
     {
       "pass": "Pass 4 \u2014 Design pattern identification",
       "title": "Complete the pattern: every +page.server.ts has a +page.svelte",
@@ -22,49 +12,44 @@
       "detail": "5 of 35 lack it. Predicted: src/routes/+page.server.ts; src/routes/contact/+page.server.ts; src/routes/privacy/+page.server.ts; src/routes/terms/+page.server.ts. Find the code doing that job now and move it there; a subject that truly has no such job goes in acceptedGaps."
     },
     {
-      "pass": "Pass 4 \u2014 Design pattern identification",
-      "title": "Divide `src/lib/data/brainTypes.ts` (106 lines) into the units its pattern names",
-      "detail": "0 functions; the longest is 0 lines."
+      "pass": "Pass 5 \u2014 The sweep to zero",
+      "title": "Conditions compared to a raw literal: 251 to zero",
+      "detail": "Scores 45.2% at weight 6; the offenders are in audit.json under details.conditions, fifty at a time."
     },
     {
       "pass": "Pass 5 \u2014 The sweep to zero",
-      "title": "Conditions compared to a raw literal: 278 to zero",
-      "detail": "Scores 41.8% at weight 6; the offenders are in audit.json under details.conditions, fifty at a time."
+      "title": "Long member chain lines: 435 to zero",
+      "detail": "Scores 68.7% at weight 4; the offenders are in audit.json under details.prose, fifty at a time."
     },
     {
       "pass": "Pass 5 \u2014 The sweep to zero",
-      "title": "Long member chain lines: 449 to zero",
-      "detail": "Scores 68.5% at weight 4; the offenders are in audit.json under details.prose, fifty at a time."
+      "title": "Deeply indented lines: 284 to zero",
+      "detail": "Scores 79.6% at weight 4; the offenders are in audit.json under details.prose, fifty at a time."
     },
     {
       "pass": "Pass 5 \u2014 The sweep to zero",
-      "title": "Deeply indented lines: 287 to zero",
-      "detail": "Scores 79.8% at weight 4; the offenders are in audit.json under details.prose, fifty at a time."
+      "title": "Functions over the line limit: 59 to zero",
+      "detail": "Scores 86.3% at weight 8; the offenders are in audit.json under details.functionShape, fifty at a time."
     },
     {
       "pass": "Pass 5 \u2014 The sweep to zero",
-      "title": "Functions over the line limit: 60 to zero",
-      "detail": "Scores 86.5% at weight 8; the offenders are in audit.json under details.functionShape, fifty at a time."
-    },
-    {
-      "pass": "Pass 5 \u2014 The sweep to zero",
-      "title": "Explanatory comment lines: 263 to zero",
-      "detail": "Scores 88.9% at weight 4; the offenders are in audit.json under details.comments, fifty at a time."
+      "title": "Explanatory comment lines: 259 to zero",
+      "detail": "Scores 88.8% at weight 4; the offenders are in audit.json under details.comments, fifty at a time."
     },
     {
       "pass": "Pass 5 \u2014 The sweep to zero",
       "title": "Conditions with calls tangled inside calls: 50 to zero",
-      "detail": "Scores 89.5% at weight 8; the offenders are in audit.json under details.conditions, fifty at a time."
+      "detail": "Scores 89.1% at weight 8; the offenders are in audit.json under details.conditions, fifty at a time."
     },
     {
       "pass": "Pass 5 \u2014 The sweep to zero",
-      "title": "Accessor names that want to be a property: 10 to zero",
-      "detail": "Scores 94.4% at weight 6; the offenders are in audit.json under details.accessorNames, fifty at a time."
+      "title": "Accessor names that want to be a property: 7 to zero",
+      "detail": "Scores 95.9% at weight 6; the offenders are in audit.json under details.accessorNames, fifty at a time."
     },
     {
       "pass": "Pass 5 \u2014 The sweep to zero",
       "title": "Inline magic values: 36 to zero",
-      "detail": "Scores 96.2% at weight 4; the offenders are in audit.json under details.magicValues, fifty at a time."
+      "detail": "Scores 96.1% at weight 4; the offenders are in audit.json under details.magicValues, fifty at a time."
     },
     {
       "pass": "Pass 5 \u2014 The sweep to zero",
@@ -82,21 +67,13 @@
       "detail": "Scores 99.9% at weight 5; the offenders are in audit.json under details.functionShape, fifty at a time."
     }
   ],
-  "targets": [
-    {
-      "file": "src/lib/data/brainTypes.ts",
-      "lines": 106,
-      "isView": false,
-      "blocks": [],
-      "functions": []
-    }
-  ],
+  "targets": [],
   "designPatterns": {
     "name": "designPatterns",
     "summary": {
       "roleFamilies": 66,
       "predictedFiles": 77,
-      "predictedFilesMissing": 13,
+      "predictedFilesMissing": 0,
       "entities": 0,
       "entitiesOutOfRange": 0,
       "measurementIsHeuristic": true
@@ -110,7 +87,6 @@
         "agent": 4,
         "answer": 5,
         "assembly": 5,
-        "bar": 4,
         "base": 11,
         "brain": 17,
         "brains": 5,
@@ -125,48 +101,49 @@
         "count": 4,
         "director": 4,
         "editor": 16,
-        "email": 7,
+        "email": 5,
         "experience": 8,
         "field": 4,
-        "form": 15,
-        "header": 5,
+        "for": 4,
+        "form": 13,
+        "header": 4,
         "index": 9,
         "input": 4,
         "layout": 5,
-        "line": 7,
+        "line": 8,
         "links": 5,
-        "list": 15,
+        "list": 13,
         "map": 5,
         "maps": 4,
         "model": 14,
-        "note": 4,
+        "note": 5,
         "notice": 4,
         "page": 4,
         "pages": 5,
         "palette": 5,
-        "panel": 37,
+        "panel": 32,
         "password": 4,
         "people": 4,
         "prompt": 14,
         "question": 7,
         "reading": 6,
-        "record": 5,
+        "record": 4,
+        "reply": 4,
         "request": 8,
-        "row": 14,
+        "row": 11,
         "rules": 4,
         "rulings": 4,
         "section": 19,
         "sections": 6,
         "source": 11,
         "stage": 6,
-        "state": 4,
-        "svelte": 14,
+        "svelte": 15,
         "table": 4,
-        "test": 33,
-        "tool": 10,
+        "test": 38,
+        "tool": 9,
         "tools": 7,
         "turn": 4,
-        "types": 24,
+        "types": 28,
         "usage": 4,
         "view": 10
       },
@@ -174,9 +151,7 @@
         {
           "pattern": "every palette has a types",
           "predicted": 5,
-          "missing": [
-            "src/lib/components/face/reliefTypes.ts"
-          ]
+          "missing": []
         },
         {
           "pattern": "every +page.server.ts has a +page.svelte",
@@ -203,21 +178,7 @@
           ]
         }
       ],
-      "missingPredictedFiles": [
-        "src/lib/components/face/reliefTypes.ts",
-        "src/routes/hive-mind/+page.svelte",
-        "src/routes/knowledge/+page.svelte",
-        "src/routes/knowledge-base/+page.svelte",
-        "src/routes/knowledge-base/[knowledgeBaseId=uuid]/brains/new/+page.svelte",
-        "src/routes/knowledge/[...rest]/+page.svelte",
-        "src/routes/workspace/+page.svelte",
-        "src/routes/workspace/[entityId]/+page.svelte",
-        "src/routes/+page.server.ts",
-        "src/routes/contact/+page.server.ts",
-        "src/routes/privacy/+page.server.ts",
-        "src/routes/terms/+page.server.ts",
-        "src/routes/vision/+page.server.ts"
-      ],
+      "missingPredictedFiles": [],
       "entityFileCounts": []
     }
   }
