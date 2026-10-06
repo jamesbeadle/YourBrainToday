@@ -38,7 +38,3 @@ export const retrievalPipelines: RetrievalPipelineDefinition[] = [
 		summary: 'Consult the page index, then read the pages that matter.'
 	}
 ];
-
-export function findRetrievalPipeline(pipeline: string): RetrievalPipelineDefinition | null {
-	return retrievalPipelines.find((definition) => definition.pipeline === pipeline) ?? null;
-}

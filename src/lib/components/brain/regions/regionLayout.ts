@@ -5,9 +5,6 @@ import { shareStreamFrom } from '../constellation/pseudoRandom';
 const CANDIDATE_COUNT = 420;
 const ANCHOR_DEPTH_SHARE = 0.82;
 const FIRST_HOME = new Vector3(1.2, 1.2, 2.4);
-const SMALLEST_RADIUS = 0.55;
-const RADIUS_PER_NEURON = 0.13;
-const LARGEST_RADIUS = 1.5;
 
 export function regionCentresFor(regionCount: number, seedText: string): Vector3[] {
 	const nextShare = shareStreamFrom(`${seedText}:regions`);
@@ -19,10 +16,6 @@ export function regionCentresFor(regionCount: number, seedText: string): Vector3
 		centres.push(nextCentre(candidates, centres));
 	}
 	return centres;
-}
-
-export function regionRadiusFor(neuronCount: number): number {
-	return Math.min(LARGEST_RADIUS, SMALLEST_RADIUS + RADIUS_PER_NEURON * Math.sqrt(neuronCount));
 }
 
 function nextCentre(candidates: Vector3[], centres: Vector3[]): Vector3 {
