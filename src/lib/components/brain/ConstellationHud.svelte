@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ConstellationLegend from './ConstellationLegend.svelte';
 	import { sceneHintPosition, sceneHudPillClass, sceneHudPosition } from './sceneHud';
-	import type { BrainContext, BrainPageSummary } from '$lib/data/brainTypes';
+	import type { BrainContext, BrainPageSummary } from '$lib/data/brainModelTypes';
 
 	let {
 		contexts,

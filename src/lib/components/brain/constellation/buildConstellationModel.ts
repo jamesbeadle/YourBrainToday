@@ -2,7 +2,7 @@ import { Vector3 } from 'three';
 import { brainPointFrom, isInsideBrain, lobeAnchorFor } from './brainShape';
 import { pseudoRandomFrom } from './pseudoRandom';
 import { synapsesOf } from './synapseModel';
-import type { BrainContext, BrainPageLink, BrainPageSummary } from '$lib/data/brainTypes';
+import type { BrainContext, BrainPageLink, BrainPageSummary } from '$lib/data/brainModelTypes';
 import type { ConstellationModel, Neuron, Nucleus } from './constellationTypes';
 
 const GOLDEN_ANGLE_RADIANS = Math.PI * (3 - Math.sqrt(5));

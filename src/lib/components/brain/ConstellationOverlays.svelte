@@ -5,7 +5,7 @@
 	import type { ConstellationExploration } from './constellation/constellationExploration.svelte';
 	import type { BrainPagePayload } from './constellation/fetchBrainPage';
 	import type { ConstellationVocabulary } from './constellation/constellationVocabulary';
-	import type { BrainContext, BrainPageSummary } from '$lib/data/brainTypes';
+	import type { BrainContext, BrainPageSummary } from '$lib/data/brainModelTypes';
 
 	let {
 		exploration,

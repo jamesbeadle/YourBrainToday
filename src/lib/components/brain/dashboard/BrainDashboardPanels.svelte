@@ -8,11 +8,8 @@
 	import type { DomainBrain } from '$lib/server/entities/getDomainBrain';
 	import type { KnowledgeBaseSummary } from '$lib/data/knowledge/knowledgeTypes';
 	import type { SectionKey } from './railIcons';
-	import type {
-		BrainContext,
-		BrainConversationThread,
-		BrainPageSummary
-	} from '$lib/data/brainTypes';
+	import type { BrainContext, BrainPageSummary } from '$lib/data/brainModelTypes';
+	import type { BrainConversationThread } from '$lib/data/brainConversationTypes';
 
 	let {
 		section,

@@ -1,5 +1,6 @@
 import { renderExportIndex, renderExportLog } from './renderExportIndex';
-import type { BrainContext, BrainEvent, BrainPage } from '$lib/data/brainTypes';
+import type { BrainContext, BrainPage } from '$lib/data/brainModelTypes';
+import type { BrainEvent } from '$lib/data/brainEventTypes';
 
 export function renderExportFiles(
 	contexts: BrainContext[],

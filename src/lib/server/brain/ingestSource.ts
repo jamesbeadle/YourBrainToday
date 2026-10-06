@@ -3,7 +3,7 @@ import { parseIngestRecord } from './parseIngestRecord';
 import { renderDomainModelIndex } from './getBrainPageIndex';
 import { requestToolCall } from '$lib/server/anthropic/requestToolCall';
 import { updateModelTool } from './updateModelTool';
-import type { BrainContext, BrainPageSummary } from '$lib/data/brainTypes';
+import type { BrainContext, BrainPageSummary } from '$lib/data/brainModelTypes';
 import type { DomainBrain } from '$lib/server/entities/getDomainBrain';
 import type { IngestRecord } from './parseIngestRecord';
 

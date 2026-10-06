@@ -5,7 +5,7 @@
 	import SourceUploadQueueList from './SourceUploadQueueList.svelte';
 	import { SourceUploadQueue } from './sourceUploadQueue.svelte';
 	import { invalidateAll } from '$app/navigation';
-	import type { BrainSource } from '$lib/data/brainTypes';
+	import type { BrainSource } from '$lib/data/brainSourceTypes';
 
 	let {
 		brainId,

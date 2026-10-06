@@ -1,5 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { BrainPage } from '$lib/data/brainTypes';
+import type { BrainPage } from '$lib/data/brainModelTypes';
 
 const pageColumns = 'slug, title, summary, kind, context_slug, body, updated_at';
 

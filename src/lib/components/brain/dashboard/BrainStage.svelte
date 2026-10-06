@@ -3,7 +3,7 @@
 	import BrainDashboardFooter from './BrainDashboardFooter.svelte';
 	import OutOfCreditsNotice from '../../workspace/OutOfCreditsNotice.svelte';
 	import { fetchBrainPage } from '../constellation/fetchBrainPage';
-	import type { BrainContext, BrainPageLink, BrainPageSummary } from '$lib/data/brainTypes';
+	import type { BrainContext, BrainPageLink, BrainPageSummary } from '$lib/data/brainModelTypes';
 
 	let {
 		brainId,

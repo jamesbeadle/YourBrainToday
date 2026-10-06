@@ -1,4 +1,4 @@
-import type { BrainAnswer } from '$lib/data/brainTypes';
+import type { BrainAnswer } from '$lib/data/brainConversationTypes';
 
 const fallbackAnswer = 'I could not put an answer together — please try again.';
 

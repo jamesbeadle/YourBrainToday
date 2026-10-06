@@ -4,7 +4,7 @@ import { getBrainContexts } from '$lib/server/brain/getBrainContexts';
 import { getBrainPage } from '$lib/server/brain/getBrainPage';
 import { getBrainPageIndex } from '$lib/server/brain/getBrainPageIndex';
 import { getBrainPageLinks } from '$lib/server/brain/getBrainPageLinks';
-import type { BrainContext, BrainPage } from '$lib/data/brainTypes';
+import type { BrainContext, BrainPage } from '$lib/data/brainModelTypes';
 import type { KbBrainSummary } from '$lib/data/knowledge/knowledgeTypes';
 import type { SupabaseClient } from '@supabase/supabase-js';
 

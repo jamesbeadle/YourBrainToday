@@ -1,5 +1,5 @@
 import { getConversationMessages } from './getBrainConversation';
-import type { BrainConversationTurn } from '$lib/data/brainTypes';
+import type { BrainConversationTurn } from '$lib/data/brainConversationTypes';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 const longestRememberedExchange = 12;

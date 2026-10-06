@@ -8,7 +8,7 @@ import { recordPruneEvents } from './recordPruneEvents';
 import { saveBrainContextWrites } from './saveBrainContextWrites';
 import { saveBrainPageWrites } from './saveBrainPageWrites';
 import { sweepEmptyBrainContexts } from './sweepEmptyBrainContexts';
-import type { BrainPageSummary } from '$lib/data/brainTypes';
+import type { BrainPageSummary } from '$lib/data/brainModelTypes';
 import type { PruneRecord } from './parsePruneRecord';
 import type { PruneTier } from '$lib/data/pruneTiers';
 import type { SupabaseClient } from '@supabase/supabase-js';

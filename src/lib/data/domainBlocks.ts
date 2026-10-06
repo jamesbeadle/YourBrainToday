@@ -1,4 +1,4 @@
-import type { DomainBlockKind } from './brainTypes';
+import type { DomainBlockKind } from './brainModelTypes';
 
 export const domainBlockOrder: DomainBlockKind[] = [
 	'entity',

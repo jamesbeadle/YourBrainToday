@@ -13,7 +13,7 @@
 		type ConstellationExperience
 	} from './constellation/createConstellationExperience';
 	import type { BrainPagePayload } from './constellation/fetchBrainPage';
-	import type { BrainContext, BrainPageLink, BrainPageSummary } from '$lib/data/brainTypes';
+	import type { BrainContext, BrainPageLink, BrainPageSummary } from '$lib/data/brainModelTypes';
 
 	let {
 		loadPage,

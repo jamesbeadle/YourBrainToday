@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { sourceDetailLine, unreadSourceHint } from './sourceDetailLine';
 import { emptyReadingProgress } from '$lib/data/sourceReading';
-import type { BrainSource } from '$lib/data/brainTypes';
+import type { BrainSource } from '$lib/data/brainSourceTypes';
 
 const source: BrainSource = {
 	id: 'source-1',

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { drivenSources } from './drivenSources.svelte';
 	import { readingStageLabels } from '$lib/data/sourceReading';
-	import type { BrainSource } from '$lib/data/brainTypes';
+	import type { BrainSource } from '$lib/data/brainSourceTypes';
 
 	let { source }: { source: BrainSource } = $props();
 

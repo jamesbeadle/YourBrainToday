@@ -1,4 +1,4 @@
-import type { BrainPageLink } from '$lib/data/brainTypes';
+import type { BrainPageLink } from '$lib/data/brainModelTypes';
 import type { Neuron, Nucleus, Synapse } from './constellationTypes';
 
 export function synapsesOf(

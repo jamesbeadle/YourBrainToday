@@ -6,7 +6,7 @@ import { readPagesResultMessage, toolUseNamed, toolUsesNamed } from './readPages
 import { readPagesTool } from './modellerAnswerTools';
 import { requestAnthropic } from '$lib/server/anthropic/requestAnthropic';
 import type { AnthropicMessage } from '$lib/server/anthropic/anthropicTypes';
-import type { BrainContext, BrainPageSummary } from '$lib/data/brainTypes';
+import type { BrainContext, BrainPageSummary } from '$lib/data/brainModelTypes';
 import type { DomainBrain } from '$lib/server/entities/getDomainBrain';
 import type { PruneTier } from '$lib/data/pruneTiers';
 import type { PruneRecord } from './parsePruneRecord';

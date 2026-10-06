@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { BrainPageSummary } from '$lib/data/brainTypes';
+	import type { BrainPageSummary } from '$lib/data/brainModelTypes';
 
 	let {
 		previous,

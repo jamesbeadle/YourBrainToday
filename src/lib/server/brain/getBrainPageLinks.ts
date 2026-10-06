@@ -1,6 +1,6 @@
 import { linkedSlugsFrom } from './pageCrossLinks';
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { BrainPageLink } from '$lib/data/brainTypes';
+import type { BrainPageLink } from '$lib/data/brainModelTypes';
 
 export async function getBrainPageLinks(
 	supabase: SupabaseClient,

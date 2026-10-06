@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { asCssColour, kindColours } from './constellation/constellationPalette';
 	import { domainBlockLabels, domainBlockOrder } from '$lib/data/domainBlocks';
-	import type { BrainContext, BrainPageSummary, DomainBlockKind } from '$lib/data/brainTypes';
+	import type { BrainContext, BrainPageSummary, DomainBlockKind } from '$lib/data/brainModelTypes';
 
 	let {
 		contexts,

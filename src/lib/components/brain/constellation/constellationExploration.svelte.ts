@@ -1,4 +1,4 @@
-import type { BrainPageSummary } from '$lib/data/brainTypes';
+import type { BrainPageSummary } from '$lib/data/brainModelTypes';
 import type { ConstellationExperience } from './createConstellationExperience';
 import type { ConstellationCallbacks, ConstellationHover } from './constellationTypes';
 

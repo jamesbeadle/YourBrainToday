@@ -6,7 +6,7 @@ import {
 	type PeopleNetwork
 } from './peopleNetwork';
 import { dataFrom } from '$lib/components/knowledge/editors/editorFields';
-import type { BrainContext, BrainPageLink, BrainPageSummary } from '$lib/data/brainTypes';
+import type { BrainContext, BrainPageLink, BrainPageSummary } from '$lib/data/brainModelTypes';
 import type { KbBrainItem } from '$lib/data/knowledge/knowledgeTypes';
 
 export type HumanConstellation = {

@@ -1,6 +1,6 @@
 import { deleteBrainPages, deleteEmptyBrainContexts } from './deleteBrainPages';
 import { recordBrainEvent } from './recordBrainEvent';
-import type { BrainPageSummary } from '$lib/data/brainTypes';
+import type { BrainPageSummary } from '$lib/data/brainModelTypes';
 import type { StoredBrainSource } from './findBrainSource';
 import type { SupabaseClient } from '@supabase/supabase-js';
 

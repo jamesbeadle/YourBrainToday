@@ -7,7 +7,7 @@
 	import SourceStatusBadge from './SourceStatusBadge.svelte';
 	import { badNotice, type SourceNotice } from './sourceNotice';
 	import { sourceDetailLine } from './sourceDetailLine';
-	import type { BrainSource } from '$lib/data/brainTypes';
+	import type { BrainSource } from '$lib/data/brainSourceTypes';
 
 	let {
 		source,

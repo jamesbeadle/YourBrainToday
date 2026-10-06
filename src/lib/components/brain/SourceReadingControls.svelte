@@ -6,7 +6,7 @@
 	import { readSourceStages } from './readSourceStages';
 	import { readingSuccessLine } from './readingProgressSummary';
 	import { sentForReviewMessage } from './uploadResolution';
-	import type { BrainSource } from '$lib/data/brainTypes';
+	import type { BrainSource } from '$lib/data/brainSourceTypes';
 
 	let {
 		source,

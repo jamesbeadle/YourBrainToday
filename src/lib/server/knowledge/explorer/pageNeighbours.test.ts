@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { pageNeighboursOf } from './pageNeighbours';
-import type { BrainPageSummary } from '$lib/data/brainTypes';
+import type { BrainPageSummary } from '$lib/data/brainModelTypes';
 
 function page(slug: string, title: string, contextSlug: string | null = 'sales'): BrainPageSummary {
 	return { slug, title, summary: '', kind: 'entity', contextSlug };

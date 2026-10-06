@@ -1,5 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { BrainContext } from '$lib/data/brainTypes';
+import type { BrainContext } from '$lib/data/brainModelTypes';
 
 export async function getBrainContexts(
 	supabase: SupabaseClient,

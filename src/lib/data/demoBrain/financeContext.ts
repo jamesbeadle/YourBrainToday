@@ -1,4 +1,4 @@
-import type { BrainContext, BrainPage } from '$lib/data/brainTypes';
+import type { BrainContext, BrainPage } from '$lib/data/brainModelTypes';
 
 const demoUpdatedAt = '2026-08-01T09:00:00Z';
 

@@ -1,4 +1,4 @@
-import type { BrainSource } from '$lib/data/brainTypes';
+import type { BrainSource } from '$lib/data/brainSourceTypes';
 
 export const unreadSourceHint =
 	'Not in the brain yet — Read it adds what it knows; credits scale with its size.';

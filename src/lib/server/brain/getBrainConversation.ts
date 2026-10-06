@@ -1,9 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type {
-	BrainConversationChannel,
-	BrainConversationMessage,
-	BrainConversationThread
-} from '$lib/data/brainTypes';
+import type { BrainConversationChannel, BrainConversationMessage, BrainConversationThread } from '$lib/data/brainConversationTypes';
 
 export async function getBrainConversationThread(
 	supabase: SupabaseClient,

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { BrainEvent } from '$lib/data/brainTypes';
+	import type { BrainEvent } from '$lib/data/brainEventTypes';
 
 	let { events, pageBasePath }: { events: BrainEvent[]; pageBasePath: string } = $props();
 
