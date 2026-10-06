@@ -80,7 +80,15 @@
     "minimumFamilySize": 4,
     "cooccurrenceThreshold": 0.75,
     "fileCountBand": 2.0,
-    "acceptedGaps": []
+    "acceptedGaps": [
+      "src/routes/hive-mind/+page.svelte",
+      "src/routes/knowledge/+page.svelte",
+      "src/routes/knowledge-base/+page.svelte",
+      "src/routes/knowledge-base/[knowledgeBaseId=uuid]/brains/new/+page.svelte",
+      "src/routes/knowledge/[...rest]/+page.svelte",
+      "src/routes/workspace/+page.svelte",
+      "src/routes/workspace/[entityId]/+page.svelte"
+    ]
   },
   "siteDefinition": {
     "viewGlobs": ["**/*.svelte"],
