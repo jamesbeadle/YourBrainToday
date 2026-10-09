@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-06T18:52:14+00:00",
-  "kitVersion": "1.14.0",
+  "generatedAt": "2026-10-09T15:28:02+00:00",
+  "kitVersion": "1.14.1",
   "score": {
     "overall": 83.3,
     "groups": [
@@ -277,7 +277,8 @@
       "clones": 13,
       "duplicatedLines": 111,
       "totalLines": 43656,
-      "duplicatedPercentage": 0.25
+      "duplicatedPercentage": 0.25,
+      "carriedFromBaseline": true
     },
     "naming": {
       "bannedAbbreviationHits": 8,
@@ -2096,26 +2097,12 @@
           {
             "pattern": "every +page.server.ts has a +page.svelte",
             "predicted": 37,
-            "missing": [
-              "src/routes/hive-mind/+page.svelte",
-              "src/routes/knowledge/+page.svelte",
-              "src/routes/knowledge-base/+page.svelte",
-              "src/routes/knowledge-base/[knowledgeBaseId=uuid]/brains/new/+page.svelte",
-              "src/routes/knowledge/[...rest]/+page.svelte",
-              "src/routes/workspace/+page.svelte",
-              "src/routes/workspace/[entityId]/+page.svelte"
-            ]
+            "missing": []
           },
           {
             "pattern": "every +page.svelte has a +page.server.ts",
             "predicted": 35,
-            "missing": [
-              "src/routes/+page.server.ts",
-              "src/routes/contact/+page.server.ts",
-              "src/routes/privacy/+page.server.ts",
-              "src/routes/terms/+page.server.ts",
-              "src/routes/vision/+page.server.ts"
-            ]
+            "missing": []
           }
         ],
         "missingPredictedFiles": [],
@@ -3837,7 +3824,8 @@
         "clones": 13,
         "duplicatedLines": 111,
         "totalLines": 43656,
-        "duplicatedPercentage": 0.25
+        "duplicatedPercentage": 0.25,
+        "carriedFromBaseline": true
       },
       "offenders": [
         {

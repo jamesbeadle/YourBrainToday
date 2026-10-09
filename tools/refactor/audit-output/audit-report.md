@@ -1,6 +1,6 @@
 # Refactor audit
 
-Generated 2026-10-06 18:52 UTC.
+Generated 2026-10-09 15:28 UTC.
 
 ## Headline
 
@@ -59,7 +59,7 @@ Each element scores 100% with no offenders and falls in a straight line to 0% wh
 | functionShape | limit: 30, functionsOverLimit: 59, totalFunctions: 1727, elseBlocks: 1, ifBlocks: 1833, measurementIsHeuristic: True |
 | functionNames | overlongFunctionNames: 4, maxWords: 5, maxLength: 40 |
 | accessorNames | gluedAccessorNames: 7, measurementIsHeuristic: True |
-| duplication | clones: 13, duplicatedLines: 111, totalLines: 43656, duplicatedPercentage: 0.25 |
+| duplication | clones: 13, duplicatedLines: 111, totalLines: 43656, duplicatedPercentage: 0.25, carriedFromBaseline: True |
 | naming | bannedAbbreviationHits: 8, unprefixedBooleans: 2 |
 | comments | explanatoryCommentLines: 259, filesWithComments: 101, taskMarkers: 0 |
 | magicValues | inlineHexColours: 4, inlineStyleAttributes: 2, repeatedStringLiterals: 30 |
@@ -76,23 +76,23 @@ Each element scores 100% with no offenders and falls in a straight line to 0% wh
 
 | Ratcheted figure | Baseline | Now | Verdict |
 | --- | --- | --- | --- |
-| code quality score | 78.9% | 83.3% | — |
-| fileLength.filesOverLimit | 1 | 0 | better |
-| fileLength.worstFileLines | 106 | 0 | better |
-| functionShape.functionsOverLimit | 60 | 59 | better |
+| code quality score | 83.3% | 83.3% | — |
+| fileLength.filesOverLimit | 0 | 0 | held |
+| fileLength.worstFileLines | 0 | 0 | held |
+| functionShape.functionsOverLimit | 59 | 59 | held |
 | functionShape.elseBlocks | 1 | 1 | held |
 | duplication.duplicatedPercentage | 0.25 | 0.25 | held |
-| comments.explanatoryCommentLines | 263 | 259 | better |
+| comments.explanatoryCommentLines | 259 | 259 | held |
 | magicValues.inlineHexColours | 4 | 4 | held |
-| inventory.orphanComponents | 9 | 0 | better |
-| orphans.orphanFunctions | 23 | 0 | better |
-| prose.longMemberChainLines | 449 | 435 | better |
-| prose.deeplyIndentedLines | 287 | 284 | better |
+| inventory.orphanComponents | 0 | 0 | held |
+| orphans.orphanFunctions | 0 | 0 | held |
+| prose.longMemberChainLines | 435 | 435 | held |
+| prose.deeplyIndentedLines | 284 | 284 | held |
 | functionNames.overlongFunctionNames | 4 | 4 | held |
-| accessorNames.gluedAccessorNames | 10 | 7 | better |
+| accessorNames.gluedAccessorNames | 7 | 7 | held |
 | conditions.tangledConditionLines | 50 | 50 | held |
-| conditions.literalComparisonLines | 278 | 251 | better |
-| designPatterns.predictedFilesMissing | 13 | 0 | better |
+| conditions.literalComparisonLines | 251 | 251 | held |
+| designPatterns.predictedFilesMissing | 0 | 0 | held |
 | siteDefinition.handRolledElements | None | None | — |
 | siteDefinition.boxedContentWidgets | None | None | — |
 | inputValidation.unvalidatedDoors | 58 | 58 | held |
